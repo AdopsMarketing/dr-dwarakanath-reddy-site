@@ -4,7 +4,7 @@ isPrimary: true
 name: "Dwarakanath Reddy Vembuluru"
 honorificPrefix: "Dr."
 title: "Senior Consultant, Gastrointestinal and HPB Surgery"
-image: "/images/dr-dwarakanath-reddy.svg"
+image: "/images/dr-dwarakanath-reddy.jpg"
 yearsExperience: 9
 googleRating:
   value: 5.0
