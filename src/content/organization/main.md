@@ -6,7 +6,7 @@ alternateName:
   - "Dr. Dwarakanath Reddy Vembuluru"
   - "Dr. D Reddy"
   - "Dr. Reddy GI Surgeon"
-description: "Senior Consultant in Gastrointestinal Surgery and GI Oncosurgery at Apollo Speciality Hospitals, Nellore. Trained at Manipal Hospitals Bengaluru, with 9+ years of experience in advanced laparoscopic, hepato-pancreatico-biliary, and bariatric surgery. Rated 5.0 by 428 patients on Google."
+description: "Senior Consultant in Gastrointestinal Surgery and GI Oncosurgery at Apollo Speciality Hospitals, Nellore. Trained at Manipal Hospitals Bengaluru, with 9+ years of experience in advanced laparoscopic, hepato-pancreatico-biliary, and bariatric surgery. Rated 5.0 on Google from 428 verified reviews."
 foundingDate: "2026-04"
 knowsLanguage:
   - "English"

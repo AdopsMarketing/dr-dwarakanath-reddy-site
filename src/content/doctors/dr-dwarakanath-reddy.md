@@ -75,4 +75,4 @@ seo:
   description: "DrNB Surgical Gastroenterology. 9+ years in laparoscopic, HPB and bariatric surgery. Apollo Speciality Hospitals, Nellore."
 ---
 
-Dr. Dwarakanath Reddy Vembuluru is a Senior Consultant in Gastrointestinal Surgery and GI Oncosurgery at Apollo Speciality Hospitals, Nellore. He trained at Manipal Hospitals Bengaluru, one of India's leading GI surgery programmes, and brings nine years of focused experience in advanced laparoscopic, hepato-pancreatico-biliary, and bariatric procedures. Patients on Google have rated his practice 5.0 across 428 reviews.
+Dr. Dwarakanath Reddy Vembuluru is a Senior Consultant in Gastrointestinal Surgery and GI Oncosurgery at Apollo Speciality Hospitals, Nellore. He trained at Manipal Hospitals Bengaluru, one of India's leading GI surgery programmes, and brings nine years of focused experience in advanced laparoscopic, hepato-pancreatico-biliary, and bariatric procedures. His practice is rated 5.0 on Google from 428 verified reviews.
