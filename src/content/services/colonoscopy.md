@@ -1,7 +1,8 @@
 ---
 title: "Diagnostic and Screening Colonoscopy"
+h1Secondary: "Painless day-care procedure · Apollo Nellore"
 h1: "Diagnostic and Screening Colonoscopy"
-h1Html: "Screening and diagnostic colonoscopy, <em>painless</em>"
+h1Html: "Screening and diagnostic <em>colonoscopy</em>"
 slug: "colonoscopy"
 category: "procedures"
 shortDescription: "Painless colonoscopy by Dr. Dwarakanath Reddy at Apollo Nellore. Day care procedure for screening, diagnosis, and polyp removal. Sedation included."
@@ -79,8 +80,8 @@ closingCta:
   label: "Book a colonoscopy on WhatsApp"
   message: "Hi Dr. Reddy, I'd like to book a colonoscopy. Here are my age, symptoms, and family history."
 seo:
-  title: "Colonoscopy in Nellore"
-  description: "Painless colonoscopy by Dr. Dwarakanath Reddy at Apollo Nellore. Day care procedure for screening, diagnosis, and polyp removal. Sedation included."
+  title: "Colonoscopy in Nellore | Dr. Dwarakanath Reddy V"
+  description: "Screening and diagnostic colonoscopy in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Painless day-care procedure with polyp removal if needed."
   keywords:
     - "colonoscopy Nellore"
     - "colon screening Apollo Nellore"

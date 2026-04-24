@@ -155,6 +155,7 @@ const services = defineCollection({
     title: z.string(),
     h1: z.string().optional(),
     h1Html: z.string().optional(),
+    h1Secondary: z.string().optional(),
     slug: z.string(),
     category: z.enum([
       'surgical-care',
@@ -214,6 +215,7 @@ const categories = defineCollection({
     title: z.string(),
     h1: z.string().optional(),
     h1Html: z.string().optional(),
+    h1Secondary: z.string().optional(),
     slug: z.string(),
     shortDescription: z.string(),
     heroIntro: z.string(),

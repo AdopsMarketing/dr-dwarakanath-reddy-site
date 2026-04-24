@@ -1,7 +1,8 @@
 ---
 title: "Laparoscopic Gastric Bypass Surgery"
+h1Secondary: "Roux-en-Y for severe obesity and Type 2 diabetes · Apollo Nellore"
 h1: "Laparoscopic Gastric Bypass Surgery"
-h1Html: "Gastric Bypass, <em>metabolic</em> first"
+h1Html: "Gastric bypass, <em>metabolic</em> first"
 slug: "gastric-bypass"
 category: "bariatric"
 shortDescription: "Roux-en-Y Gastric Bypass for severe obesity and Type 2 diabetes by Dr. Dwarakanath Reddy at Apollo Nellore. Long term weight loss and metabolic recovery."
@@ -85,8 +86,8 @@ closingCta:
   label: "Check your eligibility on WhatsApp"
   message: "Hi Dr. Reddy, I'd like to know if I'm eligible for Gastric Bypass. My height is __, weight __, and health conditions include __."
 seo:
-  title: "Gastric Bypass Surgery in Nellore"
-  description: "Roux-en-Y Gastric Bypass for severe obesity and Type 2 diabetes by Dr. Dwarakanath Reddy at Apollo Nellore. Long term weight loss and metabolic recovery."
+  title: "Gastric Bypass Surgery in Nellore | Dr. Dwarakanath Reddy V"
+  description: "Gastric Bypass surgery in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Laparoscopic Roux-en-Y for severe obesity and Type 2 diabetes. 5.0 from 428 Google reviews."
   keywords:
     - "gastric bypass Nellore"
     - "bariatric surgery Apollo Nellore"

@@ -1,7 +1,8 @@
 ---
 title: "Gastric Cancer Surgery (Gastrectomy)"
+h1Secondary: "Subtotal and total gastrectomy with D2 dissection · Apollo Nellore"
 h1: "Gastric Cancer Surgery (Gastrectomy)"
-h1Html: "Gastric cancer surgery, <em>curative</em> intent"
+h1Html: "Stomach cancer surgery, <em>curative</em> intent"
 slug: "stomach-cancer-surgery"
 category: "oncology"
 shortDescription: "Surgical treatment of stomach cancer by Dr. Dwarakanath Reddy at Apollo Nellore. Subtotal and total gastrectomy with D2 lymph node dissection."
@@ -72,8 +73,8 @@ closingCta:
   label: "Send your reports on WhatsApp"
   message: "Hi Dr. Reddy, I have endoscopy, biopsy, or CT reports for stomach cancer. Please review."
 seo:
-  title: "Stomach Cancer Surgery in Nellore"
-  description: "Surgical treatment of stomach cancer by Dr. Dwarakanath Reddy at Apollo Nellore. Subtotal and total gastrectomy with D2 lymph node dissection. Multidisciplinary cancer care."
+  title: "Stomach Cancer Surgery in Nellore | Dr. Dwarakanath Reddy V"
+  description: "Stomach cancer surgery (gastrectomy) in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Subtotal and total gastrectomy with D2 lymph node dissection. Apollo tumor board review."
   keywords:
     - "stomach cancer surgery Nellore"
     - "gastrectomy Apollo Nellore"

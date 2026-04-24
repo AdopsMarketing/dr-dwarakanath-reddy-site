@@ -1,7 +1,8 @@
 ---
 title: "Colon Cancer Surgery (Colectomy)"
+h1Secondary: "Right, left and sigmoid colectomy · Apollo Nellore"
 h1: "Colon Cancer Surgery (Colectomy)"
-h1Html: "Colon cancer surgery, <em>minimally</em> invasive"
+h1Html: "Colon cancer surgery, <em>laparoscopic</em> where possible"
 slug: "colon-cancer-surgery"
 category: "oncology"
 shortDescription: "Laparoscopic colon cancer surgery by Dr. Dwarakanath Reddy at Apollo Nellore. Right and left hemicolectomy, sigmoidectomy. Coordinated oncology care."
@@ -75,8 +76,8 @@ closingCta:
   label: "Send your reports on WhatsApp"
   message: "Hi Dr. Reddy, I have a colonoscopy or biopsy report for colon cancer. Please review."
 seo:
-  title: "Colon Cancer Surgery in Nellore"
-  description: "Laparoscopic colon cancer surgery by Dr. Dwarakanath Reddy at Apollo Nellore. Right and left hemicolectomy, sigmoidectomy. Coordinated oncology care."
+  title: "Colon Cancer Surgery in Nellore | Dr. Dwarakanath Reddy V"
+  description: "Colon cancer surgery in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Laparoscopic hemicolectomy and sigmoidectomy where possible. Multidisciplinary Apollo tumor board."
   keywords:
     - "colon cancer surgery Nellore"
     - "colectomy Apollo Nellore"

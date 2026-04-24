@@ -1,5 +1,6 @@
 ---
 title: "Bariatric (Weight Loss) Surgery in Nellore"
+h1Secondary: "Gastric bypass and sleeve gastrectomy · Apollo Nellore"
 h1: "Bariatric (Weight Loss) Surgery in Nellore"
 h1Html: "Bariatric surgery, <em>metabolic</em> first"
 slug: "bariatric-surgery"
@@ -36,8 +37,8 @@ closingCta:
   message: "Hi Dr. Reddy, I'd like to know if I qualify for bariatric surgery. My height is __, weight __, and health conditions include __."
 order: 60
 seo:
-  title: "Bariatric Surgery in Nellore"
-  description: "Laparoscopic Gastric Bypass and Sleeve Gastrectomy by Dr. Dwarakanath Reddy at Apollo Nellore. Long term weight loss and metabolic recovery."
+  title: "Bariatric Surgery in Nellore | Dr. Dwarakanath Reddy V"
+  description: "Bariatric surgery in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Laparoscopic Gastric Bypass and Sleeve Gastrectomy with full multidisciplinary support."
   keywords:
     - "bariatric surgery Nellore"
     - "weight loss surgery Apollo Nellore"

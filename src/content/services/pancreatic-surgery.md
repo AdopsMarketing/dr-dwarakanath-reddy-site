@@ -1,5 +1,6 @@
 ---
 title: "Pancreatic Surgery (Whipple Procedure and More)"
+h1Secondary: "Whipple procedure and distal pancreatectomy · Apollo Nellore"
 h1: "Pancreatic Surgery (Whipple Procedure and More)"
 h1Html: "Pancreatic surgery, <em>complex</em> by design"
 slug: "pancreatic-surgery"
@@ -71,8 +72,8 @@ closingCta:
   label: "Send your reports on WhatsApp"
   message: "Hi Dr. Reddy, we have a pancreatic diagnosis and would like a second opinion. Here are the reports."
 seo:
-  title: "Pancreatic Surgery in Nellore"
-  description: "Specialised pancreatic surgery by Dr. Dwarakanath Reddy at Apollo Nellore. Whipple procedure for pancreatic head tumors, distal pancreatectomy, chronic pancreatitis surgery."
+  title: "Pancreatic Surgery in Nellore | Dr. Dwarakanath Reddy V"
+  description: "Pancreatic surgery in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Whipple procedure and distal pancreatectomy. HPB super-specialist with multidisciplinary Apollo support."
   keywords:
     - "pancreatic surgery Nellore"
     - "Whipple procedure Apollo Nellore"

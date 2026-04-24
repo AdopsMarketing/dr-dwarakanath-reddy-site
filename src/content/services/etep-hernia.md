@@ -1,5 +1,6 @@
 ---
 title: "eTEP Hernia Repair (Extended Totally Extra Peritoneal)"
+h1Secondary: "For complex and recurrent hernias · Apollo Nellore"
 h1: "eTEP Hernia Repair (Extended Totally Extra Peritoneal)"
 h1Html: "eTEP hernia repair, <em>advanced</em> minimally invasive"
 slug: "etep-hernia"
@@ -63,8 +64,8 @@ closingCta:
   label: "Send your scans on WhatsApp"
   message: "Hi Dr. Reddy, I have a recurrent or complex hernia. Here are my scans and details."
 seo:
-  title: "eTEP Hernia Surgery in Nellore"
-  description: "Advanced eTEP hernia repair by Dr. Dwarakanath Reddy at Apollo Nellore. Specialised technique for complex and recurrent ventral hernias. Faster recovery, less pain."
+  title: "eTEP Hernia Surgery in Nellore | Dr. Dwarakanath Reddy V"
+  description: "eTEP hernia surgery in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Advanced minimally invasive technique for complex and recurrent ventral hernias. DrNB Surgical Gastroenterology."
   keywords:
     - "eTEP hernia Nellore"
     - "recurrent hernia surgery"

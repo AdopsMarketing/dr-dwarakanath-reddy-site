@@ -1,7 +1,8 @@
 ---
 title: "Advanced Laparoscopic Surgery in Nellore"
+h1Secondary: "Smaller cuts, faster recovery · Apollo Nellore"
 h1: "Advanced Laparoscopic Surgery in Nellore"
-h1Html: "Laparoscopic surgery, <em>precision</em> by default"
+h1Html: "Advanced laparoscopic surgery, <em>minimally invasive</em>"
 slug: "laparoscopic-surgery"
 shortDescription: "Minimally invasive laparoscopic surgery for gallbladder, hernia, eTEP, and more by Dr. Dwarakanath Reddy at Apollo Nellore."
 heroIntro: "Laparoscopic surgery uses a high definition camera and specialised instruments to operate through small incisions instead of one large cut. The result is less pain, smaller scars, faster recovery, and earlier return to work. Dr. Reddy chooses laparoscopic approaches whenever clinically appropriate."
@@ -42,8 +43,8 @@ closingCta:
   message: "Hi Dr. Reddy, I'd like to know if my condition can be treated laparoscopically. Here are my details."
 order: 20
 seo:
-  title: "Advanced Laparoscopic Surgery in Nellore"
-  description: "Minimally invasive laparoscopic surgery for gallbladder, hernia, eTEP, and more by Dr. Dwarakanath Reddy at Apollo Nellore."
+  title: "Advanced Laparoscopic Surgery in Nellore | Dr. Dwarakanath Reddy V"
+  description: "Advanced minimally invasive surgery in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Laparoscopic gallbladder, hernia, eTEP, bariatric and oncology procedures."
   keywords:
     - "laparoscopic surgery Nellore"
     - "keyhole surgery Apollo Nellore"

@@ -1,7 +1,8 @@
 ---
 title: "Laparoscopic Sleeve Gastrectomy"
+h1Secondary: "Laparoscopic sleeve for medically eligible patients · Apollo Nellore"
 h1: "Laparoscopic Sleeve Gastrectomy"
-h1Html: "Sleeve gastrectomy, <em>restrictive</em> by design"
+h1Html: "Sleeve gastrectomy, <em>single-stage</em> weight loss"
 slug: "sleeve-gastrectomy"
 category: "bariatric"
 shortDescription: "Laparoscopic Sleeve Gastrectomy by Dr. Dwarakanath Reddy at Apollo Nellore. Single procedure for sustained weight loss in eligible patients."
@@ -88,8 +89,8 @@ closingCta:
   label: "Check your eligibility on WhatsApp"
   message: "Hi Dr. Reddy, I'd like an eligibility check for Sleeve Gastrectomy. My height is __, weight __, and health conditions include __."
 seo:
-  title: "Sleeve Gastrectomy in Nellore"
-  description: "Laparoscopic Sleeve Gastrectomy by Dr. Dwarakanath Reddy at Apollo Nellore. Single procedure for sustained weight loss in eligible patients. WhatsApp for eligibility check."
+  title: "Sleeve Gastrectomy in Nellore | Dr. Dwarakanath Reddy V"
+  description: "Sleeve Gastrectomy in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Laparoscopic single-stage weight loss surgery. Honest patient selection, full bariatric programme."
   keywords:
     - "sleeve gastrectomy Nellore"
     - "bariatric surgery Nellore"

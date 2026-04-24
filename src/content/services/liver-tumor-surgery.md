@@ -1,5 +1,6 @@
 ---
 title: "Liver Resection for Liver Tumors"
+h1Secondary: "HCC, metastases and complex tumors · Apollo Nellore"
 h1: "Liver Resection for Liver Tumors"
 h1Html: "Liver tumor surgery, <em>precision</em> resection"
 slug: "liver-tumor-surgery"
@@ -70,8 +71,8 @@ closingCta:
   label: "Send your scans on WhatsApp"
   message: "Hi Dr. Reddy, I have CT, MRI, or PET scans of a liver lesion I'd like reviewed."
 seo:
-  title: "Liver Tumor Surgery in Nellore"
-  description: "Surgical treatment of liver tumors (HCC, metastases, benign tumors) by Dr. Dwarakanath Reddy at Apollo Nellore. Specialised HPB surgery, multidisciplinary care."
+  title: "Liver Tumor Surgery in Nellore | Dr. Dwarakanath Reddy V"
+  description: "Liver tumor surgery in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Precision resection for HCC, metastases and complex liver tumors. HPB-focused super-specialist."
   keywords:
     - "liver tumor surgery Nellore"
     - "hepatectomy Apollo Nellore"

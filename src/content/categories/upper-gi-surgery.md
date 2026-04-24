@@ -1,5 +1,6 @@
 ---
 title: "Upper GI Surgery in Nellore"
+h1Secondary: "Esophagus and stomach procedures · Apollo Nellore"
 h1: "Upper GI Surgery in Nellore"
 h1Html: "Upper GI surgery, <em>focused</em> expertise"
 slug: "upper-gi-surgery"
@@ -36,8 +37,8 @@ closingCta:
   message: "Hi Dr. Reddy, I have an endoscopy report or persistent upper GI symptoms I'd like reviewed."
 order: 30
 seo:
-  title: "Upper GI Surgery in Nellore"
-  description: "Specialised surgery for esophagus and stomach conditions by Dr. Dwarakanath Reddy at Apollo Nellore. Anti-reflux, hiatus hernia, stomach cancer."
+  title: "Upper GI Surgery in Nellore | Dr. Dwarakanath Reddy V"
+  description: "Upper GI surgery in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Anti-reflux, hiatus hernia, stomach and esophageal procedures."
   keywords:
     - "upper GI surgery Nellore"
     - "anti-reflux surgery Apollo Nellore"

@@ -1,7 +1,8 @@
 ---
 title: "Surgical Gastroenterology"
+h1Secondary: "The full spectrum of GI surgery · Apollo Nellore"
 slug: "surgical-gastroenterology"
-h1Html: "Surgical gastroenterology, a <em>super</em>-specialty"
+h1Html: "Surgical Gastroenterology, <em>super-specialty</em>"
 category: "surgical-care"
 shortDescription: "Specialist surgical care for diseases of the digestive system: oesophagus to rectum, plus liver, pancreas, and biliary tract."
 overview: "Surgical gastroenterology is a super-specialty focused on surgical treatment of the entire gastrointestinal tract. Unlike general surgery, it involves extended training in complex cases including liver resections, pancreatic surgery, GI cancer, and advanced laparoscopic techniques."
@@ -17,8 +18,8 @@ procedureType: "Consultation and surgical planning"
 phase: "1"
 order: 10
 seo:
-  title: "Surgical Gastroenterology, Dr. Dwarakanath Reddy"
-  description: "Super-specialty surgical care for GI, liver, pancreas and biliary conditions."
+  title: "Surgical Gastroenterology in Nellore | Dr. Dwarakanath Reddy V"
+  description: "Surgical Gastroenterology in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. DrNB super-specialist with 9+ years of focused GI surgery experience."
   keywords: ["surgical gastroenterologist", "GI surgeon", "digestive surgery"]
 ---
 

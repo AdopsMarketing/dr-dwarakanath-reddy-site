@@ -1,7 +1,8 @@
 ---
 title: "Diagnostic and Therapeutic Endoscopy"
+h1Secondary: "Day-care procedure under sedation · Apollo Nellore"
 h1: "Diagnostic and Therapeutic Endoscopy"
-h1Html: "Diagnostic and therapeutic endoscopy, <em>day-care</em>"
+h1Html: "Diagnostic and therapeutic <em>endoscopy</em>"
 slug: "endoscopy"
 category: "procedures"
 shortDescription: "Upper GI endoscopy by Dr. Dwarakanath Reddy at Apollo Nellore. Painless, day care procedure for diagnosis and treatment of stomach, esophagus, and duodenum conditions."
@@ -81,8 +82,8 @@ closingCta:
   label: "Book an endoscopy on WhatsApp"
   message: "Hi Dr. Reddy, I have ongoing GI symptoms and would like to book an endoscopy."
 seo:
-  title: "Endoscopy in Nellore"
-  description: "Upper GI endoscopy by Dr. Dwarakanath Reddy at Apollo Nellore. Painless, day care procedure for diagnosis and treatment of stomach, esophagus, and duodenum conditions."
+  title: "Endoscopy in Nellore | Dr. Dwarakanath Reddy V"
+  description: "Diagnostic and therapeutic endoscopy in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Day-care procedure under sedation, HD equipment, same-day reports."
   keywords:
     - "endoscopy Nellore"
     - "gastroscopy Apollo Nellore"

@@ -1,7 +1,8 @@
 ---
 title: "Hepato-Pancreatico-Biliary (HPB) Surgery in Nellore"
+h1Secondary: "Liver, pancreas and bile duct · Apollo Nellore"
 h1: "Hepato-Pancreatico-Biliary (HPB) Surgery in Nellore"
-h1Html: "Hepato-Pancreatico-Biliary surgery, <em>complex</em> by training"
+h1Html: "HPB surgery, <em>complex</em> by training"
 slug: "hpb-surgery"
 shortDescription: "Specialised liver, pancreas, and bile duct surgery by Dr. Dwarakanath Reddy at Apollo Nellore. Whipple, liver resection, complex biliary reconstruction."
 heroIntro: "HPB surgery is one of the most demanding sub-specialties in GI surgery. It deals with the liver, pancreas, and biliary tree, organs that demand precise technique and the right hospital infrastructure. Dr. Reddy performs HPB surgery at Apollo Speciality Hospitals, Nellore, with full ICU and multidisciplinary support."
@@ -36,8 +37,8 @@ closingCta:
   message: "Hi Dr. Reddy, I have an HPB diagnosis and would like a second opinion. Here are the scans and reports."
 order: 40
 seo:
-  title: "HPB Surgery in Nellore"
-  description: "Specialised liver, pancreas, and bile duct surgery by Dr. Dwarakanath Reddy at Apollo Nellore. Whipple, liver resection, complex biliary reconstruction."
+  title: "HPB Surgery in Nellore | Dr. Dwarakanath Reddy V"
+  description: "Hepato-Pancreatico-Biliary surgery in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Whipple, liver resection and biliary reconstruction with ICU backup."
   keywords:
     - "HPB surgery Nellore"
     - "hepatobiliary surgery Apollo Nellore"
