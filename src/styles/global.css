@@ -167,11 +167,11 @@
     color: var(--color-paper-1);
   }
   .btn-ink:hover { background: #000; }
-  .btn-red {
-    background: var(--color-danger);
-    color: #fff;
+  .btn-cta {
+    background: var(--color-ink);
+    color: var(--color-paper-1);
   }
-  .btn-red:hover { background: #A33535; }
+  .btn-cta:hover { background: #DC2626; }
   .btn-outline {
     background: transparent;
     border-color: var(--color-ink);
