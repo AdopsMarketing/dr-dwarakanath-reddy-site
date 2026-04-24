@@ -1,10 +1,14 @@
 ---
 import { Icon } from 'astro-icon/components';
 import { primaryNav } from '@/data/navigation';
+import { giServicesMenu } from '@/data/megaMenu';
 import { siteConfig, whatsappUrl } from '@/config/site';
+import GIServicesDropdown from '@/components/GIServicesDropdown.astro';
 
 const waHref = whatsappUrl("Hi Dr. Reddy, I'd like to book an appointment.");
 const telHref = `tel:${siteConfig.doctor.phone.replace(/\s/g, '')}`;
+
+const isGIServices = (label: string) => label === 'GI Services';
 ---
 
 <header class="sticky top-0 z-50 bg-paper-1/95 backdrop-blur border-b border-paper-3">
@@ -25,36 +29,51 @@ const telHref = `tel:${siteConfig.doctor.phone.replace(/\s/g, '')}`;
 
     <!-- Desktop nav -->
     <nav class="hidden lg:flex items-center gap-5 flex-1 justify-center" aria-label="Primary">
-      {primaryNav.slice(0, 7).map((item) => (
-        <div class="relative group">
-          <a
-            href={item.href}
-            class="text-sm text-ink-soft hover:text-ink py-2 inline-flex items-center gap-1 whitespace-nowrap"
-          >
-            {item.label}
-            {item.children && <Icon name="lucide:chevron-down" class="w-3.5 h-3.5 opacity-60" />}
-          </a>
-          {item.children && (
-            <div class="hidden group-hover:block absolute left-0 top-full pt-2 w-72">
-              <ul class="bg-paper-1 border border-paper-3 rounded-sm py-2">
-                {item.children.map((child) => (
-                  <li>
-                    <a
-                      href={child.href}
-                      class="block px-4 py-2 text-sm text-ink-soft hover:bg-paper-2 hover:text-ink"
-                    >
-                      {child.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
-      ))}
+      {primaryNav.slice(0, 7).map((item) => {
+        const giTrigger = isGIServices(item.label);
+        return (
+          <div class="relative group">
+            <a
+              href={item.href}
+              class="text-sm text-ink-soft hover:text-ink py-2 inline-flex items-center gap-1 whitespace-nowrap"
+              {...(giTrigger ? {
+                'data-mega-trigger': '',
+                'aria-haspopup': 'true',
+                'aria-expanded': 'false',
+                'aria-controls': 'gi-services-panel',
+              } : {})}
+            >
+              {item.label}
+              {item.children && (
+                <Icon
+                  name="lucide:chevron-down"
+                  class={`w-3.5 h-3.5 opacity-60 transition-transform ${giTrigger ? 'data-[open]:rotate-180' : ''}`}
+                  {...(giTrigger ? { 'data-mega-chevron': '' } : {})}
+                />
+              )}
+            </a>
+            {item.children && !giTrigger && (
+              <div class="hidden group-hover:block absolute left-0 top-full pt-2 w-72">
+                <ul class="bg-paper-1 border border-paper-3 rounded-sm py-2">
+                  {item.children.map((child) => (
+                    <li>
+                      <a
+                        href={child.href}
+                        class="block px-4 py-2 text-sm text-ink-soft hover:bg-paper-2 hover:text-ink"
+                      >
+                        {child.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        );
+      })}
     </nav>
 
-    <!-- Desktop right: phone + CTA on one row -->
+    <!-- Desktop right: phone + CTA -->
     <div class="hidden lg:flex items-center gap-4 shrink-0">
       <a
         href={telHref}
@@ -91,6 +110,9 @@ const telHref = `tel:${siteConfig.doctor.phone.replace(/\s/g, '')}`;
     </div>
   </div>
 
+  <!-- Desktop GI Services mega-menu panel -->
+  <GIServicesDropdown />
+
   <!-- Mobile menu -->
   <div
     id="mobile-menu"
@@ -101,25 +123,39 @@ const telHref = `tel:${siteConfig.doctor.phone.replace(/\s/g, '')}`;
       <ul class="space-y-1">
         {primaryNav.map((item) => (
           <li>
-            <a
-              href={item.href}
-              class="block py-2.5 font-display text-lg text-ink hover:text-accent"
-            >
-              {item.label}
-            </a>
-            {item.children && (
-              <ul class="mb-3 pl-4 border-l border-paper-3 space-y-0.5">
-                {item.children.map((child) => (
+            {isGIServices(item.label) ? (
+              <details class="gi-accordion group">
+                <summary class="flex items-center justify-between py-2.5 cursor-pointer list-none">
+                  <span class="font-display text-lg text-ink">{item.label}</span>
+                  <Icon
+                    name="lucide:chevron-down"
+                    class="w-4 h-4 text-ink-muted transition-transform group-open:rotate-180"
+                  />
+                </summary>
+                <ul class="mb-3 pl-1 divide-y divide-[color:var(--hairline)]">
+                  {giServicesMenu.map((mi) => (
+                    <li>
+                      <a href={mi.href} class="block py-3 group">
+                        <p class="eyebrow">{mi.eyebrow}</p>
+                        <p class="mt-1 font-display text-base text-ink group-hover:text-accent">{mi.title}</p>
+                        <p class="text-sm text-ink-muted">{mi.subline}</p>
+                      </a>
+                    </li>
+                  ))}
                   <li>
-                    <a
-                      href={child.href}
-                      class="block py-1.5 text-sm text-ink-soft hover:text-ink"
-                    >
-                      {child.label}
+                    <a href="/gi-services" class="block py-3 mono-caps text-accent hover:text-accent-soft">
+                      View all procedures →
                     </a>
                   </li>
-                ))}
-              </ul>
+                </ul>
+              </details>
+            ) : (
+              <a
+                href={item.href}
+                class="block py-2.5 font-display text-lg text-ink hover:text-accent"
+              >
+                {item.label}
+              </a>
             )}
           </li>
         ))}
@@ -139,23 +175,83 @@ const telHref = `tel:${siteConfig.doctor.phone.replace(/\s/g, '')}`;
 </header>
 
 <script>
-  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
-  const panel = document.querySelector<HTMLElement>('[data-menu-panel]');
-  const iconOpen = toggle?.querySelector<HTMLElement>('[data-icon-open]');
-  const iconClose = toggle?.querySelector<HTMLElement>('[data-icon-close]');
+  // Mobile menu toggle
+  const mobileToggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const mobilePanel = document.querySelector<HTMLElement>('[data-menu-panel]');
+  const iconOpen = mobileToggle?.querySelector<HTMLElement>('[data-icon-open]');
+  const iconClose = mobileToggle?.querySelector<HTMLElement>('[data-icon-close]');
 
-  toggle?.addEventListener('click', () => {
-    const isOpen = !panel?.classList.contains('hidden');
+  mobileToggle?.addEventListener('click', () => {
+    const isOpen = !mobilePanel?.classList.contains('hidden');
     if (isOpen) {
-      panel?.classList.add('hidden');
-      toggle.setAttribute('aria-expanded', 'false');
+      mobilePanel?.classList.add('hidden');
+      mobileToggle.setAttribute('aria-expanded', 'false');
       iconOpen?.classList.remove('hidden');
       iconClose?.classList.add('hidden');
     } else {
-      panel?.classList.remove('hidden');
-      toggle.setAttribute('aria-expanded', 'true');
+      mobilePanel?.classList.remove('hidden');
+      mobileToggle.setAttribute('aria-expanded', 'true');
       iconOpen?.classList.add('hidden');
       iconClose?.classList.remove('hidden');
     }
   });
+
+  // Desktop GI Services mega-menu
+  const trigger = document.querySelector<HTMLElement>('[data-mega-trigger]');
+  const panel = document.querySelector<HTMLElement>('[data-mega-panel]');
+  const chevron = trigger?.querySelector<HTMLElement>('[data-mega-chevron]');
+  let closeTimer: number | undefined;
+
+  const openPanel = () => {
+    if (!trigger || !panel) return;
+    if (closeTimer) { clearTimeout(closeTimer); closeTimer = undefined; }
+    panel.dataset.open = '';
+    chevron?.setAttribute('data-open', '');
+    trigger.setAttribute('aria-expanded', 'true');
+  };
+
+  const scheduleClose = () => {
+    if (!trigger || !panel) return;
+    if (closeTimer) clearTimeout(closeTimer);
+    closeTimer = window.setTimeout(() => {
+      delete panel.dataset.open;
+      chevron?.removeAttribute('data-open');
+      trigger.setAttribute('aria-expanded', 'false');
+      closeTimer = undefined;
+    }, 300);
+  };
+
+  if (trigger && panel) {
+    const parent = trigger.closest('.group');
+    parent?.addEventListener('mouseenter', openPanel);
+    parent?.addEventListener('mouseleave', scheduleClose);
+    panel.addEventListener('mouseenter', openPanel);
+    panel.addEventListener('mouseleave', scheduleClose);
+    trigger.addEventListener('focus', openPanel);
+    trigger.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        delete panel.dataset.open;
+        chevron?.removeAttribute('data-open');
+        trigger.setAttribute('aria-expanded', 'false');
+        (trigger as HTMLElement).blur();
+      }
+    });
+    // Close if focus moves outside the panel or trigger
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && panel.dataset.open !== undefined) {
+        delete panel.dataset.open;
+        chevron?.removeAttribute('data-open');
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
 </script>
+
+<style>
+  /* Rotate chevron when mega-panel is open */
+  [data-mega-chevron][data-open] {
+    transform: rotate(180deg);
+  }
+  /* Hide native <details> marker in mobile GI accordion */
+  details.gi-accordion > summary::-webkit-details-marker { display: none; }
+</style>
