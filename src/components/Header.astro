@@ -8,32 +8,31 @@ const telHref = `tel:${siteConfig.doctor.phone.replace(/\s/g, '')}`;
 ---
 
 <header class="sticky top-0 z-50 bg-paper-1/95 backdrop-blur border-b border-paper-3">
-  <div class="site-container flex items-center justify-between h-16 lg:h-20">
+  <div class="site-container flex items-center justify-between gap-4 h-16 lg:h-20">
+    <!-- Wordmark -->
     <a
       href="/"
-      class="flex items-center gap-3"
+      class="flex flex-col leading-tight shrink-0"
       itemscope
       itemtype="https://schema.org/MedicalOrganization"
     >
-      <span class="w-9 h-9 rounded-sm bg-ink text-paper-1 flex items-center justify-center font-display italic text-lg" aria-hidden="true">R</span>
-      <span class="flex flex-col leading-tight">
-        <span class="font-display text-[17px] text-ink" itemprop="name">Dr. Dwarakanath Reddy</span>
-        <span class="mono-caps text-ink-muted">Surgical Gastroenterology · Nellore</span>
+      <span class="font-display text-[17px] lg:text-[19px] text-ink" itemprop="name">
+        Dr. Dwarakanath Reddy
       </span>
+      <span class="mono-caps text-ink-muted">Surgical Gastroenterology</span>
       <link itemprop="url" href="/" />
     </a>
 
-    <nav class="hidden lg:flex items-center gap-7" aria-label="Primary">
+    <!-- Desktop nav -->
+    <nav class="hidden lg:flex items-center gap-5 flex-1 justify-center" aria-label="Primary">
       {primaryNav.slice(0, 7).map((item) => (
         <div class="relative group">
           <a
             href={item.href}
-            class="text-sm text-ink-soft hover:text-ink py-2 inline-flex items-center gap-1"
+            class="text-sm text-ink-soft hover:text-ink py-2 inline-flex items-center gap-1 whitespace-nowrap"
           >
             {item.label}
-            {item.children && (
-              <Icon name="lucide:chevron-down" class="w-3.5 h-3.5 opacity-60" />
-            )}
+            {item.children && <Icon name="lucide:chevron-down" class="w-3.5 h-3.5 opacity-60" />}
           </a>
           {item.children && (
             <div class="hidden group-hover:block absolute left-0 top-full pt-2 w-72">
@@ -55,17 +54,108 @@ const telHref = `tel:${siteConfig.doctor.phone.replace(/\s/g, '')}`;
       ))}
     </nav>
 
-    <div class="flex items-center gap-3">
+    <!-- Desktop right: phone + CTA on one row -->
+    <div class="hidden lg:flex items-center gap-4 shrink-0">
       <a
         href={telHref}
-        class="hidden md:inline-flex items-center gap-1.5 mono-caps text-ink-soft hover:text-ink"
+        class="hidden xl:inline-flex items-center gap-1.5 text-sm text-ink-soft hover:text-ink whitespace-nowrap"
       >
         <Icon name="lucide:phone" class="w-3.5 h-3.5" />
         {siteConfig.doctor.phone}
       </a>
-      <a href="/contact" class="btn btn-ink text-sm">
+      <a href="/contact" class="btn btn-ink text-sm whitespace-nowrap py-2.5 px-5">
         Book a consultation
       </a>
     </div>
+
+    <!-- Mobile: WhatsApp icon + hamburger -->
+    <div class="flex lg:hidden items-center gap-2">
+      <a
+        href={waHref}
+        aria-label="Chat on WhatsApp"
+        class="inline-flex items-center justify-center w-10 h-10 rounded-sm text-whatsapp hover:bg-paper-2"
+      >
+        <Icon name="simple-icons:whatsapp" class="w-5 h-5" />
+      </a>
+      <button
+        type="button"
+        aria-label="Open menu"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+        class="inline-flex items-center justify-center w-10 h-10 rounded-sm text-ink hover:bg-paper-2"
+        data-menu-toggle
+      >
+        <Icon name="lucide:menu" class="w-6 h-6" data-icon-open />
+        <Icon name="lucide:x" class="w-6 h-6 hidden" data-icon-close />
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobile-menu"
+    class="lg:hidden hidden border-t border-paper-3 bg-paper-1"
+    data-menu-panel
+  >
+    <nav class="site-container py-6" aria-label="Mobile">
+      <ul class="space-y-1">
+        {primaryNav.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="block py-2.5 font-display text-lg text-ink hover:text-accent"
+            >
+              {item.label}
+            </a>
+            {item.children && (
+              <ul class="mb-3 pl-4 border-l border-paper-3 space-y-0.5">
+                {item.children.map((child) => (
+                  <li>
+                    <a
+                      href={child.href}
+                      class="block py-1.5 text-sm text-ink-soft hover:text-ink"
+                    >
+                      {child.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+      <div class="mt-6 pt-6 border-t border-paper-3 space-y-3">
+        <a href="/contact" class="btn btn-ink w-full">Book a consultation</a>
+        <a
+          href={telHref}
+          class="flex items-center justify-center gap-2 text-sm text-ink-soft hover:text-ink py-2"
+        >
+          <Icon name="lucide:phone" class="w-4 h-4" />
+          {siteConfig.doctor.phone}
+        </a>
+      </div>
+    </nav>
   </div>
 </header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const panel = document.querySelector<HTMLElement>('[data-menu-panel]');
+  const iconOpen = toggle?.querySelector<HTMLElement>('[data-icon-open]');
+  const iconClose = toggle?.querySelector<HTMLElement>('[data-icon-close]');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = !panel?.classList.contains('hidden');
+    if (isOpen) {
+      panel?.classList.add('hidden');
+      toggle.setAttribute('aria-expanded', 'false');
+      iconOpen?.classList.remove('hidden');
+      iconClose?.classList.add('hidden');
+    } else {
+      panel?.classList.remove('hidden');
+      toggle.setAttribute('aria-expanded', 'true');
+      iconOpen?.classList.add('hidden');
+      iconClose?.classList.remove('hidden');
+    }
+  });
+</script>
