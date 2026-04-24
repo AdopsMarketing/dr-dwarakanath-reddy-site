@@ -28,6 +28,39 @@ const fmtDate = (iso: string) =>
 
 const waHref = whatsappUrl("Hi Dr. Reddy, I'd like to book an appointment.");
 
+const commonQuestions = [
+  {
+    question: 'Do I need a referral from a general physician?',
+    answer:
+      'No. You can book a direct consultation with Dr. Reddy. If you have existing reports or scans, carry them or send them on WhatsApp before your visit.',
+  },
+  {
+    question: 'Does Dr. Reddy accept my health insurance?',
+    answer:
+      'Apollo Speciality Hospitals Nellore is empanelled with all major insurance providers and TPAs including Star Health, HDFC Ergo, Bajaj Allianz, ICICI Lombard, Aditya Birla, CGHS, and ESI. Cashless treatment is available for most plans. Send your insurance details on WhatsApp for a quick check.',
+  },
+  {
+    question: 'How quickly can I see Dr. Reddy?',
+    answer:
+      'For non-urgent consultations, appointments are usually available within 2 to 5 working days. For emergencies or cases needing urgent review, WhatsApp is the fastest way to reach the practice.',
+  },
+  {
+    question: 'Can Dr. Reddy give a second opinion on my existing scans?',
+    answer:
+      'Yes. Second opinions are common and welcomed. Share your CT, MRI, PET or ultrasound reports on WhatsApp, and Dr. Reddy can give an initial assessment before you commit to a visit.',
+  },
+  {
+    question: 'Does he handle emergency GI surgeries?',
+    answer:
+      'Yes. Apollo Nellore provides 24/7 emergency surgical cover. For acute abdominal pain, suspected appendicitis, bleeding, or obstruction, proceed directly to Apollo Nellore Emergency.',
+  },
+  {
+    question: 'Is Dr. Reddy a specialist or a general surgeon?',
+    answer:
+      'Dr. Reddy holds a DrNB in Surgical Gastroenterology, which is the highest super-specialisation for GI surgery in India. A general surgeon trains across multiple systems. A surgical gastroenterologist trains exclusively on the GI tract for an additional 3 years after general surgery.',
+  },
+];
+
 const stats = [
   { value: '09+', label: 'Years in surgical practice' },
   { value: '428', label: '5-star Google reviews' },
@@ -68,6 +101,7 @@ const whyChoose = [
   title="Dr. Dwarakanath Reddy · Surgical Gastroenterologist, Apollo Nellore"
   description="Senior Consultant Gastrointestinal Surgeon at Apollo Speciality Hospitals, Nellore. 9+ years in laparoscopic, HPB, oncology and bariatric surgery. 5.0 from 428 Google reviews."
   breadcrumbs={[{ name: 'Home', url: new URL('/', Astro.site!).toString() }]}
+  faq={commonQuestions}
 >
   <!-- HERO -->
   <section class="relative bg-paper-1" itemscope itemtype="https://schema.org/Physician">
@@ -245,32 +279,91 @@ const whyChoose = [
   {latestPosts.length > 0 && (
     <section class="bg-paper-2 border-t border-paper-3">
       <div class="site-container py-16 lg:py-20">
-        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
-          <div>
-            <Eyebrow>From the blog</Eyebrow>
-            <h2 class="mt-5 font-display text-[28px] lg:text-[36px] leading-[1.1] text-ink max-w-[22ch]">
-              Understanding your <em>condition</em>.
-            </h2>
-          </div>
-          <a href="/blogs" class="mono-caps text-ink hover:text-accent self-start lg:self-auto">All articles →</a>
+        <div class="max-w-2xl">
+          <Eyebrow>Patient education</Eyebrow>
+          <h2 class="mt-5 font-display text-[32px] lg:text-[44px] leading-[1.08] text-ink max-w-[18ch]">
+            Understanding your <em>condition</em>.
+          </h2>
+          <p class="mt-4 text-ink-soft leading-relaxed max-w-[58ch]">
+            Short, honest explanations of common GI conditions, procedures, and recovery questions. Written and reviewed by Dr. Reddy.
+          </p>
         </div>
 
-        <div class="mt-10 grid gap-6 md:grid-cols-3">
+        <div class="mt-12 grid gap-6 md:grid-cols-3">
           {latestPosts.map((p) => (
             <a href={`/blogs/${p.data.slug}`} class="card card-hover group block h-full flex flex-col">
-              {p.data.category && <p class="mono-caps text-ink-muted">{p.data.category}</p>}
-              <h3 class="mt-3 font-display text-[20px] text-ink leading-tight">{p.data.title}</h3>
+              {p.data.category && (
+                <p class="mono-caps text-ink-muted">{p.data.category}</p>
+              )}
+              <p class="mt-3 font-display text-xl text-ink leading-tight group-hover:text-accent">
+                {p.data.title}
+              </p>
               <p class="mt-3 text-[15px] text-ink-soft leading-relaxed flex-1">{p.data.excerpt}</p>
               <div class="mt-5 pt-4 border-t border-paper-3 flex items-center justify-between mono-caps text-ink-muted">
+                <span class="text-accent group-hover:text-accent-soft">Read →</span>
                 <span>{fmtDate(p.data.publishedAt)}</span>
-                <span class="text-ink group-hover:translate-x-1 transition-transform">→</span>
               </div>
             </a>
           ))}
         </div>
+
+        <div class="mt-12">
+          <ExploreLink href="/blogs">View all articles</ExploreLink>
+        </div>
       </div>
     </section>
   )}
+
+  <!-- PATIENT STORY TEASER -->
+  <section class="bg-paper-2 border-t border-paper-3">
+    <div class="site-container py-20 grid lg:grid-cols-5 gap-12 items-center">
+      <blockquote class="lg:col-span-3">
+        <p class="font-display italic text-[26px] lg:text-[32px] leading-[1.3] text-ink">
+          "I came in at 8 in the morning with a fear of surgery. Dr. Reddy explained everything, did the procedure in 30 minutes, and I was home by evening eating my usual food."
+        </p>
+        <footer class="mt-6 mono-caps text-ink-muted">
+          Mrs. K., 52 · Gallbladder removal · Nellore
+        </footer>
+      </blockquote>
+      <div class="lg:col-span-2">
+        <Eyebrow>Patient stories</Eyebrow>
+        <p class="mt-5 text-ink-soft leading-relaxed">
+          Real patient accounts, shared with consent. How patients find Dr. Reddy, what the consultation is like, what recovery feels like, and how they are doing months after.
+        </p>
+        <div class="mt-8">
+          <ExploreLink href="/success-stories">Read more patient stories</ExploreLink>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMON QUESTIONS -->
+  <section class="bg-paper-1 border-t border-paper-3">
+    <div class="site-container py-20 lg:py-24">
+      <div class="max-w-2xl">
+        <Eyebrow>Common questions</Eyebrow>
+        <h2 class="mt-5 font-display text-[32px] lg:text-[44px] leading-[1.08] text-ink max-w-[20ch]">
+          Answers to what patients ask <em>first</em>.
+        </h2>
+        <p class="mt-4 text-ink-soft leading-relaxed max-w-[58ch]">
+          Practical questions about referrals, insurance, and the consultation process.
+        </p>
+      </div>
+
+      <div class="mt-12 max-w-[62ch]">
+        {commonQuestions.map((qa) => (
+          <details class="faq">
+            <summary>{qa.question}</summary>
+            <div class="faq-body">{qa.answer}</div>
+          </details>
+        ))}
+      </div>
+
+      <div class="mt-12">
+        <ExploreLink href="/faqs">View all FAQs</ExploreLink>
+      </div>
+    </div>
+  </section>
 
   <!-- ABOUT TEASER -->
   <section class="bg-ink text-paper-1">

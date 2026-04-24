@@ -560,9 +560,11 @@ export function buildPageGraph(input: PageGraphInput) {
     primaryEntityId = ids.clinic(origin, input.location.data.entityKey);
   }
 
-  if (input.pageType === 'faq' && input.faq) {
+  if (input.faq && input.faq.length > 0) {
     nodes.push(faqPageNode({ pageUrl: input.pageUrl, questions: input.faq }));
-    primaryEntityId = `${input.pageUrl}#faqpage`;
+    if (input.pageType === 'faq') {
+      primaryEntityId = `${input.pageUrl}#faqpage`;
+    }
   }
 
   nodes.push(
