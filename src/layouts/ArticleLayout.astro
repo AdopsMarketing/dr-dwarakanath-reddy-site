@@ -1,8 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Eyebrow from '@/components/Eyebrow.astro';
-import { Icon } from 'astro-icon/components';
-import { whatsappUrl } from '@/config/site';
 
 interface Props {
   eyebrow: string;                  // e.g. "Blog", "Case 02"
@@ -49,7 +47,6 @@ const formatDate = (iso: string) => {
   }
 };
 
-const waHref = whatsappUrl(`Hi Dr. Reddy, I read your article on "${title}" and have a question.`);
 ---
 
 <BaseLayout
@@ -132,13 +129,6 @@ const waHref = whatsappUrl(`Hi Dr. Reddy, I read your article on "${title}" and 
             <p class="mono-caps text-ink-muted">Written and reviewed by</p>
             <p class="mt-1 font-display text-xl text-ink">Dr. Dwarakanath Reddy V</p>
             <p class="text-ink-soft">Senior Consultant, Gastrointestinal and HPB Surgery · Apollo Speciality Hospitals, Nellore</p>
-            <div class="mt-4 flex flex-wrap gap-3">
-              <a href="/contact" class="btn btn-cta text-sm py-2.5 px-5">Book a consultation</a>
-              <a href={waHref} class="btn btn-whatsapp text-sm py-2.5 px-5">
-                <Icon name="simple-icons:whatsapp" class="w-4 h-4" />
-                Ask a question
-              </a>
-            </div>
           </div>
         </div>
       </div>

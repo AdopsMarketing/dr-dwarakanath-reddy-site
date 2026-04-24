@@ -1,8 +1,8 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { Icon } from 'astro-icon/components';
 import Eyebrow from '@/components/Eyebrow.astro';
-import { whatsappUrl } from '@/config/site';
+import ExploreLink from '@/components/ExploreLink.astro';
+import WhatsAppContextCTA from '@/components/WhatsAppContextCTA.astro';
 
 interface Props {
   category: CollectionEntry<'categories'>;
@@ -10,10 +10,6 @@ interface Props {
 
 const { category } = Astro.props;
 const d = category.data;
-
-const closingCtaHref = d.closingCta
-  ? whatsappUrl(d.closingCta.message)
-  : whatsappUrl(`Hi Dr. Reddy, I'd like to know more about ${d.h1 ?? d.title}.`);
 ---
 
 <section class="bg-paper-1">
@@ -132,27 +128,20 @@ const closingCtaHref = d.closingCta
             </article>
           );
         })}
+
+        <div class="pt-8 rule-top">
+          <ExploreLink href="/gi-services">See all procedures in this area</ExploreLink>
+        </div>
       </div>
     </div>
   </section>
 )}
 
 {d.closingCta && (
-  <section class="bg-ink text-paper-1">
-    <div class="site-container py-16 lg:py-24 max-w-3xl text-center">
-      <Eyebrow class="!text-accent-soft">Next step</Eyebrow>
-      <p class="mt-6 font-display text-[26px] lg:text-[36px] leading-[1.15] max-w-2xl mx-auto">
-        {d.closingCta.prompt}
-      </p>
-      <div class="mt-8 flex flex-wrap justify-center gap-3">
-        <a href="/contact" class="btn btn-outline border-paper-1 text-paper-1 hover:bg-paper-1 hover:text-ink">
-          Book a consultation
-        </a>
-        <a href={closingCtaHref} class="btn btn-whatsapp">
-          <Icon name="simple-icons:whatsapp" class="w-5 h-5" />
-          {d.closingCta.label}
-        </a>
-      </div>
-    </div>
-  </section>
+  <WhatsAppContextCTA
+    eyebrow="Next step"
+    prompt={d.closingCta.prompt}
+    label={d.closingCta.label}
+    message={d.closingCta.message}
+  />
 )}

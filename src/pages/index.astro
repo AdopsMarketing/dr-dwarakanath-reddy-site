@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Eyebrow from '@/components/Eyebrow.astro';
+import ExploreLink from '@/components/ExploreLink.astro';
 import { Icon } from 'astro-icon/components';
 import { getCollection } from 'astro:content';
 import { siteConfig, whatsappUrl } from '@/config/site';
@@ -100,13 +101,6 @@ const whyChoose = [
           </div>
         </div>
 
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a href="/contact" class="btn btn-ink">Book a consultation</a>
-          <a href={waHref} class="btn btn-whatsapp">
-            <Icon name="simple-icons:whatsapp" class="w-5 h-5" />
-            Talk on WhatsApp
-          </a>
-        </div>
       </div>
 
       <!-- RIGHT 40% -->
@@ -177,21 +171,19 @@ const whyChoose = [
         </article>
       ))}
     </div>
+    <div class="mt-12">
+      <ExploreLink href="/about-doctor">Read Dr. Reddy's full story</ExploreLink>
+    </div>
   </section>
 
   <!-- FEATURED PROCEDURES -->
   <section class="bg-paper-2 border-t border-paper-3">
     <div class="site-container py-20 lg:py-28">
-      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
-        <div>
-          <Eyebrow>Areas of practice</Eyebrow>
-          <h2 class="mt-6 font-display text-[32px] lg:text-[48px] leading-[1.08] text-ink max-w-[16ch]">
-            Procedures, <em>by discipline</em>.
-          </h2>
-        </div>
-        <a href="/gi-services" class="mono-caps text-ink hover:text-accent self-start lg:self-auto">
-          See all procedures →
-        </a>
+      <div>
+        <Eyebrow>Areas of practice</Eyebrow>
+        <h2 class="mt-6 font-display text-[32px] lg:text-[48px] leading-[1.08] text-ink max-w-[16ch]">
+          Procedures, <em>by discipline</em>.
+        </h2>
       </div>
 
       <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -207,6 +199,9 @@ const whyChoose = [
             </div>
           </a>
         ))}
+      </div>
+      <div class="mt-12">
+        <ExploreLink href="/gi-services">View all procedures</ExploreLink>
       </div>
     </div>
   </section>
@@ -288,13 +283,8 @@ const whyChoose = [
         <p class="mt-6 text-paper-2 leading-relaxed max-w-[58ch]">
           After MBBS and MS in General Surgery, Dr. Reddy completed his super-specialisation (DrNB) in Surgical Gastroenterology at Manipal Hospitals, Bengaluru. Before joining Apollo Nellore, he served as Associate Professor at Narayana Medical College, training the next generation of surgeons. That academic rigour now informs every patient consultation.
         </p>
-        <div class="mt-10 flex flex-wrap gap-3">
-          <a href="/about-doctor" class="btn btn-outline border-paper-1 text-paper-1 hover:bg-paper-1 hover:text-ink">
-            Read Dr. Reddy's story
-          </a>
-          <a href="/contact" class="btn btn-whatsapp">
-            <Icon name="simple-icons:whatsapp" class="w-5 h-5" /> Talk on WhatsApp
-          </a>
+        <div class="mt-10">
+          <ExploreLink href="/about-doctor" variant="outline-dark">Read Dr. Reddy's full story</ExploreLink>
         </div>
       </div>
 

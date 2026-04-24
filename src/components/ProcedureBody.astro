@@ -2,6 +2,8 @@
 import type { CollectionEntry } from 'astro:content';
 import { Icon } from 'astro-icon/components';
 import Eyebrow from '@/components/Eyebrow.astro';
+import ExploreLink from '@/components/ExploreLink.astro';
+import WhatsAppContextCTA from '@/components/WhatsAppContextCTA.astro';
 import { whatsappUrl } from '@/config/site';
 
 interface Props {
@@ -15,10 +17,6 @@ const d = service.data;
 const heroCtaHref = d.heroCta
   ? whatsappUrl(d.heroCta.message)
   : whatsappUrl(`Hi Dr. Reddy, I'd like to ask about ${d.h1 ?? d.title}.`);
-const closingCtaHref = d.closingCta
-  ? whatsappUrl(d.closingCta.message)
-  : whatsappUrl(`Hi Dr. Reddy, I'd like to ask about ${d.h1 ?? d.title}.`);
-
 const categoryLabel = (() => {
   switch (d.category) {
     case 'laparoscopic': return 'Laparoscopic';
@@ -29,6 +27,20 @@ const categoryLabel = (() => {
     default: return 'Surgery';
   }
 })();
+
+const categoryHubHref = (() => {
+  switch (d.category) {
+    case 'laparoscopic': return '/gi-services/laparoscopic-surgery';
+    case 'hpb': return '/gi-services/hpb-surgery';
+    case 'oncology': return '/gi-services/gi-oncology';
+    case 'bariatric': return '/gi-services/bariatric-surgery';
+    case 'procedures': return '/gi-services';
+    default: return '/gi-services';
+  }
+})();
+
+const faqWaMessage = `Hi Dr. Reddy, I still have a question about ${d.h1 ?? d.title}.`;
+const faqWaHref = whatsappUrl(faqWaMessage);
 
 const toc = d.sections.map((s, i) => ({
   id: `s-${i + 1}`,
@@ -72,15 +84,14 @@ const toc = d.sections.map((s, i) => ({
       </p>
     )}
 
-    <div class="mt-8 flex flex-wrap gap-3">
-      <a href="/contact" class="btn btn-ink">Book a consultation</a>
-      {d.heroCta && (
+    {d.heroCta && (
+      <div class="mt-8">
         <a href={heroCtaHref} class="btn btn-whatsapp">
           <Icon name="simple-icons:whatsapp" class="w-5 h-5" />
           {d.heroCta.label}
         </a>
-      )}
-    </div>
+      </div>
+    )}
   </div>
 </section>
 
@@ -210,27 +221,25 @@ const toc = d.sections.map((s, i) => ({
         )}
       </article>
     )}
+
+    <div class="mt-12 pt-10 rule-top flex flex-wrap gap-3">
+      <ExploreLink href={categoryHubHref}>See related procedures</ExploreLink>
+      <a href={faqWaHref} class="btn btn-outline group">
+        <Icon name="simple-icons:whatsapp" class="w-4 h-4 text-whatsapp" />
+        <span>Still have questions? Ask on WhatsApp</span>
+        <span class="inline-block transition-transform group-hover:translate-x-1">→</span>
+      </a>
+    </div>
   </div>
 </section>
 
 {d.closingCta && (
-  <section class="bg-ink text-paper-1">
-    <div class="site-container py-16 lg:py-24 max-w-3xl text-center">
-      <Eyebrow class="!text-accent-soft">Next step</Eyebrow>
-      <p class="mt-6 font-display text-[26px] lg:text-[36px] leading-[1.15] max-w-2xl mx-auto">
-        {d.closingCta.prompt}
-      </p>
-      <div class="mt-8 flex flex-wrap justify-center gap-3">
-        <a href="/contact" class="btn btn-outline border-paper-1 text-paper-1 hover:bg-paper-1 hover:text-ink">
-          Book a consultation
-        </a>
-        <a href={closingCtaHref} class="btn btn-whatsapp">
-          <Icon name="simple-icons:whatsapp" class="w-5 h-5" />
-          {d.closingCta.label}
-        </a>
-      </div>
-    </div>
-  </section>
+  <WhatsAppContextCTA
+    eyebrow="Next step"
+    prompt={d.closingCta.prompt}
+    label={d.closingCta.label}
+    message={d.closingCta.message}
+  />
 )}
 
 <script>

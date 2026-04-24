@@ -1,0 +1,41 @@
+---
+import { Icon } from 'astro-icon/components';
+import { whatsappUrl } from '@/config/site';
+import Eyebrow from '@/components/Eyebrow.astro';
+
+interface Props {
+  prompt: string;        // display text, supports <em>...</em>
+  label: string;         // button label
+  message: string;       // prefilled WhatsApp message
+  eyebrow?: string;      // optional eyebrow above prompt
+  variant?: 'dark' | 'light';
+}
+
+const {
+  prompt,
+  label,
+  message,
+  eyebrow = 'Next step',
+  variant = 'dark',
+} = Astro.props;
+
+const sectionCls =
+  variant === 'dark' ? 'bg-ink text-paper-1' : 'bg-paper-2 border-y border-paper-3';
+const eyebrowCls = variant === 'dark' ? '!text-accent-soft' : '';
+
+const href = whatsappUrl(message);
+---
+
+<section class={sectionCls}>
+  <div class="site-container py-16 lg:py-24 max-w-3xl text-center">
+    <Eyebrow class={eyebrowCls}>{eyebrow}</Eyebrow>
+    <p
+      class="mt-6 font-display text-[26px] lg:text-[36px] leading-[1.15] max-w-2xl mx-auto"
+      set:html={prompt}
+    ></p>
+    <a href={href} class="btn btn-whatsapp mt-8">
+      <Icon name="simple-icons:whatsapp" class="w-5 h-5" />
+      {label}
+    </a>
+  </div>
+</section>

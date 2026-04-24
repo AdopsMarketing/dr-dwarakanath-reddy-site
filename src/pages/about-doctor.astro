@@ -1,9 +1,9 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Eyebrow from '@/components/Eyebrow.astro';
-import { Icon } from 'astro-icon/components';
+import ExploreLink from '@/components/ExploreLink.astro';
+import WhatsAppContextCTA from '@/components/WhatsAppContextCTA.astro';
 import { getCollection, render } from 'astro:content';
-import { whatsappUrl } from '@/config/site';
 
 const doctors = await getCollection('doctors');
 const doctor = doctors.find((d) => d.data.isPrimary) ?? doctors[0];
@@ -41,7 +41,6 @@ const expertise = [
   'Diagnostic and therapeutic Endoscopy and Colonoscopy',
 ];
 
-const waHref = whatsappUrl("Hi Dr. Reddy, I have a question or a recent scan I'd like reviewed.");
 ---
 
 <BaseLayout
@@ -89,13 +88,6 @@ const waHref = whatsappUrl("Hi Dr. Reddy, I have a question or a recent scan I'd
           </div>
         </div>
 
-        <div class="mt-10 flex flex-wrap gap-3">
-          <a href="/contact" class="btn btn-ink">Book a consultation</a>
-          <a href={waHref} class="btn btn-whatsapp">
-            <Icon name="simple-icons:whatsapp" class="w-5 h-5" />
-            Talk on WhatsApp
-          </a>
-        </div>
       </div>
 
       <figure class="lg:col-span-2">
@@ -191,6 +183,9 @@ const waHref = whatsappUrl("Hi Dr. Reddy, I have a question or a recent scan I'd
       <p class="mt-8 text-lg text-ink-soft leading-relaxed">
         A good GI surgeon does three things well. Diagnose accurately, recommend the right intervention (which is sometimes no surgery at all), and operate with precision when surgery is needed. Dr. Reddy's practice is built on those three habits, not on volume targets.
       </p>
+      <div class="mt-10">
+        <ExploreLink href="/gi-services">View procedures Dr. Reddy performs</ExploreLink>
+      </div>
     </div>
   </section>
 
@@ -211,18 +206,10 @@ const waHref = whatsappUrl("Hi Dr. Reddy, I have a question or a recent scan I'd
     </div>
   </section>
 
-  <section class="bg-ink text-paper-1">
-    <div class="site-container py-16 lg:py-24 max-w-3xl text-center">
-      <Eyebrow class="!text-accent-soft">Next step</Eyebrow>
-      <p class="mt-6 font-display text-[28px] lg:text-[40px] leading-[1.15]">
-        Have a question or a recent scan you want <em>reviewed</em>?
-      </p>
-      <div class="mt-8 flex flex-wrap justify-center gap-3">
-        <a href="/contact" class="btn btn-outline border-paper-1 text-paper-1 hover:bg-paper-1 hover:text-ink">Book a consultation</a>
-        <a href={waHref} class="btn btn-whatsapp">
-          <Icon name="simple-icons:whatsapp" class="w-5 h-5" /> Talk on WhatsApp
-        </a>
-      </div>
-    </div>
-  </section>
+  <WhatsAppContextCTA
+    eyebrow="Scan review"
+    prompt="Have a question or a recent scan you want <em>reviewed</em>?"
+    label="Send your scan on WhatsApp"
+    message="Hi Dr. Reddy, I have a question or a recent scan I'd like reviewed."
+  />
 </BaseLayout>

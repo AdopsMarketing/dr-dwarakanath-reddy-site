@@ -1,8 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Eyebrow from '@/components/Eyebrow.astro';
-import { Icon } from 'astro-icon/components';
-import { whatsappUrl } from '@/config/site';
+import WhatsAppContextCTA from '@/components/WhatsAppContextCTA.astro';
 
 const categories = [
   { num: '01', title: 'Surgical Gastroenterology', accent: 'super-specialty', body: 'The full spectrum of stomach, intestine, liver, pancreas, and biliary surgery. Elective and emergency.', href: '/gi-services/surgical-gastroenterology' },
@@ -24,7 +23,6 @@ const whyDrReddy = [
   { num: '03', title: 'Honest, patient-first decisions', body: 'Surgery is not always the answer. Many patients leave with a non-surgical plan.' },
 ];
 
-const waHref = whatsappUrl("Hi Dr. Reddy, I'd like to send my reports for an initial review.");
 ---
 
 <BaseLayout
@@ -51,14 +49,6 @@ const waHref = whatsappUrl("Hi Dr. Reddy, I'd like to send my reports for an ini
       <p class="mt-6 text-lg leading-relaxed text-ink-soft max-w-[58ch]">
         A focused surgical practice across six areas. Every recommendation begins with whether surgery is the right answer.
       </p>
-
-      <div class="mt-10 flex flex-wrap gap-3">
-        <a href="/contact" class="btn btn-ink">Book a consultation</a>
-        <a href={waHref} class="btn btn-whatsapp">
-          <Icon name="simple-icons:whatsapp" class="w-5 h-5" />
-          Send reports on WhatsApp
-        </a>
-      </div>
     </div>
   </section>
 
@@ -123,18 +113,10 @@ const waHref = whatsappUrl("Hi Dr. Reddy, I'd like to send my reports for an ini
     </div>
   </section>
 
-  <section class="bg-ink text-paper-1">
-    <div class="site-container py-16 lg:py-24 max-w-3xl text-center">
-      <Eyebrow class="!text-accent-soft">Not sure what you need?</Eyebrow>
-      <p class="mt-6 font-display text-[28px] lg:text-[40px] leading-[1.15]">
-        Send your reports on WhatsApp for a <em>quick</em> initial review.
-      </p>
-      <div class="mt-8 flex flex-wrap justify-center gap-3">
-        <a href="/contact" class="btn btn-outline border-paper-1 text-paper-1 hover:bg-paper-1 hover:text-ink">Book a consultation</a>
-        <a href={waHref} class="btn btn-whatsapp">
-          <Icon name="simple-icons:whatsapp" class="w-5 h-5" /> Send reports
-        </a>
-      </div>
-    </div>
-  </section>
+  <WhatsAppContextCTA
+    eyebrow="Not sure what you need?"
+    prompt="Send your reports on WhatsApp for a <em>quick</em> initial review."
+    label="Send reports on WhatsApp"
+    message="Hi Dr. Reddy, I'd like to send my reports for an initial review."
+  />
 </BaseLayout>

@@ -1,0 +1,21 @@
+---
+interface Props {
+  href: string;
+  variant?: 'outline' | 'outline-dark';
+  class?: string;
+  target?: string;
+  rel?: string;
+}
+
+const { href, variant = 'outline', class: className = '', target, rel } = Astro.props;
+
+const classes =
+  variant === 'outline-dark'
+    ? 'btn btn-outline border-paper-1 text-paper-1 hover:bg-paper-1 hover:text-ink'
+    : 'btn btn-outline';
+---
+
+<a href={href} target={target} rel={rel} class:list={['group', classes, className]}>
+  <span><slot /></span>
+  <span class="inline-block transition-transform group-hover:translate-x-1">→</span>
+</a>
