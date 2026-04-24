@@ -1,0 +1,7 @@
+# Pre-launch: block all crawlers until Dr. Reddy signs off on content.
+# When going live, replace the contents of this file with:
+#   User-agent: *
+#   Allow: /
+#   Sitemap: https://drdwarakanathreddy.com/sitemap.xml
+User-agent: *
+Disallow: /
