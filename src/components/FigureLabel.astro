@@ -11,7 +11,7 @@ const padded =
     : number ?? '';
 ---
 <p class:list={['fig-label', className]}>
-  {padded && <span class="text-ink-muted">Fig. {padded}</span>}
+  {padded && <span class="text-ink-muted tabular-nums">{padded}</span>}
   {padded && category && <span class="mx-1.5">·</span>}
   {category && <span>{category}</span>}
   <slot />

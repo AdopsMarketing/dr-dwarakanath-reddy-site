@@ -49,18 +49,14 @@ const closingCtaHref = d.closingCta
 {d.whatWeCover && (
   <section class="bg-paper-2 border-y border-paper-3">
     <div class="site-container py-16 lg:py-20">
-      <div class="flex items-end justify-between">
-        <Eyebrow>What we cover</Eyebrow>
-        <span class="fig-label hidden md:inline">Fig. A · Surgical areas</span>
-      </div>
+      <Eyebrow>What we cover</Eyebrow>
 
       <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {d.whatWeCover.items.map((item, i) => {
           const num = String(i + 1).padStart(2, '0');
           return item.href ? (
             <a href={item.href} class="card card-hover group h-full flex flex-col">
-              <p class="fig-label">Fig. {num}</p>
-              <h3 class="mt-3 font-display text-[20px] text-ink leading-tight">{item.title}</h3>
+              <h3 class="font-display text-[20px] text-ink leading-tight">{item.title}</h3>
               {item.description && <p class="mt-3 text-[15px] text-ink-soft leading-relaxed flex-1">{item.description}</p>}
               <div class="mt-6 pt-4 border-t border-paper-3 flex items-center justify-between mono-caps text-ink-muted">
                 <span>Learn more</span>
@@ -69,8 +65,7 @@ const closingCtaHref = d.closingCta
             </a>
           ) : (
             <div class="card h-full flex flex-col border-dashed">
-              <p class="fig-label">Fig. {num}</p>
-              <h3 class="mt-3 font-display text-[20px] text-ink leading-tight">{item.title}</h3>
+              <h3 class="font-display text-[20px] text-ink leading-tight">{item.title}</h3>
               {item.description && <p class="mt-3 text-[15px] text-ink-soft leading-relaxed flex-1">{item.description}</p>}
               <div class="mt-6 pt-4 border-t border-paper-3 mono-caps text-ink-muted">Phase 2</div>
             </div>
@@ -89,7 +84,7 @@ const closingCtaHref = d.closingCta
           const num = String(i + 1).padStart(2, '0');
           return (
             <article>
-              <p class="fig-label">Fig. {num}</p>
+              <p class="mono-caps text-ink-muted tabular-nums">{num}</p>
               <h2 class="mt-2 font-display text-[26px] lg:text-[32px] leading-[1.15] text-ink">{section.title}</h2>
               <div class="mt-4 w-10 h-px bg-accent"></div>
 

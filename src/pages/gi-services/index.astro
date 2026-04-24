@@ -64,15 +64,14 @@ const waHref = whatsappUrl("Hi Dr. Reddy, I'd like to send my reports for an ini
 
   <section class="bg-paper-2 border-y border-paper-3">
     <div class="site-container py-16 lg:py-24">
-      <div class="flex items-end justify-between">
+      <div>
         <Eyebrow>Areas of practice</Eyebrow>
-        <span class="fig-label hidden md:inline">Fig. A · Six disciplines</span>
       </div>
 
       <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {categories.map((c) => (
           <a href={c.href} class="card card-hover group block h-full flex flex-col">
-            <p class="fig-label">Fig. {c.num}</p>
+            <p class="mono-caps text-ink-muted">{c.num}</p>
             <h3 class="mt-3 font-display text-[22px] text-ink leading-tight">
               {c.title}, <em class="italic text-accent">{c.accent}</em>
             </h3>

@@ -120,7 +120,7 @@ const whyChoose = [
             )}
           </div>
           <figcaption class="fig-label mt-3 max-w-md mx-auto">
-            Fig. A · Dr. Dwarakanath Reddy V · DrNB Surgical Gastroenterology
+            Dr. Dwarakanath Reddy V · DrNB Surgical Gastroenterology
           </figcaption>
         </figure>
       </div>
@@ -130,9 +130,8 @@ const whyChoose = [
   <!-- STAT STRIP -->
   <section class="bg-paper-2 border-y border-paper-3">
     <div class="site-container py-10 lg:py-14">
-      <div class="flex items-center justify-between gap-4 mb-8">
+      <div class="mb-8">
         <Eyebrow>A practice in figures</Eyebrow>
-        <span class="fig-label hidden md:inline">Fig. B · At a glance</span>
       </div>
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-0">
         {stats.map((s, i) => (
@@ -187,7 +186,7 @@ const whyChoose = [
       <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {pillars.map((p) => (
           <a href={p.href} class="card card-hover group block">
-            <p class="fig-label">Fig. {p.num} · {p.category}</p>
+            <p class="mono-caps text-ink-muted">{p.category}</p>
             <h3 class="mt-4 font-display text-[22px] text-ink leading-tight">
               {p.name}, <em class="italic text-accent">{p.accent}</em>
             </h3>

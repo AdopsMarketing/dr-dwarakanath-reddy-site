@@ -118,7 +118,7 @@ const toc = d.sections.map((s, i) => ({
       const num = String(i + 1).padStart(2, '0');
       return (
         <article id={`s-${i + 1}`} class="scroll-mt-28">
-          <p class="fig-label">Fig. {num} · {categoryLabel}</p>
+          <p class="mono-caps text-ink-muted"><span class="tabular-nums">{num}</span> · {categoryLabel}</p>
           <h2 class="mt-2 font-display text-[26px] lg:text-[32px] leading-[1.15] text-ink max-w-[24ch]">{section.title}</h2>
           <div class="mt-4 w-10 h-px bg-accent"></div>
 
