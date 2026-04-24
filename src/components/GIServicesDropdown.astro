@@ -14,9 +14,9 @@ import { giServicesMenu } from '@/data/megaMenu';
       {giServicesMenu.map((item) => (
         <a href={item.href} class="group block">
           <p class="eyebrow">{item.eyebrow}</p>
-          <h3 class="mt-2 font-display text-[19px] text-ink leading-tight decoration-accent underline-offset-[6px] group-hover:underline group-hover:text-accent">
+          <span class="block mt-2 font-display text-[19px] text-ink leading-tight decoration-accent underline-offset-[6px] group-hover:underline group-hover:text-accent">
             {item.title}
-          </h3>
+          </span>
           <p class="mt-1.5 text-sm text-ink-muted leading-snug">{item.subline}</p>
         </a>
       ))}
