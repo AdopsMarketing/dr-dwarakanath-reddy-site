@@ -1,0 +1,18 @@
+---
+interface Props {
+  number?: string | number;
+  category?: string;
+  class?: string;
+}
+const { number, category, class: className = '' } = Astro.props;
+const padded =
+  typeof number === 'number'
+    ? number.toString().padStart(2, '0')
+    : number ?? '';
+---
+<p class:list={['fig-label', className]}>
+  {padded && <span class="text-ink-muted">Fig. {padded}</span>}
+  {padded && category && <span class="mx-1.5">·</span>}
+  {category && <span>{category}</span>}
+  <slot />
+</p>

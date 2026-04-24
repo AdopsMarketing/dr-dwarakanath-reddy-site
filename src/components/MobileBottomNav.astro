@@ -1,0 +1,39 @@
+---
+import { Icon } from 'astro-icon/components';
+import { siteConfig, whatsappUrl } from '@/config/site';
+
+const waHref = whatsappUrl("Hi Dr. Reddy, I'd like to book an appointment.");
+const telHref = `tel:${siteConfig.doctor.phone.replace(/\s/g, '')}`;
+
+const items = [
+  { icon: 'lucide:home', label: 'Home', href: '/' },
+  { icon: 'lucide:stethoscope', label: 'Services', href: '/gi-services' },
+  { icon: 'lucide:phone', label: 'Call', href: telHref },
+  { icon: 'simple-icons:whatsapp', label: 'WhatsApp', href: waHref, accent: true },
+];
+---
+
+<nav
+  aria-label="Quick contact"
+  class="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white border-t border-paper-3 shadow-[0_-4px_12px_rgba(11,37,64,0.05)]"
+>
+  <ul class="grid grid-cols-4">
+    {items.map((item) => (
+      <li>
+        <a
+          href={item.href}
+          class:list={[
+            'flex flex-col items-center gap-1 py-3 text-xs font-medium transition',
+            item.accent ? 'text-whatsapp' : 'text-ink-soft hover:text-accent',
+          ]}
+        >
+          <Icon name={item.icon} class="w-5 h-5" />
+          <span>{item.label}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<!-- spacer so content isn't hidden behind the bar -->
+<div class="md:hidden h-16" aria-hidden="true"></div>

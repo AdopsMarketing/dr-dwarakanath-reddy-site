@@ -1,0 +1,30 @@
+---
+interface Props {
+  items: Array<{ name: string; url: string }>;
+  class?: string;
+}
+const { items, class: className = 'text-sm text-ink-muted' } = Astro.props;
+---
+
+<nav aria-label="Breadcrumb" class={className}>
+  <ol class="flex flex-wrap items-center gap-1" itemscope itemtype="https://schema.org/BreadcrumbList">
+    {items.map((item, i) => (
+      <li
+        class="flex items-center gap-1"
+        itemprop="itemListElement"
+        itemscope
+        itemtype="https://schema.org/ListItem"
+      >
+        {i < items.length - 1 ? (
+          <a href={item.url} class="hover:text-accent" itemprop="item">
+            <span itemprop="name">{item.name}</span>
+          </a>
+        ) : (
+          <span class="text-ink-soft" itemprop="name">{item.name}</span>
+        )}
+        <meta itemprop="position" content={String(i + 1)} />
+        {i < items.length - 1 && <span class="mx-1 text-ink-muted">/</span>}
+      </li>
+    ))}
+  </ol>
+</nav>

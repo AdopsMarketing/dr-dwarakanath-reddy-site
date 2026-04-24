@@ -1,0 +1,272 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
+import { Icon } from 'astro-icon/components';
+import { getCollection } from 'astro:content';
+import { siteConfig, whatsappUrl } from '@/config/site';
+
+const doctors = await getCollection('doctors');
+const doctor = doctors.find((d) => d.data.isPrimary) ?? doctors[0];
+const locations = await getCollection('locations');
+const location = locations.find((l) => l.data.isPrimary) ?? locations[0];
+
+const hospitalPhone = Array.isArray(location?.data.telephone)
+  ? location.data.telephone[0]
+  : location?.data.telephone;
+
+const waHref = whatsappUrl("Hi Dr. Reddy, I'd like to book an appointment.");
+
+const stats = [
+  { value: '09+', label: 'Years in surgical practice' },
+  { value: '428', label: 'Verified Google reviews' },
+  { value: '5.0', label: 'Average patient rating' },
+  { value: 'Apollo', label: 'Speciality Hospitals, Nellore' },
+];
+
+const pillars = [
+  { num: '01', category: 'Hepato-Pancreatico-Biliary', name: 'Liver and pancreas surgery', accent: 'precision', href: '/gi-services/hpb-surgery', recovery: 'Recovery 4 to 8 weeks' },
+  { num: '02', category: 'Laparoscopic', name: 'Hernia repair', accent: 'tension-free', href: '/gi-services/laparoscopic/hernia-surgery', recovery: 'Recovery 7 to 10 days' },
+  { num: '03', category: 'Laparoscopic', name: 'Gallbladder removal', accent: 'day-care', href: '/gi-services/laparoscopic/gallbladder-surgery', recovery: 'Discharge same day' },
+  { num: '04', category: 'Bariatric', name: 'Weight loss surgery', accent: 'metabolic first', href: '/gi-services/bariatric-surgery', recovery: 'Recovery 4 to 6 weeks' },
+  { num: '05', category: 'GI Oncology', name: 'Cancer surgery', accent: 'curative intent', href: '/gi-services/gi-oncology', recovery: 'Stage-guided follow-up' },
+  { num: '06', category: 'Procedures', name: 'Endoscopy and colonoscopy', accent: 'day-care', href: '/gi-services/endoscopy', recovery: 'Same day discharge' },
+];
+
+const whyChoose = [
+  {
+    num: '01',
+    title: 'Specialised training, not general surgery',
+    body: 'A DrNB in Surgical Gastroenterology requires three additional years of focused GI training after general surgery. Dr. Reddy completed his at Manipal Hospitals, Bengaluru.',
+  },
+  {
+    num: '02',
+    title: 'Minimally invasive by default',
+    body: 'Laparoscopic and advanced minimally invasive approaches wherever clinically appropriate. Smaller cuts, faster recovery, fewer complications. Open surgery when it is the safer answer.',
+  },
+  {
+    num: '03',
+    title: 'Honest, patient-first decisions',
+    body: 'Many second opinions end without surgery. When an operation is needed, you get a clear explanation of why, what to expect, and how to recover, before anything is scheduled.',
+  },
+];
+---
+
+<BaseLayout
+  pageType="home"
+  title="Dr. Dwarakanath Reddy · Surgical Gastroenterologist, Apollo Nellore"
+  description="Senior Consultant Gastrointestinal Surgeon at Apollo Speciality Hospitals, Nellore. 9+ years in laparoscopic, HPB, oncology and bariatric surgery. 5.0 from 428 Google reviews."
+  breadcrumbs={[{ name: 'Home', url: new URL('/', Astro.site!).toString() }]}
+>
+  <!-- HERO -->
+  <section class="relative bg-paper-1" itemscope itemtype="https://schema.org/Physician">
+    <meta itemprop="name" content={`${doctor?.data.honorificPrefix ?? ''} ${doctor?.data.name ?? ''}`.trim()} />
+    <meta itemprop="jobTitle" content={doctor?.data.title} />
+
+    <div class="site-container grid lg:grid-cols-5 gap-12 lg:gap-16 items-center py-14 lg:py-24">
+      <!-- LEFT 60% -->
+      <div class="lg:col-span-3">
+        <Eyebrow>Senior Consultant · Apollo Hospitals Nellore</Eyebrow>
+
+        <h1 class="mt-6 font-display text-[40px] md:text-[52px] lg:text-[68px] leading-[1.02] tracking-tight text-ink max-w-[18ch]">
+          Advanced GI, liver and bariatric surgery, <em>measured</em> by outcomes.
+        </h1>
+
+        <p class="mt-7 text-lg leading-relaxed text-ink-soft max-w-[58ch]">
+          Dr. Dwarakanath Reddy Vembuluru is a Senior Consultant Gastrointestinal Surgeon at Apollo Speciality Hospitals, Nellore. Over 9 years of focused training and practice in laparoscopic, HPB, oncology and bariatric surgery.
+        </p>
+
+        <div class="mt-8 py-4 rule-top rule-bottom">
+          <div class="flex items-center gap-3 text-sm text-ink-soft">
+            <span class="flex text-accent" aria-hidden="true">
+              {Array.from({ length: 5 }).map(() => (
+                <Icon name="lucide:star" class="w-4 h-4 fill-current" />
+              ))}
+            </span>
+            <span>
+              <span class="tabular-nums font-medium text-ink">5.0</span> from
+              <span class="tabular-nums font-medium text-ink">428</span> verified Google reviews
+            </span>
+          </div>
+        </div>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/contact" class="btn btn-ink">Book a consultation</a>
+          <a href={waHref} class="btn btn-whatsapp">
+            <Icon name="simple-icons:whatsapp" class="w-5 h-5" />
+            Talk on WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT 40% -->
+      <div class="lg:col-span-2 relative">
+        <div
+          class="absolute inset-0 -translate-x-6 translate-y-10 rounded-sm bg-[radial-gradient(ellipse_at_30%_30%,_rgba(201,123,63,0.20),_transparent_55%)] pointer-events-none"
+          aria-hidden="true"
+        ></div>
+
+        <figure class="relative z-10">
+          <div class="aspect-[4/5] max-w-md mx-auto rounded-sm overflow-hidden bg-paper-2 border border-paper-3">
+            {doctor?.data.image ? (
+              <img
+                src={doctor.data.image}
+                alt={`${doctor.data.honorificPrefix} ${doctor.data.name}, Senior Consultant Gastrointestinal Surgeon`}
+                class="w-full h-full object-cover"
+                loading="eager"
+                decoding="async"
+              />
+            ) : (
+              <div class="w-full h-full flex items-center justify-center text-ink-muted text-sm">Portrait</div>
+            )}
+          </div>
+          <figcaption class="fig-label mt-3 max-w-md mx-auto">
+            Fig. A · Dr. Dwarakanath Reddy V · DrNB Surgical Gastroenterology
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAT STRIP -->
+  <section class="bg-paper-2 border-y border-paper-3">
+    <div class="site-container py-10 lg:py-14">
+      <div class="flex items-center justify-between gap-4 mb-8">
+        <Eyebrow>A practice in figures</Eyebrow>
+        <span class="fig-label hidden md:inline">Fig. B · At a glance</span>
+      </div>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-0">
+        {stats.map((s, i) => (
+          <div class:list={[
+            'py-4 lg:py-2',
+            i > 0 ? 'lg:border-l lg:border-[color:var(--hairline)] lg:pl-8' : '',
+            i > 0 && i % 2 === 0 ? 'border-t border-[color:var(--hairline)] lg:border-t-0' : '',
+          ]}>
+            <div class="font-display text-[44px] lg:text-[56px] leading-none text-ink tabular-nums">{s.value}</div>
+            <div class="mt-3 mono-caps text-ink-muted">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE -->
+  <section class="site-container py-20 lg:py-28">
+    <div class="max-w-2xl">
+      <Eyebrow>Why patients choose him</Eyebrow>
+      <h2 class="mt-6 font-display text-[32px] lg:text-[48px] leading-[1.08] text-ink max-w-[18ch]">
+        World-class surgical judgement, grounded in <em>one</em> place.
+      </h2>
+    </div>
+    <div class="mt-14 grid gap-8 md:grid-cols-3">
+      {whyChoose.map((c) => (
+        <article>
+          <p class="fig-label">Principle {c.num}</p>
+          <h3 class="mt-3 font-display text-2xl text-ink leading-tight max-w-[22ch]">{c.title}</h3>
+          <div class="mt-4 w-10 h-px bg-accent"></div>
+          <p class="mt-5 text-ink-soft leading-relaxed">{c.body}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- FEATURED PROCEDURES -->
+  <section class="bg-paper-2 border-t border-paper-3">
+    <div class="site-container py-20 lg:py-28">
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+        <div>
+          <Eyebrow>Areas of practice</Eyebrow>
+          <h2 class="mt-6 font-display text-[32px] lg:text-[48px] leading-[1.08] text-ink max-w-[16ch]">
+            Procedures, <em>by discipline</em>.
+          </h2>
+        </div>
+        <a href="/gi-services" class="mono-caps text-ink hover:text-accent self-start lg:self-auto">
+          See all procedures →
+        </a>
+      </div>
+
+      <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {pillars.map((p) => (
+          <a href={p.href} class="card card-hover group block">
+            <p class="fig-label">Fig. {p.num} · {p.category}</p>
+            <h3 class="mt-4 font-display text-[22px] text-ink leading-tight">
+              {p.name}, <em class="italic text-accent">{p.accent}</em>
+            </h3>
+            <div class="mt-6 pt-4 border-t border-paper-3 flex items-center justify-between mono-caps text-ink-muted">
+              <span>{p.recovery}</span>
+              <span class="text-ink group-hover:translate-x-1 transition-transform">→</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEW BAR -->
+  <section class="site-container py-20 lg:py-24">
+    <div class="grid lg:grid-cols-5 gap-10 items-center">
+      <div class="lg:col-span-3">
+        <Eyebrow>Patient trust</Eyebrow>
+        <h2 class="mt-6 font-display text-[32px] lg:text-[44px] leading-[1.08] text-ink max-w-[18ch]">
+          Trusted by <em>428</em> patients on Google.
+        </h2>
+        <p class="mt-5 text-ink-soft leading-relaxed max-w-[58ch]">
+          Patients across Nellore, Andhra Pradesh and beyond have rated Dr. Reddy 5.0 on Google. The practice combines the trust of Apollo Hospitals with the focused expertise of a dedicated GI super-specialist.
+        </p>
+      </div>
+      <div class="lg:col-span-2">
+        <div class="card p-8 lg:p-10 bg-paper-1 border-ink/20">
+          <span class="flex text-accent" aria-hidden="true">
+            {Array.from({ length: 5 }).map(() => (
+              <Icon name="lucide:star" class="w-5 h-5 fill-current" />
+            ))}
+          </span>
+          <div class="mt-5 font-display text-[56px] leading-none text-ink tabular-nums">5.0</div>
+          <p class="mt-3 mono-caps text-ink-muted">From 428 verified Google reviews</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT TEASER -->
+  <section class="bg-ink text-paper-1">
+    <div class="site-container py-20 lg:py-28 grid lg:grid-cols-5 gap-12 items-start">
+      <div class="lg:col-span-3">
+        <Eyebrow class="!text-accent-soft">About the doctor</Eyebrow>
+        <h2 class="mt-6 font-display text-[32px] lg:text-[52px] leading-[1.05] text-paper-1 max-w-[18ch]">
+          A surgeon who treats the person, <em>not</em> just the scan.
+        </h2>
+        <p class="mt-6 text-paper-2 leading-relaxed max-w-[58ch]">
+          After MBBS and MS in General Surgery, Dr. Reddy completed his super-specialisation (DrNB) in Surgical Gastroenterology at Manipal Hospitals, Bengaluru. Before joining Apollo Nellore, he served as Associate Professor at Narayana Medical College, training the next generation of surgeons. That academic rigour now informs every patient consultation.
+        </p>
+        <div class="mt-10 flex flex-wrap gap-3">
+          <a href="/about-doctor" class="btn btn-outline border-paper-1 text-paper-1 hover:bg-paper-1 hover:text-ink">
+            Read Dr. Reddy's story
+          </a>
+          <a href="/contact" class="btn btn-whatsapp">
+            <Icon name="simple-icons:whatsapp" class="w-5 h-5" /> Talk on WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <aside class="lg:col-span-2 border border-paper-2/20 rounded-sm p-8">
+        <p class="mono-caps text-accent-soft">Quick contact</p>
+        <dl class="mt-5 space-y-4 text-[15px]">
+          <div>
+            <dt class="mono-caps text-ink-muted">WhatsApp</dt>
+            <dd class="mt-1"><a class="text-paper-1 hover:underline" href={waHref}>{siteConfig.doctor.phone}</a></dd>
+          </div>
+          {hospitalPhone && (
+            <div>
+              <dt class="mono-caps text-ink-muted">Apollo Nellore</dt>
+              <dd class="mt-1"><a class="text-paper-1 hover:underline" href={`tel:${hospitalPhone.replace(/\s/g, '')}`}>{hospitalPhone}</a></dd>
+            </div>
+          )}
+          <div>
+            <dt class="mono-caps text-ink-muted">Address</dt>
+            <dd class="mt-1 text-paper-2 leading-relaxed">Apollo Speciality Hospitals, Muthukur Road, Pinakini Nagar, Nellore 524004</dd>
+          </div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>

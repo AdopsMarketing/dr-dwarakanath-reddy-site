@@ -1,0 +1,188 @@
+---
+interface Props {
+  compact?: boolean;
+  id?: string;
+}
+const { compact = false, id = 'booking-form' } = Astro.props;
+
+const reasons = [
+  'New consultation',
+  'Second opinion',
+  'Follow up',
+  'Procedure inquiry',
+  'Other',
+];
+const times = ['Morning (AM)', 'Afternoon (PM)', 'Evening'];
+---
+
+<div class:list={[compact ? '' : 'max-w-2xl', 'booking-form']} data-booking-root id={id}>
+  <form
+    class="space-y-8"
+    data-booking-form
+    action="/api/contact"
+    method="post"
+  >
+    <!-- Step indicator -->
+    <nav aria-label="Steps" class="rule-bottom pb-4">
+      <ol class="flex flex-wrap gap-5 lg:gap-8 mono-caps">
+        <li><span class="text-ink tabular-nums" data-step-label="1">01 · Reason</span></li>
+        <li><span class="text-ink-muted tabular-nums" data-step-label="2">02 · When</span></li>
+        <li><span class="text-ink-muted tabular-nums" data-step-label="3">03 · You</span></li>
+      </ol>
+    </nav>
+
+    <!-- Step 01: Reason -->
+    <section data-step="1">
+      <p class="fig-label">Step 01</p>
+      <h3 class="mt-2 font-display text-2xl text-ink">What is the reason for your visit?</h3>
+
+      <div class="mt-6 grid gap-3 md:grid-cols-2">
+        {reasons.map((r, i) => (
+          <label class="tile">
+            <input type="radio" name="reason" value={r} required={i === 0} />
+            <span>
+              <span class="mono-caps text-ink-muted tabular-nums">R{String(i + 1).padStart(2, '0')}</span>
+              <span class="block mt-1 font-display text-lg text-ink">{r}</span>
+            </span>
+          </label>
+        ))}
+      </div>
+
+      <div class="mt-8 flex justify-end">
+        <button type="button" class="btn btn-ink" data-next="2">Next · When</button>
+      </div>
+    </section>
+
+    <!-- Step 02: When -->
+    <section data-step="2" hidden>
+      <p class="fig-label">Step 02</p>
+      <h3 class="mt-2 font-display text-2xl text-ink">When would suit you?</h3>
+
+      <div class="mt-6 grid gap-6 md:grid-cols-2">
+        <div>
+          <label for="date" class="mono-caps text-ink-muted">Preferred date</label>
+          <input id="date" name="date" type="date" class="field mt-2" />
+        </div>
+        <div>
+          <p class="mono-caps text-ink-muted">Time of day</p>
+          <div class="mt-2 grid gap-2">
+            {times.map((t) => (
+              <label class="tile py-3">
+                <input type="radio" name="time" value={t} />
+                <span class="font-display text-[17px] text-ink">{t}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 flex justify-between items-center">
+        <button type="button" class="mono-caps text-ink-muted hover:text-ink" data-prev="1">← Back</button>
+        <button type="button" class="btn btn-ink" data-next="3">Next · You</button>
+      </div>
+    </section>
+
+    <!-- Step 03: Contact details -->
+    <section data-step="3" hidden>
+      <p class="fig-label">Step 03</p>
+      <h3 class="mt-2 font-display text-2xl text-ink">How can Dr. Reddy reach you?</h3>
+
+      <div class="mt-6 grid gap-5">
+        <div>
+          <label for="name" class="mono-caps text-ink-muted">Full name</label>
+          <input id="name" name="name" type="text" required class="field mt-2" autocomplete="name" />
+        </div>
+        <div class="grid gap-5 md:grid-cols-2">
+          <div>
+            <label for="phone" class="mono-caps text-ink-muted">Phone</label>
+            <input id="phone" name="phone" type="tel" required class="field mt-2" autocomplete="tel" />
+          </div>
+          <div>
+            <label for="email" class="mono-caps text-ink-muted">Email (optional)</label>
+            <input id="email" name="email" type="email" class="field mt-2" autocomplete="email" />
+          </div>
+        </div>
+        <div>
+          <label for="message" class="mono-caps text-ink-muted">Brief message</label>
+          <textarea id="message" name="message" rows="4" class="field mt-2"></textarea>
+        </div>
+      </div>
+
+      <div class="mt-8 flex justify-between items-center">
+        <button type="button" class="mono-caps text-ink-muted hover:text-ink" data-prev="2">← Back</button>
+        <button type="submit" class="btn btn-ink">Send to Dr. Reddy</button>
+      </div>
+    </section>
+
+    <p data-booking-error class="mono-caps text-danger hidden"></p>
+  </form>
+
+  <!-- Success state -->
+  <div data-booking-success hidden>
+    <p class="fig-label">Message received</p>
+    <h3 class="mt-3 font-display text-[28px] lg:text-[36px] text-ink max-w-[20ch]">
+      Thank you. Dr. Reddy will <em>revert</em> within one working day.
+    </h3>
+    <div class="mt-6 w-10 h-px bg-accent"></div>
+    <p class="mt-6 text-ink-soft leading-relaxed max-w-[52ch]">
+      For anything urgent, please use WhatsApp or call Apollo reception. Your message has been logged and a confirmation will be sent by email if you provided one.
+    </p>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('[data-booking-root]').forEach((root) => {
+    const form = root.querySelector<HTMLFormElement>('[data-booking-form]');
+    const success = root.querySelector<HTMLElement>('[data-booking-success]');
+    const errorEl = root.querySelector<HTMLElement>('[data-booking-error]');
+    if (!form || !success) return;
+
+    const sections = form.querySelectorAll<HTMLElement>('[data-step]');
+    const stepLabels = form.querySelectorAll<HTMLElement>('[data-step-label]');
+
+    const show = (step: number) => {
+      sections.forEach((s) => {
+        s.hidden = s.getAttribute('data-step') !== String(step);
+      });
+      stepLabels.forEach((l) => {
+        const n = Number(l.getAttribute('data-step-label'));
+        l.classList.toggle('text-ink', n === step);
+        l.classList.toggle('text-ink-muted', n !== step);
+      });
+    };
+
+    form.querySelectorAll<HTMLButtonElement>('[data-next]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const current = btn.closest<HTMLElement>('[data-step]');
+        // light validation on current step
+        const inputs = current?.querySelectorAll<HTMLInputElement>('input[required]');
+        if (inputs) {
+          for (const i of inputs) {
+            if (!i.checkValidity()) { i.reportValidity(); return; }
+          }
+        }
+        show(Number(btn.getAttribute('data-next')));
+      });
+    });
+    form.querySelectorAll<HTMLButtonElement>('[data-prev]').forEach((btn) => {
+      btn.addEventListener('click', () => show(Number(btn.getAttribute('data-prev'))));
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorEl?.classList.add('hidden');
+      const data = new FormData(form);
+      try {
+        const res = await fetch('/api/contact', { method: 'POST', body: data });
+        if (!res.ok) throw new Error('request failed');
+        form.hidden = true;
+        success.hidden = false;
+      } catch (err) {
+        if (errorEl) {
+          errorEl.textContent = 'Something went wrong. Please try WhatsApp.';
+          errorEl.classList.remove('hidden');
+        }
+      }
+    });
+  });
+</script>

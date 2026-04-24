@@ -1,0 +1,247 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Icon } from 'astro-icon/components';
+import Eyebrow from '@/components/Eyebrow.astro';
+import { whatsappUrl } from '@/config/site';
+
+interface Props {
+  service: CollectionEntry<'services'>;
+  breadcrumbLinks: Array<{ label: string; href: string }>;
+}
+
+const { service, breadcrumbLinks } = Astro.props;
+const d = service.data;
+
+const heroCtaHref = d.heroCta
+  ? whatsappUrl(d.heroCta.message)
+  : whatsappUrl(`Hi Dr. Reddy, I'd like to ask about ${d.h1 ?? d.title}.`);
+const closingCtaHref = d.closingCta
+  ? whatsappUrl(d.closingCta.message)
+  : whatsappUrl(`Hi Dr. Reddy, I'd like to ask about ${d.h1 ?? d.title}.`);
+
+const categoryLabel = (() => {
+  switch (d.category) {
+    case 'laparoscopic': return 'Laparoscopic';
+    case 'hpb': return 'Hepato-Pancreatico-Biliary';
+    case 'oncology': return 'GI Oncology';
+    case 'bariatric': return 'Bariatric';
+    case 'procedures': return 'Endoscopic Procedures';
+    default: return 'Surgery';
+  }
+})();
+
+const toc = d.sections.map((s, i) => ({
+  id: `s-${i + 1}`,
+  num: String(i + 1).padStart(2, '0'),
+  title: s.title,
+}));
+---
+
+<section class="relative bg-paper-1">
+  <div class="site-container py-14 lg:py-20">
+    <nav class="fig-label mb-8" aria-label="Breadcrumb">
+      {breadcrumbLinks.map((link, i) => (
+        <>
+          {i > 0 && <span class="mx-2">·</span>}
+          <a href={link.href} class="hover:text-ink">{link.label}</a>
+        </>
+      ))}
+      <span class="mx-2">·</span>
+      <span class="text-ink">{d.h1 ?? d.title}</span>
+    </nav>
+
+    <Eyebrow>Procedure · {categoryLabel}</Eyebrow>
+
+    {d.h1Html ? (
+      <h1 class="mt-5 font-display text-[32px] md:text-[44px] lg:text-[56px] leading-[1.05] tracking-tight text-ink max-w-[22ch]" set:html={d.h1Html}></h1>
+    ) : (
+      <h1 class="mt-5 font-display text-[32px] md:text-[44px] lg:text-[56px] leading-[1.05] tracking-tight text-ink max-w-[22ch]">
+        {d.h1 ?? d.title}
+      </h1>
+    )}
+
+    {d.heroIntro && (
+      <p class="mt-6 text-lg leading-relaxed text-ink-soft max-w-[58ch]" itemprop="description">
+        {d.heroIntro}
+      </p>
+    )}
+
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="/contact" class="btn btn-ink">Book a consultation</a>
+      {d.heroCta && (
+        <a href={heroCtaHref} class="btn btn-whatsapp">
+          <Icon name="simple-icons:whatsapp" class="w-5 h-5" />
+          {d.heroCta.label}
+        </a>
+      )}
+    </div>
+  </div>
+</section>
+
+<section class="site-container grid lg:grid-cols-12 gap-12 py-16 lg:py-20">
+  <aside class="hidden lg:block lg:col-span-3">
+    <div class="sticky top-24">
+      <p class="mono-caps text-ink-muted mb-4">Contents</p>
+      <ol class="space-y-3">
+        {toc.map((t) => (
+          <li>
+            <a href={`#${t.id}`} class="group flex items-baseline gap-3 mono-caps text-ink-soft hover:text-ink" data-toc-link={t.id}>
+              <span class="text-ink-muted tabular-nums">{t.num}</span>
+              <span>{t.title}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+
+      <div class="mt-10 pt-6 rule-top">
+        <p class="fig-label mb-3">Procedure · Glance</p>
+        <dl class="space-y-2.5 text-sm">
+          {d.procedureType && (<><dt class="mono-caps text-ink-muted">Procedure</dt><dd class="text-ink">{d.procedureType}</dd></>)}
+          {d.approach && (<><dt class="mono-caps text-ink-muted mt-2">Approach</dt><dd class="text-ink capitalize">{d.approach}</dd></>)}
+          {d.typicalDuration && (<><dt class="mono-caps text-ink-muted mt-2">Duration</dt><dd class="text-ink">{d.typicalDuration}</dd></>)}
+          {d.hospitalStay && (<><dt class="mono-caps text-ink-muted mt-2">Hospital stay</dt><dd class="text-ink">{d.hospitalStay}</dd></>)}
+          {d.recoveryTime && (<><dt class="mono-caps text-ink-muted mt-2">Recovery</dt><dd class="text-ink">{d.recoveryTime}</dd></>)}
+          {d.anesthesia && (<><dt class="mono-caps text-ink-muted mt-2">Anaesthesia</dt><dd class="text-ink">{d.anesthesia}</dd></>)}
+        </dl>
+      </div>
+    </div>
+  </aside>
+
+  <div class="lg:col-span-9 space-y-14">
+    {d.sections.map((section, i) => {
+      const num = String(i + 1).padStart(2, '0');
+      return (
+        <article id={`s-${i + 1}`} class="scroll-mt-28">
+          <p class="fig-label">Fig. {num} · {categoryLabel}</p>
+          <h2 class="mt-2 font-display text-[26px] lg:text-[32px] leading-[1.15] text-ink max-w-[24ch]">{section.title}</h2>
+          <div class="mt-4 w-10 h-px bg-accent"></div>
+
+          {section.type === 'prose' && (
+            <p class="mt-6 text-ink-soft leading-relaxed max-w-[62ch]">{section.body}</p>
+          )}
+
+          {section.type === 'list' && (
+            <div class="mt-6 space-y-5 max-w-[62ch]">
+              {section.intro && <p class="text-ink-soft leading-relaxed">{section.intro}</p>}
+              <ul class="space-y-2.5">
+                {section.items.map((item) => (
+                  <li class="flex items-start gap-3 text-ink-soft">
+                    <span class="mt-2 w-1.5 h-1.5 bg-accent shrink-0"></span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              {section.outro && <p class="text-ink-soft leading-relaxed">{section.outro}</p>}
+            </div>
+          )}
+
+          {section.type === 'steps' && (
+            <div class="mt-6 space-y-5 max-w-[62ch]">
+              {section.intro && <p class="text-ink-soft leading-relaxed">{section.intro}</p>}
+              <ol class="space-y-4">
+                {section.steps.map((step, j) => (
+                  <li class="flex items-baseline gap-4 text-ink-soft leading-relaxed">
+                    <span class="mono-caps text-ink-muted tabular-nums shrink-0">{String(j + 1).padStart(2, '0')}</span>
+                    <span>{step}</span>
+                  </li>
+                ))}
+              </ol>
+              {section.outro && <p class="text-ink-soft leading-relaxed">{section.outro}</p>}
+            </div>
+          )}
+
+          {section.type === 'timeline' && (
+            <div class="mt-6 max-w-[62ch]">
+              <table class="ed-table">
+                <tbody>
+                  {section.entries.map((entry) => (
+                    <tr>
+                      <td>{entry.period}</td>
+                      <td class="text-ink-soft">{entry.detail}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              {section.note && (
+                <p class="mt-5 text-sm text-ink-soft leading-relaxed bg-paper-2 border-l-2 border-accent pl-4 py-3">
+                  {section.note}
+                </p>
+              )}
+            </div>
+          )}
+
+          {section.type === 'faqs' && (
+            <div class="mt-6 max-w-[62ch]">
+              {section.items.map((faq) => (
+                <details class="faq">
+                  <summary>{faq.question}</summary>
+                  <div class="faq-body">{faq.answer}</div>
+                </details>
+              ))}
+            </div>
+          )}
+        </article>
+      );
+    })}
+
+    {d.sections.length === 0 && d.overview && (
+      <article class="max-w-[62ch]">
+        <Eyebrow>Overview</Eyebrow>
+        <h2 class="mt-4 font-display text-[26px] lg:text-[32px] text-ink">About this procedure</h2>
+        <p class="mt-5 text-ink-soft leading-relaxed">{d.overview}</p>
+        {d.indications.length > 0 && (
+          <>
+            <h3 class="mt-10 font-display text-xl text-ink">When this procedure is indicated</h3>
+            <ul class="mt-4 space-y-2">
+              {d.indications.map((i) => (
+                <li class="flex items-start gap-3 text-ink-soft">
+                  <span class="mt-2 w-1.5 h-1.5 bg-accent shrink-0"></span>
+                  <span>{i}</span>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+      </article>
+    )}
+  </div>
+</section>
+
+{d.closingCta && (
+  <section class="bg-ink text-paper-1">
+    <div class="site-container py-16 lg:py-24 max-w-3xl text-center">
+      <Eyebrow class="!text-accent-soft">Next step</Eyebrow>
+      <p class="mt-6 font-display text-[26px] lg:text-[36px] leading-[1.15] max-w-2xl mx-auto">
+        {d.closingCta.prompt}
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="/contact" class="btn btn-outline border-paper-1 text-paper-1 hover:bg-paper-1 hover:text-ink">
+          Book a consultation
+        </a>
+        <a href={closingCtaHref} class="btn btn-whatsapp">
+          <Icon name="simple-icons:whatsapp" class="w-5 h-5" />
+          {d.closingCta.label}
+        </a>
+      </div>
+    </div>
+  </section>
+)}
+
+<script>
+  const links = document.querySelectorAll('[data-toc-link]');
+  const sections = Array.from(links)
+    .map((l) => document.getElementById(l.getAttribute('data-toc-link')!))
+    .filter(Boolean) as HTMLElement[];
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      const id = e.target.id;
+      links.forEach((l) => {
+        const active = l.getAttribute('data-toc-link') === id;
+        l.classList.toggle('text-accent', active);
+        l.classList.toggle('text-ink-soft', !active);
+      });
+    });
+  }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+  sections.forEach((s) => io.observe(s));
+</script>

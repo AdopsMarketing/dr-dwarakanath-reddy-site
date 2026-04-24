@@ -1,0 +1,71 @@
+---
+import { Icon } from 'astro-icon/components';
+import { primaryNav } from '@/data/navigation';
+import { siteConfig, whatsappUrl } from '@/config/site';
+
+const waHref = whatsappUrl("Hi Dr. Reddy, I'd like to book an appointment.");
+const telHref = `tel:${siteConfig.doctor.phone.replace(/\s/g, '')}`;
+---
+
+<header class="sticky top-0 z-50 bg-paper-1/95 backdrop-blur border-b border-paper-3">
+  <div class="site-container flex items-center justify-between h-16 lg:h-20">
+    <a
+      href="/"
+      class="flex items-center gap-3"
+      itemscope
+      itemtype="https://schema.org/MedicalOrganization"
+    >
+      <span class="w-9 h-9 rounded-sm bg-ink text-paper-1 flex items-center justify-center font-display italic text-lg" aria-hidden="true">R</span>
+      <span class="flex flex-col leading-tight">
+        <span class="font-display text-[17px] text-ink" itemprop="name">Dr. Dwarakanath Reddy</span>
+        <span class="mono-caps text-ink-muted">Surgical Gastroenterology · Nellore</span>
+      </span>
+      <link itemprop="url" href="/" />
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-7" aria-label="Primary">
+      {primaryNav.slice(0, 7).map((item) => (
+        <div class="relative group">
+          <a
+            href={item.href}
+            class="text-sm text-ink-soft hover:text-ink py-2 inline-flex items-center gap-1"
+          >
+            {item.label}
+            {item.children && (
+              <Icon name="lucide:chevron-down" class="w-3.5 h-3.5 opacity-60" />
+            )}
+          </a>
+          {item.children && (
+            <div class="hidden group-hover:block absolute left-0 top-full pt-2 w-72">
+              <ul class="bg-paper-1 border border-paper-3 rounded-sm py-2">
+                {item.children.map((child) => (
+                  <li>
+                    <a
+                      href={child.href}
+                      class="block px-4 py-2 text-sm text-ink-soft hover:bg-paper-2 hover:text-ink"
+                    >
+                      {child.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      ))}
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a
+        href={telHref}
+        class="hidden md:inline-flex items-center gap-1.5 mono-caps text-ink-soft hover:text-ink"
+      >
+        <Icon name="lucide:phone" class="w-3.5 h-3.5" />
+        {siteConfig.doctor.phone}
+      </a>
+      <a href="/contact" class="btn btn-ink text-sm">
+        Book a consultation
+      </a>
+    </div>
+  </div>
+</header>

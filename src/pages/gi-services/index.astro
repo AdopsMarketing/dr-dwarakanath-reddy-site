@@ -1,0 +1,141 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
+import { Icon } from 'astro-icon/components';
+import { whatsappUrl } from '@/config/site';
+
+const categories = [
+  { num: '01', title: 'Surgical Gastroenterology', accent: 'super-specialty', body: 'The full spectrum of stomach, intestine, liver, pancreas, and biliary surgery. Elective and emergency.', href: '/gi-services/surgical-gastroenterology' },
+  { num: '02', title: 'Laparoscopic Surgery', accent: 'minimally invasive', body: 'Gallbladder, hernia, eTEP, anti-reflux, and more. Smaller cuts, faster recovery.', href: '/gi-services/laparoscopic-surgery' },
+  { num: '03', title: 'Upper GI Surgery', accent: 'focused expertise', body: 'Esophagus, stomach, and anti-reflux procedures, from hiatus hernia to cancer resection.', href: '/gi-services/upper-gi-surgery' },
+  { num: '04', title: 'HPB Surgery', accent: 'complex by training', body: 'Specialised liver, pancreas, and bile duct surgery, including tumour resections and reconstructions.', href: '/gi-services/hpb-surgery' },
+  { num: '05', title: 'GI Oncology', accent: 'curative intent', body: "Cancer surgery for the stomach, colon, rectum, and oesophagus. Coordinated with Apollo's oncology team.", href: '/gi-services/gi-oncology' },
+  { num: '06', title: 'Bariatric Surgery', accent: 'metabolic first', body: 'Gastric Bypass and Sleeve Gastrectomy for medically eligible patients. Long-term metabolic health.', href: '/gi-services/bariatric-surgery' },
+];
+
+const procedures = [
+  { label: 'Endoscopy', href: '/gi-services/endoscopy' },
+  { label: 'Colonoscopy', href: '/gi-services/colonoscopy' },
+];
+
+const whyDrReddy = [
+  { num: '01', title: 'Super-specialist credentials', body: "DrNB Surgical Gastroenterology, India's highest GI surgery qualification." },
+  { num: '02', title: 'Minimally invasive by default', body: 'Laparoscopic and advanced minimally invasive techniques whenever clinically appropriate.' },
+  { num: '03', title: 'Honest, patient-first decisions', body: 'Surgery is not always the answer. Many patients leave with a non-surgical plan.' },
+];
+
+const waHref = whatsappUrl("Hi Dr. Reddy, I'd like to send my reports for an initial review.");
+---
+
+<BaseLayout
+  pageType="generic"
+  title="Procedures and areas of practice · Dr. Dwarakanath Reddy"
+  description="A focused surgical practice across six areas at Apollo Speciality Hospitals, Nellore. Laparoscopic, HPB, oncology, bariatric, and endoscopic procedures."
+  breadcrumbs={[
+    { name: 'Home', url: new URL('/', Astro.site!).toString() },
+    { name: 'GI Services', url: new URL('/gi-services', Astro.site!).toString() },
+  ]}
+>
+  <section class="bg-paper-1">
+    <div class="site-container py-14 lg:py-24">
+      <nav class="fig-label mb-8" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-ink">Home</a>
+        <span class="mx-2">·</span>
+        <span class="text-ink">GI Services</span>
+      </nav>
+
+      <Eyebrow>Scope of practice</Eyebrow>
+      <h1 class="mt-6 font-display text-[40px] md:text-[60px] lg:text-[76px] leading-[1.02] tracking-tight text-ink max-w-[20ch]">
+        Procedures and areas of <em>practice</em>.
+      </h1>
+      <p class="mt-6 text-lg leading-relaxed text-ink-soft max-w-[58ch]">
+        A focused surgical practice across six areas. Every recommendation begins with whether surgery is the right answer.
+      </p>
+
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="/contact" class="btn btn-ink">Book a consultation</a>
+        <a href={waHref} class="btn btn-whatsapp">
+          <Icon name="simple-icons:whatsapp" class="w-5 h-5" />
+          Send reports on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-paper-2 border-y border-paper-3">
+    <div class="site-container py-16 lg:py-24">
+      <div class="flex items-end justify-between">
+        <Eyebrow>Areas of practice</Eyebrow>
+        <span class="fig-label hidden md:inline">Fig. A · Six disciplines</span>
+      </div>
+
+      <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {categories.map((c) => (
+          <a href={c.href} class="card card-hover group block h-full flex flex-col">
+            <p class="fig-label">Fig. {c.num}</p>
+            <h3 class="mt-3 font-display text-[22px] text-ink leading-tight">
+              {c.title}, <em class="italic text-accent">{c.accent}</em>
+            </h3>
+            <p class="mt-3 text-[15px] text-ink-soft leading-relaxed flex-1">{c.body}</p>
+            <div class="mt-6 pt-4 border-t border-paper-3 flex items-center justify-between mono-caps text-ink-muted">
+              <span>Explore</span>
+              <span class="text-ink group-hover:translate-x-1 transition-transform">→</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-paper-1">
+    <div class="site-container py-16 lg:py-20">
+      <Eyebrow>Diagnostic procedures</Eyebrow>
+      <h2 class="mt-5 font-display text-[28px] lg:text-[36px] text-ink max-w-[18ch]">Same-day, under <em>sedation</em>.</h2>
+      <div class="mt-6 w-10 h-px bg-accent"></div>
+
+      <div class="mt-8 grid gap-3 md:grid-cols-2 max-w-3xl">
+        {procedures.map((p) => (
+          <a href={p.href} class="flex items-center justify-between py-4 rule-top last:rule-bottom group">
+            <span class="font-display text-lg text-ink">{p.label}</span>
+            <span class="mono-caps text-ink-muted group-hover:text-ink">View →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-paper-2 border-y border-paper-3">
+    <div class="site-container py-16 lg:py-20">
+      <Eyebrow>Why Dr. Reddy</Eyebrow>
+      <h2 class="mt-5 font-display text-[32px] lg:text-[40px] text-ink max-w-[22ch]">
+        Judgement, <em>training</em>, honest advice.
+      </h2>
+      <div class="mt-6 w-10 h-px bg-accent"></div>
+
+      <div class="mt-12 grid gap-8 md:grid-cols-3">
+        {whyDrReddy.map((w) => (
+          <article>
+            <p class="fig-label">Principle {w.num}</p>
+            <h3 class="mt-3 font-display text-xl text-ink leading-tight">{w.title}</h3>
+            <p class="mt-3 text-ink-soft leading-relaxed">{w.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-ink text-paper-1">
+    <div class="site-container py-16 lg:py-24 max-w-3xl text-center">
+      <Eyebrow class="!text-accent-soft">Not sure what you need?</Eyebrow>
+      <p class="mt-6 font-display text-[28px] lg:text-[40px] leading-[1.15]">
+        Send your reports on WhatsApp for a <em>quick</em> initial review.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="/contact" class="btn btn-outline border-paper-1 text-paper-1 hover:bg-paper-1 hover:text-ink">Book a consultation</a>
+        <a href={waHref} class="btn btn-whatsapp">
+          <Icon name="simple-icons:whatsapp" class="w-5 h-5" /> Send reports
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

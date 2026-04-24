@@ -1,0 +1,15 @@
+---
+import { Icon } from 'astro-icon/components';
+import { whatsappUrl } from '@/config/site';
+
+const href = whatsappUrl("Hi Dr. Reddy, I'd like to reach out.");
+---
+
+<a
+  href={href}
+  aria-label="Chat with Dr. Reddy on WhatsApp"
+  class="hidden md:inline-flex fixed right-6 bottom-6 z-40 items-center justify-center w-12 h-12 rounded-full bg-whatsapp text-white hover:bg-whatsapp-dark transition"
+>
+  <span class="absolute inset-0 rounded-full wa-pulse pointer-events-none"></span>
+  <Icon name="simple-icons:whatsapp" class="w-5 h-5 relative z-10" />
+</a>

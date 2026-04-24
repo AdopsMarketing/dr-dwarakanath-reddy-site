@@ -1,0 +1,116 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
+import BookingForm from '@/components/BookingForm.astro';
+import { Icon } from 'astro-icon/components';
+import { getCollection } from 'astro:content';
+import { siteConfig, whatsappUrl } from '@/config/site';
+
+const locations = await getCollection('locations');
+const location = locations.find((l) => l.data.isPrimary) ?? locations[0];
+if (!location) throw new Error('No locations defined.');
+const hospitalPhones = Array.isArray(location.data.telephone)
+  ? location.data.telephone
+  : [location.data.telephone];
+const waHref = whatsappUrl("Hi Dr. Reddy, I'd like to book a consultation.");
+---
+
+<BaseLayout
+  pageType="location"
+  location={location}
+  title="Send Dr. Reddy a message · Book a consultation"
+  description="Book a consultation with Dr. Dwarakanath Reddy at Apollo Speciality Hospitals, Nellore. Form, WhatsApp, or phone. All reach Dr. Reddy directly."
+  breadcrumbs={[
+    { name: 'Home', url: new URL('/', Astro.site!).toString() },
+    { name: 'Contact', url: new URL('/contact', Astro.site!).toString() },
+  ]}
+>
+  <section class="bg-paper-1">
+    <div class="site-container py-14 lg:py-24">
+      <nav class="fig-label mb-8" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-ink">Home</a>
+        <span class="mx-2">·</span>
+        <span class="text-ink">Contact</span>
+      </nav>
+
+      <Eyebrow>Book a consultation</Eyebrow>
+      <h1 class="mt-6 font-display text-[48px] md:text-[68px] lg:text-[84px] leading-[0.98] tracking-tight text-ink max-w-[18ch]">
+        Send Dr. Reddy a <em>message</em>.
+      </h1>
+      <p class="mt-6 text-lg leading-relaxed text-ink-soft max-w-[58ch]">
+        Form, WhatsApp, or phone. All three reach Dr. Reddy directly. For urgent questions, WhatsApp is fastest.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-paper-2 border-y border-paper-3">
+    <div class="site-container py-16 lg:py-24 grid lg:grid-cols-12 gap-12">
+      <!-- Booking form -->
+      <div class="lg:col-span-8">
+        <Eyebrow>Booking form</Eyebrow>
+        <h2 class="mt-5 font-display text-[28px] lg:text-[36px] text-ink">
+          Three quick <em>steps</em>.
+        </h2>
+        <div class="mt-6 w-10 h-px bg-accent"></div>
+
+        <div class="mt-10">
+          <BookingForm id="contact-booking" />
+        </div>
+      </div>
+
+      <!-- Quick contact -->
+      <aside class="lg:col-span-4" itemscope itemtype="https://schema.org/MedicalClinic">
+        <meta itemprop="name" content={location.data.name} />
+        <Eyebrow>Direct contact</Eyebrow>
+        <h2 class="mt-5 font-display text-[24px] text-ink">Talk to Dr. Reddy now</h2>
+        <div class="mt-6 w-10 h-px bg-accent"></div>
+
+        <div class="mt-8 space-y-6 text-[15px]">
+          <div>
+            <p class="mono-caps text-ink-muted">WhatsApp</p>
+            <a href={waHref} class="mt-1 inline-flex items-center gap-2 font-display text-xl text-ink hover:text-accent">
+              <Icon name="simple-icons:whatsapp" class="w-5 h-5 text-whatsapp" />
+              {siteConfig.doctor.phone}
+            </a>
+          </div>
+
+          <div>
+            <p class="mono-caps text-ink-muted">Apollo reception</p>
+            <ul class="mt-1 space-y-1">
+              {hospitalPhones.map((num) => (
+                <li>
+                  <a href={`tel:${num.replace(/\s/g, '')}`} class="text-ink hover:text-accent" itemprop="telephone">{num}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {location.data.email && (
+            <div>
+              <p class="mono-caps text-ink-muted">Email</p>
+              <a href={`mailto:${location.data.email}`} class="mt-1 inline-block text-ink hover:text-accent break-all" itemprop="email">{location.data.email}</a>
+            </div>
+          )}
+
+          <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+            <p class="mono-caps text-ink-muted">Address</p>
+            <p class="mt-1 text-ink leading-relaxed">
+              <span itemprop="streetAddress">{location.data.address.streetAddress}</span><br />
+              <span itemprop="addressLocality">{location.data.address.addressLocality}</span>,
+              <span itemprop="addressRegion"> {location.data.address.addressRegion}</span>
+              <span itemprop="postalCode"> {location.data.address.postalCode}</span>
+            </p>
+          </div>
+
+          {location.data.openingHours && (
+            <div>
+              <p class="mono-caps text-ink-muted">Consultation hours</p>
+              <p class="mt-1 text-ink">{location.data.openingHours}</p>
+              <p class="mono-caps text-ink-muted">Confirm with reception</p>
+            </div>
+          )}
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>

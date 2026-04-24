@@ -1,0 +1,302 @@
+@import "tailwindcss";
+
+/* Self-hosted fonts */
+@import "@fontsource-variable/newsreader/index.css";
+@import "@fontsource-variable/newsreader/wght-italic.css";
+@import "@fontsource-variable/inter-tight/index.css";
+@import "@fontsource-variable/jetbrains-mono/index.css";
+
+@theme {
+  /* Ink (navy) */
+  --color-ink: oklch(0.28 0.06 255);
+  --color-ink-soft: oklch(0.42 0.05 255);
+  --color-ink-muted: oklch(0.58 0.03 255);
+
+  /* Accent (warm terracotta) */
+  --color-accent: oklch(0.62 0.13 45);
+  --color-accent-soft: oklch(0.78 0.08 45);
+
+  /* Paper backgrounds */
+  --color-paper-1: #FAF7F1;
+  --color-paper-2: #F2EDE2;
+  --color-paper-3: #E5DDCB;
+  --color-paper-4: #D4C9B0;
+
+  /* Functional */
+  --color-whatsapp: #25D366;
+  --color-whatsapp-dark: #128C7E;
+
+  /* Fonts */
+  --font-sans: "Inter Tight Variable", system-ui, -apple-system, sans-serif;
+  --font-display: "Newsreader Variable", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Content widths */
+  --container-prose: 42.5rem;
+  --container-site: 76rem;
+}
+
+/* Tokens that don't participate in Tailwind utility generation */
+:root {
+  --hairline: rgba(20, 24, 31, 0.12);
+  --hairline-strong: rgba(20, 24, 31, 0.24);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    color: var(--color-ink);
+    background: var(--color-paper-1);
+    font-size: 1rem;
+    line-height: 1.6;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  @media (min-width: 1024px) {
+    body { font-size: 1.0625rem; }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: var(--color-ink);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+
+  h1 { font-weight: 300; line-height: 1.05; letter-spacing: -0.02em; }
+  h2 { font-weight: 300; line-height: 1.1; letter-spacing: -0.015em; }
+  h3 { font-weight: 400; line-height: 1.2; }
+  h4 { font-weight: 400; line-height: 1.25; }
+
+  /* Italic accent pattern inside headings */
+  h1 em, h2 em, h3 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--color-accent);
+  }
+
+  a { color: inherit; }
+
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--color-paper-3);
+    color: var(--color-ink);
+  }
+
+  hr, .hairline {
+    border: 0;
+    border-top: 1px solid var(--hairline);
+  }
+}
+
+@layer components {
+  /* Containers */
+  .site-container {
+    max-width: var(--container-site);
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 1024px) {
+    .site-container { padding-inline: 2.5rem; }
+  }
+  .prose-container {
+    max-width: var(--container-prose);
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  /* Voice primitives */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-accent);
+  }
+  .eyebrow::before {
+    content: "§ ";
+    color: var(--color-accent);
+  }
+
+  .fig-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-ink-muted);
+  }
+
+  .mono-caps {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  /* Buttons: editorial, no gradients, no shadows */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.5rem;
+    border-radius: 0.125rem; /* rounded-sm */
+    font-weight: 500;
+    font-size: 0.9375rem;
+    line-height: 1;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+    border: 1px solid transparent;
+  }
+  .btn-ink {
+    background: var(--color-ink);
+    color: var(--color-paper-1);
+  }
+  .btn-ink:hover { background: #000; }
+  .btn-outline {
+    background: transparent;
+    border-color: var(--color-ink);
+    color: var(--color-ink);
+  }
+  .btn-outline:hover { background: var(--color-ink); color: var(--color-paper-1); }
+  .btn-whatsapp {
+    background: var(--color-whatsapp);
+    color: #fff;
+  }
+  .btn-whatsapp:hover { background: var(--color-whatsapp-dark); }
+
+  /* Cards: border only, no shadow, sharp corners */
+  .card {
+    background: var(--color-paper-1);
+    border: 1px solid var(--color-paper-3);
+    border-radius: 0.125rem;
+    padding: 1.75rem;
+    transition: border-color 0.2s;
+  }
+  .card-hover:hover { border-color: var(--color-ink); }
+
+  /* Form inputs */
+  .field {
+    display: block;
+    width: 100%;
+    background: var(--color-paper-2);
+    border: 0;
+    border-bottom: 1px solid var(--color-ink);
+    padding: 0.75rem 0.25rem;
+    color: var(--color-ink);
+    font-size: 1rem;
+    border-radius: 0;
+  }
+  .field:focus { outline: 0; border-bottom-color: var(--color-accent); background: var(--color-paper-1); }
+  .field::placeholder { color: var(--color-ink-muted); }
+
+  /* Radio / checkbox tile */
+  .tile {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    background: var(--color-paper-2);
+    border: 1px solid var(--color-paper-3);
+    border-radius: 0.125rem;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .tile:hover { border-color: var(--color-ink-soft); }
+  .tile input { accent-color: var(--color-accent); margin-top: 0.25rem; }
+  .tile[data-selected="true"], .tile:has(input:checked) {
+    border-color: var(--color-ink);
+    background: var(--color-paper-1);
+  }
+
+  /* FAQ accordion */
+  details.faq {
+    border-top: 1px solid var(--hairline);
+  }
+  details.faq:last-child { border-bottom: 1px solid var(--hairline); }
+  details.faq > summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 1.25rem 0;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 1.125rem;
+    color: var(--color-ink);
+  }
+  details.faq > summary::-webkit-details-marker { display: none; }
+  details.faq > summary::after {
+    content: "+";
+    font-family: var(--font-mono);
+    font-size: 1.25rem;
+    color: var(--color-ink-muted);
+    line-height: 1;
+    transition: transform 0.2s;
+  }
+  details.faq[open] > summary::after { content: "–"; }
+  details.faq > .faq-body {
+    padding: 0 0 1.5rem 0;
+    color: var(--color-ink-soft);
+    font-size: 0.9375rem;
+    line-height: 1.7;
+  }
+
+  /* Timeline / recovery table */
+  .ed-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .ed-table td {
+    border-top: 1px solid var(--hairline);
+    padding: 0.9rem 0.25rem;
+    vertical-align: top;
+    font-size: 0.9375rem;
+  }
+  .ed-table tr:last-child td { border-bottom: 1px solid var(--hairline); }
+  .ed-table td:first-child {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--color-ink-muted);
+    width: 38%;
+  }
+
+  /* Hairline rule */
+  .rule-top { border-top: 1px solid var(--hairline); }
+  .rule-bottom { border-bottom: 1px solid var(--hairline); }
+
+  /* Floating WhatsApp pulse */
+  .wa-pulse::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    border: 1px solid var(--color-whatsapp);
+    animation: wa-pulse 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  @keyframes wa-pulse {
+    0%   { transform: scale(1);    opacity: 0.5; }
+    70%  { transform: scale(1.55); opacity: 0;   }
+    100% { transform: scale(1.55); opacity: 0;   }
+  }
+
+  .tabular-nums { font-variant-numeric: tabular-nums; }
+}

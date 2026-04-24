@@ -1,0 +1,64 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProcedureBody from '@/components/ProcedureBody.astro';
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  const services = await getCollection('services');
+  const routable = services.filter((s) =>
+    ['laparoscopic', 'hpb', 'oncology', 'bariatric'].includes(s.data.category)
+  );
+
+  const categoryToSlug: Record<string, string> = {
+    laparoscopic: 'laparoscopic',
+    hpb: 'hpb',
+    oncology: 'gi-oncology',
+    bariatric: 'bariatric',
+  };
+
+  return routable.map((service) => ({
+    params: {
+      category: categoryToSlug[service.data.category],
+      slug: service.data.slug,
+    },
+    props: { service },
+  }));
+}) satisfies GetStaticPaths;
+
+const { service } = Astro.props;
+const d = service.data;
+
+const categoryLabels: Record<string, { label: string; path: string }> = {
+  laparoscopic: { label: 'Laparoscopic Surgery', path: '/gi-services/laparoscopic-surgery' },
+  hpb: { label: 'HPB Surgery', path: '/gi-services/hpb-surgery' },
+  oncology: { label: 'GI Oncology', path: '/gi-services/gi-oncology' },
+  bariatric: { label: 'Bariatric Surgery', path: '/gi-services/bariatric-surgery' },
+};
+const catMeta = categoryLabels[d.category] ?? { label: d.category, path: '/gi-services' };
+const pagePath = `/gi-services/${d.category}/${d.slug}`;
+
+const pageTitle = d.seo?.title ?? `${d.h1 ?? d.title}, Dr. Dwarakanath Reddy`;
+const metaDescription = d.seo?.description ?? d.shortDescription;
+---
+
+<BaseLayout
+  pageType="service"
+  service={service}
+  title={pageTitle}
+  description={metaDescription}
+  breadcrumbs={[
+    { name: 'Home', url: new URL('/', Astro.site!).toString() },
+    { name: 'GI Services', url: new URL('/gi-services', Astro.site!).toString() },
+    { name: catMeta.label, url: new URL(catMeta.path, Astro.site!).toString() },
+    { name: d.h1 ?? d.title, url: new URL(pagePath, Astro.site!).toString() },
+  ]}
+>
+  <ProcedureBody
+    service={service}
+    breadcrumbLinks={[
+      { label: 'GI Services', href: '/gi-services' },
+      { label: catMeta.label, href: catMeta.path },
+    ]}
+  />
+</BaseLayout>

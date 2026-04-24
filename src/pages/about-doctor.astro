@@ -1,0 +1,228 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
+import { Icon } from 'astro-icon/components';
+import { getCollection, render } from 'astro:content';
+import { whatsappUrl } from '@/config/site';
+
+const doctors = await getCollection('doctors');
+const doctor = doctors.find((d) => d.data.isPrimary) ?? doctors[0];
+if (!doctor) throw new Error('No doctor entries found.');
+const { Content } = await render(doctor);
+
+const timeline = [
+  { period: '2017 to 2020', role: 'Senior Resident, Surgical Gastroenterology', place: 'Manipal Hospitals, Bengaluru', detail: "Three years of intensive training in one of India's leading GI surgery programmes." },
+  { period: '2020 to 2021', role: 'Associate Consultant', place: 'Manipal Health Enterprises, Bengaluru', detail: null },
+  { period: '2021 to 2026', role: 'Consultant and Associate Professor', place: 'Narayana Medical College, Nellore', detail: 'Operated, taught, and built a referral practice across Andhra Pradesh while shaping young surgeons.' },
+  { period: 'April 2026 to present', role: 'Senior Consultant, GI and HPB Surgery', place: 'Apollo Speciality Hospitals, Nellore', detail: null },
+];
+
+const whyPatients = [
+  { num: '01', title: 'Super-specialist credentials', body: 'DrNB Surgical Gastroenterology is the highest GI surgery qualification in India.' },
+  { num: '02', title: 'Academic background', body: 'Years as a teaching faculty member sharpen judgement and discipline.' },
+  { num: '03', title: "Apollo's infrastructure", body: "Operating at one of India's most trusted hospital networks means access to advanced equipment, full multidisciplinary teams, and stringent safety protocols." },
+  { num: '04', title: 'Patient-first approach', body: 'Most consultations begin by reviewing your existing scans and reports, not by recommending more.' },
+];
+
+const quickFacts = [
+  'MBBS',
+  'MS, General Surgery',
+  'DrNB, Surgical Gastroenterology',
+  '9+ years of surgical practice',
+  '5.0 rating across 428 Google reviews',
+];
+
+const expertise = [
+  'Surgical Gastroenterology',
+  'Hepato-Pancreatico-Biliary Surgery: liver, pancreas, bile duct',
+  'GI Oncology: stomach, colon, rectal, and oesophageal cancer surgery',
+  'Advanced Laparoscopic and Minimally Invasive Surgery, including eTEP',
+  'Bariatric Surgery: Gastric Bypass and Sleeve Gastrectomy',
+  'Diagnostic and therapeutic Endoscopy and Colonoscopy',
+];
+
+const waHref = whatsappUrl("Hi Dr. Reddy, I have a question or a recent scan I'd like reviewed.");
+---
+
+<BaseLayout
+  pageType="doctor"
+  doctor={doctor}
+  title={`About ${doctor.data.honorificPrefix} ${doctor.data.name}`}
+  description={doctor.data.seo?.description ?? `Learn about ${doctor.data.honorificPrefix} ${doctor.data.name}, ${doctor.data.title}.`}
+  breadcrumbs={[
+    { name: 'Home', url: new URL('/', Astro.site!).toString() },
+    { name: 'About the Doctor', url: new URL('/about-doctor', Astro.site!).toString() },
+  ]}
+>
+  <section class="bg-paper-1">
+    <div class="site-container py-14 lg:py-24 grid lg:grid-cols-5 gap-12 items-start">
+      <div class="lg:col-span-3">
+        <nav class="fig-label mb-8" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-ink">Home</a>
+          <span class="mx-2">·</span>
+          <span class="text-ink">About</span>
+        </nav>
+
+        <Eyebrow>About the Doctor</Eyebrow>
+        <h1 class="mt-6 font-display text-[48px] md:text-[68px] lg:text-[84px] leading-[0.98] tracking-tight text-ink">
+          A clinician, <em>first</em>.
+        </h1>
+
+        <div class="mt-10" itemscope itemtype="https://schema.org/Physician">
+          <p class="mono-caps text-ink-muted">Name</p>
+          <p class="mt-1 font-display text-2xl text-ink">
+            <span itemprop="honorificPrefix">{doctor.data.honorificPrefix}</span>
+            <span itemprop="name"> {doctor.data.name}</span>
+          </p>
+
+          <div class="mt-6">
+            <p class="mono-caps text-ink-muted">Position</p>
+            <p class="mt-1 text-ink" itemprop="jobTitle">{doctor.data.title}</p>
+            <p class="text-ink-soft">Apollo Speciality Hospitals, Nellore</p>
+          </div>
+
+          <div class="mt-6">
+            <p class="mono-caps text-ink-muted">Qualifications</p>
+            <ul class="mt-2 space-y-1 text-ink">
+              {doctor.data.credentials.map((c) => (<li>{c}</li>))}
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-10 flex flex-wrap gap-3">
+          <a href="/contact" class="btn btn-ink">Book a consultation</a>
+          <a href={waHref} class="btn btn-whatsapp">
+            <Icon name="simple-icons:whatsapp" class="w-5 h-5" />
+            Talk on WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <figure class="lg:col-span-2">
+        <div class="aspect-[4/5] rounded-sm overflow-hidden bg-paper-2 border border-paper-3">
+          {doctor.data.image ? (
+            <img src={doctor.data.image} alt={`${doctor.data.honorificPrefix} ${doctor.data.name}, Senior Consultant Gastrointestinal Surgeon`} class="w-full h-full object-cover" />
+          ) : (
+            <div class="w-full h-full flex items-center justify-center text-ink-muted text-sm">Portrait</div>
+          )}
+        </div>
+        <figcaption class="fig-label mt-3">
+          Fig. A · Dr. {doctor.data.name} · DrNB Surgical Gastroenterology
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="bg-paper-2 border-y border-paper-3">
+    <div class="site-container py-16 lg:py-20 grid lg:grid-cols-2 gap-12">
+      <div>
+        <Eyebrow>At a glance</Eyebrow>
+        <h2 class="mt-5 font-display text-[28px] lg:text-[36px] text-ink max-w-[20ch]">Qualifications and credentials</h2>
+        <div class="mt-6 w-10 h-px bg-accent"></div>
+        <ul class="mt-8 space-y-3">
+          {quickFacts.map((f, i) => (
+            <li class="flex items-baseline gap-4 text-ink">
+              <span class="mono-caps text-ink-muted tabular-nums shrink-0">{String(i + 1).padStart(2, '0')}</span>
+              <span>{f}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <Eyebrow>Expertise</Eyebrow>
+        <h2 class="mt-5 font-display text-[28px] lg:text-[36px] text-ink max-w-[20ch]">Areas of <em>practice</em></h2>
+        <div class="mt-6 w-10 h-px bg-accent"></div>
+        <ul class="mt-8 space-y-3">
+          {expertise.map((e) => (
+            <li class="flex items-start gap-3 text-ink-soft">
+              <span class="mt-2 w-1.5 h-1.5 bg-accent shrink-0"></span>
+              <span>{e}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-paper-1">
+    <div class="site-container py-20 lg:py-28">
+      <blockquote class="max-w-4xl mx-auto text-center">
+        <p class="font-display italic text-[28px] lg:text-[40px] leading-[1.2] text-ink">
+          "The operation is often the simplest part. What a patient most needs, the counselling, the decision, the recovery, happens outside the operating theatre."
+        </p>
+        <footer class="mt-8 fig-label">
+          Dr. Dwarakanath Reddy · On the practice of surgery
+        </footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <section id="career-journey" class="bg-paper-2 border-y border-paper-3">
+    <div class="site-container py-16 lg:py-24">
+      <Eyebrow>Training and practice</Eyebrow>
+      <h2 class="mt-5 font-display text-[32px] lg:text-[44px] text-ink max-w-[18ch]">
+        Training and <em>practice</em>
+      </h2>
+      <div class="mt-6 w-10 h-px bg-accent"></div>
+
+      <ol class="mt-12 space-y-10 max-w-[64ch]">
+        {timeline.map((t, i) => (
+          <li class="grid grid-cols-[auto_1fr] gap-6 lg:gap-10 items-baseline rule-top pt-8 first:border-t-0 first:pt-0">
+            <span class="mono-caps text-ink-muted tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <p class="fig-label">{t.period}</p>
+              <p class="mt-2 font-display text-xl text-ink">{t.role}</p>
+              <p class="text-ink-soft">{t.place}</p>
+              {t.detail && <p class="mt-3 text-ink-soft leading-relaxed">{t.detail}</p>}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section id="philosophy" class="bg-paper-1">
+    <div class="site-container py-20 lg:py-24 max-w-[64ch]">
+      <Eyebrow>Philosophy</Eyebrow>
+      <h2 class="mt-5 font-display text-[28px] lg:text-[40px] text-ink">
+        Three <em>habits</em>, not three targets.
+      </h2>
+      <div class="mt-6 w-10 h-px bg-accent"></div>
+      <p class="mt-8 text-lg text-ink-soft leading-relaxed">
+        A good GI surgeon does three things well. Diagnose accurately, recommend the right intervention (which is sometimes no surgery at all), and operate with precision when surgery is needed. Dr. Reddy's practice is built on those three habits, not on volume targets.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-paper-2 border-y border-paper-3">
+    <div class="site-container py-16 lg:py-20">
+      <Eyebrow>Why patients choose him</Eyebrow>
+      <h2 class="mt-5 font-display text-[32px] lg:text-[40px] text-ink max-w-[20ch]">Built on <em>judgement</em>, not on volume.</h2>
+      <div class="mt-6 w-10 h-px bg-accent"></div>
+      <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {whyPatients.map((w) => (
+          <article>
+            <p class="fig-label">Principle {w.num}</p>
+            <h3 class="mt-3 font-display text-xl text-ink leading-snug">{w.title}</h3>
+            <p class="mt-3 text-sm text-ink-soft leading-relaxed">{w.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-ink text-paper-1">
+    <div class="site-container py-16 lg:py-24 max-w-3xl text-center">
+      <Eyebrow class="!text-accent-soft">Next step</Eyebrow>
+      <p class="mt-6 font-display text-[28px] lg:text-[40px] leading-[1.15]">
+        Have a question or a recent scan you want <em>reviewed</em>?
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="/contact" class="btn btn-outline border-paper-1 text-paper-1 hover:bg-paper-1 hover:text-ink">Book a consultation</a>
+        <a href={waHref} class="btn btn-whatsapp">
+          <Icon name="simple-icons:whatsapp" class="w-5 h-5" /> Talk on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

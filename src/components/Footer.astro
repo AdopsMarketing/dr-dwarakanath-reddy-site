@@ -1,0 +1,143 @@
+---
+import { Icon } from 'astro-icon/components';
+import { getCollection } from 'astro:content';
+import { siteConfig, whatsappUrl } from '@/config/site';
+
+const locations = await getCollection('locations');
+const location = locations.find((l) => l.data.isPrimary) ?? locations[0];
+const orgColl = await getCollection('organization');
+const org = orgColl[0];
+const year = new Date().getFullYear();
+
+const hospitalPhones = location
+  ? Array.isArray(location.data.telephone)
+    ? location.data.telephone
+    : [location.data.telephone]
+  : [];
+
+const aboutLinks = [
+  { label: 'About Dr. Reddy', href: '/about-doctor' },
+  { label: 'Approach', href: '/about-doctor#philosophy' },
+  { label: 'Affiliations', href: '/about-doctor#career-journey' },
+];
+const serviceLinks = [
+  { label: 'Surgical gastroenterology', href: '/gi-services/surgical-gastroenterology' },
+  { label: 'Laparoscopic surgery', href: '/gi-services/laparoscopic-surgery' },
+  { label: 'HPB surgery', href: '/gi-services/hpb-surgery' },
+  { label: 'GI oncology', href: '/gi-services/gi-oncology' },
+  { label: 'Bariatric surgery', href: '/gi-services/bariatric-surgery' },
+  { label: 'Endoscopy and colonoscopy', href: '/gi-services/endoscopy' },
+];
+
+const socials = (org?.data.sameAs ?? []).map((url) => {
+  if (url.includes('linkedin')) return { name: 'LinkedIn', icon: 'simple-icons:linkedin', href: url };
+  if (url.includes('instagram')) return { name: 'Instagram', icon: 'simple-icons:instagram', href: url };
+  if (url.includes('youtube')) return { name: 'YouTube', icon: 'simple-icons:youtube', href: url };
+  if (url.includes('facebook')) return { name: 'Facebook', icon: 'simple-icons:facebook', href: url };
+  return null;
+}).filter(Boolean) as Array<{ name: string; icon: string; href: string }>;
+
+const waHref = whatsappUrl("Hi Dr. Reddy, I'd like to book an appointment.");
+---
+
+<footer class="bg-ink text-paper-1 mt-20">
+  <div class="site-container py-16 lg:py-20">
+    <div class="grid gap-12 lg:grid-cols-12">
+      <!-- Brand block -->
+      <div class="lg:col-span-4">
+        <div class="flex items-center gap-3">
+          <span class="w-10 h-10 rounded-sm bg-paper-1 text-ink flex items-center justify-center font-display italic text-lg">R</span>
+          <div class="leading-tight">
+            <div class="font-display text-[18px] text-paper-1">Dr. Dwarakanath Reddy</div>
+            <div class="mono-caps text-ink-muted">Surgical Gastroenterology</div>
+          </div>
+        </div>
+
+        <p class="mt-6 text-[15px] leading-relaxed text-paper-2 max-w-sm">
+          Senior Consultant Gastrointestinal Surgeon at Apollo Speciality Hospitals, Nellore. DrNB Surgical Gastroenterology.
+        </p>
+
+        {socials.length > 0 && (
+          <div class="mt-8 flex gap-2">
+            {socials.map((s) => (
+              <a
+                href={s.href}
+                aria-label={s.name}
+                class="w-9 h-9 rounded-sm border border-paper-2/20 text-paper-2 flex items-center justify-center hover:bg-paper-1 hover:text-ink hover:border-paper-1"
+              >
+                <Icon name={s.icon} class="w-4 h-4" />
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <!-- About column -->
+      <div class="lg:col-span-2">
+        <p class="mono-caps text-accent">About</p>
+        <ul class="mt-4 space-y-2.5">
+          {aboutLinks.map((l) => (
+            <li><a href={l.href} class="text-[15px] text-paper-2 hover:text-paper-1">{l.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Services column -->
+      <div class="lg:col-span-3">
+        <p class="mono-caps text-accent">Services</p>
+        <ul class="mt-4 space-y-2.5">
+          {serviceLinks.map((l) => (
+            <li><a href={l.href} class="text-[15px] text-paper-2 hover:text-paper-1">{l.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Contact column -->
+      <div class="lg:col-span-3">
+        <p class="mono-caps text-accent">Contact</p>
+        {location && (
+          <address class="not-italic mt-4 text-[15px] text-paper-2 space-y-3" itemscope itemtype="https://schema.org/MedicalClinic">
+            <meta itemprop="name" content={location.data.name} />
+            <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <div class="text-paper-1 font-medium">{location.data.name}</div>
+              <div>
+                <span itemprop="streetAddress">{location.data.address.streetAddress}</span>,
+                <span itemprop="addressLocality">{location.data.address.addressLocality}</span>
+                <span itemprop="addressRegion"> {location.data.address.addressRegion}</span>
+                <span itemprop="postalCode"> {location.data.address.postalCode}</span>
+              </div>
+            </div>
+            <div class="pt-2 space-y-1.5">
+              {hospitalPhones.map((num) => (
+                <div>
+                  <a href={`tel:${num.replace(/\s/g, '')}`} class="hover:text-paper-1" itemprop="telephone">{num}</a>
+                  <span class="mono-caps text-ink-muted ml-2">Apollo</span>
+                </div>
+              ))}
+              <div>
+                <a href={waHref} class="hover:text-paper-1">{siteConfig.doctor.phone}</a>
+                <span class="mono-caps text-ink-muted ml-2">WhatsApp</span>
+              </div>
+              {location.data.email && (
+                <div>
+                  <a href={`mailto:${location.data.email}`} class="hover:text-paper-1 break-all" itemprop="email">{location.data.email}</a>
+                </div>
+              )}
+            </div>
+          </address>
+        )}
+
+        <a href="/contact" class="btn btn-outline mt-6 border-paper-1 text-paper-1 hover:bg-paper-1 hover:text-ink">
+          Book a consultation
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-paper-1/15">
+    <div class="site-container py-6 flex flex-col md:flex-row justify-between gap-3 mono-caps text-ink-muted">
+      <div>© {year} · Dr. Dwarakanath Reddy · All rights reserved</div>
+      <div>Apollo Speciality Hospitals · Nellore · India</div>
+    </div>
+  </div>
+</footer>

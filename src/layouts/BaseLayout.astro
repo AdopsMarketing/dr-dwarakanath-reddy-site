@@ -1,0 +1,128 @@
+---
+import '@/styles/global.css';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import FloatingWhatsApp from '@/components/FloatingWhatsApp.astro';
+import MobileBottomNav from '@/components/MobileBottomNav.astro';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import { buildPageGraph, type PageType } from '@/lib/schema';
+
+interface Props {
+  title: string;
+  description: string;
+  pageType?: PageType;
+  canonicalPath?: string;
+  ogImage?: string;
+  breadcrumbs?: Array<{ name: string; url: string }>;
+  service?: CollectionEntry<'services'>;
+  condition?: CollectionEntry<'conditions'>;
+  location?: CollectionEntry<'locations'>;
+  doctor?: CollectionEntry<'doctors'>;
+  faq?: Array<{ question: string; answer: string }>;
+}
+
+const {
+  title,
+  description,
+  pageType = 'generic',
+  canonicalPath,
+  ogImage,
+  breadcrumbs = [],
+  service,
+  condition,
+  location,
+  doctor,
+  faq,
+} = Astro.props;
+
+const site = Astro.site;
+if (!site) {
+  throw new Error('astro.config.mjs must define `site`. Schema @ids require a canonical origin.');
+}
+
+const pathname = canonicalPath ?? Astro.url.pathname;
+const pageUrl = new URL(pathname, site).toString();
+
+const [org] = await getCollection('organization');
+const allDoctors = await getCollection('doctors');
+const allLocations = await getCollection('locations');
+const allServices = await getCollection('services');
+const primaryDoctor =
+  allDoctors.find((d) => d.data.isPrimary) ?? allDoctors[0];
+const primaryLocation =
+  allLocations.find((l) => l.data.isPrimary) ?? allLocations[0];
+
+if (!org) throw new Error('Missing organization entry in src/content/organization/');
+if (!primaryDoctor) throw new Error('No doctor entries found.');
+if (!primaryLocation) throw new Error('No locations defined.');
+
+const finalBreadcrumbs =
+  breadcrumbs.length > 0
+    ? breadcrumbs
+    : [{ name: 'Home', url: new URL('/', site).toString() }];
+
+const graph = buildPageGraph({
+  site,
+  pageUrl,
+  pageType,
+  pageTitle: title,
+  pageDescription: description,
+  breadcrumbs: finalBreadcrumbs,
+  org,
+  primaryDoctor,
+  allDoctors,
+  primaryLocation,
+  allLocations,
+  allServices,
+  service,
+  condition,
+  location,
+  doctor,
+  faq,
+});
+
+const jsonLd = JSON.stringify(graph);
+
+const resolvedOgImage =
+  ogImage ?? new URL(org.data.image ?? '/og-image.jpg', site).toString();
+const siteName = org.data.name;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={pageUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:image" content={resolvedOgImage} />
+    <meta property="og:site_name" content={siteName} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={resolvedOgImage} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <script type="application/ld+json" set:html={jsonLd} />
+  </head>
+  <body class="min-h-screen flex flex-col bg-paper-1 text-ink">
+    <Header />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+    <FloatingWhatsApp />
+    <MobileBottomNav />
+  </body>
+</html>

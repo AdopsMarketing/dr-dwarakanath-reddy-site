@@ -1,0 +1,19 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+}
+const { title, description, href } = Astro.props;
+---
+
+<a href={href} class="block p-6 rounded-sm border border-paper-3 hover:border-ink hover: transition bg-white">
+  <h3 class="text-lg font-semibold text-ink mb-2">{title}</h3>
+  <p class="text-sm text-ink-soft leading-relaxed">{description}</p>
+  <span class="inline-flex items-center mt-4 text-sm font-medium text-accent">
+    Learn more
+    <svg class="w-4 h-4 ml-1" viewBox="0 0 16 16" aria-hidden="true">
+      <path d="M6 4 L10 8 L6 12" fill="none" stroke="currentColor" stroke-width="1.5" />
+    </svg>
+  </span>
+</a>

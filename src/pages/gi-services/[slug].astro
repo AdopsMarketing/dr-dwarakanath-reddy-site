@@ -1,0 +1,70 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProcedureBody from '@/components/ProcedureBody.astro';
+import CategoryBody from '@/components/CategoryBody.astro';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry, GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  const services = await getCollection('services');
+  const topLevelServices = services.filter((s) => s.data.category === 'procedures');
+
+  const categories = await getCollection('categories');
+
+  const paths: Array<{
+    params: { slug: string };
+    props: { kind: 'service'; entry: CollectionEntry<'services'> } | { kind: 'category'; entry: CollectionEntry<'categories'> };
+  }> = [];
+
+  for (const s of topLevelServices) {
+    paths.push({ params: { slug: s.data.slug }, props: { kind: 'service', entry: s } });
+  }
+  for (const c of categories) {
+    paths.push({ params: { slug: c.data.slug }, props: { kind: 'category', entry: c } });
+  }
+  return paths;
+}) satisfies GetStaticPaths;
+
+const props = Astro.props;
+
+if (props.kind === 'service') {
+  // Top-level procedure page (e.g. endoscopy, colonoscopy)
+}
+
+const site = Astro.site!;
+const toAbs = (p: string) => new URL(p, site).toString();
+---
+
+{props.kind === 'service' && (
+  <BaseLayout
+    pageType="service"
+    service={props.entry}
+    title={props.entry.data.seo?.title ?? `${props.entry.data.h1 ?? props.entry.data.title}, Dr. Dwarakanath Reddy`}
+    description={props.entry.data.seo?.description ?? props.entry.data.shortDescription}
+    breadcrumbs={[
+      { name: 'Home', url: toAbs('/') },
+      { name: 'GI Services', url: toAbs('/gi-services') },
+      { name: props.entry.data.h1 ?? props.entry.data.title, url: toAbs(`/gi-services/${props.entry.data.slug}`) },
+    ]}
+  >
+    <ProcedureBody
+      service={props.entry}
+      breadcrumbLinks={[{ label: 'GI Services', href: '/gi-services' }]}
+    />
+  </BaseLayout>
+)}
+
+{props.kind === 'category' && (
+  <BaseLayout
+    pageType="generic"
+    title={props.entry.data.seo?.title ?? `${props.entry.data.h1 ?? props.entry.data.title}, Dr. Dwarakanath Reddy`}
+    description={props.entry.data.seo?.description ?? props.entry.data.shortDescription}
+    breadcrumbs={[
+      { name: 'Home', url: toAbs('/') },
+      { name: 'GI Services', url: toAbs('/gi-services') },
+      { name: props.entry.data.h1 ?? props.entry.data.title, url: toAbs(`/gi-services/${props.entry.data.slug}`) },
+    ]}
+  >
+    <CategoryBody category={props.entry} />
+  </BaseLayout>
+)}
