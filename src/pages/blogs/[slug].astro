@@ -1,0 +1,58 @@
+---
+import ArticleLayout from '@/layouts/ArticleLayout.astro';
+import { getCollection, render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection('blogs');
+  return posts.map((post) => ({
+    params: { slug: post.data.slug },
+    props: { post },
+  }));
+}) satisfies GetStaticPaths;
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const site = Astro.site!;
+const toAbs = (p: string) => new URL(p, site).toString();
+
+const related = (await getCollection('blogs'))
+  .filter((p) => p.data.slug !== post.data.slug)
+  .sort((a, b) => new Date(b.data.publishedAt).valueOf() - new Date(a.data.publishedAt).valueOf())
+  .slice(0, 3);
+---
+
+<ArticleLayout
+  eyebrow={post.data.category ? `Blog · ${post.data.category}` : 'Blog'}
+  title={post.data.title}
+  excerpt={post.data.excerpt}
+  publishedAt={post.data.publishedAt}
+  updatedAt={post.data.updatedAt}
+  author={post.data.author}
+  reviewedBy={post.data.reviewedBy}
+  breadcrumbs={[
+    { name: 'Home', url: toAbs('/') },
+    { name: 'Blog', url: toAbs('/blogs') },
+    { name: post.data.title, url: toAbs(`/blogs/${post.data.slug}`) },
+  ]}
+  serviceLink={post.data.relatedService && post.data.relatedServiceLabel
+    ? { href: post.data.relatedService, label: post.data.relatedServiceLabel }
+    : undefined}
+>
+  <Content />
+
+  <Fragment slot="related">
+    {related.map((r) => (
+      <a href={`/blogs/${r.data.slug}`} class="card card-hover group block h-full flex flex-col">
+        {r.data.category && <p class="mono-caps text-ink-muted">{r.data.category}</p>}
+        <h3 class="mt-3 font-display text-[20px] text-ink leading-tight">{r.data.title}</h3>
+        <p class="mt-3 text-[15px] text-ink-soft leading-relaxed flex-1">{r.data.excerpt}</p>
+        <div class="mt-5 pt-4 border-t border-paper-3 flex items-center justify-between mono-caps text-ink-muted">
+          <span>Read article</span>
+          <span class="text-ink group-hover:translate-x-1 transition-transform">→</span>
+        </div>
+      </a>
+    ))}
+  </Fragment>
+</ArticleLayout>

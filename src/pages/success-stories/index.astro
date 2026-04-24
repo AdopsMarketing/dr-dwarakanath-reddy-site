@@ -1,0 +1,55 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
+import { getCollection } from 'astro:content';
+
+const stories = (await getCollection('stories')).sort(
+  (a, b) => new Date(b.data.publishedAt).valueOf() - new Date(a.data.publishedAt).valueOf()
+);
+---
+
+<BaseLayout
+  pageType="generic"
+  title="Patient stories · Dr. Dwarakanath Reddy"
+  description="Real patient stories from Dr. Dwarakanath Reddy's practice at Apollo Speciality Hospitals, Nellore. Shared with consent, names changed."
+  breadcrumbs={[
+    { name: 'Home', url: new URL('/', Astro.site!).toString() },
+    { name: 'Success Stories', url: new URL('/success-stories', Astro.site!).toString() },
+  ]}
+>
+  <section class="bg-paper-1">
+    <div class="site-container py-14 lg:py-24">
+      <nav class="fig-label mb-8" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-ink">Home</a>
+        <span class="mx-2">·</span>
+        <span class="text-ink">Success Stories</span>
+      </nav>
+
+      <Eyebrow>Patient stories</Eyebrow>
+      <h1 class="mt-6 font-display text-[40px] md:text-[60px] lg:text-[72px] leading-[1.02] tracking-tight text-ink max-w-[22ch]">
+        In their own <em>words</em>.
+      </h1>
+      <p class="mt-6 text-lg leading-relaxed text-ink-soft max-w-[58ch]">
+        Real patient stories shared with consent. Names and identifying details have been changed. Outcomes described are specific to each patient.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-paper-2 border-y border-paper-3">
+    <div class="site-container py-14 lg:py-20">
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {stories.map((s) => (
+          <a href={`/success-stories/${s.data.slug}`} class="card card-hover group block h-full flex flex-col">
+            {s.data.condition && <p class="mono-caps text-ink-muted">{s.data.condition}</p>}
+            <h3 class="mt-3 font-display text-[20px] text-ink leading-tight group-hover:text-accent">{s.data.title}</h3>
+            <p class="mt-3 text-[15px] text-ink-soft leading-relaxed flex-1">{s.data.excerpt}</p>
+            <div class="mt-5 pt-4 border-t border-paper-3 flex items-center justify-between mono-caps text-ink-muted">
+              <span>{s.data.outcomeTime ?? 'Read story'}</span>
+              <span class="text-ink group-hover:translate-x-1 transition-transform">→</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

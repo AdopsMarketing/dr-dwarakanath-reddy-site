@@ -1,0 +1,239 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
+import { Icon } from 'astro-icon/components';
+import { whatsappUrl } from '@/config/site';
+
+interface Props {
+  eyebrow: string;                  // e.g. "Blog", "Case 02"
+  title: string;                    // full title (plain text)
+  titleHtml?: string;               // optional italic-accent HTML
+  excerpt?: string;
+  publishedAt: string;              // ISO date
+  updatedAt?: string;
+  author?: string;
+  reviewedBy?: string;
+  breadcrumbs: Array<{ name: string; url: string }>;
+  canonicalPath?: string;
+  pageType?: 'generic' | 'service' | 'location' | 'condition' | 'doctor';
+  serviceLink?: { href: string; label: string };
+  schemaType?: 'Article' | 'MedicalWebPage';
+  relatedHeading?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  titleHtml,
+  excerpt,
+  publishedAt,
+  updatedAt,
+  author = 'Dr. Dwarakanath Reddy V',
+  reviewedBy,
+  breadcrumbs,
+  canonicalPath,
+  pageType = 'generic',
+  serviceLink,
+  relatedHeading = 'Related reading',
+} = Astro.props;
+
+const formatDate = (iso: string) => {
+  try {
+    return new Date(iso).toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    });
+  } catch {
+    return iso;
+  }
+};
+
+const waHref = whatsappUrl(`Hi Dr. Reddy, I read your article on "${title}" and have a question.`);
+---
+
+<BaseLayout
+  pageType={pageType}
+  title={title}
+  description={excerpt ?? title}
+  breadcrumbs={breadcrumbs}
+  canonicalPath={canonicalPath}
+>
+  <article>
+    <!-- HERO -->
+    <header class="bg-paper-1">
+      <div class="site-container py-12 lg:py-20">
+        <nav class="fig-label mb-8" aria-label="Breadcrumb">
+          {breadcrumbs.map((c, i) => (
+            <>
+              {i > 0 && <span class="mx-2">·</span>}
+              {i < breadcrumbs.length - 1 ? (
+                <a href={c.url} class="hover:text-ink">{c.name}</a>
+              ) : (
+                <span class="text-ink">{c.name}</span>
+              )}
+            </>
+          ))}
+        </nav>
+
+        <Eyebrow>{eyebrow}</Eyebrow>
+
+        {titleHtml ? (
+          <h1
+            class="mt-6 font-display text-[34px] md:text-[48px] lg:text-[60px] leading-[1.05] tracking-tight text-ink max-w-[22ch]"
+            set:html={titleHtml}
+          />
+        ) : (
+          <h1 class="mt-6 font-display text-[34px] md:text-[48px] lg:text-[60px] leading-[1.05] tracking-tight text-ink max-w-[22ch]">
+            {title}
+          </h1>
+        )}
+
+        {excerpt && (
+          <p class="mt-6 text-lg leading-relaxed text-ink-soft max-w-[58ch]">{excerpt}</p>
+        )}
+
+        <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 mono-caps text-ink-muted">
+          <span>By {author}</span>
+          {reviewedBy && reviewedBy !== author && <span>Reviewed by {reviewedBy}</span>}
+          <span>Published {formatDate(publishedAt)}</span>
+          {updatedAt && <span>Updated {formatDate(updatedAt)}</span>}
+        </div>
+      </div>
+    </header>
+
+    <!-- BODY -->
+    <section class="bg-paper-1">
+      <div class="prose-container py-12 lg:py-16 article-body">
+        <slot />
+      </div>
+    </section>
+
+    <!-- SERVICE LINK -->
+    {serviceLink && (
+      <aside class="bg-paper-2 border-y border-paper-3">
+        <div class="prose-container py-10 text-center">
+          <Eyebrow>Related procedure</Eyebrow>
+          <p class="mt-4 font-display text-2xl text-ink">
+            Learn more about <a href={serviceLink.href} class="italic text-accent underline decoration-accent underline-offset-4">{serviceLink.label}</a>.
+          </p>
+        </div>
+      </aside>
+    )}
+
+    <!-- AUTHOR BLOCK -->
+    <section class="bg-paper-1">
+      <div class="prose-container py-12 lg:py-16">
+        <div class="rule-top pt-10 grid md:grid-cols-[auto_1fr] gap-6 items-start">
+          <div class="w-20 h-20 rounded-sm overflow-hidden bg-paper-2 border border-paper-3 shrink-0">
+            <img src="/images/dr-dwarakanath-reddy.jpg" alt="Dr. Dwarakanath Reddy V" class="w-full h-full object-cover" loading="lazy" />
+          </div>
+          <div>
+            <p class="mono-caps text-ink-muted">Written and reviewed by</p>
+            <p class="mt-1 font-display text-xl text-ink">Dr. Dwarakanath Reddy V</p>
+            <p class="text-ink-soft">Senior Consultant, Gastrointestinal and HPB Surgery · Apollo Speciality Hospitals, Nellore</p>
+            <div class="mt-4 flex flex-wrap gap-3">
+              <a href="/contact" class="btn btn-cta text-sm py-2.5 px-5">Book a consultation</a>
+              <a href={waHref} class="btn btn-whatsapp text-sm py-2.5 px-5">
+                <Icon name="simple-icons:whatsapp" class="w-4 h-4" />
+                Ask a question
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RELATED -->
+    <section class="bg-paper-2 border-t border-paper-3" data-related-root>
+      <div class="site-container py-12 lg:py-16">
+        <Eyebrow>{relatedHeading}</Eyebrow>
+        <div class="mt-8 grid gap-5 md:grid-cols-3" data-related-slot>
+          <slot name="related" />
+        </div>
+      </div>
+    </section>
+  </article>
+</BaseLayout>
+
+<style is:global>
+  /* Editorial prose styling for article bodies */
+  .article-body {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--color-ink);
+  }
+  .article-body > * + * { margin-top: 1.1em; }
+  .article-body h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 1.75rem;
+    line-height: 1.2;
+    color: var(--color-ink);
+    margin-top: 2.5em;
+    letter-spacing: -0.01em;
+  }
+  .article-body h2 em { font-style: italic; color: var(--color-accent); font-weight: 300; }
+  .article-body h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.3rem;
+    line-height: 1.25;
+    color: var(--color-ink);
+    margin-top: 2em;
+  }
+  .article-body h3 em { font-style: italic; color: var(--color-accent); font-weight: 400; }
+  .article-body p { color: var(--color-ink-soft); }
+  .article-body strong { color: var(--color-ink); font-weight: 600; }
+  .article-body a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--color-accent-soft);
+  }
+  .article-body a:hover {
+    text-decoration-color: var(--color-accent);
+  }
+  .article-body ul, .article-body ol { padding-left: 1.25rem; color: var(--color-ink-soft); }
+  .article-body ul { list-style: none; padding-left: 0; }
+  .article-body ul > li {
+    position: relative;
+    padding-left: 1.4rem;
+    margin-top: 0.6em;
+  }
+  .article-body ul > li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.85em;
+    width: 0.5rem;
+    height: 1px;
+    background: var(--color-accent);
+  }
+  .article-body ol > li { margin-top: 0.5em; }
+  .article-body blockquote {
+    border-left: 2px solid var(--color-accent);
+    padding-left: 1.25rem;
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--color-ink);
+    font-size: 1.15rem;
+    margin: 2em 0;
+  }
+  .article-body hr {
+    border: 0;
+    border-top: 1px solid var(--hairline);
+    margin: 2.5em 0;
+  }
+  /* Dropcap on the very first paragraph */
+  .article-body > p:first-child::first-letter {
+    font-family: var(--font-display);
+    font-weight: 400;
+    color: var(--color-accent);
+    font-size: 4.2em;
+    line-height: 0.9;
+    float: left;
+    margin: 0.08em 0.12em 0 0;
+    padding: 0;
+  }
+</style>

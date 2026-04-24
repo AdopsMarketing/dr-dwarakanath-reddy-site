@@ -1,0 +1,61 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
+import { getCollection } from 'astro:content';
+
+const cases = (await getCollection('cases')).sort(
+  (a, b) => new Date(b.data.publishedAt).valueOf() - new Date(a.data.publishedAt).valueOf()
+);
+---
+
+<BaseLayout
+  pageType="generic"
+  title="Interesting cases · Dr. Dwarakanath Reddy"
+  description="Anonymised clinical cases from Dr. Dwarakanath Reddy's practice at Apollo Nellore. Presented with consent, identifying details changed."
+  breadcrumbs={[
+    { name: 'Home', url: new URL('/', Astro.site!).toString() },
+    { name: 'Interesting Cases', url: new URL('/case-studies', Astro.site!).toString() },
+  ]}
+>
+  <section class="bg-paper-1">
+    <div class="site-container py-14 lg:py-24">
+      <nav class="fig-label mb-8" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-ink">Home</a>
+        <span class="mx-2">·</span>
+        <span class="text-ink">Interesting Cases</span>
+      </nav>
+
+      <Eyebrow>Clinical cases</Eyebrow>
+      <h1 class="mt-6 font-display text-[40px] md:text-[60px] lg:text-[72px] leading-[1.02] tracking-tight text-ink max-w-[22ch]">
+        Complex cases, <em>carefully</em> handled.
+      </h1>
+      <p class="mt-6 text-lg leading-relaxed text-ink-soft max-w-[58ch]">
+        Anonymised clinical cases from Dr. Reddy's practice at Apollo Speciality Hospitals, Nellore. Presented with patient consent. All identifying details have been changed. Outcomes are specific to each case.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-paper-2 border-y border-paper-3">
+    <div class="site-container py-14 lg:py-20">
+      <ol class="space-y-0 divide-y divide-[color:var(--hairline)]">
+        {cases.map((c) => (
+          <li>
+            <a href={`/case-studies/${c.data.slug}`} class="group grid md:grid-cols-[auto_1fr_auto] gap-4 md:gap-10 items-baseline py-8">
+              <div class="mono-caps text-ink-muted tabular-nums shrink-0">Case {c.data.caseNumber}</div>
+              <div>
+                {c.data.conditionName && <p class="mono-caps text-ink-muted">{c.data.conditionName}</p>}
+                <h2 class="mt-1 font-display text-[22px] lg:text-[28px] leading-[1.2] text-ink group-hover:text-accent max-w-[36ch]">
+                  {c.data.title.replace(/^Case\s+\d+:\s*/, '')}
+                </h2>
+                <p class="mt-2 text-ink-soft leading-relaxed max-w-[62ch]">{c.data.excerpt}</p>
+              </div>
+              {c.data.outcomeAt && (
+                <div class="mono-caps text-ink-muted shrink-0">Outcome · {c.data.outcomeAt}</div>
+              )}
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+</BaseLayout>

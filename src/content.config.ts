@@ -314,4 +314,72 @@ const locations = defineCollection({
   }),
 });
 
-export const collections = { organization, doctors, services, categories, conditions, locations };
+const blogs = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/blogs' }),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string(),
+    excerpt: z.string(),
+    publishedAt: z.string(),
+    updatedAt: z.string().optional(),
+    author: z.string().default('Dr. Dwarakanath Reddy V'),
+    reviewedBy: z.string().default('Dr. Dwarakanath Reddy V'),
+    category: z.string().optional(),
+    relatedService: z.string().optional(),
+    relatedServiceLabel: z.string().optional(),
+    tags: z.array(z.string()).default([]),
+    seo: z
+      .object({
+        title: z.string().optional(),
+        description: z.string().optional(),
+      })
+      .optional(),
+  }),
+});
+
+const cases = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/cases' }),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string(),
+    caseNumber: z.string(),
+    excerpt: z.string(),
+    publishedAt: z.string(),
+    conditionName: z.string().optional(),
+    procedurePerformed: z.string().optional(),
+    outcomeAt: z.string().optional(),
+    anonymized: z.boolean().default(true),
+    relatedService: z.string().optional(),
+    relatedServiceLabel: z.string().optional(),
+    seo: z
+      .object({
+        title: z.string().optional(),
+        description: z.string().optional(),
+      })
+      .optional(),
+  }),
+});
+
+const stories = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/stories' }),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string(),
+    excerpt: z.string(),
+    publishedAt: z.string(),
+    condition: z.string().optional(),
+    procedure: z.string().optional(),
+    outcomeTime: z.string().optional(),
+    anonymized: z.boolean().default(true),
+    relatedService: z.string().optional(),
+    relatedServiceLabel: z.string().optional(),
+    seo: z
+      .object({
+        title: z.string().optional(),
+        description: z.string().optional(),
+      })
+      .optional(),
+  }),
+});
+
+export const collections = { organization, doctors, services, categories, conditions, locations, blogs, cases, stories };

@@ -14,6 +14,13 @@ const hospitalPhone = Array.isArray(location?.data.telephone)
   ? location.data.telephone[0]
   : location?.data.telephone;
 
+const latestPosts = (await getCollection('blogs'))
+  .sort((a, b) => new Date(b.data.publishedAt).valueOf() - new Date(a.data.publishedAt).valueOf())
+  .slice(0, 3);
+
+const fmtDate = (iso: string) =>
+  new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+
 const waHref = whatsappUrl("Hi Dr. Reddy, I'd like to book an appointment.");
 
 const stats = [
@@ -225,6 +232,37 @@ const whyChoose = [
       </div>
     </div>
   </section>
+
+  <!-- LATEST FROM THE BLOG -->
+  {latestPosts.length > 0 && (
+    <section class="bg-paper-2 border-t border-paper-3">
+      <div class="site-container py-16 lg:py-20">
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
+          <div>
+            <Eyebrow>From the blog</Eyebrow>
+            <h2 class="mt-5 font-display text-[28px] lg:text-[36px] leading-[1.1] text-ink max-w-[22ch]">
+              Understanding your <em>condition</em>.
+            </h2>
+          </div>
+          <a href="/blogs" class="mono-caps text-ink hover:text-accent self-start lg:self-auto">All articles →</a>
+        </div>
+
+        <div class="mt-10 grid gap-6 md:grid-cols-3">
+          {latestPosts.map((p) => (
+            <a href={`/blogs/${p.data.slug}`} class="card card-hover group block h-full flex flex-col">
+              {p.data.category && <p class="mono-caps text-ink-muted">{p.data.category}</p>}
+              <h3 class="mt-3 font-display text-[20px] text-ink leading-tight">{p.data.title}</h3>
+              <p class="mt-3 text-[15px] text-ink-soft leading-relaxed flex-1">{p.data.excerpt}</p>
+              <div class="mt-5 pt-4 border-t border-paper-3 flex items-center justify-between mono-caps text-ink-muted">
+                <span>{fmtDate(p.data.publishedAt)}</span>
+                <span class="text-ink group-hover:translate-x-1 transition-transform">→</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
 
   <!-- ABOUT TEASER -->
   <section class="bg-ink text-paper-1">
