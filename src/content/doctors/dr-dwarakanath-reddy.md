@@ -69,9 +69,19 @@ hasCredential:
   - name: "MBBS"
     description: "Bachelor of Medicine, Bachelor of Surgery"
     credentialCategory: "degree"
+    recognizedBy:
+      name: "Dr. NTR University of Health Sciences"
+      sameAs:
+        - "https://drntruhs.edu.in/"
+        - "https://en.wikipedia.org/wiki/Dr._NTR_University_of_Health_Sciences"
   - name: "MS (General Surgery)"
     description: "Master of Surgery, General Surgery"
     credentialCategory: "degree"
+    recognizedBy:
+      name: "Dr. NTR University of Health Sciences"
+      sameAs:
+        - "https://drntruhs.edu.in/"
+        - "https://en.wikipedia.org/wiki/Dr._NTR_University_of_Health_Sciences"
   - name: "DNB (Surgical Gastroenterology)"
     description: "Diplomate of National Board, Surgical Gastroenterology"
     credentialCategory: "super-specialty degree"
@@ -136,6 +146,7 @@ sameAs:
   - "https://www.linkedin.com/in/dwarakanath-reddy-vembuluru-aa298644/"
   - "https://www.instagram.com/dr.dwarakanathreddy/"
   - "https://www.justdial.com/Nellore/Dr-Dwarakanath-Reddy-Vembuluru-Dargamitta/9999PX861-X861-240925013507-T1A5_BZDET"
+  - "https://www.nmc.org.in/information-desk/indian-medical-register/"
 registrations:
   - number: "APMC/FMR/77348"
     council: "Andhra Pradesh Medical Council"
