@@ -197,6 +197,7 @@ const services = defineCollection({
       'hpb',
       'oncology',
       'bariatric',
+      'upper-gi',
     ]),
     parent: reference('services').optional(),
     shortDescription: z.string(),

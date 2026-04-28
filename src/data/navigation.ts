@@ -20,17 +20,17 @@ export const primaryNav: NavItem[] = [
           { label: 'Gallbladder Surgery', href: '/gi-services/laparoscopic-surgery/gallbladder-surgery', phase: '1' },
           { label: 'Hernia Surgery', href: '/gi-services/laparoscopic-surgery/hernia-surgery', phase: '1' },
           { label: 'eTEP Hernia Surgery', href: '/gi-services/laparoscopic-surgery/etep-hernia', phase: '1' },
-          { label: 'Appendix Surgery', href: '/gi-services/laparoscopic-surgery/appendix-surgery', phase: '2' },
-          { label: 'Anti-reflux Surgery', href: '/gi-services/laparoscopic-surgery/anti-reflux-surgery', phase: '2' },
+          { label: 'Appendix Surgery', href: '/gi-services/laparoscopic-surgery/appendix-surgery', phase: '1' },
+          { label: 'Anti-reflux Surgery', href: '/gi-services/laparoscopic-surgery/anti-reflux-surgery', phase: '1' },
         ],
       },
       {
         label: 'Upper GI Surgery',
         href: '/gi-services/upper-gi-surgery',
-        phase: '2',
+        phase: '1',
         children: [
-          { label: 'Esophagus Surgery', href: '/gi-services/upper-gi/esophagus-surgery', phase: '2' },
-          { label: 'Stomach Surgery', href: '/gi-services/upper-gi/stomach-surgery', phase: '2' },
+          { label: 'Esophagus Surgery', href: '/gi-services/upper-gi-surgery/esophagus-surgery', phase: '1' },
+          { label: 'Stomach Surgery', href: '/gi-services/upper-gi-surgery/stomach-surgery', phase: '1' },
         ],
       },
       {
@@ -40,8 +40,8 @@ export const primaryNav: NavItem[] = [
         children: [
           { label: 'Liver Tumor Surgery', href: '/gi-services/hpb-surgery/liver-tumor-surgery', phase: '1' },
           { label: 'Pancreatic Surgery', href: '/gi-services/hpb-surgery/pancreatic-surgery', phase: '1' },
-          { label: 'Bile Duct Surgery', href: '/gi-services/hpb-surgery/bile-duct-surgery', phase: '2' },
-          { label: 'Gallbladder Cancer Surgery', href: '/gi-services/hpb-surgery/gallbladder-cancer-surgery', phase: '2' },
+          { label: 'Bile Duct Surgery', href: '/gi-services/hpb-surgery/bile-duct-surgery', phase: '1' },
+          { label: 'Gallbladder Cancer Surgery', href: '/gi-services/hpb-surgery/gallbladder-cancer-surgery', phase: '1' },
         ],
       },
       {
@@ -51,8 +51,8 @@ export const primaryNav: NavItem[] = [
         children: [
           { label: 'Stomach Cancer Surgery', href: '/gi-services/gi-oncology/stomach-cancer-surgery', phase: '1' },
           { label: 'Colon Cancer Surgery', href: '/gi-services/gi-oncology/colon-cancer-surgery', phase: '1' },
-          { label: 'Rectal Cancer Surgery', href: '/gi-services/gi-oncology/rectal-cancer-surgery', phase: '2' },
-          { label: 'Esophageal Cancer Surgery', href: '/gi-services/gi-oncology/esophageal-cancer-surgery', phase: '2' },
+          { label: 'Rectal Cancer Surgery', href: '/gi-services/gi-oncology/rectal-cancer-surgery', phase: '1' },
+          { label: 'Esophageal Cancer Surgery', href: '/gi-services/gi-oncology/esophageal-cancer-surgery', phase: '1' },
         ],
       },
       {
@@ -62,7 +62,7 @@ export const primaryNav: NavItem[] = [
         children: [
           { label: 'Gastric Bypass', href: '/gi-services/bariatric-surgery/gastric-bypass', phase: '1' },
           { label: 'Sleeve Gastrectomy', href: '/gi-services/bariatric-surgery/sleeve-gastrectomy', phase: '1' },
-          { label: 'Revision Bariatric Surgery', href: '/gi-services/bariatric-surgery/revision', phase: '2' },
+          { label: 'Revision Bariatric Surgery', href: '/gi-services/bariatric-surgery/revision', phase: '1' },
         ],
       },
       { label: 'Endoscopy', href: '/gi-services/endoscopy', phase: '1' },

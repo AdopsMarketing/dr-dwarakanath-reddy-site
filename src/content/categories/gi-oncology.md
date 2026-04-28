@@ -16,9 +16,11 @@ whatWeCover:
       href: "/gi-services/gi-oncology/colon-cancer-surgery"
       description: "Laparoscopic colectomy with full lymph node dissection."
     - title: "Rectal Cancer Surgery"
-      description: "Sphincter preserving techniques where possible, coordinated with neoadjuvant therapy."
+      href: "/gi-services/gi-oncology/rectal-cancer-surgery"
+      description: "TME with sphincter preservation where possible. Coordinated with neoadjuvant therapy."
     - title: "Esophageal Cancer Surgery"
-      description: "Esophagectomy with lymphadenectomy, open or minimally invasive."
+      href: "/gi-services/gi-oncology/esophageal-cancer-surgery"
+      description: "Esophagectomy with two-field lymphadenectomy, minimally invasive where appropriate."
     - title: "Liver Cancer Surgery"
       href: "/gi-services/hpb-surgery/liver-tumor-surgery"
       description: "Resection for HCC and liver metastases."
@@ -26,6 +28,7 @@ whatWeCover:
       href: "/gi-services/hpb-surgery/pancreatic-surgery"
       description: "Whipple and distal pancreatectomy for pancreatic cancers."
     - title: "Gallbladder Cancer Surgery"
+      href: "/gi-services/hpb-surgery/gallbladder-cancer-surgery"
       description: "Radical cholecystectomy with extended resections where indicated."
 sections:
   - type: prose

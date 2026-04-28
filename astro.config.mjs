@@ -28,10 +28,14 @@ export default defineConfig({
     '/gi-services/hpb/pancreatic-surgery': '/gi-services/hpb-surgery/pancreatic-surgery',
     '/gi-services/bariatric/gastric-bypass': '/gi-services/bariatric-surgery/gastric-bypass',
     '/gi-services/bariatric/sleeve-gastrectomy': '/gi-services/bariatric-surgery/sleeve-gastrectomy',
+    // Upper GI procedure URLs (drafted in nav with short form before category was finalised)
+    '/gi-services/upper-gi/esophagus-surgery': '/gi-services/upper-gi-surgery/esophagus-surgery',
+    '/gi-services/upper-gi/stomach-surgery': '/gi-services/upper-gi-surgery/stomach-surgery',
     // Bare short-form category URLs (404 today) → long-form landing page
     '/gi-services/laparoscopic': '/gi-services/laparoscopic-surgery',
     '/gi-services/hpb': '/gi-services/hpb-surgery',
     '/gi-services/bariatric': '/gi-services/bariatric-surgery',
+    '/gi-services/upper-gi': '/gi-services/upper-gi-surgery',
   },
   vite: {
     plugins: [tailwindcss()],

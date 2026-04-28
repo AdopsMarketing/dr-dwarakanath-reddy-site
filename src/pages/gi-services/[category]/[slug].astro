@@ -7,7 +7,7 @@ import type { GetStaticPaths } from 'astro';
 export const getStaticPaths = (async () => {
   const services = await getCollection('services');
   const routable = services.filter((s) =>
-    ['laparoscopic', 'hpb', 'oncology', 'bariatric'].includes(s.data.category)
+    ['laparoscopic', 'hpb', 'oncology', 'bariatric', 'upper-gi'].includes(s.data.category)
   );
 
   // Long-form parent slug for child procedure URLs.
@@ -17,6 +17,7 @@ export const getStaticPaths = (async () => {
     hpb: 'hpb-surgery',
     oncology: 'gi-oncology',
     bariatric: 'bariatric-surgery',
+    'upper-gi': 'upper-gi-surgery',
   };
 
   return routable.map((service) => ({
@@ -36,6 +37,7 @@ const categoryLabels: Record<string, { label: string; path: string; segment: str
   hpb: { label: 'HPB Surgery', path: '/gi-services/hpb-surgery', segment: 'hpb-surgery' },
   oncology: { label: 'GI Oncology', path: '/gi-services/gi-oncology', segment: 'gi-oncology' },
   bariatric: { label: 'Bariatric Surgery', path: '/gi-services/bariatric-surgery', segment: 'bariatric-surgery' },
+  'upper-gi': { label: 'Upper GI Surgery', path: '/gi-services/upper-gi-surgery', segment: 'upper-gi-surgery' },
 };
 const catMeta = categoryLabels[d.category] ?? { label: d.category, path: '/gi-services', segment: d.category };
 const pagePath = `/gi-services/${catMeta.segment}/${d.slug}`;

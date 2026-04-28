@@ -16,7 +16,8 @@ whatWeCover:
       href: "/gi-services/bariatric-surgery/gastric-bypass"
       description: "Restriction plus bypass. Strong diabetes remission outcomes."
     - title: "Revision Bariatric Surgery"
-      description: "Planned for Phase 2. Conversion or revision of a previous bariatric procedure."
+      href: "/gi-services/bariatric-surgery/revision"
+      description: "Conversion or revision of a previous bariatric procedure — sleeve-to-bypass, band removal, complication repair."
 sections:
   - type: list
     title: "Who qualifies?"
