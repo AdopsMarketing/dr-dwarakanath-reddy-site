@@ -9,4 +9,4 @@ Disallow: /
 # Disallow: /keystatic
 # Disallow: /api/keystatic
 # Disallow: /api/contact
-# Sitemap: https://drdwarakanathreddy.com/sitemap-index.xml
+# Sitemap: https://gastrosurgeonnellore.com/sitemap-index.xml

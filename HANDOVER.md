@@ -18,7 +18,7 @@ This document is the operating manual for the Dr. Dwarakanath Reddy practice web
 | Repo | `AdopsMarketing/dr-dwarakanath-reddy-site` (GitHub) | Source of truth |
 | Email forwarder | Resend (for the contact form) | Transactional email API |
 
-Live URL: `https://drdwarakanathreddy.com` (once DNS is moved).
+Live URL: `https://gastrosurgeonnellore.com` (once DNS is moved).
 Staging URL: `https://dr-dwarakanath-reddy-site.vercel.app`.
 
 ---
@@ -67,9 +67,9 @@ For the deployed site, switch to **GitHub mode**: every save commits through the
 1. Go to **https://github.com/settings/apps/new** (or the equivalent under the org settings if the repo lives in an org).
 2. Fill in:
    - **GitHub App name:** `Dr Reddy CMS` (or similar)
-   - **Homepage URL:** `https://drdwarakanathreddy.com`
-   - **Callback URL:** `https://drdwarakanathreddy.com/api/keystatic/github/oauth/callback`
-   - **Setup URL (optional):** `https://drdwarakanathreddy.com/keystatic/setup`
+   - **Homepage URL:** `https://gastrosurgeonnellore.com`
+   - **Callback URL:** `https://gastrosurgeonnellore.com/api/keystatic/github/oauth/callback`
+   - **Setup URL (optional):** `https://gastrosurgeonnellore.com/keystatic/setup`
    - **Webhook:** Uncheck "Active"
 3. Permissions:
    - **Repository → Contents:** Read and write
@@ -101,7 +101,7 @@ Trigger a redeploy. The presence of `KEYSTATIC_GITHUB_REPO_OWNER` in the environ
 
 ### Step 3: Test login
 
-Visit `https://drdwarakanathreddy.com/keystatic`. You'll be redirected to GitHub for authorisation. Approve, and the admin UI loads. From now on, every Save in the admin opens a commit on the `main` branch (or a configurable branch).
+Visit `https://gastrosurgeonnellore.com/keystatic`. You'll be redirected to GitHub for authorisation. Approve, and the admin UI loads. From now on, every Save in the admin opens a commit on the `main` branch (or a configurable branch).
 
 ### Step 4 (optional): Restrict who can edit
 
@@ -191,10 +191,10 @@ Required Vercel environment variables:
 
 - [ ] Replace `public/robots.txt` pre-launch block with the LIVE block (already in the file as a comment)
 - [ ] Remove `<meta name="robots" content="noindex, nofollow" />` from `src/layouts/BaseLayout.astro` (lines 102-103)
-- [ ] Verify `astro.config.mjs` `site:` is the final domain (currently `https://drdwarakanathreddy.com`)
+- [ ] Verify `astro.config.mjs` `site:` is the final domain (currently `https://gastrosurgeonnellore.com`)
 - [ ] Set `RESEND_API_KEY` in Vercel production env
 - [ ] Set Keystatic GitHub mode env vars (see section 3)
-- [ ] Submit `https://drdwarakanathreddy.com/sitemap-index.xml` to Google Search Console
+- [ ] Submit `https://gastrosurgeonnellore.com/sitemap-index.xml` to Google Search Console
 - [ ] Submit to Bing Webmaster Tools
 - [ ] Verify Google Business Profile is linked from organization `sameAs`
 - [ ] Smoke-test contact form

@@ -5,7 +5,7 @@ export const siteConfig = {
     phone: "+91 89851 35935",
   },
   site: {
-    url: "https://drdwarakanathreddy.com",
+    url: "https://gastrosurgeonnellore.com",
     name: "Dr. Dwarakanath Reddy",
   },
 } as const;

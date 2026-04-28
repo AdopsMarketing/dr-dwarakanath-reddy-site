@@ -7,7 +7,7 @@ import keystatic from '@keystatic/astro';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://drdwarakanathreddy.com',
+  site: 'https://gastrosurgeonnellore.com',
   // Static by default. Keystatic admin and the contact API opt into SSR via `prerender = false`.
   output: 'static',
   adapter: vercel({

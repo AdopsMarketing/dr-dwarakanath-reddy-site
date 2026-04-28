@@ -65,7 +65,7 @@ export const POST: APIRoute = async ({ request }) => {
         payload.message || '(no message)',
       ].join('\n');
       await resend.emails.send({
-        from: 'Dr. Reddy Website <noreply@drdwarakanathreddy.com>',
+        from: 'Dr. Reddy Website <noreply@gastrosurgeonnellore.com>',
         to,
         subject,
         text,
