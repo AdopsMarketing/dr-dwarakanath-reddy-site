@@ -34,7 +34,7 @@ sections:
   - type: list
     title: "Why Dr. Reddy for GI cancer surgery"
     items:
-      - "DrNB Surgical Gastroenterology with focused oncology training"
+      - "DNB Surgical Gastroenterology with focused oncology training"
       - "Strict adherence to oncologic principles (proper margins, full lymph node dissection)"
       - "Apollo tumor board reviews every case"
       - "Coordinated chemotherapy and radiation when needed"

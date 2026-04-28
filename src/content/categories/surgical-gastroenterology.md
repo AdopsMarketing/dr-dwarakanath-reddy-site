@@ -5,7 +5,7 @@ h1: "Surgical Gastroenterology in Nellore"
 h1Html: "Surgical Gastroenterology, <em>super-specialty</em>"
 slug: "surgical-gastroenterology"
 shortDescription: "Specialised surgical care for the entire GI tract by Dr. Dwarakanath Reddy at Apollo Nellore. From hernias and gallbladder to liver, pancreas, and GI cancer surgery."
-heroIntro: "Surgical Gastroenterology is a super-specialisation focused on surgery of the digestive system. It covers everything from common procedures like gallbladder and hernia surgery to complex operations on the liver, pancreas, and esophagus. Dr. Reddy holds a DrNB in Surgical Gastroenterology, India's highest qualification in this field."
+heroIntro: "Surgical Gastroenterology is a super-specialisation focused on surgery of the digestive system. It covers everything from common procedures like gallbladder and hernia surgery to complex operations on the liver, pancreas, and esophagus. Dr. Reddy holds a DNB in Surgical Gastroenterology, India's highest qualification in this field."
 whatWeCover:
   title: "What we cover"
   items:
@@ -41,7 +41,7 @@ closingCta:
 order: 10
 seo:
   title: "Surgical Gastroenterology in Nellore | Dr. Dwarakanath Reddy V"
-  description: "Surgical Gastroenterology super-specialty by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals, Nellore. DrNB-qualified surgeon with 9+ years of focused GI surgery experience."
+  description: "Surgical Gastroenterology super-specialty by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals, Nellore. DNB-qualified surgeon with 9+ years of focused GI surgery experience."
   keywords:
     - "surgical gastroenterology Nellore"
     - "GI surgeon Apollo Nellore"

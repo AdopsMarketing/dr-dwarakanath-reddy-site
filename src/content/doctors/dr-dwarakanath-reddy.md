@@ -72,7 +72,7 @@ hasCredential:
   - name: "MS (General Surgery)"
     description: "Master of Surgery, General Surgery"
     credentialCategory: "degree"
-  - name: "DrNB (Surgical Gastroenterology)"
+  - name: "DNB (Surgical Gastroenterology)"
     description: "Diplomate of National Board, Surgical Gastroenterology"
     credentialCategory: "super-specialty degree"
     recognizedBy:
@@ -139,7 +139,7 @@ sameAs:
 worksAt: "main-clinic"
 seo:
   title: "Dr. Dwarakanath Reddy Vembuluru, Senior Consultant GI Surgeon, Nellore"
-  description: "DrNB Surgical Gastroenterology. 9+ years in laparoscopic, HPB and bariatric surgery. Apollo Speciality Hospitals, Nellore."
+  description: "DNB Surgical Gastroenterology. 9+ years in laparoscopic, HPB and bariatric surgery. Apollo Speciality Hospitals, Nellore."
 ---
 
 Dr. Dwarakanath Reddy Vembuluru is a Senior Consultant in Gastrointestinal Surgery and GI Oncosurgery at Apollo Speciality Hospitals, Nellore. He trained at Manipal Hospitals Bengaluru, one of India's leading GI surgery programmes, and brings nine years of focused experience in advanced laparoscopic, hepato-pancreatico-biliary, and bariatric procedures. His practice is rated 5.0 on Google from 428 verified reviews.

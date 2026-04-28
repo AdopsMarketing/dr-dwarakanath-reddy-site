@@ -1,0 +1,151 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
+import ExploreLink from '@/components/ExploreLink.astro';
+import WhatsAppContextCTA from '@/components/WhatsAppContextCTA.astro';
+import { getCollection } from 'astro:content';
+
+const faqEntries = (await getCollection('faqs')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+
+// Flatten every Q&A across categories for the FAQPage JSON-LD on this page.
+const allQuestions = faqEntries.flatMap((entry) =>
+  entry.data.items.map((q) => ({ question: q.question, answer: q.answer }))
+);
+
+const totalQuestions = allQuestions.length;
+---
+
+<BaseLayout
+  pageType="faq"
+  title="Patient FAQs · Dr. Dwarakanath Reddy, Apollo Nellore"
+  description={`Answers to ${totalQuestions} common questions about appointments, insurance, second opinions, surgery, recovery, and emergencies. Surgical Gastroenterology at Apollo Speciality Hospitals, Nellore.`}
+  breadcrumbs={[
+    { name: 'Home', url: new URL('/', Astro.site!).toString() },
+    { name: 'FAQs', url: new URL('/faqs', Astro.site!).toString() },
+  ]}
+  faq={allQuestions}
+>
+  <!-- HERO -->
+  <section class="bg-paper-1">
+    <div class="site-container py-14 lg:py-24 grid lg:grid-cols-12 gap-12 items-end">
+      <div class="lg:col-span-8">
+        <nav class="fig-label mb-8" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-ink">Home</a>
+          <span class="mx-2">·</span>
+          <span class="text-ink">FAQs</span>
+        </nav>
+
+        <Eyebrow>Patient FAQs</Eyebrow>
+        <h1 class="mt-6 font-display text-[44px] md:text-[60px] lg:text-[76px] leading-[1] tracking-tight text-ink max-w-[18ch]">
+          Plain answers, before you <em>book</em>.
+        </h1>
+        <p class="mt-8 text-lg text-ink-soft leading-relaxed max-w-[60ch]">
+          Most patients ask the same set of practical questions before they walk in. The answers below cover appointments, insurance, second opinions, surgery, recovery, and emergencies. If your question is not here, send it on WhatsApp.
+        </p>
+      </div>
+
+      <aside class="lg:col-span-4 lg:pl-6 lg:border-l lg:border-paper-3">
+        <p class="mono-caps text-ink-muted">Jump to</p>
+        <ul class="mt-4 space-y-2.5">
+          {faqEntries.map((entry) => (
+            <li>
+              <a
+                href={`#${entry.data.slug}`}
+                class="text-ink hover:text-accent transition-colors flex items-baseline justify-between gap-3"
+              >
+                <span>{entry.data.title}</span>
+                <span class="mono-caps text-ink-muted tabular-nums">{String(entry.data.items.length).padStart(2, '0')}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- CATEGORY SECTIONS -->
+  {faqEntries.map((entry, idx) => (
+    <section
+      id={entry.data.slug}
+      class={`scroll-mt-24 ${idx % 2 === 0 ? 'bg-paper-2 border-y border-paper-3' : 'bg-paper-1'}`}
+    >
+      <div class="site-container py-16 lg:py-24 grid lg:grid-cols-12 gap-12 items-start">
+        <header class="lg:col-span-4">
+          {entry.data.eyebrow && <Eyebrow>{entry.data.eyebrow}</Eyebrow>}
+          <h2 class="mt-5 font-display text-[28px] lg:text-[40px] leading-[1.08] text-ink max-w-[18ch]">
+            {entry.data.title}
+          </h2>
+          <div class="mt-6 w-10 h-px bg-accent"></div>
+          {entry.data.intro && (
+            <p class="mt-6 text-ink-soft leading-relaxed max-w-[42ch]">
+              {entry.data.intro}
+            </p>
+          )}
+          <p class="mt-8 mono-caps text-ink-muted">
+            {String(entry.data.items.length).padStart(2, '0')} questions
+          </p>
+        </header>
+
+        <div class="lg:col-span-8 max-w-[62ch]">
+          {entry.data.items.map((qa) => (
+            <details class="faq">
+              <summary>{qa.question}</summary>
+              <div class="faq-body">{qa.answer}</div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- BRIDGE TO RELATED CONTENT -->
+  <section class="bg-paper-1">
+    <div class="site-container py-16 lg:py-20 grid lg:grid-cols-3 gap-10">
+      <div>
+        <Eyebrow>Procedure FAQs</Eyebrow>
+        <h3 class="mt-4 font-display text-2xl text-ink leading-snug">
+          Looking for procedure-specific answers?
+        </h3>
+        <p class="mt-3 text-ink-soft leading-relaxed">
+          Each surgery page has its own FAQ section covering technique, eligibility, recovery, and follow-up.
+        </p>
+        <div class="mt-5">
+          <ExploreLink href="/gi-services">View GI services</ExploreLink>
+        </div>
+      </div>
+      <div>
+        <Eyebrow>About Dr. Reddy</Eyebrow>
+        <h3 class="mt-4 font-display text-2xl text-ink leading-snug">
+          Want the longer story?
+        </h3>
+        <p class="mt-3 text-ink-soft leading-relaxed">
+          Training, experience, publications, and the principles behind the practice.
+        </p>
+        <div class="mt-5">
+          <ExploreLink href="/about-doctor">Read more</ExploreLink>
+        </div>
+      </div>
+      <div>
+        <Eyebrow>Send a question</Eyebrow>
+        <h3 class="mt-4 font-display text-2xl text-ink leading-snug">
+          Question not on this page?
+        </h3>
+        <p class="mt-3 text-ink-soft leading-relaxed">
+          Use the contact form or WhatsApp Dr. Reddy directly. Most messages are answered within a working day.
+        </p>
+        <div class="mt-5">
+          <ExploreLink href="/contact">Open contact form</ExploreLink>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <WhatsAppContextCTA
+    eyebrow="Direct line"
+    prompt="Have a question that needs a <em>doctor's</em> answer?"
+    label="Ask on WhatsApp"
+    message="Hi Dr. Reddy, I have a question I'd like your view on."
+  />
+</BaseLayout>

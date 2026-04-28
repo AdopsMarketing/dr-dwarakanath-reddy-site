@@ -58,7 +58,7 @@ sections:
   - type: list
     title: "Why Dr. Reddy for colon cancer surgery"
     items:
-      - "DrNB Surgical Gastroenterology with GI oncology focus"
+      - "DNB Surgical Gastroenterology with GI oncology focus"
       - "Laparoscopic approach for most cases"
       - "Oncologic principles strictly followed (proper margins, full lymph node dissection)"
       - "Apollo tumor board review for every case"

@@ -414,4 +414,30 @@ const stories = defineCollection({
   }),
 });
 
-export const collections = { organization, doctors, services, categories, conditions, locations, blogs, cases, stories };
+const faqs = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/faqs' }),
+  schema: z.object({
+    title: z.string(),
+    eyebrow: z.string().optional(),
+    slug: z.string(),
+    intro: z.string().optional(),
+    order: z.number().int().default(100),
+    items: z
+      .array(
+        z.object({
+          question: z.string(),
+          answer: z.string(),
+          featured: z.boolean().default(false),
+        })
+      )
+      .default([]),
+    seo: z
+      .object({
+        title: z.string().optional(),
+        description: z.string().optional(),
+      })
+      .optional(),
+  }),
+});
+
+export const collections = { organization, doctors, services, categories, conditions, locations, blogs, cases, stories, faqs };
