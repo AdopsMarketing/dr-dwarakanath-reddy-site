@@ -43,7 +43,7 @@ export const POST: APIRoute = async ({ request }) => {
   const payload: ContactPayload = { reason, date, time, name, phone, email, message };
 
   const resendKey = import.meta.env.RESEND_API_KEY;
-  const to = import.meta.env.CONTACT_EMAIL ?? 'drdwarakanathreddy@gmail.com';
+  const to = import.meta.env.CONTACT_EMAIL ?? 'dwarak858@gmail.com';
 
   console.log('[contact] request received:', payload);
 

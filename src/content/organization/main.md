@@ -12,7 +12,7 @@ knowsLanguage:
   - "English"
   - "Telugu"
   - "Hindi"
-email: "drdwarakanathreddy@gmail.com"
+email: "dwarak858@gmail.com"
 logo: "/logo.svg"
 image: "/og-image.jpg"
 contactPoint:

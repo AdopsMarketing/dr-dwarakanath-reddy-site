@@ -6,9 +6,55 @@ honorificPrefix: "Dr."
 title: "Senior Consultant, Gastrointestinal and HPB Surgery"
 image: "/images/dr-dwarakanath-reddy.jpg"
 yearsExperience: 9
+surgeriesPerformed: 3000
 googleRating:
   value: 5.0
   reviewCount: 428
+education:
+  - degree: "DNB, Surgical Gastroenterology"
+    college: "Manipal Hospitals, Bengaluru"
+    years: "2017–2020"
+  - degree: "MS, General Surgery"
+    college: "Sri Venkateswara Medical College (SVMC), Tirupati"
+    years: "2013–2016"
+  - degree: "MBBS"
+    college: "Rajiv Gandhi Institute of Medical Sciences (RIMS), Kadapa"
+    years: "2006–2012"
+experience:
+  - period: "April 2026 to present"
+    role: "Senior Consultant, Gastrointestinal and HPB Surgery"
+    place: "Apollo Speciality Hospitals, Nellore"
+  - period: "2023 to April 2026"
+    role: "Associate Professor and Senior Consultant"
+    place: "Narayana Superspecialty Hospital, Nellore"
+    detail: "Consultant practice in surgical gastroenterology alongside teaching responsibilities."
+  - period: "2021 to 2023"
+    role: "Assistant Professor"
+    place: "Narayana Medical College, Nellore"
+    detail: "Built a referral practice across Andhra Pradesh while shaping young surgeons."
+  - period: "2020 to 2021"
+    role: "Associate Consultant"
+    place: "Manipal Hospitals, Bengaluru"
+  - period: "2016 to 2017"
+    role: "Senior Resident, General Surgery"
+    place: "Sri Venkateswara Medical College, Tirupati"
+publications:
+  - title: "eTEP Ventral Hernia Repair: Outcomes Analysis"
+    journal: "International Journal of Abdominal Wall and Hernia Surgery (IJAWHS)"
+    year: 2024
+  - title: "Hepatoduodenal Fistula Secondary to Amoebic Liver Abscess"
+    journal: "Journal of Case Reports"
+    year: 2024
+  - title: "Tramadol vs Bupivacaine in Laparoscopic Cholecystectomy"
+    journal: "Pain Medicine Journal"
+    year: 2023
+  - title: "Bupivacaine vs Bupivacaine + Buprenorphine for post-operative pain"
+    journal: "ResearchGate"
+  - title: "NPWT vs Moist Dressings in Wound Healing"
+    journal: "Journal of Evolution of Medical and Dental Sciences (JEMDS)"
+    year: 2018
+  - title: "Topical Negative Pressure Dressings vs Conventional Dressings"
+    role: "Corresponding Author"
 medicalSpecialty:
   - "Surgical Gastroenterology"
   - "Hepato-Pancreatico-Biliary Surgery"
@@ -18,7 +64,7 @@ medicalSpecialty:
 credentials:
   - "MBBS"
   - "MS (General Surgery)"
-  - "DrNB (Surgical Gastroenterology)"
+  - "DNB (Surgical Gastroenterology)"
 hasCredential:
   - name: "MBBS"
     description: "Bachelor of Medicine, Bachelor of Surgery"
@@ -38,6 +84,12 @@ alumniOf:
   - name: "Manipal Hospitals, Bengaluru"
     sameAs:
       - "https://en.wikipedia.org/wiki/Manipal_Hospitals"
+  - name: "Sri Venkateswara Medical College, Tirupati"
+    sameAs:
+      - "https://en.wikipedia.org/wiki/Sri_Venkateswara_Medical_College"
+  - name: "Rajiv Gandhi Institute of Medical Sciences, Kadapa"
+    sameAs:
+      - "https://en.wikipedia.org/wiki/Rajiv_Gandhi_Institute_of_Medical_Sciences,_Kadapa"
 languages:
   - "English"
   - "Telugu"
@@ -64,7 +116,22 @@ knowsAbout:
       - "https://en.wikipedia.org/wiki/Obesity"
       - "https://www.wikidata.org/wiki/Q12174"
 memberOf: []
-award: []
+award:
+  - name: "Second Best Paper Award"
+    date: "2015"
+    recognizedBy:
+      name: "APASICON 2015"
+      sameAs: []
+  - name: "Conference Presentation"
+    date: "2018"
+    recognizedBy:
+      name: "IHBPA 2018"
+      sameAs: []
+  - name: "Conference Presentation"
+    date: "2019"
+    recognizedBy:
+      name: "IASGCON 2019"
+      sameAs: []
 sameAs:
   - "https://www.linkedin.com/in/dwarakanath-reddy-vembuluru-aa298644/"
   - "https://www.instagram.com/dr.dwarakanathreddy/"

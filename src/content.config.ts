@@ -81,6 +81,38 @@ const doctors = defineCollection({
       credentials: z.array(z.string()).default([]),
       hasCredential: z.array(credentialSchema).default([]),
       yearsExperience: z.number().int().nonnegative().optional(),
+      surgeriesPerformed: z.number().int().nonnegative().optional(),
+      education: z
+        .array(
+          z.object({
+            degree: z.string(),
+            college: z.string(),
+            years: z.string(),
+            collegeUrl: urlOrTodo.optional(),
+          })
+        )
+        .default([]),
+      experience: z
+        .array(
+          z.object({
+            period: z.string(),
+            role: z.string(),
+            place: z.string(),
+            detail: z.string().optional(),
+          })
+        )
+        .default([]),
+      publications: z
+        .array(
+          z.object({
+            title: z.string(),
+            journal: z.string().optional(),
+            year: z.number().int().optional(),
+            role: z.string().optional(),
+            url: urlOrTodo.optional(),
+          })
+        )
+        .default([]),
       medicalSpecialty: z.array(z.string()).default([]),
       knowsAbout: z.array(entityWithSameAs).default([]),
       languages: z.array(z.string()).default(['English']),
