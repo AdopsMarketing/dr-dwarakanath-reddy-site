@@ -1,0 +1,259 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
+import { getCollection } from 'astro:content';
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const categories = (await getCollection('categories')).sort((a, b) => a.data.order - b.data.order);
+const conditions = (await getCollection('conditions')).sort((a, b) => a.data.title.localeCompare(b.data.title));
+const blogs = (await getCollection('blogs')).sort((a, b) => new Date(b.data.publishedAt).valueOf() - new Date(a.data.publishedAt).valueOf());
+const cases = (await getCollection('cases')).sort((a, b) => new Date(b.data.publishedAt).valueOf() - new Date(a.data.publishedAt).valueOf());
+const stories = (await getCollection('stories')).sort((a, b) => new Date(b.data.publishedAt).valueOf() - new Date(a.data.publishedAt).valueOf());
+const videos = (await getCollection('videos')).sort((a, b) => a.data.order - b.data.order);
+const faqs = (await getCollection('faqs')).sort((a, b) => a.data.order - b.data.order);
+
+// Procedure URL helper — mirrors the routing pattern in /gi-services/[category]/[slug].astro
+const categorySegment: Record<string, string> = {
+  laparoscopic: 'laparoscopic-surgery',
+  hpb: 'hpb-surgery',
+  oncology: 'gi-oncology',
+  bariatric: 'bariatric-surgery',
+  'upper-gi': 'upper-gi-surgery',
+};
+const procedureUrl = (s: typeof services[number]) => {
+  const seg = categorySegment[s.data.category];
+  return seg ? `/gi-services/${seg}/${s.data.slug}` : `/gi-services/${s.data.slug}`;
+};
+
+// Group procedures under their category for display
+const proceduresByCategory: Record<string, typeof services> = {};
+for (const s of services) {
+  const seg = categorySegment[s.data.category];
+  if (!seg) continue;
+  proceduresByCategory[seg] ??= [];
+  proceduresByCategory[seg].push(s);
+}
+
+const totalPages =
+  6 // primary nav: home, about, contact, FAQs, patient resources, referring-doctors, videos
+  + categories.length
+  + services.length
+  + conditions.length
+  + blogs.length
+  + cases.length
+  + stories.length
+  + 1 // /gi-services index
+  + 1 // /blogs index, etc. (counting in the section)
+  ;
+---
+
+<BaseLayout
+  pageType="generic"
+  title="Sitemap · Dr. Dwarakanath Reddy"
+  description="Index of every page on drdwarakanathreddy.com — practice info, GI procedures, conditions, patient resources, FAQs, videos, blogs, cases, and stories."
+  breadcrumbs={[
+    { name: 'Home', url: new URL('/', Astro.site!).toString() },
+    { name: 'Sitemap', url: new URL('/sitemap', Astro.site!).toString() },
+  ]}
+>
+  <!-- HERO -->
+  <section class="bg-paper-1">
+    <div class="site-container py-14 lg:py-20">
+      <nav class="fig-label mb-8" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-ink">Home</a>
+        <span class="mx-2">·</span>
+        <span class="text-ink">Sitemap</span>
+      </nav>
+      <Eyebrow>Site index</Eyebrow>
+      <h1 class="mt-6 font-display text-[40px] md:text-[56px] lg:text-[64px] leading-[1.02] tracking-tight text-ink max-w-[20ch]">
+        Every page, in <em>one place</em>.
+      </h1>
+      <p class="mt-6 text-lg text-ink-soft leading-relaxed max-w-[60ch]">
+        A complete index of pages on this site, grouped by section.
+      </p>
+      <p class="mt-3 mono-caps text-ink-muted">
+        Looking for the machine-readable version? · <a href="/sitemap-index.xml" class="hover:text-ink">XML sitemap</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- TOP-LEVEL -->
+  <section class="bg-paper-2 border-y border-paper-3">
+    <div class="site-container py-12 lg:py-16">
+      <Eyebrow>Practice</Eyebrow>
+      <h2 class="mt-4 font-display text-[24px] lg:text-[32px] text-ink">About and contact</h2>
+      <div class="mt-6 w-10 h-px bg-accent"></div>
+      <ul class="mt-8 grid gap-3 md:grid-cols-2 lg:grid-cols-3 text-ink">
+        <li><a href="/" class="hover:text-accent">Home</a></li>
+        <li><a href="/about-doctor" class="hover:text-accent">About Dr. Reddy</a></li>
+        <li><a href="/about-doctor#publications" class="hover:text-accent">Publications</a></li>
+        <li><a href="/about-doctor#career-journey" class="hover:text-accent">Training and practice</a></li>
+        <li><a href="/about-doctor#philosophy" class="hover:text-accent">Approach</a></li>
+        <li><a href="/contact" class="hover:text-accent">Contact and booking</a></li>
+        <li><a href="/referring-doctors" class="hover:text-accent">For referring physicians</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- GI SERVICES -->
+  <section class="bg-paper-1">
+    <div class="site-container py-12 lg:py-16">
+      <Eyebrow>GI Services</Eyebrow>
+      <h2 class="mt-4 font-display text-[24px] lg:text-[32px] text-ink">Procedures and care areas</h2>
+      <div class="mt-6 w-10 h-px bg-accent"></div>
+
+      <ul class="mt-8 space-y-2 text-ink">
+        <li><a href="/gi-services" class="hover:text-accent font-display">All procedures (overview)</a></li>
+      </ul>
+
+      <div class="mt-10 grid gap-10 lg:grid-cols-2">
+        {categories.map((cat) => {
+          const slug = cat.data.slug;
+          const subProcedures = proceduresByCategory[slug] ?? [];
+          return (
+            <div>
+              <h3 class="font-display text-xl text-ink">
+                <a href={`/gi-services/${slug}`} class="hover:text-accent">{cat.data.title}</a>
+              </h3>
+              {subProcedures.length > 0 && (
+                <ul class="mt-3 space-y-2 pl-4 border-l border-paper-3">
+                  {subProcedures.map((s) => (
+                    <li>
+                      <a href={procedureUrl(s)} class="text-ink-soft hover:text-accent text-sm">
+                        {s.data.h1 ?? s.data.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Stand-alone procedures not under a category dir */}
+      <div class="mt-10">
+        <h3 class="font-display text-xl text-ink">Diagnostic procedures</h3>
+        <ul class="mt-3 space-y-2 pl-4 border-l border-paper-3 text-ink-soft text-sm">
+          <li><a href="/gi-services/endoscopy" class="hover:text-accent">Endoscopy</a></li>
+          <li><a href="/gi-services/colonoscopy" class="hover:text-accent">Colonoscopy</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONDITIONS -->
+  <section class="bg-paper-2 border-y border-paper-3">
+    <div class="site-container py-12 lg:py-16">
+      <Eyebrow>Conditions</Eyebrow>
+      <h2 class="mt-4 font-display text-[24px] lg:text-[32px] text-ink">Conditions Dr. Reddy treats</h2>
+      <div class="mt-6 w-10 h-px bg-accent"></div>
+      <ul class="mt-8 grid gap-3 md:grid-cols-2 lg:grid-cols-3 text-ink">
+        {conditions.map((c) => (
+          <li><a href={`/conditions/${c.data.slug}`} class="hover:text-accent">{c.data.title}</a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- PATIENT RESOURCES -->
+  <section class="bg-paper-1">
+    <div class="site-container py-12 lg:py-16 grid gap-12 lg:grid-cols-2">
+      <div>
+        <Eyebrow>Patient resources</Eyebrow>
+        <h2 class="mt-4 font-display text-[24px] lg:text-[32px] text-ink">Practical materials</h2>
+        <div class="mt-6 w-10 h-px bg-accent"></div>
+        <ul class="mt-8 space-y-2 text-ink">
+          <li><a href="/patient-resources" class="hover:text-accent">Patient resources (all)</a></li>
+          <li><a href="/patient-resources#before-consultation" class="hover:text-accent">— Before your consultation</a></li>
+          <li><a href="/patient-resources#before-surgery" class="hover:text-accent">— Pre-operative preparation</a></li>
+          <li><a href="/patient-resources#after-surgery" class="hover:text-accent">— Recovery and discharge</a></li>
+          <li><a href="/patient-resources#insurance" class="hover:text-accent">— Insurance and billing</a></li>
+          <li><a href="/patient-resources#apollo-nellore" class="hover:text-accent">— Apollo Nellore practical info</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <Eyebrow>FAQs</Eyebrow>
+        <h2 class="mt-4 font-display text-[24px] lg:text-[32px] text-ink">Patient FAQs by category</h2>
+        <div class="mt-6 w-10 h-px bg-accent"></div>
+        <ul class="mt-8 space-y-2 text-ink">
+          <li><a href="/faqs" class="hover:text-accent">All FAQs</a></li>
+          {faqs.map((f) => (
+            <li><a href={`/faqs#${f.data.slug}`} class="hover:text-accent">— {f.data.title}</a></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEOS -->
+  {videos.length > 0 && (
+    <section class="bg-paper-2 border-y border-paper-3">
+      <div class="site-container py-12 lg:py-16">
+        <Eyebrow>Videos</Eyebrow>
+        <h2 class="mt-4 font-display text-[24px] lg:text-[32px] text-ink">Patient education videos</h2>
+        <div class="mt-6 w-10 h-px bg-accent"></div>
+        <ul class="mt-8 space-y-2 text-ink">
+          <li><a href="/videos" class="hover:text-accent">All videos</a></li>
+          {videos.map((v) => (
+            <li class="text-sm">
+              <a href={`/videos#${v.data.slug}`} class="hover:text-accent">— {v.data.title}</a>
+              <span class="mono-caps text-ink-muted ml-2">· {v.data.status}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <!-- BLOG -->
+  <section class="bg-paper-1">
+    <div class="site-container py-12 lg:py-16 grid gap-12 lg:grid-cols-3">
+      <div>
+        <Eyebrow>Blog</Eyebrow>
+        <h2 class="mt-4 font-display text-[22px] lg:text-[28px] text-ink">Patient education blog</h2>
+        <div class="mt-6 w-10 h-px bg-accent"></div>
+        <ul class="mt-8 space-y-2 text-ink">
+          <li><a href="/blogs" class="hover:text-accent font-display">All posts</a></li>
+          {blogs.map((b) => (
+            <li class="text-sm"><a href={`/blogs/${b.data.slug}`} class="hover:text-accent">— {b.data.title}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <Eyebrow>Cases</Eyebrow>
+        <h2 class="mt-4 font-display text-[22px] lg:text-[28px] text-ink">Interesting cases</h2>
+        <div class="mt-6 w-10 h-px bg-accent"></div>
+        <ul class="mt-8 space-y-2 text-ink">
+          <li><a href="/case-studies" class="hover:text-accent font-display">All cases</a></li>
+          {cases.map((c) => (
+            <li class="text-sm"><a href={`/case-studies/${c.data.slug}`} class="hover:text-accent">— {c.data.title}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <Eyebrow>Stories</Eyebrow>
+        <h2 class="mt-4 font-display text-[22px] lg:text-[28px] text-ink">Patient success stories</h2>
+        <div class="mt-6 w-10 h-px bg-accent"></div>
+        <ul class="mt-8 space-y-2 text-ink">
+          <li><a href="/success-stories" class="hover:text-accent font-display">All stories</a></li>
+          {stories.map((s) => (
+            <li class="text-sm"><a href={`/success-stories/${s.data.slug}`} class="hover:text-accent">— {s.data.title}</a></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER NOTE -->
+  <section class="bg-paper-2 border-t border-paper-3">
+    <div class="site-container py-10">
+      <p class="mono-caps text-ink-muted text-center">
+        Last updated · {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+      </p>
+    </div>
+  </section>
+</BaseLayout>

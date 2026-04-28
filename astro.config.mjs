@@ -4,6 +4,7 @@ import icon from 'astro-icon';
 import vercel from '@astrojs/vercel';
 import react from '@astrojs/react';
 import keystatic from '@keystatic/astro';
+import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://drdwarakanathreddy.com',
@@ -14,7 +15,15 @@ export default defineConfig({
     imageService: false,
   }),
   // React is required by Keystatic; scoped to /keystatic via include.
-  integrations: [icon(), react({ include: ['**/keystatic/**'] }), keystatic()],
+  integrations: [
+    icon(),
+    react({ include: ['**/keystatic/**'] }),
+    keystatic(),
+    sitemap({
+      // Exclude admin and API routes — these aren't crawlable content.
+      filter: (page) => !page.includes('/keystatic') && !page.includes('/api/'),
+    }),
+  ],
   // Permanent (301) redirects for legacy short-form category URLs.
   // Procedure URLs were originally /gi-services/{shortname}/{slug} but the
   // category landing page used the long form (e.g. /gi-services/laparoscopic-surgery),
