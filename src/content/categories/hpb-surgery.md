@@ -10,10 +10,10 @@ whatWeCover:
   title: "What we offer"
   items:
     - title: "Liver Tumor Surgery"
-      href: "/gi-services/hpb/liver-tumor-surgery"
+      href: "/gi-services/hpb-surgery/liver-tumor-surgery"
       description: "Resections for HCC, metastases, and selected benign liver tumors."
     - title: "Pancreatic Surgery"
-      href: "/gi-services/hpb/pancreatic-surgery"
+      href: "/gi-services/hpb-surgery/pancreatic-surgery"
       description: "Whipple procedure, distal pancreatectomy, and chronic pancreatitis surgery."
     - title: "Bile Duct Surgery"
       description: "Cholangiocarcinoma and complex biliary strictures."

@@ -6,7 +6,7 @@ publishedAt: "2026-04-12"
 author: "Dr. Dwarakanath Reddy V"
 reviewedBy: "Dr. Dwarakanath Reddy V"
 category: "Gallbladder"
-relatedService: "/gi-services/laparoscopic/gallbladder-surgery"
+relatedService: "/gi-services/laparoscopic-surgery/gallbladder-surgery"
 relatedServiceLabel: "Laparoscopic Gallbladder Surgery"
 tags: ["gallstones", "cholecystectomy", "surgery"]
 seo:

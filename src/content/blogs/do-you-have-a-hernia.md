@@ -6,7 +6,7 @@ publishedAt: "2026-04-10"
 author: "Dr. Dwarakanath Reddy V"
 reviewedBy: "Dr. Dwarakanath Reddy V"
 category: "Hernia"
-relatedService: "/gi-services/laparoscopic/hernia-surgery"
+relatedService: "/gi-services/laparoscopic-surgery/hernia-surgery"
 relatedServiceLabel: "Laparoscopic Hernia Repair"
 tags: ["hernia", "symptoms", "surgery"]
 seo:

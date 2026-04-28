@@ -8,7 +8,7 @@ conditionName: "Recurrent ventral hernia"
 procedurePerformed: "eTEP hernia repair with retro-muscular mesh"
 outcomeAt: "12 months"
 anonymized: true
-relatedService: "/gi-services/laparoscopic/etep-hernia"
+relatedService: "/gi-services/laparoscopic-surgery/etep-hernia"
 relatedServiceLabel: "eTEP Hernia Repair"
 seo:
   title: "Case 01: Recurrent ventral hernia, eTEP retro-muscular mesh repair"

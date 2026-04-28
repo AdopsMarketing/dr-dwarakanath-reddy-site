@@ -7,7 +7,7 @@ condition: "Symptomatic gallstones"
 procedure: "Laparoscopic cholecystectomy"
 outcomeTime: "5 days to return to work"
 anonymized: true
-relatedService: "/gi-services/laparoscopic/gallbladder-surgery"
+relatedService: "/gi-services/laparoscopic-surgery/gallbladder-surgery"
 relatedServiceLabel: "Laparoscopic Gallbladder Surgery"
 seo:
   title: "Back to work in 5 days after gallbladder surgery, Apollo Nellore"

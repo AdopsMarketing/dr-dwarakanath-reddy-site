@@ -8,7 +8,7 @@ conditionName: "Pancreatic head adenocarcinoma, borderline resectable"
 procedurePerformed: "Pancreaticoduodenectomy (Whipple) after neoadjuvant chemotherapy"
 outcomeAt: "9 months"
 anonymized: true
-relatedService: "/gi-services/hpb/pancreatic-surgery"
+relatedService: "/gi-services/hpb-surgery/pancreatic-surgery"
 relatedServiceLabel: "Pancreatic Surgery"
 seo:
   title: "Case 03: Pancreatic head tumour, resected after neoadjuvant chemotherapy"

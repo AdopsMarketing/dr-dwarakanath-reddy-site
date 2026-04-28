@@ -10,11 +10,13 @@ export const getStaticPaths = (async () => {
     ['laparoscopic', 'hpb', 'oncology', 'bariatric'].includes(s.data.category)
   );
 
+  // Long-form parent slug for child procedure URLs.
+  // Keep this map in sync with categoryLabels below and with src/data/navigation.ts.
   const categoryToSlug: Record<string, string> = {
-    laparoscopic: 'laparoscopic',
-    hpb: 'hpb',
+    laparoscopic: 'laparoscopic-surgery',
+    hpb: 'hpb-surgery',
     oncology: 'gi-oncology',
-    bariatric: 'bariatric',
+    bariatric: 'bariatric-surgery',
   };
 
   return routable.map((service) => ({
@@ -29,14 +31,14 @@ export const getStaticPaths = (async () => {
 const { service } = Astro.props;
 const d = service.data;
 
-const categoryLabels: Record<string, { label: string; path: string }> = {
-  laparoscopic: { label: 'Laparoscopic Surgery', path: '/gi-services/laparoscopic-surgery' },
-  hpb: { label: 'HPB Surgery', path: '/gi-services/hpb-surgery' },
-  oncology: { label: 'GI Oncology', path: '/gi-services/gi-oncology' },
-  bariatric: { label: 'Bariatric Surgery', path: '/gi-services/bariatric-surgery' },
+const categoryLabels: Record<string, { label: string; path: string; segment: string }> = {
+  laparoscopic: { label: 'Laparoscopic Surgery', path: '/gi-services/laparoscopic-surgery', segment: 'laparoscopic-surgery' },
+  hpb: { label: 'HPB Surgery', path: '/gi-services/hpb-surgery', segment: 'hpb-surgery' },
+  oncology: { label: 'GI Oncology', path: '/gi-services/gi-oncology', segment: 'gi-oncology' },
+  bariatric: { label: 'Bariatric Surgery', path: '/gi-services/bariatric-surgery', segment: 'bariatric-surgery' },
 };
-const catMeta = categoryLabels[d.category] ?? { label: d.category, path: '/gi-services' };
-const pagePath = `/gi-services/${d.category}/${d.slug}`;
+const catMeta = categoryLabels[d.category] ?? { label: d.category, path: '/gi-services', segment: d.category };
+const pagePath = `/gi-services/${catMeta.segment}/${d.slug}`;
 
 const pageTitle = d.seo?.title ?? `${d.h1 ?? d.title}, Dr. Dwarakanath Reddy`;
 const metaDescription = d.seo?.description ?? d.shortDescription;

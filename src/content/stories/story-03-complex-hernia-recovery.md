@@ -7,7 +7,7 @@ condition: "Recurrent midline ventral hernia"
 procedure: "eTEP hernia repair with retro-muscular mesh"
 outcomeTime: "12 months"
 anonymized: true
-relatedService: "/gi-services/laparoscopic/etep-hernia"
+relatedService: "/gi-services/laparoscopic-surgery/etep-hernia"
 relatedServiceLabel: "eTEP Hernia Repair"
 seo:
   title: "eTEP hernia repair after two recurrences, patient story from Apollo Nellore"

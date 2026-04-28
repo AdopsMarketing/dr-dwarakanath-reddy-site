@@ -7,7 +7,7 @@ condition: "Severe obesity with Type 2 diabetes"
 procedure: "Laparoscopic Roux-en-Y Gastric Bypass"
 outcomeTime: "18 months"
 anonymized: true
-relatedService: "/gi-services/bariatric/gastric-bypass"
+relatedService: "/gi-services/bariatric-surgery/gastric-bypass"
 relatedServiceLabel: "Gastric Bypass Surgery"
 seo:
   title: "35 kg weight loss and diabetes remission after Gastric Bypass, Apollo Nellore"

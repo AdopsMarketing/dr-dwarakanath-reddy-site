@@ -10,10 +10,10 @@ whatWeCover:
   title: "What we offer"
   items:
     - title: "Laparoscopic Sleeve Gastrectomy"
-      href: "/gi-services/bariatric/sleeve-gastrectomy"
+      href: "/gi-services/bariatric-surgery/sleeve-gastrectomy"
       description: "Restrictive procedure. Shorter operation, simpler recovery."
     - title: "Laparoscopic Roux-en-Y Gastric Bypass"
-      href: "/gi-services/bariatric/gastric-bypass"
+      href: "/gi-services/bariatric-surgery/gastric-bypass"
       description: "Restriction plus bypass. Strong diabetes remission outcomes."
     - title: "Revision Bariatric Surgery"
       description: "Planned for Phase 2. Conversion or revision of a previous bariatric procedure."
