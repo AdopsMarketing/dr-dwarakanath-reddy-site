@@ -1,0 +1,223 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
+import ExploreLink from '@/components/ExploreLink.astro';
+import WhatsAppContextCTA from '@/components/WhatsAppContextCTA.astro';
+import { getCollection } from 'astro:content';
+
+const locations = await getCollection('locations');
+const location = locations.find((l) => l.data.isPrimary) ?? locations[0];
+
+const sections = [
+  {
+    slug: 'before-consultation',
+    eyebrow: 'Before your consultation',
+    title: 'What to bring to your first visit',
+    intro:
+      'A first consultation works best when Dr. Reddy can review your existing reports rather than ordering new ones. Bring everything you have — even older reports.',
+    items: [
+      { label: 'Existing scans', detail: 'CT, MRI, ultrasound, PET — on disc or USB if available, plus printouts. If they are on a different device, send images on WhatsApp before the visit.' },
+      { label: 'Blood reports', detail: 'Most recent CBC, LFT, RFT, blood sugar, thyroid. Older reports are useful too — they show trends.' },
+      { label: 'Biopsy or histopathology reports', detail: 'If any tissue sample has been taken previously. Bring the original report and the slides if you have them.' },
+      { label: 'Discharge summaries', detail: 'From any prior hospital admissions or surgeries — even unrelated ones.' },
+      { label: 'Current medications list', detail: 'Names, doses, and frequency. Include over-the-counter supplements, herbal preparations, and ayurvedic medicines.' },
+      { label: 'Known allergies', detail: 'Drug, food, or anaesthetic allergies. If you have ever had a reaction to a contrast dye, mention it.' },
+      { label: 'Insurance card', detail: 'For empanelment check. The hospital empanels with all major insurers — TPA desk handles pre-authorisation.' },
+      { label: 'A family member', detail: 'For surgical decisions, having a spouse, parent, or adult child present is strongly encouraged.' },
+      { label: 'A short list of questions', detail: 'Written down before the visit. It is normal to forget questions in the room.' },
+    ],
+  },
+  {
+    slug: 'before-surgery',
+    eyebrow: 'Preparing for surgery',
+    title: 'Pre-operative preparation',
+    intro:
+      'Once surgery is planned, the team will guide you through pre-anaesthetic checks and admission. The notes below are the most important items patients commonly miss.',
+    items: [
+      { label: 'Pre-anaesthetic check-up (PAC)', detail: 'Usually scheduled 2 to 7 days before surgery. The anaesthesia team reviews your fitness and adjusts medications. Carry all reports and your medications list.' },
+      { label: 'Stop blood thinners', detail: 'Aspirin, clopidogrel, warfarin, apixaban, and similar drugs are typically stopped 5 to 7 days before surgery — but only on the surgeon\'s and physician\'s instruction. Do not stop them on your own.' },
+      { label: 'Diabetes medications', detail: 'Metformin and SGLT2 inhibitors are usually stopped a day or two before. Insulin doses are adjusted. Confirm specifics with the team.' },
+      { label: 'Fasting rules', detail: 'No solid food after midnight on the night before surgery. Clear fluids may be allowed up to 2 hours before, depending on the procedure and anaesthesia plan. The hospital will confirm.' },
+      { label: 'Bath the morning of surgery', detail: 'A normal soap-and-water bath. Do not apply lotions, deodorants, or perfumes on the day.' },
+      { label: 'No jewellery or contact lenses', detail: 'Remove all jewellery, watches, body piercings, contact lenses, and dentures before being shifted to theatre. Leave valuables at home or with a family member.' },
+      { label: 'What to bring on admission day', detail: 'Toiletries, comfortable loose clothing, undergarments, slippers, mobile charger, reading material, and a list of medications. The hospital provides gowns and toiletries are available, but personal items help.' },
+      { label: 'Arrange a family attendant', detail: 'One adult attendant stays with most surgical patients. ICU stay rules are different — confirm with the ward staff.' },
+    ],
+  },
+  {
+    slug: 'after-surgery',
+    eyebrow: 'After surgery',
+    title: 'Recovery and discharge',
+    intro:
+      'Detailed written discharge instructions are provided on the day of discharge, signed by the consultant. The points below are the universal essentials — your specific instructions take precedence.',
+    items: [
+      { label: 'Wound care', detail: 'Most laparoscopic incisions are closed with surgical glue or absorbable sutures. Keep the area dry for 48 hours. Showers are usually allowed after that. No tub baths or swimming until cleared.' },
+      { label: 'Pain management', detail: 'You will go home with a short course of oral analgesics. Take them as prescribed for the first 48 to 72 hours, even if the pain is mild.' },
+      { label: 'Diet progression', detail: 'Most patients start on clear fluids, advance to soft diet within 24 to 72 hours, and resume normal food within a week. Bariatric and major bowel surgery patients follow a written multi-week plan.' },
+      { label: 'Activity restrictions', detail: 'Walking and gentle activity from day one. No heavy lifting, no driving, and no strenuous exercise for 4 to 6 weeks after most abdominal surgery — exact timing is on your discharge note.' },
+      { label: 'When to call urgently', detail: 'Fever above 101°F, severe abdominal pain not relieved by medication, persistent vomiting, redness or discharge from the wound, jaundice, or blood in stool. Use the Apollo Emergency number or WhatsApp the practice.' },
+      { label: 'First follow-up visit', detail: 'Usually 7 to 10 days after discharge — for wound check, suture removal if needed, and review of histopathology if applicable.' },
+      { label: 'Histopathology report', detail: 'For any procedure where tissue is removed, the report is ready in 5 to 10 days. It is forwarded to the practice and to your referring physician.' },
+      { label: 'Long-term follow-up', detail: 'Oncology patients have a structured surveillance schedule — typically every 3 months for the first 2 years. Bariatric patients have nutritional and metabolic follow-ups at fixed intervals.' },
+    ],
+  },
+  {
+    slug: 'insurance',
+    eyebrow: 'Insurance and billing',
+    title: 'Cashless and reimbursement',
+    intro:
+      'Apollo Speciality Hospitals Nellore is empanelled with all major insurance providers and TPAs. The hospital TPA desk handles pre-authorisation. The notes below help your paperwork move faster.',
+    items: [
+      { label: 'For cashless treatment', detail: 'Bring the original policy document, your ID proof, the policy holder\'s ID proof if different, and the cashless request form signed by the policy holder. Pre-authorisation typically takes 24 to 72 hours for elective surgery and is fast-tracked for emergencies.' },
+      { label: 'Empanelled insurers', detail: 'Includes Star Health, HDFC Ergo, Bajaj Allianz, ICICI Lombard, Aditya Birla, Tata AIG, Care Health, Niva Bupa, CGHS, ESI, and Railway. Send your card or policy number on WhatsApp for a quick check.' },
+      { label: 'For reimbursement', detail: 'Keep originals of: itemised hospital bill, discharge summary, operative note, histopathology report, all prescriptions, all pharmacy bills, and follow-up consultation bills. Most insurers also need the claim form, ID copy, and cancelled cheque.' },
+      { label: 'On the GST question', detail: 'Healthcare services from a registered hospital are exempt from GST under current rules. Consultations and inpatient surgical care are not separately taxed. Some non-medical line items in a hospital bill may attract GST per government rules.' },
+      { label: 'TPA desk', detail: 'Located in the hospital lobby. Open during admission and discharge hours. Most insurance queries — empanelment, policy compatibility, top-up coverage — are best answered there.' },
+    ],
+  },
+  {
+    slug: 'apollo-nellore',
+    eyebrow: 'At Apollo Nellore',
+    title: 'Practical information',
+    intro:
+      'A few things that help on the day. The hospital reception and ward staff handle most logistics, but the notes below answer the questions patients ask most often.',
+    items: [
+      { label: 'Address', detail: location?.data.address ? `${location.data.address.streetAddress}, ${location.data.address.addressLocality}, ${location.data.address.addressRegion} ${location.data.address.postalCode}` : 'Apollo Speciality Hospitals, Pinakini Nagar, Nellore' },
+      { label: 'Getting there', detail: 'Approximately 4 km from Nellore Railway Station. Cabs and autos are widely available. The hospital has on-site parking. Out-of-station patients often choose accommodation in Trunk Road or Magunta Layout, both within 10 minutes.' },
+      { label: 'Inpatient room categories', detail: 'Suite, single private, twin sharing, and general ward. Insurance plans cover specific categories — check with the TPA desk before admission to avoid co-pays.' },
+      { label: 'Attendant policy', detail: 'One adult attendant stays with most surgical patients on the ward. ICU patients are not accompanied — visiting hours are scheduled twice daily.' },
+      { label: 'Food', detail: 'Hospital catering is available on a meal plan basis. The cafeteria is open for attendants. Outside food is generally permitted but should be cleared with the nursing team for post-operative patients on a specific diet.' },
+      { label: 'Pharmacy', detail: '24/7 in-house pharmacy. Discharge medications are typically dispensed at discharge — keep prescriptions for any reimbursement claim.' },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  pageType="generic"
+  title="Patient resources · Dr. Dwarakanath Reddy, Apollo Nellore"
+  description="Practical materials for before, during, and after GI surgery. Pre-consultation checklist, pre-operative preparation, recovery instructions, insurance and billing, and Apollo Nellore practical information."
+  breadcrumbs={[
+    { name: 'Home', url: new URL('/', Astro.site!).toString() },
+    { name: 'Patient Resources', url: new URL('/patient-resources', Astro.site!).toString() },
+  ]}
+>
+  <!-- HERO -->
+  <section class="bg-paper-1">
+    <div class="site-container py-14 lg:py-24">
+      <nav class="fig-label mb-8" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-ink">Home</a>
+        <span class="mx-2">·</span>
+        <span class="text-ink">Patient Resources</span>
+      </nav>
+
+      <div class="grid lg:grid-cols-12 gap-12 items-end">
+        <div class="lg:col-span-8">
+          <Eyebrow>Patient resources</Eyebrow>
+          <h1 class="mt-6 font-display text-[44px] md:text-[60px] lg:text-[72px] leading-[1.02] tracking-tight text-ink max-w-[18ch]">
+            Before, during, and after — <em>practically</em>.
+          </h1>
+          <p class="mt-8 text-lg text-ink-soft leading-relaxed max-w-[60ch]">
+            Most patients ask the same practical questions: what to bring to the first visit, how to prepare for surgery, what recovery actually looks like, and how the insurance paperwork flows. The pages below are a quick reference. Detailed instructions specific to your case are always provided in writing at discharge.
+          </p>
+        </div>
+
+        <aside class="lg:col-span-4 lg:pl-6 lg:border-l lg:border-paper-3">
+          <p class="mono-caps text-ink-muted">Jump to</p>
+          <ul class="mt-4 space-y-2.5">
+            {sections.map((s, i) => (
+              <li>
+                <a
+                  href={`#${s.slug}`}
+                  class="text-ink hover:text-accent transition-colors flex items-baseline justify-between gap-3"
+                >
+                  <span>{s.title}</span>
+                  <span class="mono-caps text-ink-muted tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTIONS -->
+  {sections.map((s, idx) => (
+    <section
+      id={s.slug}
+      class={`scroll-mt-24 ${idx % 2 === 0 ? 'bg-paper-2 border-y border-paper-3' : 'bg-paper-1'}`}
+    >
+      <div class="site-container py-16 lg:py-24 grid lg:grid-cols-12 gap-12 items-start">
+        <header class="lg:col-span-4">
+          <Eyebrow>{s.eyebrow}</Eyebrow>
+          <h2 class="mt-5 font-display text-[28px] lg:text-[40px] leading-[1.08] text-ink max-w-[18ch]">
+            {s.title}
+          </h2>
+          <div class="mt-6 w-10 h-px bg-accent"></div>
+          <p class="mt-6 text-ink-soft leading-relaxed max-w-[42ch]">
+            {s.intro}
+          </p>
+          <p class="mt-8 mono-caps text-ink-muted">
+            {String(s.items.length).padStart(2, '0')} items
+          </p>
+        </header>
+
+        <ol class="lg:col-span-8 max-w-[64ch]">
+          {s.items.map((item, i) => (
+            <li class="grid grid-cols-[auto_1fr] gap-4 items-baseline rule-top py-5 first:border-t-0 first:pt-0">
+              <span class="mono-caps text-ink-muted tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+              <div>
+                <p class="font-display text-lg text-ink">{item.label}</p>
+                <p class="mt-2 text-sm text-ink-soft leading-relaxed">{item.detail}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  ))}
+
+  <!-- BRIDGES -->
+  <section class="bg-paper-1">
+    <div class="site-container py-16 lg:py-20 grid lg:grid-cols-3 gap-10">
+      <div>
+        <Eyebrow>FAQs</Eyebrow>
+        <h3 class="mt-4 font-display text-2xl text-ink leading-snug">More questions answered</h3>
+        <p class="mt-3 text-ink-soft leading-relaxed">
+          43 patient questions across appointments, costs, surgery, and recovery.
+        </p>
+        <div class="mt-5">
+          <ExploreLink href="/faqs">Read patient FAQs</ExploreLink>
+        </div>
+      </div>
+      <div>
+        <Eyebrow>Procedures</Eyebrow>
+        <h3 class="mt-4 font-display text-2xl text-ink leading-snug">Procedure-specific guides</h3>
+        <p class="mt-3 text-ink-soft leading-relaxed">
+          Each surgery page has dedicated sections on indications, recovery, and follow-up.
+        </p>
+        <div class="mt-5">
+          <ExploreLink href="/gi-services">View GI services</ExploreLink>
+        </div>
+      </div>
+      <div>
+        <Eyebrow>Need to ask</Eyebrow>
+        <h3 class="mt-4 font-display text-2xl text-ink leading-snug">Question not covered here?</h3>
+        <p class="mt-3 text-ink-soft leading-relaxed">
+          The contact form and WhatsApp both reach the same scheduling team.
+        </p>
+        <div class="mt-5">
+          <ExploreLink href="/contact">Open contact form</ExploreLink>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <WhatsAppContextCTA
+    eyebrow="Direct line"
+    prompt="Need a <em>practical</em> question answered before you visit?"
+    label="Send a question on WhatsApp"
+    message="Hi Dr. Reddy, I have a practical question before my consultation."
+  />
+</BaseLayout>

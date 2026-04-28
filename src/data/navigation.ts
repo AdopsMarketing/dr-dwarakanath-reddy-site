@@ -70,6 +70,7 @@ export const primaryNav: NavItem[] = [
     ],
   },
   { label: 'About', href: '/about-doctor' },
+  { label: 'Patient Resources', href: '/patient-resources', phase: '1' },
   { label: 'Success Stories', href: '/success-stories', phase: '1' },
   { label: 'Interesting Cases', href: '/case-studies', phase: '1' },
   { label: 'Blogs', href: '/blogs', phase: '1' },

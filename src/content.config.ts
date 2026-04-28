@@ -414,6 +414,36 @@ const stories = defineCollection({
   }),
 });
 
+const videos = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/videos' }),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string(),
+    description: z.string(),
+    category: z.enum([
+      'patient-education',
+      'procedure-explainer',
+      'recovery-guide',
+      'second-opinion',
+      'practice',
+    ]),
+    youtubeId: z.string().optional(),
+    duration: z.string().optional(),
+    publishedAt: z.string().optional(),
+    status: z.enum(['planned', 'in-production', 'live']).default('planned'),
+    relatedService: z.string().optional(),
+    relatedServiceLabel: z.string().optional(),
+    thumbnail: z.string().optional(),
+    order: z.number().int().default(100),
+    seo: z
+      .object({
+        title: z.string().optional(),
+        description: z.string().optional(),
+      })
+      .optional(),
+  }),
+});
+
 const faqs = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/faqs' }),
   schema: z.object({
@@ -440,4 +470,4 @@ const faqs = defineCollection({
   }),
 });
 
-export const collections = { organization, doctors, services, categories, conditions, locations, blogs, cases, stories, faqs };
+export const collections = { organization, doctors, services, categories, conditions, locations, blogs, cases, stories, faqs, videos };

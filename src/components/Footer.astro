@@ -20,7 +20,12 @@ const aboutLinks = [
   { label: 'Approach', href: '/about-doctor#philosophy' },
   { label: 'Publications', href: '/about-doctor#publications' },
   { label: 'Affiliations', href: '/about-doctor#career-journey' },
+];
+const patientLinks = [
   { label: 'Patient FAQs', href: '/faqs' },
+  { label: 'Patient Resources', href: '/patient-resources' },
+  { label: 'Videos', href: '/videos' },
+  { label: 'Referring Doctors', href: '/referring-doctors' },
 ];
 const serviceLinks = [
   { label: 'Surgical gastroenterology', href: '/gi-services/surgical-gastroenterology' },
@@ -46,7 +51,7 @@ const waHref = whatsappUrl("Hi Dr. Reddy, I'd like to book an appointment.");
   <div class="site-container py-16 lg:py-20">
     <div class="grid gap-12 lg:grid-cols-12">
       <!-- Brand block -->
-      <div class="lg:col-span-4">
+      <div class="lg:col-span-3">
         <div class="flex items-center gap-3">
           <span class="w-10 h-10 rounded-sm bg-paper-1 text-ink flex items-center justify-center font-display italic text-lg">R</span>
           <div class="leading-tight">
@@ -84,8 +89,18 @@ const waHref = whatsappUrl("Hi Dr. Reddy, I'd like to book an appointment.");
         </ul>
       </div>
 
+      <!-- For Patients column -->
+      <div class="lg:col-span-2">
+        <p class="mono-caps text-accent">For Patients</p>
+        <ul class="mt-4 space-y-2.5">
+          {patientLinks.map((l) => (
+            <li><a href={l.href} class="text-[15px] text-paper-2 hover:text-paper-1">{l.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
       <!-- Services column -->
-      <div class="lg:col-span-3">
+      <div class="lg:col-span-2">
         <p class="mono-caps text-accent">Services</p>
         <ul class="mt-4 space-y-2.5">
           {serviceLinks.map((l) => (
