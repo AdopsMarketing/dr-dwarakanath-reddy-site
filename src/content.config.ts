@@ -64,6 +64,8 @@ const organization = defineCollection({
       .optional(),
     bookingUrl: z.string().optional(),
     offers: z.array(reference('services')).default([]),
+    paymentAccepted: z.array(z.string()).default([]),
+    currenciesAccepted: z.string().optional(),
   }),
 });
 
@@ -127,6 +129,25 @@ const doctors = defineCollection({
         .optional(),
       sameAs: sameAsArray,
       registrationNumber: z.string().optional(),
+      // Multiple registrations (state council + national) per Indian medical practice.
+      // Each entry becomes a PropertyValue identifier on the Physician node.
+      registrations: z
+        .array(
+          z.object({
+            number: z.string(),
+            council: z.string(),
+            councilSameAs: sameAsArray,
+            validFrom: z.string().optional(), // ISO date
+            validUntil: z.string().optional(),
+          })
+        )
+        .default([]),
+      nationality: z
+        .object({
+          name: z.string(),
+          sameAs: sameAsArray,
+        })
+        .optional(),
       worksAt: reference('locations').optional(),
       bio: z.string().optional(),
       seo: z
@@ -344,6 +365,20 @@ const locations = defineCollection({
     image: z.string().optional(),
     medicalSpecialty: z.array(z.string()).default([]),
     sameAs: sameAsArray,
+    isAcceptingNewPatients: z.boolean().default(true),
+    paymentAccepted: z.array(z.string()).default([]),
+    currenciesAccepted: z.string().optional(),
+    hasCertification: z
+      .array(
+        z.object({
+          name: z.string(),
+          identifier: z.string().optional(),
+          recognizedBy: z
+            .object({ name: z.string(), sameAs: sameAsArray })
+            .optional(),
+        })
+      )
+      .default([]),
   }),
 });
 

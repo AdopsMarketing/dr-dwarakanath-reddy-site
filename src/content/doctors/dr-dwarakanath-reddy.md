@@ -136,6 +136,18 @@ sameAs:
   - "https://www.linkedin.com/in/dwarakanath-reddy-vembuluru-aa298644/"
   - "https://www.instagram.com/dr.dwarakanathreddy/"
   - "https://www.justdial.com/Nellore/Dr-Dwarakanath-Reddy-Vembuluru-Dargamitta/9999PX861-X861-240925013507-T1A5_BZDET"
+registrations:
+  - number: "APMC/FMR/77348"
+    council: "Andhra Pradesh Medical Council"
+    councilSameAs:
+      - "https://apmc.ap.gov.in/"
+    validFrom: "2012-08-04"
+    validUntil: "2031-01-04"
+nationality:
+  name: "India"
+  sameAs:
+    - "https://en.wikipedia.org/wiki/India"
+    - "https://www.wikidata.org/wiki/Q668"
 worksAt: "main-clinic"
 seo:
   title: "Dr. Dwarakanath Reddy · Senior GI Surgeon, Apollo Nellore"

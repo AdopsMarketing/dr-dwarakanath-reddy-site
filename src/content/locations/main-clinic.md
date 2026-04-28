@@ -26,6 +26,14 @@ medicalSpecialty:
 sameAs:
   - "https://maps.app.goo.gl/JhFQHJWyuRUoCAMZ9"
   - "https://www.justdial.com/Nellore/Dr-Dwarakanath-Reddy-Vembuluru-Dargamitta/9999PX861-X861-240925013507-T1A5_BZDET"
+isAcceptingNewPatients: true
+paymentAccepted:
+  - "Cash"
+  - "Credit Card"
+  - "Debit Card"
+  - "UPI"
+  - "Insurance (cashless and reimbursement)"
+currenciesAccepted: "INR"
 ---
 
 Apollo Speciality Hospitals, Nellore is Dr. Reddy's primary operating location. Replace `openingHours` with Apollo's actual consultation schedule once confirmed with the practice coordinator.

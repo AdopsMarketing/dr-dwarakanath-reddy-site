@@ -7,6 +7,9 @@ const locations = await getCollection('locations');
 const location = locations.find((l) => l.data.isPrimary) ?? locations[0];
 const orgColl = await getCollection('organization');
 const org = orgColl[0];
+const allDoctors = await getCollection('doctors');
+const primaryDoctor = allDoctors.find((d) => d.data.isPrimary) ?? allDoctors[0];
+const primaryRegistration = primaryDoctor?.data.registrations?.[0];
 const year = new Date().getFullYear();
 
 const hospitalPhones = location
@@ -156,5 +159,10 @@ const waHref = whatsappUrl("Hi Dr. Reddy, I'd like to book an appointment.");
       <div>© {year} · Dr. Dwarakanath Reddy · All rights reserved</div>
       <div>Apollo Speciality Hospitals · Nellore · India</div>
     </div>
+    {primaryRegistration && (
+      <div class="site-container pb-6 mono-caps text-ink-muted">
+        Reg. No. {primaryRegistration.number} · {primaryRegistration.council}
+      </div>
+    )}
   </div>
 </footer>

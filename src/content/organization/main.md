@@ -40,6 +40,13 @@ offers:
   - gastric-bypass
   - sleeve-gastrectomy
   - surgical-gastroenterology
+paymentAccepted:
+  - "Cash"
+  - "Credit Card"
+  - "Debit Card"
+  - "UPI"
+  - "Insurance (cashless and reimbursement)"
+currenciesAccepted: "INR"
 ---
 
 Organization-level entity. The single source of truth for the `MedicalOrganization` JSON-LD node and the practice-level metadata referenced across the site.

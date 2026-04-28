@@ -151,6 +151,8 @@ export function organizationNode(opts: {
     makesOffer,
     contactPoint,
     potentialAction,
+    paymentAccepted: d.paymentAccepted.length > 0 ? d.paymentAccepted : undefined,
+    currenciesAccepted: d.currenciesAccepted,
   };
 }
 
@@ -161,9 +163,28 @@ export function physicianNode(opts: {
   clinicIds: string[];
   procedureIds?: string[];
   conditionIdMap?: Record<string, string>; // wikipedia URL → condition @id
+  profileUrl?: string;                     // canonical /about-doctor URL
 }) {
-  const { origin, doctor, orgId, clinicIds, procedureIds = [], conditionIdMap = {} } = opts;
+  const { origin, doctor, orgId, clinicIds, procedureIds = [], conditionIdMap = {}, profileUrl } = opts;
   const d = doctor.data;
+
+  // Build identifier list from registrations (preferred) or legacy registrationNumber.
+  const registrationIdentifiers = (d.registrations ?? []).map((r) => ({
+    '@type': 'PropertyValue',
+    name: `${r.council} Registration`,
+    propertyID: r.councilSameAs[0] ?? `medical-council-${slugify(r.council)}`,
+    value: r.number,
+    validFrom: r.validFrom,
+    validUntil: r.validUntil,
+  }));
+  const legacyIdentifier = d.registrationNumber && registrationIdentifiers.length === 0
+    ? [{
+        '@type': 'PropertyValue',
+        propertyID: 'medical-council-registration',
+        value: d.registrationNumber,
+      }]
+    : [];
+  const identifier = [...registrationIdentifiers, ...legacyIdentifier];
 
   const aggregateRating = d.googleRating
     ? {
@@ -241,13 +262,15 @@ export function physicianNode(opts: {
         },
       }),
     })),
-    identifier: d.registrationNumber
+    identifier: identifier.length > 0 ? identifier : undefined,
+    nationality: d.nationality
       ? {
-          '@type': 'PropertyValue',
-          propertyID: 'medical-council-registration',
-          value: d.registrationNumber,
+          '@type': 'Country',
+          name: d.nationality.name,
+          sameAs: d.nationality.sameAs,
         }
       : undefined,
+    url: profileUrl,
     worksFor: ref(orgId),
     workLocation: clinicIds.map(ref),
     // Bidirectional Physician → Procedure link (procedures already link back via `performer`).
@@ -294,6 +317,24 @@ export function medicalClinicNode(opts: {
     medicalSpecialty: d.medicalSpecialty,
     parentOrganization: ref(orgId),
     sameAs: d.sameAs,
+    isAcceptingNewPatients: d.isAcceptingNewPatients,
+    paymentAccepted: d.paymentAccepted.length > 0 ? d.paymentAccepted : undefined,
+    currenciesAccepted: d.currenciesAccepted,
+    hasCertification:
+      d.hasCertification.length > 0
+        ? d.hasCertification.map((c) => ({
+            '@type': 'Certification',
+            name: c.name,
+            identifier: c.identifier,
+            recognizedBy: c.recognizedBy
+              ? {
+                  '@type': 'Organization',
+                  name: c.recognizedBy.name,
+                  sameAs: c.recognizedBy.sameAs,
+                }
+              : undefined,
+          }))
+        : undefined,
   };
 }
 
@@ -337,6 +378,18 @@ export function medicalProcedureNode(opts: {
     availableService: ref(orgId),
     relevantSpecialty: d.medicalSpecialty[0] ?? 'Surgical Gastroenterology',
     indication,
+    // Disambiguates from Ayurvedic / Homeopathic / other systems (relevant in Indian context).
+    medicineSystem: 'https://schema.org/WesternConventional',
+    // The body that recognises this procedure as evidence-based medical practice.
+    recognizingAuthority: {
+      '@type': 'MedicalOrganization',
+      name: 'National Medical Commission, India',
+      sameAs: [
+        'https://www.nmc.org.in/',
+        'https://en.wikipedia.org/wiki/National_Medical_Commission',
+        'https://www.wikidata.org/wiki/Q19938908',
+      ],
+    },
     sameAs: d.sameAs,
   };
 }
@@ -349,8 +402,12 @@ export function articleNode(opts: {
   publisherId: string;
   aboutConditionIds?: string[];
   mentionsProcedureIds?: string[];
+  wordCount?: number;
 }) {
-  const { origin, pageUrl, article, authorId, publisherId, aboutConditionIds = [], mentionsProcedureIds = [] } = opts;
+  const {
+    origin, pageUrl, article, authorId, publisherId,
+    aboutConditionIds = [], mentionsProcedureIds = [], wordCount,
+  } = opts;
   const data = article.entry.data;
 
   // Cases and stories are clinical content → MedicalWebPage. Blogs are general
@@ -358,13 +415,38 @@ export function articleNode(opts: {
   const type = article.kind === 'blog' ? 'Article' : 'MedicalWebPage';
   const datePublished = data.publishedAt;
   const dateModified = ('updatedAt' in data ? data.updatedAt : undefined) ?? data.publishedAt;
+  // Cases use the most recent publication; treat publishedAt as last review unless updated.
+  const lastReviewed = dateModified;
 
-  // Estimate word count for the body. Cheap heuristic; gives Google a useful signal.
   const headline = data.title;
   const description = data.excerpt;
 
+  // articleSection: blog category, or kind label for cases/stories.
+  const articleSection =
+    article.kind === 'blog'
+      ? ('category' in data ? data.category : undefined)
+      : article.kind === 'case'
+        ? 'Clinical case'
+        : 'Patient story';
+
+  // keywords: from blog `tags`, fallback to the related condition/procedure name.
+  const keywords =
+    'tags' in data && Array.isArray((data as { tags?: string[] }).tags)
+      ? (data as { tags: string[] }).tags
+      : undefined;
+
   const about = aboutConditionIds.map(ref);
   const mentions = mentionsProcedureIds.map(ref);
+
+  // MedicalWebPage subtypes get an audience tag.
+  const audience = type === 'MedicalWebPage'
+    ? { '@type': 'MedicalAudience', audienceType: 'Patient' }
+    : undefined;
+
+  // MedicalWebPage subtypes get an `aspect` describing what facet of the topic.
+  const aspect = type === 'MedicalWebPage'
+    ? (article.kind === 'case' ? 'Treatment' : 'Self Care')
+    : undefined;
 
   return stripUndefined({
     '@type': type,
@@ -377,9 +459,16 @@ export function articleNode(opts: {
     dateModified,
     author: ref(authorId),
     publisher: ref(publisherId),
+    reviewedBy: ref(authorId),
+    lastReviewed,
     mainEntityOfPage: { '@id': ids.webPage(pageUrl) },
     about: about.length > 0 ? about : undefined,
     mentions: mentions.length > 0 ? mentions : undefined,
+    articleSection,
+    keywords,
+    wordCount,
+    audience,
+    aspect,
     image: {
       '@type': 'ImageObject',
       url: `${origin}/og-image.jpg`,
@@ -446,8 +535,13 @@ export function medicalConditionNode(opts: {
 // Structural nodes. WebSite, WebPage, BreadcrumbList, FAQPage.
 // -----------------------------------------------------------------------------
 
-export function webSiteNode(opts: { origin: string; org: Organization }) {
-  const { origin, org } = opts;
+export function webSiteNode(opts: {
+  origin: string;
+  org: Organization;
+  primaryDoctorId?: string;
+  foundingYear?: string;
+}) {
+  const { origin, org, primaryDoctorId, foundingYear } = opts;
   return {
     '@type': 'WebSite',
     '@id': ids.website(origin),
@@ -456,6 +550,9 @@ export function webSiteNode(opts: { origin: string; org: Organization }) {
     description: org.data.description,
     inLanguage: SITE_LANG,
     publisher: ref(ids.organization(origin)),
+    copyrightHolder: ref(ids.organization(origin)),
+    copyrightYear: foundingYear,
+    creator: primaryDoctorId ? ref(primaryDoctorId) : undefined,
   };
 }
 
@@ -469,14 +566,23 @@ export function webPageNode(opts: {
   primaryImageUrl?: string;
   datePublished?: string;
   dateModified?: string;
+  reviewedById?: string;            // Physician @id for medically reviewed pages
+  lastReviewed?: string;            // ISO date, e.g. "2026-04-28"
+  pageType?: PageType;
   inLanguage?: string;
 }) {
   const {
     pageUrl, title, description, breadcrumbId, primaryEntityId, websiteId,
-    primaryImageUrl, datePublished, dateModified, inLanguage,
+    primaryImageUrl, datePublished, dateModified, reviewedById, lastReviewed,
+    pageType, inLanguage,
   } = opts;
+  // Use MedicalWebPage subtype on YMYL medical pages — Google reads this as a YMYL hint.
+  const type =
+    pageType === 'service' || pageType === 'condition'
+      ? 'MedicalWebPage'
+      : 'WebPage';
   return {
-    '@type': 'WebPage',
+    '@type': type,
     '@id': ids.webPage(pageUrl),
     url: pageUrl,
     name: title,
@@ -489,6 +595,11 @@ export function webPageNode(opts: {
       : undefined,
     datePublished,
     dateModified,
+    reviewedBy: reviewedById ? ref(reviewedById) : undefined,
+    lastReviewed,
+    audience: type === 'MedicalWebPage'
+      ? { '@type': 'MedicalAudience', audienceType: 'Patient' }
+      : undefined,
     inLanguage: inLanguage ?? SITE_LANG,
   };
 }
@@ -590,7 +701,15 @@ export function buildPageGraph(input: PageGraphInput) {
   }
 
   // Always: WebSite + BreadcrumbList + WebPage
-  nodes.push(webSiteNode({ origin, org: input.org }));
+  const foundingYear = input.org.data.foundingDate?.slice(0, 4);
+  nodes.push(
+    webSiteNode({
+      origin,
+      org: input.org,
+      primaryDoctorId: primaryPhysicianId,
+      foundingYear,
+    })
+  );
   nodes.push(breadcrumbListNode({ pageUrl: input.pageUrl, items: input.breadcrumbs }));
 
   // Entity that is the "primary topic" of this page
@@ -638,6 +757,7 @@ export function buildPageGraph(input: PageGraphInput) {
         clinicIds,
         procedureIds,
         conditionIdMap,
+        profileUrl: input.pageUrl,
       })
     );
     primaryEntityId = ids.physician(origin, input.doctor.data.entityKey);
@@ -701,6 +821,10 @@ export function buildPageGraph(input: PageGraphInput) {
       }
     }
 
+    // Estimate word count from the markdown body for content-depth signal.
+    const body = (input.article.entry as { body?: string }).body ?? '';
+    const wordCount = body.split(/\s+/).filter(Boolean).length || undefined;
+
     nodes.push(
       articleNode({
         origin,
@@ -710,6 +834,7 @@ export function buildPageGraph(input: PageGraphInput) {
         publisherId: orgId,
         aboutConditionIds,
         mentionsProcedureIds,
+        wordCount,
       })
     );
     primaryEntityId = ids.article(input.pageUrl);
@@ -732,6 +857,9 @@ export function buildPageGraph(input: PageGraphInput) {
     };
   }
 
+  // YMYL pages (procedures, conditions) carry a medical reviewer + last review date.
+  const isYmyl = input.pageType === 'service' || input.pageType === 'condition';
+
   nodes.push(
     webPageNode({
       pageUrl: input.pageUrl,
@@ -740,6 +868,9 @@ export function buildPageGraph(input: PageGraphInput) {
       breadcrumbId,
       primaryEntityId,
       websiteId,
+      pageType: input.pageType,
+      reviewedById: isYmyl ? primaryPhysicianId : undefined,
+      lastReviewed: isYmyl ? new Date().toISOString().slice(0, 10) : undefined,
       ...webPageDates,
     })
   );
@@ -758,6 +889,10 @@ function absolute(origin: string, path: string) {
   if (!path) return path;
   if (/^https?:\/\//i.test(path)) return path;
   return `${origin}${path.startsWith('/') ? path : `/${path}`}`;
+}
+
+function slugify(s: string) {
+  return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }
 
 function buildPostalAddress(addr: {
