@@ -71,8 +71,8 @@ closingCta:
   label: "Send your scans on WhatsApp"
   message: "Hi Dr. Reddy, I have CT, MRI, or PET scans of a liver lesion I'd like reviewed."
 seo:
-  title: "Liver Tumor Surgery in Nellore | Dr. Dwarakanath Reddy V"
-  description: "Liver tumor surgery in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Precision resection for HCC, metastases and complex liver tumors. HPB-focused super-specialist."
+  title: "Liver Tumor Surgery in Nellore · Dr. Dwarakanath Reddy"
+  description: "Liver resection for HCC, metastases, and complex liver tumors. HPB super-specialist with full ICU and IR backup. Apollo Speciality Hospitals, Nellore."
   keywords:
     - "liver tumor surgery Nellore"
     - "hepatectomy Apollo Nellore"

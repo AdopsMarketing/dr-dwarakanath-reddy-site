@@ -138,8 +138,8 @@ sameAs:
   - "https://www.justdial.com/Nellore/Dr-Dwarakanath-Reddy-Vembuluru-Dargamitta/9999PX861-X861-240925013507-T1A5_BZDET"
 worksAt: "main-clinic"
 seo:
-  title: "Dr. Dwarakanath Reddy Vembuluru, Senior Consultant GI Surgeon, Nellore"
-  description: "DNB Surgical Gastroenterology. 9+ years in laparoscopic, HPB and bariatric surgery. Apollo Speciality Hospitals, Nellore."
+  title: "Dr. Dwarakanath Reddy · Senior GI Surgeon, Apollo Nellore"
+  description: "DNB Surgical Gastroenterology. 9+ years and 3,000+ surgeries in laparoscopic, HPB, oncology, and bariatric surgery. Apollo Speciality Hospitals, Nellore."
 ---
 
 Dr. Dwarakanath Reddy Vembuluru is a Senior Consultant in Gastrointestinal Surgery and GI Oncosurgery at Apollo Speciality Hospitals, Nellore. He trained at Manipal Hospitals Bengaluru, one of India's leading GI surgery programmes, and brings nine years of focused experience in advanced laparoscopic, hepato-pancreatico-biliary, and bariatric procedures. His practice is rated 5.0 on Google from 428 verified reviews.

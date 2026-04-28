@@ -91,8 +91,8 @@ closingCta:
   label: "Send your scans on WhatsApp"
   message: "Hi Dr. Reddy, I have a gastric scan or biopsy I'd like reviewed."
 seo:
-  title: "Stomach Surgery in Nellore | Dr. Dwarakanath Reddy V"
-  description: "Gastrectomy, GIST resection, and complicated peptic ulcer surgery in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Laparoscopic where appropriate."
+  title: "Stomach Surgery in Nellore · Dr. Dwarakanath Reddy"
+  description: "Gastrectomy for cancer, GIST resection, and complicated peptic ulcer surgery. Laparoscopic where appropriate. Apollo Speciality Hospitals, Nellore."
   keywords:
     - "stomach surgery Nellore"
     - "gastrectomy"

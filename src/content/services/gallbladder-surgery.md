@@ -88,8 +88,8 @@ closingCta:
   label: "Send your scan on WhatsApp"
   message: "Hi Dr. Reddy, I have a gallbladder ultrasound or CT scan I'd like reviewed."
 seo:
-  title: "Laparoscopic Gallbladder Surgery in Nellore | Dr. Dwarakanath Reddy V"
-  description: "Laparoscopic gallbladder removal (cholecystectomy) in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Same-day discharge for most patients. 5.0 from 428 Google reviews."
+  title: "Gallbladder Surgery in Nellore · Dr. Dwarakanath Reddy"
+  description: "Day-care laparoscopic cholecystectomy with same-day discharge for most patients. Apollo Speciality Hospitals, Nellore. 5.0 rating from 428 Google reviews."
   keywords:
     - "gallbladder surgery Nellore"
     - "laparoscopic cholecystectomy"

@@ -91,8 +91,8 @@ closingCta:
   label: "Send your scans on WhatsApp"
   message: "Hi Dr. Reddy, I have a gallbladder cancer or suspicious finding I'd like a surgical opinion on."
 seo:
-  title: "Gallbladder Cancer Surgery in Nellore | Dr. Dwarakanath Reddy V"
-  description: "Radical cholecystectomy and extended liver resection for gallbladder cancer in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Multidisciplinary tumour board care."
+  title: "Gallbladder Cancer Surgery · Dr. Dwarakanath Reddy"
+  description: "Radical cholecystectomy and extended liver resection for gallbladder cancer. Multidisciplinary tumour board care. Apollo Speciality Hospitals, Nellore."
   keywords:
     - "gallbladder cancer surgery Nellore"
     - "radical cholecystectomy"

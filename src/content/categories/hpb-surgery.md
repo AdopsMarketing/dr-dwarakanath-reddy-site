@@ -39,8 +39,8 @@ closingCta:
   message: "Hi Dr. Reddy, I have an HPB diagnosis and would like a second opinion. Here are the scans and reports."
 order: 40
 seo:
-  title: "HPB Surgery in Nellore | Dr. Dwarakanath Reddy V"
-  description: "Hepato-Pancreatico-Biliary surgery in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Whipple, liver resection and biliary reconstruction with ICU backup."
+  title: "HPB Surgery in Nellore · Dr. Dwarakanath Reddy"
+  description: "Hepato-Pancreatico-Biliary surgery — Whipple, liver resection, biliary reconstruction. Full ICU backup. Apollo Speciality Hospitals, Nellore."
   keywords:
     - "HPB surgery Nellore"
     - "hepatobiliary surgery Apollo Nellore"

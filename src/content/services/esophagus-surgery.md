@@ -90,8 +90,8 @@ closingCta:
   label: "Send your scans on WhatsApp"
   message: "Hi Dr. Reddy, I have an esophageal scan or biopsy I'd like reviewed."
 seo:
-  title: "Esophagus Surgery in Nellore | Dr. Dwarakanath Reddy V"
-  description: "Esophagectomy, Heller's myotomy for achalasia, and benign esophageal surgery in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals."
+  title: "Esophagus Surgery in Nellore · Dr. Dwarakanath Reddy"
+  description: "Esophagectomy for cancer, Heller's myotomy for achalasia, and benign esophageal surgery. Apollo Speciality Hospitals, Nellore."
   keywords:
     - "esophagus surgery Nellore"
     - "esophagectomy"

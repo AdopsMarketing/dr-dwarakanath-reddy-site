@@ -81,8 +81,8 @@ closingCta:
   label: "Describe your symptoms on WhatsApp"
   message: "Hi Dr. Reddy, I have a swelling or lump I'd like you to review."
 seo:
-  title: "Laparoscopic Hernia Surgery in Nellore | Dr. Dwarakanath Reddy V"
-  description: "Laparoscopic hernia repair in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Tension-free mesh for inguinal, umbilical, incisional and ventral hernias. 5.0 from 428 Google reviews."
+  title: "Hernia Surgery in Nellore · Dr. Dwarakanath Reddy"
+  description: "Laparoscopic tension-free mesh repair for inguinal, umbilical, incisional, and ventral hernias. Apollo Nellore. 5.0 rating from 428 Google reviews."
   keywords:
     - "hernia surgery Nellore"
     - "laparoscopic hernia repair"

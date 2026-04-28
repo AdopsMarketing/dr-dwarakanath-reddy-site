@@ -1,8 +1,8 @@
 ---
-title: "Case 03: Pancreatic head tumour declared inoperable elsewhere"
+title: "Case 03: Pancreatic tumour declared inoperable elsewhere"
 slug: "case-03-pancreatic-second-opinion"
 caseNumber: "03"
-excerpt: "A 61-year-old lady told at two centres that her pancreatic head tumour was inoperable. Re-evaluation identified a resectable mass after neoadjuvant chemotherapy. Whipple procedure completed at Apollo Nellore."
+excerpt: "61-year-old declared inoperable at two centres. Re-evaluation identified a resectable mass after neoadjuvant chemotherapy. Whipple completed at Apollo Nellore."
 publishedAt: "2026-04-04"
 conditionName: "Pancreatic head adenocarcinoma, borderline resectable"
 procedurePerformed: "Pancreaticoduodenectomy (Whipple) after neoadjuvant chemotherapy"

@@ -82,8 +82,8 @@ closingCta:
   label: "Book an endoscopy on WhatsApp"
   message: "Hi Dr. Reddy, I have ongoing GI symptoms and would like to book an endoscopy."
 seo:
-  title: "Endoscopy in Nellore | Dr. Dwarakanath Reddy V"
-  description: "Diagnostic and therapeutic endoscopy in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Day-care procedure under sedation, HD equipment, same-day reports."
+  title: "Endoscopy in Nellore · Dr. Dwarakanath Reddy"
+  description: "Diagnostic and therapeutic upper GI endoscopy. Day-care procedure under sedation, HD equipment, same-day reports. Apollo Speciality Hospitals, Nellore."
   keywords:
     - "endoscopy Nellore"
     - "gastroscopy Apollo Nellore"

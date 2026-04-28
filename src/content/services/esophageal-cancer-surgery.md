@@ -91,8 +91,8 @@ closingCta:
   label: "Send your scans on WhatsApp"
   message: "Hi Dr. Reddy, I have an esophageal cancer diagnosis I'd like to discuss."
 seo:
-  title: "Esophageal Cancer Surgery in Nellore | Dr. Dwarakanath Reddy V"
-  description: "Esophagectomy with two-field lymphadenectomy in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Multidisciplinary tumour board care with neoadjuvant therapy."
+  title: "Esophageal Cancer Surgery · Dr. Dwarakanath Reddy"
+  description: "Esophagectomy with two-field lymphadenectomy. Ivor Lewis, McKeown, and transhiatal approaches. Multidisciplinary care. Apollo Speciality Hospitals, Nellore."
   keywords:
     - "esophageal cancer surgery Nellore"
     - "esophagectomy"

@@ -86,8 +86,8 @@ closingCta:
   label: "Check your eligibility on WhatsApp"
   message: "Hi Dr. Reddy, I'd like to know if I'm eligible for Gastric Bypass. My height is __, weight __, and health conditions include __."
 seo:
-  title: "Gastric Bypass Surgery in Nellore | Dr. Dwarakanath Reddy V"
-  description: "Gastric Bypass surgery in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Laparoscopic Roux-en-Y for severe obesity and Type 2 diabetes. 5.0 from 428 Google reviews."
+  title: "Gastric Bypass Surgery in Nellore · Dr. Dwarakanath Reddy"
+  description: "Laparoscopic Roux-en-Y gastric bypass for severe obesity and Type 2 diabetes. Apollo Speciality Hospitals, Nellore. 5.0 rating from 428 Google reviews."
   keywords:
     - "gastric bypass Nellore"
     - "bariatric surgery Apollo Nellore"

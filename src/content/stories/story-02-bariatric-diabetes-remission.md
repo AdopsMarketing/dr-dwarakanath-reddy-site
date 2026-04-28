@@ -1,7 +1,7 @@
 ---
-title: "35 kg down and off diabetes medication after bariatric surgery"
+title: "35 kg down and off diabetes meds after bariatric surgery"
 slug: "story-02-bariatric-diabetes-remission"
-excerpt: "A software engineer with long-standing Type 2 diabetes and BMI 42 who chose Gastric Bypass. Eighteen months later, off his diabetes medications and back to regular exercise."
+excerpt: "Software engineer with Type 2 diabetes and BMI 42 chose Gastric Bypass. Eighteen months later, off diabetes medication and back to regular exercise."
 publishedAt: "2026-03-28"
 condition: "Severe obesity with Type 2 diabetes"
 procedure: "Laparoscopic Roux-en-Y Gastric Bypass"

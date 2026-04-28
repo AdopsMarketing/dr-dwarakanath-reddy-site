@@ -88,8 +88,8 @@ closingCta:
   label: "Send your scan on WhatsApp"
   message: "Hi Dr. Reddy, I have abdominal pain and a recent scan I'd like reviewed."
 seo:
-  title: "Laparoscopic Appendix Surgery in Nellore | Dr. Dwarakanath Reddy V"
-  description: "Laparoscopic appendix removal (appendicectomy) in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Day care procedure with same-day discharge in routine cases. 24/7 emergency cover."
+  title: "Appendix Surgery in Nellore · Dr. Dwarakanath Reddy"
+  description: "Laparoscopic appendicectomy as a day-care procedure with same-day discharge in routine cases. 24/7 emergency cover. Apollo Speciality Hospitals, Nellore."
   keywords:
     - "appendix surgery Nellore"
     - "laparoscopic appendicectomy"

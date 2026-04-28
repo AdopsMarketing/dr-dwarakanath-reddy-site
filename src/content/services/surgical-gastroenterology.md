@@ -18,8 +18,8 @@ procedureType: "Consultation and surgical planning"
 phase: "1"
 order: 10
 seo:
-  title: "Surgical Gastroenterology in Nellore | Dr. Dwarakanath Reddy V"
-  description: "Surgical Gastroenterology in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. DNB super-specialist with 9+ years of focused GI surgery experience."
+  title: "Surgical Gastroenterology in Nellore · Dr. Dwarakanath Reddy"
+  description: "DNB-qualified surgical gastroenterologist with 9+ years of focused GI surgery experience. Apollo Speciality Hospitals, Nellore."
   keywords: ["surgical gastroenterologist", "GI surgeon", "digestive surgery"]
 ---
 

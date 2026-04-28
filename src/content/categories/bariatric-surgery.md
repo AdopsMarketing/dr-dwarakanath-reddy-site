@@ -38,8 +38,8 @@ closingCta:
   message: "Hi Dr. Reddy, I'd like to know if I qualify for bariatric surgery. My height is __, weight __, and health conditions include __."
 order: 60
 seo:
-  title: "Bariatric Surgery in Nellore | Dr. Dwarakanath Reddy V"
-  description: "Bariatric surgery in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Laparoscopic Gastric Bypass and Sleeve Gastrectomy with full multidisciplinary support."
+  title: "Bariatric Surgery in Nellore · Dr. Dwarakanath Reddy"
+  description: "Laparoscopic Gastric Bypass and Sleeve Gastrectomy with full multidisciplinary support. Honest patient selection. Apollo Speciality Hospitals, Nellore."
   keywords:
     - "bariatric surgery Nellore"
     - "weight loss surgery Apollo Nellore"

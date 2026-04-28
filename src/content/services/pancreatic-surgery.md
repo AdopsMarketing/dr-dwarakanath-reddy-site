@@ -72,8 +72,8 @@ closingCta:
   label: "Send your reports on WhatsApp"
   message: "Hi Dr. Reddy, we have a pancreatic diagnosis and would like a second opinion. Here are the reports."
 seo:
-  title: "Pancreatic Surgery in Nellore | Dr. Dwarakanath Reddy V"
-  description: "Pancreatic surgery in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Whipple procedure and distal pancreatectomy. HPB super-specialist with multidisciplinary Apollo support."
+  title: "Pancreatic Surgery in Nellore · Dr. Dwarakanath Reddy"
+  description: "Whipple procedure and distal pancreatectomy for pancreatic cancer and chronic pancreatitis. HPB super-specialist. Apollo Speciality Hospitals, Nellore."
   keywords:
     - "pancreatic surgery Nellore"
     - "Whipple procedure Apollo Nellore"

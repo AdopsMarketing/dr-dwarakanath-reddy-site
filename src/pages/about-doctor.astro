@@ -45,7 +45,7 @@ const expertise = [
 <BaseLayout
   pageType="doctor"
   doctor={doctor}
-  title={`About ${doctor.data.honorificPrefix} ${doctor.data.name}`}
+  title="About Dr. Dwarakanath Reddy · GI Surgeon, Apollo Nellore"
   description={doctor.data.seo?.description ?? `Learn about ${doctor.data.honorificPrefix} ${doctor.data.name}, ${doctor.data.title}.`}
   breadcrumbs={[
     { name: 'Home', url: new URL('/', Astro.site!).toString() },

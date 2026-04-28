@@ -93,8 +93,8 @@ closingCta:
   label: "Send your scans on WhatsApp"
   message: "Hi Dr. Reddy, I have a rectal cancer diagnosis I'd like to discuss."
 seo:
-  title: "Rectal Cancer Surgery in Nellore | Dr. Dwarakanath Reddy V"
-  description: "Rectal cancer surgery — TME, low anterior resection, and abdominoperineal resection — in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Multidisciplinary care."
+  title: "Rectal Cancer Surgery in Nellore · Dr. Dwarakanath Reddy"
+  description: "TME with sphincter preservation where possible. Low anterior resection, APR, and neoadjuvant therapy coordination. Apollo Speciality Hospitals, Nellore."
   keywords:
     - "rectal cancer surgery Nellore"
     - "TME"

@@ -73,8 +73,8 @@ closingCta:
   label: "Send your reports on WhatsApp"
   message: "Hi Dr. Reddy, I have endoscopy, biopsy, or CT reports for stomach cancer. Please review."
 seo:
-  title: "Stomach Cancer Surgery in Nellore | Dr. Dwarakanath Reddy V"
-  description: "Stomach cancer surgery (gastrectomy) in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Subtotal and total gastrectomy with D2 lymph node dissection. Apollo tumor board review."
+  title: "Stomach Cancer Surgery in Nellore · Dr. Dwarakanath Reddy"
+  description: "Subtotal and total gastrectomy with D2 lymph node dissection for gastric cancer. Apollo tumour board review. Apollo Speciality Hospitals, Nellore."
   keywords:
     - "stomach cancer surgery Nellore"
     - "gastrectomy Apollo Nellore"

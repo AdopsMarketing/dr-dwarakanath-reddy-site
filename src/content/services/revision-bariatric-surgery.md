@@ -94,8 +94,8 @@ closingCta:
   label: "Send your previous reports on WhatsApp"
   message: "Hi Dr. Reddy, I had a bariatric surgery before and would like a revision opinion."
 seo:
-  title: "Revision Bariatric Surgery in Nellore | Dr. Dwarakanath Reddy V"
-  description: "Revision and conversion of previous bariatric surgery in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Sleeve-to-bypass conversion, band removal, complication repair."
+  title: "Revision Bariatric Surgery · Dr. Dwarakanath Reddy"
+  description: "Sleeve-to-bypass conversion, gastric band removal, weight regain management, and complication repair. Apollo Speciality Hospitals, Nellore."
   keywords:
     - "revision bariatric surgery Nellore"
     - "sleeve to bypass conversion"

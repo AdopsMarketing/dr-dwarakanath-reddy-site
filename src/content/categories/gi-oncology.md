@@ -47,8 +47,8 @@ closingCta:
   message: "Hi Dr. Reddy, I have a GI cancer diagnosis and would like a second opinion. Here are the reports."
 order: 50
 seo:
-  title: "GI Oncology in Nellore | Dr. Dwarakanath Reddy V"
-  description: "GI cancer surgery in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Curative-intent surgery for stomach, colon, rectum, esophagus, liver and pancreas cancers."
+  title: "GI Oncology in Nellore · Dr. Dwarakanath Reddy"
+  description: "Curative-intent cancer surgery for stomach, colon, rectum, oesophagus, liver, and pancreas. Multidisciplinary tumour board. Apollo Nellore."
   keywords:
     - "GI oncology Nellore"
     - "cancer surgery Apollo Nellore"

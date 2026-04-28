@@ -1,7 +1,7 @@
 ---
 title: "Back to work in 5 days after gallbladder surgery"
 slug: "story-01-gallbladder-same-day"
-excerpt: "A school teacher from Nellore who had been living with recurrent gallstone attacks for eight months. Day care laparoscopic surgery and a return to classroom teaching within a week."
+excerpt: "A Nellore school teacher with eight months of recurrent gallstone attacks. Day-care laparoscopic surgery and back to classroom teaching within a week."
 publishedAt: "2026-04-02"
 condition: "Symptomatic gallstones"
 procedure: "Laparoscopic cholecystectomy"

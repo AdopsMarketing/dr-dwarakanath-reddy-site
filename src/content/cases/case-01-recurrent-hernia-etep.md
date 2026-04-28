@@ -2,7 +2,7 @@
 title: "Case 01: Recurrent ventral hernia managed with eTEP repair"
 slug: "case-01-recurrent-hernia-etep"
 caseNumber: "01"
-excerpt: "A 52-year-old gentleman with a twice-recurrent midline ventral hernia, managed with extended totally extra-peritoneal (eTEP) repair and retro-muscular mesh placement."
+excerpt: "Twice-recurrent midline ventral hernia in a 52-year-old, managed with extended totally extra-peritoneal (eTEP) repair and retro-muscular mesh."
 publishedAt: "2026-04-06"
 conditionName: "Recurrent ventral hernia"
 procedurePerformed: "eTEP hernia repair with retro-muscular mesh"

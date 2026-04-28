@@ -92,8 +92,8 @@ closingCta:
   label: "Send your reports on WhatsApp"
   message: "Hi Dr. Reddy, I have GERD or hiatus hernia and I'd like a surgical opinion."
 seo:
-  title: "Laparoscopic Anti-reflux Surgery in Nellore | Dr. Dwarakanath Reddy V"
-  description: "Laparoscopic Nissen fundoplication and hiatus hernia repair in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Long-term solution for severe GERD."
+  title: "Anti-reflux Surgery in Nellore · Dr. Dwarakanath Reddy"
+  description: "Laparoscopic Nissen fundoplication and hiatus hernia repair. Long-term solution for severe GERD unresponsive to medication. Apollo Nellore."
   keywords:
     - "anti-reflux surgery Nellore"
     - "Nissen fundoplication"

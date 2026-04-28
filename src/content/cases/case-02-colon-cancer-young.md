@@ -2,7 +2,7 @@
 title: "Case 02: Locally advanced colon cancer in a 34-year-old"
 slug: "case-02-colon-cancer-young"
 caseNumber: "02"
-excerpt: "A patient in his mid-thirties presenting with a three-month history of change in bowel habit, eventually found to have a T3 right-sided colonic tumour. Laparoscopic right hemicolectomy with D3 lymphadenectomy and an 18-month oncology follow-up."
+excerpt: "34-year-old with three months of changed bowel habit, found to have a T3 right-sided colon cancer. Laparoscopic right hemicolectomy and 18-month follow-up."
 publishedAt: "2026-04-08"
 conditionName: "Colon cancer"
 procedurePerformed: "Laparoscopic right hemicolectomy with D3 lymphadenectomy"

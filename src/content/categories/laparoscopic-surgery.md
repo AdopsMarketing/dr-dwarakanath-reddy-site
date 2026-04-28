@@ -46,8 +46,8 @@ closingCta:
   message: "Hi Dr. Reddy, I'd like to know if my condition can be treated laparoscopically. Here are my details."
 order: 20
 seo:
-  title: "Advanced Laparoscopic Surgery in Nellore | Dr. Dwarakanath Reddy V"
-  description: "Advanced minimally invasive surgery in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Laparoscopic gallbladder, hernia, eTEP, bariatric and oncology procedures."
+  title: "Laparoscopic Surgery in Nellore · Dr. Dwarakanath Reddy"
+  description: "Advanced minimally invasive surgery — laparoscopic gallbladder, hernia, eTEP, anti-reflux, and bariatric procedures. Apollo Speciality Hospitals, Nellore."
   keywords:
     - "laparoscopic surgery Nellore"
     - "keyhole surgery Apollo Nellore"

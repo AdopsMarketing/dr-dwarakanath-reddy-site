@@ -76,8 +76,8 @@ closingCta:
   label: "Send your reports on WhatsApp"
   message: "Hi Dr. Reddy, I have a colonoscopy or biopsy report for colon cancer. Please review."
 seo:
-  title: "Colon Cancer Surgery in Nellore | Dr. Dwarakanath Reddy V"
-  description: "Colon cancer surgery in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Laparoscopic hemicolectomy and sigmoidectomy where possible. Multidisciplinary Apollo tumor board."
+  title: "Colon Cancer Surgery in Nellore · Dr. Dwarakanath Reddy"
+  description: "Laparoscopic hemicolectomy and sigmoidectomy with full lymphadenectomy. Multidisciplinary tumour board care. Apollo Speciality Hospitals, Nellore."
   keywords:
     - "colon cancer surgery Nellore"
     - "colectomy Apollo Nellore"

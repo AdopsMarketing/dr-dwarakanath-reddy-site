@@ -93,8 +93,8 @@ closingCta:
   label: "Send your scans on WhatsApp"
   message: "Hi Dr. Reddy, I have a biliary scan or post-surgery complication I'd like reviewed."
 seo:
-  title: "Bile Duct Surgery in Nellore | Dr. Dwarakanath Reddy V"
-  description: "Surgery for choledochal cysts, cholangiocarcinoma, biliary strictures, and bile duct injury repair in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals."
+  title: "Bile Duct Surgery in Nellore · Dr. Dwarakanath Reddy"
+  description: "Surgery for choledochal cysts, cholangiocarcinoma, biliary strictures, and bile duct injury repair. Apollo Speciality Hospitals, Nellore."
   keywords:
     - "bile duct surgery Nellore"
     - "choledochal cyst"

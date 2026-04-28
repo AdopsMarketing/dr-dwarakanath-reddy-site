@@ -80,8 +80,8 @@ closingCta:
   label: "Book a colonoscopy on WhatsApp"
   message: "Hi Dr. Reddy, I'd like to book a colonoscopy. Here are my age, symptoms, and family history."
 seo:
-  title: "Colonoscopy in Nellore | Dr. Dwarakanath Reddy V"
-  description: "Screening and diagnostic colonoscopy in Nellore by Dr. Dwarakanath Reddy at Apollo Speciality Hospitals. Painless day-care procedure with polyp removal if needed."
+  title: "Colonoscopy in Nellore · Dr. Dwarakanath Reddy"
+  description: "Screening and diagnostic colonoscopy. Painless day-care procedure with polyp removal if needed. Apollo Speciality Hospitals, Nellore."
   keywords:
     - "colonoscopy Nellore"
     - "colon screening Apollo Nellore"

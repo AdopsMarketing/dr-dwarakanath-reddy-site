@@ -1,7 +1,7 @@
 ---
 title: "A second chance after a twice-recurrent hernia"
 slug: "story-03-complex-hernia-recovery"
-excerpt: "Two failed hernia repairs over five years. An eTEP procedure at Apollo Nellore, and a return to daily life without the constant worry of another recurrence."
+excerpt: "Two failed hernia repairs over five years. An eTEP procedure at Apollo Nellore, and a return to daily life without the worry of another recurrence."
 publishedAt: "2026-03-24"
 condition: "Recurrent midline ventral hernia"
 procedure: "eTEP hernia repair with retro-muscular mesh"
