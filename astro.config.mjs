@@ -2,15 +2,19 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import icon from 'astro-icon';
 import vercel from '@astrojs/vercel';
+import react from '@astrojs/react';
+import keystatic from '@keystatic/astro';
 
 export default defineConfig({
   site: 'https://drdwarakanathreddy.com',
+  // Static by default. Keystatic admin and the contact API opt into SSR via `prerender = false`.
   output: 'static',
   adapter: vercel({
     webAnalytics: { enabled: false },
     imageService: false,
   }),
-  integrations: [icon()],
+  // React is required by Keystatic; scoped to /keystatic via include.
+  integrations: [icon(), react({ include: ['**/keystatic/**'] }), keystatic()],
   // Permanent (301) redirects for legacy short-form category URLs.
   // Procedure URLs were originally /gi-services/{shortname}/{slug} but the
   // category landing page used the long form (e.g. /gi-services/laparoscopic-surgery),

@@ -1,7 +1,12 @@
 # Pre-launch: block all crawlers until Dr. Reddy signs off on content.
-# When going live, replace the contents of this file with:
-#   User-agent: *
-#   Allow: /
-#   Sitemap: https://drdwarakanathreddy.com/sitemap.xml
+# When going live, replace the contents of this file with the LIVE block below.
 User-agent: *
 Disallow: /
+
+# === LIVE block (uncomment when launching, remove the pre-launch block above) ===
+# User-agent: *
+# Allow: /
+# Disallow: /keystatic
+# Disallow: /api/keystatic
+# Disallow: /api/contact
+# Sitemap: https://drdwarakanathreddy.com/sitemap.xml
