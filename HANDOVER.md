@@ -189,11 +189,16 @@ Required Vercel environment variables:
 
 ## 7. Going live checklist
 
+**🔴 BLOCKER — must resolve before lifting noindex:**
+- [ ] **Lock down `/keystatic`** — currently unprotected on live domain (anyone with the URL can edit content). Pick ONE:
+  - **A) Set Keystatic GitHub mode env vars** (see section 3) — proper OAuth, only repo collaborators can edit
+  - **B) Disable Keystatic in production** — agency-edit-only workflow; ask the dev to add a `process.env.NODE_ENV !== 'production'` guard around the `keystatic()` integration in `astro.config.mjs`
+
+**Standard launch steps:**
 - [ ] Replace `public/robots.txt` pre-launch block with the LIVE block (already in the file as a comment)
 - [ ] Remove `<meta name="robots" content="noindex, nofollow" />` from `src/layouts/BaseLayout.astro` (lines 102-103)
 - [ ] Verify `astro.config.mjs` `site:` is the final domain (currently `https://gastrosurgeonnellore.com`)
-- [ ] Set `RESEND_API_KEY` in Vercel production env
-- [ ] Set Keystatic GitHub mode env vars (see section 3)
+- [ ] Set `RESEND_API_KEY` in Vercel production env (for contact form)
 - [ ] Submit `https://gastrosurgeonnellore.com/sitemap-index.xml` to Google Search Console
 - [ ] Submit to Bing Webmaster Tools
 - [ ] Verify Google Business Profile is linked from organization `sameAs`
