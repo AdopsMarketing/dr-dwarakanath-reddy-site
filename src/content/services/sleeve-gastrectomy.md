@@ -18,6 +18,12 @@ medicalSpecialty:
   - "Surgical Gastroenterology"
 phase: "1"
 order: 61
+relatedConditions:
+  - "obesity"
+sameAs:
+  - "https://en.wikipedia.org/wiki/Sleeve_gastrectomy"
+  - "https://en.wikipedia.org/wiki/Bariatric_surgery"
+  - "https://www.wikidata.org/wiki/Q3955395"
 heroIntro: "Sleeve Gastrectomy is the most commonly performed bariatric procedure worldwide. It is technically simpler than Gastric Bypass, has fewer long term nutritional concerns, and produces strong weight loss in most patients."
 heroCta:
   label: "Check your eligibility on WhatsApp"

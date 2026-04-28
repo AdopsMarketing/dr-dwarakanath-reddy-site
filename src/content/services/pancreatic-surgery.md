@@ -18,6 +18,11 @@ medicalSpecialty:
   - "Surgical Oncology"
 phase: "1"
 order: 31
+relatedConditions:
+  - "pancreatic-cancer"
+sameAs:
+  - "https://en.wikipedia.org/wiki/Pancreaticoduodenectomy"
+  - "https://www.wikidata.org/wiki/Q1499942"
 heroIntro: "Pancreatic surgery is one of the most complex areas of GI surgery. Outcomes depend heavily on surgeon experience and hospital infrastructure. Dr. Reddy performs major pancreatic resections at Apollo Speciality Hospitals, Nellore."
 heroCta:
   label: "Send your scans on WhatsApp"

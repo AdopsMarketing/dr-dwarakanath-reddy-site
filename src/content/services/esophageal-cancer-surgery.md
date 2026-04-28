@@ -19,6 +19,12 @@ medicalSpecialty:
   - "Upper GI Surgery"
 phase: "1"
 order: 85
+relatedConditions:
+  - "esophageal-cancer"
+sameAs:
+  - "https://en.wikipedia.org/wiki/Esophagectomy"
+  - "https://en.wikipedia.org/wiki/Esophageal_cancer"
+  - "https://www.wikidata.org/wiki/Q1361226"
 heroIntro: "Esophageal cancer surgery is one of the most demanding GI cancer operations. Outcomes depend on careful patient selection, neoadjuvant therapy where indicated, and the experience of the operating team. Dr. Dwarakanath Reddy performs esophagectomy with two-field lymphadenectomy at Apollo Speciality Hospitals, Nellore, with multidisciplinary tumour-board planning on every case."
 heroCta:
   label: "Send your scans on WhatsApp"

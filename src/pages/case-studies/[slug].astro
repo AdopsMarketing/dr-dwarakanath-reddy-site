@@ -29,6 +29,7 @@ const nextCase = all[(idx + 1) % all.length];
   title={entry.data.title}
   excerpt={entry.data.excerpt}
   publishedAt={entry.data.publishedAt}
+  article={{ kind: 'case', entry }}
   breadcrumbs={[
     { name: 'Home', url: toAbs('/') },
     { name: 'Interesting Cases', url: toAbs('/case-studies') },

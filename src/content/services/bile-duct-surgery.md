@@ -19,6 +19,10 @@ medicalSpecialty:
   - "Surgical Oncology (GI)"
 phase: "1"
 order: 70
+sameAs:
+  - "https://en.wikipedia.org/wiki/Common_bile_duct"
+  - "https://en.wikipedia.org/wiki/Cholangiocarcinoma"
+  - "https://en.wikipedia.org/wiki/Choledochal_cyst"
 heroIntro: "The bile ducts are a delicate system carrying bile from the liver to the intestine. Surgery on the bile ducts demands meticulous technique and HPB expertise. Dr. Dwarakanath Reddy performs choledochal cyst excision, cholangiocarcinoma resection, biliary stricture repair, and bile duct injury reconstruction at Apollo Speciality Hospitals, Nellore."
 heroCta:
   label: "Send your scans on WhatsApp"

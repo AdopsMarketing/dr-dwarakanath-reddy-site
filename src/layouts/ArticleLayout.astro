@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Eyebrow from '@/components/Eyebrow.astro';
+import type { ArticleInput } from '@/lib/schema';
 
 interface Props {
   eyebrow: string;                  // e.g. "Blog", "Case 02"
@@ -13,9 +14,12 @@ interface Props {
   reviewedBy?: string;
   breadcrumbs: Array<{ name: string; url: string }>;
   canonicalPath?: string;
-  pageType?: 'generic' | 'service' | 'location' | 'condition' | 'doctor';
+  /**
+   * If provided, BaseLayout emits Article (blog) or MedicalWebPage (case|story)
+   * JSON-LD with proper author/publisher/about/mentions wiring.
+   */
+  article?: ArticleInput;
   serviceLink?: { href: string; label: string };
-  schemaType?: 'Article' | 'MedicalWebPage';
   relatedHeading?: string;
 }
 
@@ -30,10 +34,13 @@ const {
   reviewedBy,
   breadcrumbs,
   canonicalPath,
-  pageType = 'generic',
+  article,
   serviceLink,
   relatedHeading = 'Related reading',
 } = Astro.props;
+
+// Derive page type from article kind so BaseLayout knows to build Article schema.
+const pageType = article ? 'article' : 'generic';
 
 const formatDate = (iso: string) => {
   try {
@@ -55,6 +62,7 @@ const formatDate = (iso: string) => {
   description={excerpt ?? title}
   breadcrumbs={breadcrumbs}
   canonicalPath={canonicalPath}
+  article={article}
 >
   <article>
     <!-- HERO -->

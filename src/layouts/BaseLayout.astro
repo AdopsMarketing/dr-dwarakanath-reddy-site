@@ -6,7 +6,7 @@ import FloatingWhatsApp from '@/components/FloatingWhatsApp.astro';
 import MobileBottomNav from '@/components/MobileBottomNav.astro';
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
-import { buildPageGraph, type PageType } from '@/lib/schema';
+import { buildPageGraph, type PageType, type ArticleInput } from '@/lib/schema';
 
 interface Props {
   title: string;
@@ -19,6 +19,7 @@ interface Props {
   condition?: CollectionEntry<'conditions'>;
   location?: CollectionEntry<'locations'>;
   doctor?: CollectionEntry<'doctors'>;
+  article?: ArticleInput;
   faq?: Array<{ question: string; answer: string }>;
 }
 
@@ -33,6 +34,7 @@ const {
   condition,
   location,
   doctor,
+  article,
   faq,
 } = Astro.props;
 
@@ -48,6 +50,7 @@ const [org] = await getCollection('organization');
 const allDoctors = await getCollection('doctors');
 const allLocations = await getCollection('locations');
 const allServices = await getCollection('services');
+const allConditions = await getCollection('conditions');
 const primaryDoctor =
   allDoctors.find((d) => d.data.isPrimary) ?? allDoctors[0];
 const primaryLocation =
@@ -75,10 +78,12 @@ const graph = buildPageGraph({
   primaryLocation,
   allLocations,
   allServices,
+  allConditions,
   service,
   condition,
   location,
   doctor,
+  article,
   faq,
 });
 

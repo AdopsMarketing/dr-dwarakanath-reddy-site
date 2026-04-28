@@ -16,6 +16,14 @@ type Doctor = CollectionEntry<'doctors'>;
 type Location = CollectionEntry<'locations'>;
 type Service = CollectionEntry<'services'>;
 type Condition = CollectionEntry<'conditions'>;
+type Blog = CollectionEntry<'blogs'>;
+type Case = CollectionEntry<'cases'>;
+type Story = CollectionEntry<'stories'>;
+
+export type ArticleInput =
+  | { kind: 'blog'; entry: Blog }
+  | { kind: 'case'; entry: Case }
+  | { kind: 'story'; entry: Story };
 
 // -----------------------------------------------------------------------------
 // @id helpers
@@ -30,7 +38,10 @@ export const ids = {
   condition: (origin: string, slug: string) => `${origin}/#condition-${slug}`,
   webPage: (pageUrl: string) => `${pageUrl}#webpage`,
   breadcrumb: (pageUrl: string) => `${pageUrl}#breadcrumb`,
+  article: (pageUrl: string) => `${pageUrl}#article`,
 };
+
+const SITE_LANG = 'en-IN';
 
 export function ref(id: string) {
   return { '@id': id };
@@ -104,8 +115,18 @@ export function organizationNode(opts: {
     alternateName: d.alternateName,
     description: d.description,
     url: origin,
-    logo: d.logo ? absolute(origin, d.logo) : undefined,
-    image: d.image ? absolute(origin, d.image) : undefined,
+    logo: d.logo
+      ? {
+          '@type': 'ImageObject',
+          url: absolute(origin, d.logo),
+        }
+      : undefined,
+    image: d.image
+      ? {
+          '@type': 'ImageObject',
+          url: absolute(origin, d.image),
+        }
+      : undefined,
     foundingDate: d.foundingDate,
     knowsLanguage: d.knowsLanguage,
     email: d.email,
@@ -116,14 +137,13 @@ export function organizationNode(opts: {
       name: place.name,
       sameAs: place.sameAs,
     })),
-    address: buildPostalAddress({
-      streetAddress: '',
+    // addressLocality is a plain string (per schema.org spec); the City entity
+    // with its sameAs lives in `areaServed` above.
+    address: {
+      '@type': 'PostalAddress',
       addressLocality: primaryCityName,
-      addressRegion: '',
-      postalCode: '',
       addressCountry: 'IN',
-      citySameAs: findCitySameAs(d.areaServed, primaryCityName),
-    }),
+    },
     founder: ref(founderId),
     employee: employeeIds.map(ref),
     location: clinicIds.map(ref),
@@ -139,8 +159,10 @@ export function physicianNode(opts: {
   doctor: Doctor;
   orgId: string;
   clinicIds: string[];
+  procedureIds?: string[];
+  conditionIdMap?: Record<string, string>; // wikipedia URL → condition @id
 }) {
-  const { origin, doctor, orgId, clinicIds } = opts;
+  const { origin, doctor, orgId, clinicIds, procedureIds = [], conditionIdMap = {} } = opts;
   const d = doctor.data;
 
   const aggregateRating = d.googleRating
@@ -153,6 +175,19 @@ export function physicianNode(opts: {
       }
     : undefined;
 
+  // Prefer @id reference when a built MedicalCondition page exists for the topic,
+  // otherwise fall back to inline MedicalCondition with sameAs anchoring.
+  const knowsAbout = d.knowsAbout.map((k) => {
+    const wikipediaMatch = k.sameAs.find((u) => /wikipedia\.org/.test(u));
+    const refId = wikipediaMatch ? conditionIdMap[wikipediaMatch] : undefined;
+    if (refId) return ref(refId);
+    return {
+      '@type': 'MedicalCondition',
+      name: k.name,
+      sameAs: k.sameAs,
+    };
+  });
+
   return {
     '@type': 'Physician',
     '@id': ids.physician(origin, d.entityKey),
@@ -160,7 +195,13 @@ export function physicianNode(opts: {
     honorificPrefix: d.honorificPrefix,
     jobTitle: d.title,
     description: d.seo?.description,
-    image: d.image ? absolute(origin, d.image) : undefined,
+    image: d.image
+      ? {
+          '@type': 'ImageObject',
+          url: absolute(origin, d.image),
+          caption: `${d.honorificPrefix} ${d.name}, ${d.title ?? ''}`.trim(),
+        }
+      : undefined,
     medicalSpecialty: d.medicalSpecialty,
     knowsLanguage: d.languages,
     alumniOf: d.alumniOf.map((a) => ({
@@ -181,11 +222,7 @@ export function physicianNode(opts: {
           }
         : undefined,
     })),
-    knowsAbout: d.knowsAbout.map((k) => ({
-      '@type': 'MedicalCondition',
-      name: k.name,
-      sameAs: k.sameAs,
-    })),
+    knowsAbout,
     memberOf: d.memberOf.map((m) => ({
       '@type': 'Organization',
       name: m.name,
@@ -213,6 +250,8 @@ export function physicianNode(opts: {
       : undefined,
     worksFor: ref(orgId),
     workLocation: clinicIds.map(ref),
+    // Bidirectional Physician → Procedure link (procedures already link back via `performer`).
+    availableService: procedureIds.length > 0 ? procedureIds.map(ref) : undefined,
     aggregateRating,
     sameAs: d.sameAs,
   };
@@ -268,11 +307,21 @@ export function medicalProcedureNode(opts: {
   const { origin, service, physicianId, orgId, treatsConditionIds } = opts;
   const d = service.data;
 
-  const indicationsItems = d.indications;
-  const indicationsFromSections = d.sections
-    .filter((s): s is Extract<typeof s, { type: 'list' }> => s.type === 'list' && /who needs|who qualifies/i.test(s.title))
+  // Indication = the conditions that warrant this procedure.
+  // Prefer @id refs to MedicalCondition pages where they exist; fall back to inline
+  // MedicalIndication entities for the indication strings in frontmatter sections
+  // (e.g., "Symptomatic gallstones", "Acute cholecystitis").
+  const sectionIndications = d.sections
+    .filter((s): s is Extract<typeof s, { type: 'list' }> => s.type === 'list' && /who needs|who qualifies|indication/i.test(s.title))
     .flatMap((s) => s.items);
-  const preparation = [...indicationsItems, ...indicationsFromSections].join('; ') || undefined;
+  const inlineIndications = [...d.indications, ...sectionIndications].map((text) => ({
+    '@type': 'MedicalIndication',
+    name: text,
+  }));
+
+  const indication = treatsConditionIds.length > 0
+    ? treatsConditionIds.map((cid) => ref(cid))
+    : (inlineIndications.length > 0 ? inlineIndications : undefined);
 
   return {
     '@type': 'MedicalProcedure',
@@ -283,17 +332,59 @@ export function medicalProcedureNode(opts: {
     procedureType: d.procedureType,
     bodyLocation: d.bodyLocation,
     howPerformed: d.approach,
-    preparation,
     followup: d.recoveryTime,
     performer: ref(physicianId),
     availableService: ref(orgId),
     relevantSpecialty: d.medicalSpecialty[0] ?? 'Surgical Gastroenterology',
-    indication: treatsConditionIds.map((cid) => ({
-      '@type': 'MedicalCondition',
-      ...ref(cid),
-    })),
+    indication,
     sameAs: d.sameAs,
   };
+}
+
+export function articleNode(opts: {
+  origin: string;
+  pageUrl: string;
+  article: ArticleInput;
+  authorId: string;
+  publisherId: string;
+  aboutConditionIds?: string[];
+  mentionsProcedureIds?: string[];
+}) {
+  const { origin, pageUrl, article, authorId, publisherId, aboutConditionIds = [], mentionsProcedureIds = [] } = opts;
+  const data = article.entry.data;
+
+  // Cases and stories are clinical content → MedicalWebPage. Blogs are general
+  // patient-education articles → Article. (Both are valid Article-derived types.)
+  const type = article.kind === 'blog' ? 'Article' : 'MedicalWebPage';
+  const datePublished = data.publishedAt;
+  const dateModified = ('updatedAt' in data ? data.updatedAt : undefined) ?? data.publishedAt;
+
+  // Estimate word count for the body. Cheap heuristic; gives Google a useful signal.
+  const headline = data.title;
+  const description = data.excerpt;
+
+  const about = aboutConditionIds.map(ref);
+  const mentions = mentionsProcedureIds.map(ref);
+
+  return stripUndefined({
+    '@type': type,
+    '@id': ids.article(pageUrl),
+    headline,
+    description,
+    url: pageUrl,
+    inLanguage: SITE_LANG,
+    datePublished,
+    dateModified,
+    author: ref(authorId),
+    publisher: ref(publisherId),
+    mainEntityOfPage: { '@id': ids.webPage(pageUrl) },
+    about: about.length > 0 ? about : undefined,
+    mentions: mentions.length > 0 ? mentions : undefined,
+    image: {
+      '@type': 'ImageObject',
+      url: `${origin}/og-image.jpg`,
+    },
+  });
 }
 
 export function faqPageFromService(opts: { pageUrl: string; service: Service }) {
@@ -363,7 +454,7 @@ export function webSiteNode(opts: { origin: string; org: Organization }) {
     url: origin,
     name: org.data.name,
     description: org.data.description,
-    inLanguage: org.data.knowsLanguage.length ? org.data.knowsLanguage[0] : 'en',
+    inLanguage: SITE_LANG,
     publisher: ref(ids.organization(origin)),
   };
 }
@@ -375,9 +466,15 @@ export function webPageNode(opts: {
   breadcrumbId: string;
   primaryEntityId?: string;
   websiteId: string;
+  primaryImageUrl?: string;
+  datePublished?: string;
+  dateModified?: string;
   inLanguage?: string;
 }) {
-  const { pageUrl, title, description, breadcrumbId, primaryEntityId, websiteId, inLanguage } = opts;
+  const {
+    pageUrl, title, description, breadcrumbId, primaryEntityId, websiteId,
+    primaryImageUrl, datePublished, dateModified, inLanguage,
+  } = opts;
   return {
     '@type': 'WebPage',
     '@id': ids.webPage(pageUrl),
@@ -387,7 +484,12 @@ export function webPageNode(opts: {
     isPartOf: ref(websiteId),
     breadcrumb: ref(breadcrumbId),
     mainEntity: primaryEntityId ? ref(primaryEntityId) : undefined,
-    inLanguage: inLanguage ?? 'en',
+    primaryImageOfPage: primaryImageUrl
+      ? { '@type': 'ImageObject', url: primaryImageUrl }
+      : undefined,
+    datePublished,
+    dateModified,
+    inLanguage: inLanguage ?? SITE_LANG,
   };
 }
 
@@ -416,6 +518,11 @@ export function faqPageNode(opts: {
   return {
     '@type': 'FAQPage',
     '@id': `${pageUrl}#faqpage`,
+    inLanguage: SITE_LANG,
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['details.faq summary', 'details.faq .faq-body'],
+    },
     mainEntity: questions.map((q) => ({
       '@type': 'Question',
       name: q.question,
@@ -438,6 +545,7 @@ export type PageType =
   | 'condition'
   | 'location'
   | 'faq'
+  | 'article'
   | 'generic';
 
 export interface PageGraphInput {
@@ -453,10 +561,12 @@ export interface PageGraphInput {
   primaryLocation: Location;
   allLocations: Location[];
   allServices: Service[];
+  allConditions?: Condition[];
   service?: Service;
   condition?: Condition;
   location?: Location;
   doctor?: Doctor;
+  article?: ArticleInput;
   faq?: Array<{ question: string; answer: string }>;
 }
 
@@ -467,6 +577,17 @@ export function buildPageGraph(input: PageGraphInput) {
   const orgId = ids.organization(origin);
   const websiteId = ids.website(origin);
   const breadcrumbId = ids.breadcrumb(input.pageUrl);
+  const primaryPhysicianId = ids.physician(origin, input.primaryDoctor.data.entityKey);
+
+  // Build a Wikipedia-URL → MedicalCondition @id map so Physician.knowsAbout
+  // can link to real condition entities by id (Gondi: prefer @id refs over inline).
+  const conditionIdMap: Record<string, string> = {};
+  for (const c of input.allConditions ?? []) {
+    const cid = ids.condition(origin, c.data.slug);
+    for (const url of c.data.sameAs ?? []) {
+      if (/wikipedia\.org/.test(url)) conditionIdMap[url] = cid;
+    }
+  }
 
   // Always: WebSite + BreadcrumbList + WebPage
   nodes.push(webSiteNode({ origin, org: input.org }));
@@ -479,7 +600,7 @@ export function buildPageGraph(input: PageGraphInput) {
     // Full org; Physician + Clinic appear only as refs
     const clinicIds = input.allLocations.map((l) => ids.clinic(origin, l.data.entityKey));
     const employeeIds = input.allDoctors.map((d) => ids.physician(origin, d.data.entityKey));
-    const founderId = ids.physician(origin, input.primaryDoctor.data.entityKey);
+    const founderId = primaryPhysicianId;
 
     const offerIds = (input.org.data.offers ?? []).flatMap((ref) => {
       const service = input.allServices.find((s) => s.id === ref.id || s.data.slug === ref.id);
@@ -507,12 +628,16 @@ export function buildPageGraph(input: PageGraphInput) {
     primaryEntityId = orgId;
   } else if (input.pageType === 'doctor' && input.doctor) {
     const clinicIds = input.allLocations.map((l) => ids.clinic(origin, l.data.entityKey));
+    // Bidirectional Physician → Procedure: list every shipped service procedure.
+    const procedureIds = input.allServices.map((s) => ids.procedure(origin, s.data.slug));
     nodes.push(
       physicianNode({
         origin,
         doctor: input.doctor,
         orgId,
         clinicIds,
+        procedureIds,
+        conditionIdMap,
       })
     );
     primaryEntityId = ids.physician(origin, input.doctor.data.entityKey);
@@ -558,6 +683,36 @@ export function buildPageGraph(input: PageGraphInput) {
       })
     );
     primaryEntityId = ids.clinic(origin, input.location.data.entityKey);
+  } else if (input.pageType === 'article' && input.article) {
+    // Resolve relatedService → MedicalProcedure @id (and infer condition refs from
+    // that procedure's `relatedConditions`, if any).
+    const data = input.article.entry.data;
+    let mentionsProcedureIds: string[] = [];
+    let aboutConditionIds: string[] = [];
+    const relatedServicePath = ('relatedService' in data ? data.relatedService : undefined) as string | undefined;
+    if (relatedServicePath) {
+      const slug = relatedServicePath.split('/').filter(Boolean).pop();
+      const matched = input.allServices.find((s) => s.data.slug === slug);
+      if (matched) {
+        mentionsProcedureIds = [ids.procedure(origin, matched.data.slug)];
+        aboutConditionIds = matched.data.relatedConditions
+          .map((c) => (typeof c === 'string' ? c : c.id))
+          .map((cid) => ids.condition(origin, cid));
+      }
+    }
+
+    nodes.push(
+      articleNode({
+        origin,
+        pageUrl: input.pageUrl,
+        article: input.article,
+        authorId: primaryPhysicianId,
+        publisherId: orgId,
+        aboutConditionIds,
+        mentionsProcedureIds,
+      })
+    );
+    primaryEntityId = ids.article(input.pageUrl);
   }
 
   if (input.faq && input.faq.length > 0) {
@@ -565,6 +720,16 @@ export function buildPageGraph(input: PageGraphInput) {
     if (input.pageType === 'faq') {
       primaryEntityId = `${input.pageUrl}#faqpage`;
     }
+  }
+
+  // For article pages, propagate the article's dates onto WebPage too.
+  let webPageDates: { datePublished?: string; dateModified?: string } = {};
+  if (input.pageType === 'article' && input.article) {
+    const data = input.article.entry.data;
+    webPageDates = {
+      datePublished: data.publishedAt,
+      dateModified: ('updatedAt' in data ? data.updatedAt : undefined) ?? data.publishedAt,
+    };
   }
 
   nodes.push(
@@ -575,6 +740,7 @@ export function buildPageGraph(input: PageGraphInput) {
       breadcrumbId,
       primaryEntityId,
       websiteId,
+      ...webPageDates,
     })
   );
 

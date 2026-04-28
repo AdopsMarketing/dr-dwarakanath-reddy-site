@@ -18,6 +18,12 @@ medicalSpecialty:
   - "Surgical Gastroenterology"
 phase: "1"
 order: 41
+relatedConditions:
+  - "colorectal-cancer"
+sameAs:
+  - "https://en.wikipedia.org/wiki/Colectomy"
+  - "https://en.wikipedia.org/wiki/Colorectal_cancer"
+  - "https://www.wikidata.org/wiki/Q838335"
 heroIntro: "Most colon cancers, when caught at a treatable stage, can be cured with surgery. Dr. Reddy performs laparoscopic and open colon cancer surgery at Apollo Speciality Hospitals, Nellore, with full multidisciplinary cancer care."
 heroCta:
   label: "Send your reports on WhatsApp"

@@ -1,0 +1,155 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
+import ExploreLink from '@/components/ExploreLink.astro';
+import WhatsAppContextCTA from '@/components/WhatsAppContextCTA.astro';
+import { getCollection, render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  const conditions = await getCollection('conditions');
+  return conditions.map((c) => ({
+    params: { slug: c.data.slug },
+    props: { entry: c },
+  }));
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+
+// Resolve possibleTreatment refs to their service entries for display links.
+const allServices = await getCollection('services');
+const treatments = d.possibleTreatment
+  .map((t) => {
+    const slug = typeof t === 'string' ? t : t.id;
+    return allServices.find((s) => s.data.slug === slug);
+  })
+  .filter((s): s is NonNullable<typeof s> => !!s);
+
+// Build category-aware procedure URLs (matches the /gi-services/[category]/[slug] pattern)
+const categorySegment: Record<string, string> = {
+  laparoscopic: 'laparoscopic-surgery',
+  hpb: 'hpb-surgery',
+  oncology: 'gi-oncology',
+  bariatric: 'bariatric-surgery',
+  'upper-gi': 'upper-gi-surgery',
+};
+const procedureUrl = (s: typeof allServices[number]) => {
+  const seg = categorySegment[s.data.category];
+  return seg ? `/gi-services/${seg}/${s.data.slug}` : `/gi-services/${s.data.slug}`;
+};
+---
+
+<BaseLayout
+  pageType="condition"
+  condition={entry}
+  title={`${d.title} · Apollo Nellore`}
+  description={d.seo?.description ?? d.shortDescription}
+  breadcrumbs={[
+    { name: 'Home', url: new URL('/', Astro.site!).toString() },
+    { name: 'Conditions', url: new URL('/conditions', Astro.site!).toString() },
+    { name: d.title, url: new URL(`/conditions/${d.slug}`, Astro.site!).toString() },
+  ]}
+>
+  <!-- HERO -->
+  <section class="bg-paper-1">
+    <div class="site-container py-14 lg:py-24">
+      <nav class="fig-label mb-8" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-ink">Home</a>
+        <span class="mx-2">·</span>
+        <a href="/conditions" class="hover:text-ink">Conditions</a>
+        <span class="mx-2">·</span>
+        <span class="text-ink">{d.title}</span>
+      </nav>
+
+      <Eyebrow>Condition</Eyebrow>
+      <h1 class="mt-6 font-display text-[40px] md:text-[56px] lg:text-[68px] leading-[1.02] tracking-tight text-ink max-w-[20ch]">
+        {d.title}
+      </h1>
+      {d.alternateName.length > 0 && (
+        <p class="mt-4 mono-caps text-ink-muted">Also known as: {d.alternateName.join(' · ')}</p>
+      )}
+      <p class="mt-8 text-lg text-ink-soft leading-relaxed max-w-[60ch]">
+        {d.shortDescription}
+      </p>
+    </div>
+  </section>
+
+  <!-- SIGNS / RISK FACTORS -->
+  {(d.signOrSymptom.length > 0 || d.riskFactor.length > 0) && (
+    <section class="bg-paper-2 border-y border-paper-3">
+      <div class="site-container py-16 lg:py-20 grid lg:grid-cols-2 gap-12">
+        {d.signOrSymptom.length > 0 && (
+          <div>
+            <Eyebrow>Signs and symptoms</Eyebrow>
+            <h2 class="mt-5 font-display text-[28px] lg:text-[36px] text-ink max-w-[20ch]">When to suspect <em>{d.title.toLowerCase()}</em></h2>
+            <div class="mt-6 w-10 h-px bg-accent"></div>
+            <ul class="mt-8 space-y-3">
+              {d.signOrSymptom.map((s) => (
+                <li class="flex items-start gap-3 text-ink-soft">
+                  <span class="mt-2 w-1.5 h-1.5 bg-accent shrink-0"></span>
+                  <span>{s}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        {d.riskFactor.length > 0 && (
+          <div>
+            <Eyebrow>Risk factors</Eyebrow>
+            <h2 class="mt-5 font-display text-[28px] lg:text-[36px] text-ink max-w-[20ch]">Who is at <em>higher risk</em></h2>
+            <div class="mt-6 w-10 h-px bg-accent"></div>
+            <ul class="mt-8 space-y-3">
+              {d.riskFactor.map((r) => (
+                <li class="flex items-start gap-3 text-ink-soft">
+                  <span class="mt-2 w-1.5 h-1.5 bg-accent shrink-0"></span>
+                  <span>{r}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </section>
+  )}
+
+  <!-- BODY (markdown content) -->
+  <section class="bg-paper-1">
+    <div class="prose-container py-16 lg:py-20 article-body">
+      <Content />
+    </div>
+  </section>
+
+  <!-- TREATMENT OPTIONS -->
+  {treatments.length > 0 && (
+    <section class="bg-paper-2 border-y border-paper-3">
+      <div class="site-container py-16 lg:py-20">
+        <Eyebrow>Surgical treatment options</Eyebrow>
+        <h2 class="mt-5 font-display text-[28px] lg:text-[40px] text-ink max-w-[24ch]">
+          Procedures Dr. Reddy <em>performs</em> for {d.title.toLowerCase()}
+        </h2>
+        <div class="mt-6 w-10 h-px bg-accent"></div>
+        <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {treatments.map((s) => (
+            <article class="bg-paper-1 border border-paper-3 rounded-sm p-6">
+              <p class="mono-caps text-ink-muted">{s.data.procedureType ?? s.data.category}</p>
+              <h3 class="mt-3 font-display text-xl text-ink leading-snug">{s.data.h1 ?? s.data.title}</h3>
+              <p class="mt-3 text-sm text-ink-soft leading-relaxed">{s.data.shortDescription}</p>
+              <div class="mt-5 pt-4 border-t border-paper-3">
+                <a href={procedureUrl(s)} class="text-sm text-accent hover:underline">Read more →</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <WhatsAppContextCTA
+    eyebrow="Discuss your case"
+    prompt={`Have a diagnosis of ${d.title.toLowerCase()} or related symptoms? Send your reports for a <em>review</em>.`}
+    label="Send your reports on WhatsApp"
+    message={`Hi Dr. Reddy, I have a ${d.title} concern and I'd like a review.`}
+  />
+</BaseLayout>

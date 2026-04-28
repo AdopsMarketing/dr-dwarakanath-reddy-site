@@ -17,6 +17,9 @@ indications:
 procedureType: "Consultation and surgical planning"
 phase: "1"
 order: 10
+sameAs:
+  - "https://en.wikipedia.org/wiki/Hepato-Pancreato-Biliary_surgery"
+  - "https://en.wikipedia.org/wiki/General_surgery"
 seo:
   title: "Surgical Gastroenterology in Nellore · Dr. Dwarakanath Reddy"
   description: "DNB-qualified surgical gastroenterologist with 9+ years of focused GI surgery experience. Apollo Speciality Hospitals, Nellore."

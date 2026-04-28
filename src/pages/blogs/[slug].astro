@@ -31,6 +31,7 @@ const related = (await getCollection('blogs'))
   updatedAt={post.data.updatedAt}
   author={post.data.author}
   reviewedBy={post.data.reviewedBy}
+  article={{ kind: 'blog', entry: post }}
   breadcrumbs={[
     { name: 'Home', url: toAbs('/') },
     { name: 'Blog', url: toAbs('/blogs') },

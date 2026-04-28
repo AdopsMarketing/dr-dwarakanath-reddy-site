@@ -18,6 +18,11 @@ medicalSpecialty:
   - "Laparoscopic Surgery"
 phase: "1"
 order: 21
+relatedConditions:
+  - "hernia"
+sameAs:
+  - "https://en.wikipedia.org/wiki/Hernia_repair"
+  - "https://www.wikidata.org/wiki/Q1066395"
 heroIntro: "A hernia does not heal on its own. Untreated, it can grow, become painful, or in some cases, strangulate. Dr. Reddy offers laparoscopic hernia repair using world standard techniques, including the advanced eTEP approach for complex cases."
 heroCta:
   label: "Send your scan on WhatsApp"

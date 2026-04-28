@@ -18,6 +18,12 @@ medicalSpecialty:
   - "Surgical Gastroenterology"
 phase: "1"
 order: 40
+relatedConditions:
+  - "stomach-cancer"
+sameAs:
+  - "https://en.wikipedia.org/wiki/Gastrectomy"
+  - "https://en.wikipedia.org/wiki/Stomach_cancer"
+  - "https://www.wikidata.org/wiki/Q1494687"
 heroIntro: "Surgery is the cornerstone of curative treatment for stomach cancer. The right operation, performed at the right stage, gives the best chance of long term survival. Dr. Reddy performs both open and laparoscopic gastrectomy at Apollo Nellore."
 heroCta:
   label: "Send your reports on WhatsApp"

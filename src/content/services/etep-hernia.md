@@ -18,6 +18,12 @@ medicalSpecialty:
   - "Advanced Laparoscopic Surgery"
 phase: "1"
 order: 22
+relatedConditions:
+  - "hernia"
+sameAs:
+  - "https://en.wikipedia.org/wiki/Hernia_repair"
+  - "https://en.wikipedia.org/wiki/Ventral_hernia"
+  - "https://www.wikidata.org/wiki/Q1066395"
 heroIntro: "eTEP is one of the most advanced minimally invasive techniques for complex midline and recurrent hernias. Few surgeons in Andhra Pradesh perform it routinely. Dr. Reddy is trained in eTEP and offers it for selected patients at Apollo Nellore."
 heroCta:
   label: "Discuss your case on WhatsApp"

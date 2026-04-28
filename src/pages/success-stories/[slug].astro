@@ -30,6 +30,7 @@ const nextStory = all[(idx + 1) % all.length];
   title={entry.data.title}
   excerpt={entry.data.excerpt}
   publishedAt={entry.data.publishedAt}
+  article={{ kind: 'story', entry }}
   breadcrumbs={[
     { name: 'Home', url: toAbs('/') },
     { name: 'Success Stories', url: toAbs('/success-stories') },
