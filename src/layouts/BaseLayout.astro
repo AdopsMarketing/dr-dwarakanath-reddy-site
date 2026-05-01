@@ -6,6 +6,7 @@ import FloatingWhatsApp from '@/components/FloatingWhatsApp.astro';
 import MobileBottomNav from '@/components/MobileBottomNav.astro';
 import CookieBanner from '@/components/CookieBanner.astro';
 import Analytics from '@/components/Analytics.astro';
+import VercelAnalytics from '@vercel/analytics/astro';
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import { buildPageGraph, type PageType, type ArticleInput } from '@/lib/schema';
@@ -136,5 +137,6 @@ const siteName = org.data.name;
     <MobileBottomNav />
     <CookieBanner />
     <Analytics />
+    <VercelAnalytics />
   </body>
 </html>

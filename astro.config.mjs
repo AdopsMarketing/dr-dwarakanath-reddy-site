@@ -11,7 +11,7 @@ export default defineConfig({
   // Static by default. Keystatic admin and the contact API opt into SSR via `prerender = false`.
   output: 'static',
   adapter: vercel({
-    webAnalytics: { enabled: false },
+    webAnalytics: { enabled: true },
     imageService: false,
   }),
   // React is required by Keystatic; scoped to /keystatic via include.
