@@ -17,14 +17,14 @@ telephone:
   - "+918612358333"
 email: "enquiry_nlr@apollohospitals.com"
 openingHours: "Mo-Sa 09:00-17:00"
-hasMap: "https://maps.app.goo.gl/JhFQHJWyuRUoCAMZ9"
+hasMap: "https://maps.app.goo.gl/dDT5DtgQc2Y5ehq77"
 image: "/clinic.jpg"
 medicalSpecialty:
   - "Gastroenterology"
   - "Surgical Oncology"
   - "Bariatric Surgery"
 sameAs:
-  - "https://maps.app.goo.gl/JhFQHJWyuRUoCAMZ9"
+  - "https://maps.app.goo.gl/dDT5DtgQc2Y5ehq77"
   - "https://www.justdial.com/Nellore/Dr-Dwarakanath-Reddy-Vembuluru-Dargamitta/9999PX861-X861-240925013507-T1A5_BZDET"
 isAcceptingNewPatients: true
 paymentAccepted:

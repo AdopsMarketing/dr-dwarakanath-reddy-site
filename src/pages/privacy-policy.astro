@@ -1,0 +1,367 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
+import { getCollection } from 'astro:content';
+
+const orgColl = await getCollection('organization');
+const org = orgColl[0];
+const locations = await getCollection('locations');
+const location = locations.find((l) => l.data.isPrimary) ?? locations[0];
+
+const lastUpdated = '29 April 2026';
+const grievanceEmail = org?.data.email ?? 'dwarak858@gmail.com';
+const practiceAddress = location?.data.address
+  ? `${location.data.address.streetAddress}, ${location.data.address.addressLocality}, ${location.data.address.addressRegion} ${location.data.address.postalCode}`
+  : 'Apollo Speciality Hospitals, Pinakini Nagar, Nellore, Andhra Pradesh';
+
+const sections = [
+  { id: 'who-we-are', title: 'Who we are' },
+  { id: 'data-we-collect', title: 'Data we collect' },
+  { id: 'purpose', title: 'Why we collect it' },
+  { id: 'lawful-basis', title: 'Lawful basis' },
+  { id: 'sharing', title: 'Who we share it with' },
+  { id: 'cookies', title: 'Cookies and similar technologies' },
+  { id: 'retention', title: 'How long we keep it' },
+  { id: 'your-rights', title: 'Your rights' },
+  { id: 'cross-border', title: 'Cross-border data transfers' },
+  { id: 'security', title: 'Security' },
+  { id: 'children', title: 'Children’s data' },
+  { id: 'updates', title: 'Updates to this policy' },
+  { id: 'grievance', title: 'Grievance officer' },
+];
+---
+
+<BaseLayout
+  pageType="generic"
+  title="Privacy Policy · Dr. Dwarakanath Reddy"
+  description="How we collect, use, and protect personal data on gastrosurgeonnellore.com. DPDP Act 2023 aligned. Last updated 29 April 2026."
+  breadcrumbs={[
+    { name: 'Home', url: new URL('/', Astro.site!).toString() },
+    { name: 'Privacy Policy', url: new URL('/privacy-policy', Astro.site!).toString() },
+  ]}
+>
+  <!-- HERO -->
+  <section class="bg-paper-1">
+    <div class="site-container py-14 lg:py-20">
+      <nav class="fig-label mb-8" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-ink">Home</a>
+        <span class="mx-2">·</span>
+        <span class="text-ink">Privacy Policy</span>
+      </nav>
+      <Eyebrow>Privacy</Eyebrow>
+      <h1 class="mt-6 font-display text-[40px] md:text-[56px] lg:text-[64px] leading-[1.02] tracking-tight text-ink max-w-[20ch]">
+        Privacy <em>Policy</em>
+      </h1>
+      <p class="mt-6 text-lg text-ink-soft leading-relaxed max-w-[60ch]">
+        How we collect, use, and protect your personal data when you visit
+        <strong>gastrosurgeonnellore.com</strong> or contact Dr. Dwarakanath Reddy through this website.
+      </p>
+      <p class="mt-4 mono-caps text-ink-muted">Last updated · {lastUpdated}</p>
+    </div>
+  </section>
+
+  <!-- TOC -->
+  <section class="bg-paper-2 border-y border-paper-3">
+    <div class="site-container py-10 lg:py-12">
+      <Eyebrow>Contents</Eyebrow>
+      <ol class="mt-6 grid gap-2 md:grid-cols-2 lg:grid-cols-3 text-ink">
+        {sections.map((s, i) => (
+          <li>
+            <a href={`#${s.id}`} class="hover:text-accent flex gap-3 items-baseline">
+              <span class="mono-caps text-ink-muted tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+              <span>{s.title}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- BODY -->
+  <article class="bg-paper-1">
+    <div class="prose-container py-12 lg:py-16 article-body max-w-[68ch]">
+
+      <section id="who-we-are" class="scroll-mt-24">
+        <h2><em>01.</em> Who we are</h2>
+        <p>
+          This website (<strong>gastrosurgeonnellore.com</strong>) is operated by the practice of
+          <strong>Dr. Dwarakanath Reddy Vembuluru</strong>, Senior Consultant in Gastrointestinal and
+          HPB Surgery at Apollo Speciality Hospitals, Nellore. For the purposes of India’s
+          Digital Personal Data Protection Act, 2023 ("DPDP Act"), the practice is the
+          <strong>Data Fiduciary</strong> for personal data collected through this site.
+        </p>
+        <p>
+          Operating address: {practiceAddress}.
+          Practice email: <a href={`mailto:${grievanceEmail}`}>{grievanceEmail}</a>.
+        </p>
+        <p>
+          Apollo Speciality Hospitals, Nellore separately maintains its own privacy practices for
+          clinical records, hospital admissions, and inpatient care. This policy covers only the
+          information collected through this website.
+        </p>
+      </section>
+
+      <section id="data-we-collect" class="scroll-mt-24">
+        <h2><em>02.</em> Data we collect</h2>
+        <p>We collect data only when you choose to share it or use our site:</p>
+        <ul>
+          <li>
+            <strong>Contact form submissions:</strong> name, phone number, email address, preferred
+            consultation date and time, reason for consultation, and any message you write.
+          </li>
+          <li>
+            <strong>WhatsApp messages:</strong> when you click a WhatsApp link from this site, your
+            conversation with Dr. Reddy happens within WhatsApp — governed by Meta Platforms,
+            Inc.’s privacy policy. We do not store WhatsApp messages on our servers.
+          </li>
+          <li>
+            <strong>Server logs:</strong> our hosting provider records standard web logs (IP
+            address, browser type, referring page, timestamp) for security and performance.
+          </li>
+          <li>
+            <strong>Analytics data (if you consent):</strong> pageviews, device category, approximate
+            city-level location, referrer source, and on-page interactions. Collected only after you
+            accept analytics cookies.
+          </li>
+          <li>
+            <strong>Session recordings (if you consent):</strong> anonymous mouse movements, scroll
+            depth, and clicks via Microsoft Clarity. No keystrokes from form fields are recorded.
+          </li>
+          <li>
+            <strong>Consent preferences:</strong> a small cookie/local-storage record of your cookie
+            choices.
+          </li>
+        </ul>
+        <p>
+          We do <strong>not</strong> collect health records, scans, prescriptions, or clinical data
+          through this website. Any clinical material you share via WhatsApp is held by you and
+          Dr. Reddy directly; the website does not see it.
+        </p>
+      </section>
+
+      <section id="purpose" class="scroll-mt-24">
+        <h2><em>03.</em> Why we collect it</h2>
+        <ul>
+          <li>To respond to your consultation enquiries and schedule appointments</li>
+          <li>To send you confirmations and follow-ups about your enquiry</li>
+          <li>To improve the website based on aggregate usage patterns</li>
+          <li>To detect and prevent fraud, spam, and abuse</li>
+          <li>To comply with our legal and professional obligations</li>
+        </ul>
+        <p>We do not sell, rent, or share your personal data for advertising or marketing by third parties.</p>
+      </section>
+
+      <section id="lawful-basis" class="scroll-mt-24">
+        <h2><em>04.</em> Lawful basis for processing</h2>
+        <p>Under the DPDP Act 2023, we rely on the following bases:</p>
+        <ul>
+          <li>
+            <strong>Consent:</strong> when you submit the contact form, message us on WhatsApp, or
+            accept analytics cookies, you give explicit consent for the specific processing
+            described.
+          </li>
+          <li>
+            <strong>Legitimate use:</strong> server logs and security-related data may be processed
+            for fraud prevention and to keep the site available.
+          </li>
+        </ul>
+        <p>You may withdraw consent at any time — see "Your rights" below.</p>
+      </section>
+
+      <section id="sharing" class="scroll-mt-24">
+        <h2><em>05.</em> Who we share it with</h2>
+        <p>We share data only with service providers who help us run this site, and only to the extent necessary:</p>
+        <ul>
+          <li>
+            <strong>Vercel Inc.</strong> (United States) — web hosting and infrastructure.
+          </li>
+          <li>
+            <strong>Resend</strong> (United States) — transactional email delivery for
+            contact-form messages. (Activated only when you submit the form.)
+          </li>
+          <li>
+            <strong>GoDaddy</strong> — domain registrar and DNS provider.
+          </li>
+          <li>
+            <strong>Google LLC</strong> (Google Analytics 4, Google Search Console, Google Business
+            Profile) — analytics and search visibility. Activated only after you accept
+            analytics cookies.
+          </li>
+          <li>
+            <strong>Microsoft Corporation</strong> (Microsoft Clarity) — anonymised session
+            analytics. Activated only after you accept analytics cookies.
+          </li>
+          <li>
+            <strong>Meta Platforms, Inc.</strong> (WhatsApp) — if you choose to message us via
+            WhatsApp links from the site.
+          </li>
+        </ul>
+        <p>
+          We do not share your data with hospitals, insurers, or third parties for their independent
+          marketing. If your enquiry leads to an appointment at Apollo Speciality Hospitals,
+          Apollo will collect any further information directly from you under their own privacy
+          terms.
+        </p>
+      </section>
+
+      <section id="cookies" class="scroll-mt-24">
+        <h2><em>06.</em> Cookies and similar technologies</h2>
+        <p>This site uses three categories of cookies. You control which ones load via the cookie banner that appears on your first visit.</p>
+        <h3>Strictly necessary (always on)</h3>
+        <ul>
+          <li>Your cookie consent preference (so we don’t ask again)</li>
+          <li>Session continuity tokens used by the hosting provider</li>
+        </ul>
+        <p>These cannot be disabled because the site cannot function without them.</p>
+        <h3>Analytics (off by default — your choice)</h3>
+        <ul>
+          <li>Google Analytics 4 (when enabled): <code>_ga</code>, <code>_ga_*</code></li>
+          <li>Microsoft Clarity (when enabled): <code>_clck</code>, <code>_clsk</code>, <code>CLID</code></li>
+        </ul>
+        <p>These help us understand how visitors use the site so we can improve content and layout.</p>
+        <h3>Marketing (not currently used)</h3>
+        <p>
+          We do not currently run paid advertising or set marketing cookies. If we add Meta Pixel,
+          Google Ads, or similar in the future, this policy will be updated and you will be
+          re-prompted for consent.
+        </p>
+        <p>
+          You can change your cookie choices at any time by clearing your browser’s
+          local storage and reloading the site, or by clicking the "Cookie preferences" link
+          in the footer.
+        </p>
+      </section>
+
+      <section id="retention" class="scroll-mt-24">
+        <h2><em>07.</em> How long we keep it</h2>
+        <ul>
+          <li><strong>Contact form submissions:</strong> 24 months, or longer if needed to provide ongoing care or to comply with medical record-keeping rules.</li>
+          <li><strong>Server logs:</strong> approximately 30 days.</li>
+          <li><strong>Analytics data:</strong> 14 months (Google Analytics 4 default).</li>
+          <li><strong>Session recordings:</strong> 13 months (Microsoft Clarity default).</li>
+          <li><strong>Consent preference:</strong> 12 months on your device, then we ask again.</li>
+        </ul>
+      </section>
+
+      <section id="your-rights" class="scroll-mt-24">
+        <h2><em>08.</em> Your rights</h2>
+        <p>Under the DPDP Act 2023, you have the right to:</p>
+        <ul>
+          <li>Obtain a summary of the personal data we hold about you</li>
+          <li>Correct, complete, or update your personal data</li>
+          <li>Erase your personal data, subject to applicable medical record-keeping rules</li>
+          <li>Withdraw consent for any processing that is based on your consent</li>
+          <li>Nominate another individual to exercise your rights in case of incapacity or death</li>
+          <li>File a grievance with our Grievance Officer (see section 13)</li>
+          <li>Approach the Data Protection Board of India if your grievance is not satisfactorily addressed</li>
+        </ul>
+        <p>
+          To exercise any of these rights, email
+          <a href={`mailto:${grievanceEmail}`}>{grievanceEmail}</a> with the subject line
+          "Privacy request" and a description of what you would like done.
+          We will respond within 30 days.
+        </p>
+      </section>
+
+      <section id="cross-border" class="scroll-mt-24">
+        <h2><em>09.</em> Cross-border data transfers</h2>
+        <p>
+          Some of our service providers (Vercel, Resend, Google, Microsoft) operate servers outside
+          India, principally in the United States and the European Union. The DPDP Act 2023
+          permits transfers to jurisdictions not specifically restricted by the Government of India.
+          By using this site or accepting analytics cookies, you consent to your data being
+          processed in these jurisdictions, with the same protections described in this policy.
+        </p>
+      </section>
+
+      <section id="security" class="scroll-mt-24">
+        <h2><em>10.</em> Security</h2>
+        <ul>
+          <li>HTTPS / TLS 1.3 enforced for every page (encrypted in transit)</li>
+          <li>No payment data is collected on this website</li>
+          <li>Hosting provider (Vercel) operates SOC 2 Type II certified infrastructure</li>
+          <li>Email transit is TLS-encrypted via Resend</li>
+          <li>Limited internal access to contact-form submissions</li>
+        </ul>
+        <p>
+          No system is perfectly secure. If you become aware of a security incident, please email
+          <a href={`mailto:${grievanceEmail}`}>{grievanceEmail}</a> immediately.
+        </p>
+      </section>
+
+      <section id="children" class="scroll-mt-24">
+        <h2><em>11.</em> Children’s data</h2>
+        <p>
+          This website is intended for adults seeking information about gastrointestinal surgery.
+          We do not knowingly collect personal data from children under 18 years of age without
+          verifiable parental or guardian consent. If you believe a child has submitted personal
+          data through this site, contact us and we will delete it.
+        </p>
+      </section>
+
+      <section id="updates" class="scroll-mt-24">
+        <h2><em>12.</em> Updates to this policy</h2>
+        <p>
+          We may update this privacy policy from time to time — for example, when we add new
+          tools, when laws change, or when our practices evolve. The "Last updated" date at the top
+          of this page reflects the most recent version. Material changes (especially to data
+          sharing or new cookie categories) will trigger a re-prompt of the cookie consent banner so
+          you can review your choices.
+        </p>
+      </section>
+
+      <section id="grievance" class="scroll-mt-24">
+        <h2><em>13.</em> Grievance officer</h2>
+        <p>
+          As required by the DPDP Act 2023, the practice has designated the following Grievance
+          Officer to address concerns regarding this privacy policy and the handling of your
+          personal data:
+        </p>
+        <p>
+          <strong>Name:</strong> Dr. Dwarakanath Reddy Vembuluru<br />
+          <strong>Designation:</strong> Senior Consultant and Data Fiduciary representative<br />
+          <strong>Email:</strong> <a href={`mailto:${grievanceEmail}`}>{grievanceEmail}</a><br />
+          <strong>Address:</strong> {practiceAddress}<br />
+          <strong>Response time:</strong> within 30 days of a written grievance
+        </p>
+        <p>
+          If you remain dissatisfied with the resolution provided, you may approach the
+          <strong>Data Protection Board of India</strong> as constituted under the DPDP Act 2023.
+        </p>
+      </section>
+
+    </div>
+  </article>
+</BaseLayout>
+
+<style is:global>
+  /* Scoped styles for the privacy policy article body */
+  .article-body section + section { margin-top: 3em; }
+  .article-body section h2 {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    line-height: 1.2;
+    color: var(--color-ink);
+    margin-bottom: 0.5em;
+  }
+  .article-body section h2 em {
+    font-style: italic;
+    color: var(--color-accent);
+    font-weight: 300;
+    margin-right: 0.4em;
+  }
+  .article-body section h3 {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    color: var(--color-ink);
+    margin-top: 1.5em;
+    margin-bottom: 0.4em;
+  }
+  .article-body code {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    background: var(--color-paper-2);
+    padding: 0.1em 0.4em;
+    border-radius: 2px;
+  }
+</style>

@@ -1,0 +1,174 @@
+---
+/**
+ * Cookie consent banner.
+ *
+ * Behaviour:
+ *  - On first visit, shows a sticky banner at the bottom of the page.
+ *  - Three options: Accept all / Reject non-essential / Customise.
+ *  - Customise expands inline category toggles (Analytics, Marketing).
+ *  - Choice is stored in localStorage as `dpr-consent-v1` JSON.
+ *  - Future analytics scripts (GA4, Microsoft Clarity, Meta Pixel) should
+ *    check `window.__dprConsent` before loading.
+ *  - A "Cookie preferences" link in the footer re-opens the banner so
+ *    users can change their mind.
+ *
+ * No framework — vanilla JS, ~80 lines, ~3KB gzipped.
+ *
+ * Consent helper API exposed on window:
+ *   window.__dprConsent = { essential: true, analytics: bool, marketing: bool }
+ *   window.__dprConsentReopen() — opens the banner again
+ *
+ * To re-prompt globally (e.g. after policy update), bump the storage key.
+ */
+---
+
+<aside
+  id="cookie-banner"
+  data-cookie-banner
+  hidden
+  class="fixed inset-x-0 bottom-0 z-[60] bg-ink text-paper-1 border-t-2 border-accent shadow-2xl"
+  aria-label="Cookie preferences"
+  role="region"
+>
+  <div class="site-container py-5 lg:py-6">
+    <div class="grid lg:grid-cols-[1fr_auto] gap-5 items-center">
+      <div class="text-sm leading-relaxed text-paper-2">
+        <strong class="text-paper-1">We use cookies.</strong>
+        Strictly necessary cookies keep the site working.
+        Analytics cookies help us understand how visitors use the site (off by default).
+        See our <a href="/privacy-policy" class="underline decoration-accent underline-offset-2 hover:text-paper-1">Privacy Policy</a> for details.
+      </div>
+      <div class="flex flex-wrap gap-2">
+        <button
+          type="button"
+          data-cookie-action="reject"
+          class="text-sm px-4 py-2 border border-paper-2/30 text-paper-1 hover:bg-paper-1/10 rounded-sm whitespace-nowrap"
+        >
+          Reject non-essential
+        </button>
+        <button
+          type="button"
+          data-cookie-action="customise"
+          class="text-sm px-4 py-2 border border-paper-2/30 text-paper-1 hover:bg-paper-1/10 rounded-sm whitespace-nowrap"
+        >
+          Customise
+        </button>
+        <button
+          type="button"
+          data-cookie-action="accept"
+          class="text-sm px-4 py-2 bg-accent text-ink hover:bg-accent-soft rounded-sm whitespace-nowrap font-medium"
+        >
+          Accept all
+        </button>
+      </div>
+    </div>
+
+    <!-- Customise panel (hidden by default) -->
+    <div data-cookie-customise hidden class="mt-5 pt-5 border-t border-paper-2/15 grid gap-4 md:grid-cols-2">
+      <label class="flex items-start gap-3 cursor-not-allowed opacity-70">
+        <input type="checkbox" checked disabled class="mt-1" />
+        <span class="text-sm">
+          <strong class="text-paper-1">Strictly necessary</strong>
+          <span class="block text-paper-2 mt-1">Always on. Required for the site to function (e.g. session, your consent preference).</span>
+        </span>
+      </label>
+      <label class="flex items-start gap-3 cursor-pointer">
+        <input type="checkbox" data-cookie-cat="analytics" class="mt-1" />
+        <span class="text-sm">
+          <strong class="text-paper-1">Analytics</strong>
+          <span class="block text-paper-2 mt-1">Google Analytics 4 and Microsoft Clarity. Helps us understand which pages are useful.</span>
+        </span>
+      </label>
+      <div class="md:col-span-2 flex justify-end gap-2">
+        <button
+          type="button"
+          data-cookie-action="save-custom"
+          class="text-sm px-4 py-2 bg-accent text-ink hover:bg-accent-soft rounded-sm whitespace-nowrap font-medium"
+        >
+          Save my choices
+        </button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<script is:inline>
+(function () {
+  const STORAGE_KEY = 'dpr-consent-v1';
+  const banner = document.querySelector('[data-cookie-banner]');
+  if (!banner) return;
+  const customisePanel = banner.querySelector('[data-cookie-customise]');
+  const analyticsCheckbox = banner.querySelector('[data-cookie-cat="analytics"]');
+
+  function readConsent() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) { return null; }
+  }
+
+  function writeConsent(consent) {
+    const payload = {
+      essential: true,
+      analytics: !!consent.analytics,
+      marketing: !!consent.marketing,
+      timestamp: new Date().toISOString(),
+      version: 1,
+    };
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(payload)); } catch (e) {}
+    window.__dprConsent = payload;
+    // Notify any pre-loaded analytics shims that consent has changed.
+    window.dispatchEvent(new CustomEvent('dpr:consent-change', { detail: payload }));
+    return payload;
+  }
+
+  function hideBanner() { banner.hidden = true; }
+  function showBanner(opts) {
+    banner.hidden = false;
+    if (opts && opts.openCustomise) {
+      customisePanel.hidden = false;
+      const existing = readConsent();
+      if (existing && analyticsCheckbox) analyticsCheckbox.checked = !!existing.analytics;
+    } else {
+      customisePanel.hidden = true;
+    }
+  }
+
+  // Public re-opener for a "Cookie preferences" link in the footer.
+  window.__dprConsentReopen = function () { showBanner({ openCustomise: true }); };
+
+  // Initialise: hydrate window.__dprConsent from storage; show banner if no choice yet.
+  const existing = readConsent();
+  if (existing) {
+    window.__dprConsent = existing;
+    hideBanner();
+  } else {
+    window.__dprConsent = { essential: true, analytics: false, marketing: false };
+    showBanner();
+  }
+
+  // Wire up actions.
+  banner.addEventListener('click', function (event) {
+    const target = event.target.closest('[data-cookie-action]');
+    if (!target) return;
+    const action = target.getAttribute('data-cookie-action');
+    if (action === 'accept') {
+      writeConsent({ analytics: true, marketing: false });
+      hideBanner();
+    } else if (action === 'reject') {
+      writeConsent({ analytics: false, marketing: false });
+      hideBanner();
+    } else if (action === 'customise') {
+      customisePanel.hidden = false;
+      const existing = readConsent();
+      if (existing && analyticsCheckbox) analyticsCheckbox.checked = !!existing.analytics;
+    } else if (action === 'save-custom') {
+      writeConsent({
+        analytics: analyticsCheckbox ? !!analyticsCheckbox.checked : false,
+        marketing: false,
+      });
+      hideBanner();
+    }
+  });
+})();
+</script>

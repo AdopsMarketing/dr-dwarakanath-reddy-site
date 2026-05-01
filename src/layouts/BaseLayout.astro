@@ -4,6 +4,7 @@ import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp.astro';
 import MobileBottomNav from '@/components/MobileBottomNav.astro';
+import CookieBanner from '@/components/CookieBanner.astro';
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import { buildPageGraph, type PageType, type ArticleInput } from '@/lib/schema';
@@ -132,5 +133,6 @@ const siteName = org.data.name;
     <Footer />
     <FloatingWhatsApp />
     <MobileBottomNav />
+    <CookieBanner />
   </body>
 </html>

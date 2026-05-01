@@ -17,7 +17,7 @@ const hospitalPhone = Array.isArray(location?.data.telephone)
 
 const gbpUrl =
   (location?.data.sameAs ?? []).find((u) => u.includes('maps.app.goo.gl') || u.includes('g.page')) ??
-  'https://maps.app.goo.gl/JhFQHJWyuRUoCAMZ9';
+  'https://maps.app.goo.gl/dDT5DtgQc2Y5ehq77';
 
 const latestPosts = (await getCollection('blogs'))
   .sort((a, b) => new Date(b.data.publishedAt).valueOf() - new Date(a.data.publishedAt).valueOf())

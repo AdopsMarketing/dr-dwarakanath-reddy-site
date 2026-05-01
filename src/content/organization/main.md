@@ -27,6 +27,7 @@ bookingUrl: "https://wa.me/918985135935?text=Hi%20Dr.%20Reddy%2C%20I%27d%20like%
 sameAs:
   - "https://www.linkedin.com/in/dwarakanath-reddy-vembuluru-aa298644/"
   - "https://www.instagram.com/dr.dwarakanathreddy/"
+  - "https://maps.app.goo.gl/dDT5DtgQc2Y5ehq77"
 areaServed:
   - name: "Nellore"
     type: "City"
