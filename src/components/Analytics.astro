@@ -1,39 +1,77 @@
 ---
 /**
- * Analytics — Google Analytics 4 + Microsoft Clarity, gated on cookie consent.
+ * Analytics — Google Tag Manager + Microsoft Clarity, gated on cookie consent.
  *
- * Loads ONLY when `window.__dprConsent.analytics === true`. Reads consent
- * synchronously on page load (CookieBanner sets it before this component runs)
- * and listens for `dpr:consent-change` so users who change their mind via the
- * footer "Cookie preferences" link are honoured immediately.
+ *  GTM (GTM-PNN6MZ5P) is the single source of truth for Google-side tags.
+ *  GA4 (G-PLTQWN5SGW) is configured INSIDE GTM as a "GA4 Configuration" tag, not
+ *  loaded directly here. To configure: GTM dashboard → Tags → New →
+ *  Google Analytics: GA4 Configuration → Measurement ID: G-PLTQWN5SGW →
+ *  Trigger: All Pages → Save → Submit → Publish.
  *
- * Idempotent: each script tag is added to <head> at most once per page load.
+ *  Microsoft Clarity stays as a direct integration (cleaner for session replay).
  *
- * Privacy-conscious defaults:
- *   - GA4: anonymize_ip: true
- *   - Clarity: respects do-not-track via its own server-side opt-outs
+ *  Both load ONLY when window.__dprConsent.analytics === true. Listens for
+ *  `dpr:consent-change` so users who change their mind via the footer Cookie
+ *  preferences link are honoured immediately within the same page session.
  *
- * If you remove either tool, just delete the corresponding ID below or strip
- * the loadX() function. Component is self-contained.
+ *  Exposes globally:
+ *    window.dataLayer       — always initialized so pages can queue events
+ *    window.dprPushEvent()  — consent-respecting helper; use this from any
+ *                             custom client-side code to fire GA4 events
+ *                             (e.g. window.dprPushEvent({ event: 'whatsapp_click' }))
+ *
+ *  Auto-tracked clicks (delegated listener, fires only when analytics consent
+ *  is granted): WhatsApp links (wa.me / whatsapp.com), tel: links, mailto: links.
  */
 
-const GA_ID = 'G-PLTQWN5SGW';
+const GTM_ID = 'GTM-PNN6MZ5P';
 const CLARITY_ID = 'wk7rfvfh4o';
 ---
 
-<script is:inline define:vars={{ GA_ID, CLARITY_ID }}>
+<script is:inline define:vars={{ GTM_ID, CLARITY_ID }}>
 (function () {
-  function loadGA4() {
-    if (window.__dprGA4Loaded) return;
-    window.__dprGA4Loaded = true;
-    const s = document.createElement('script');
-    s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
-    document.head.appendChild(s);
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = function () { window.dataLayer.push(arguments); };
-    window.gtag('js', new Date());
-    window.gtag('config', GA_ID, { anonymize_ip: true });
+  // dataLayer initialized always (in-memory only — no transmission until GTM loads).
+  window.dataLayer = window.dataLayer || [];
+
+  // Public helper. Pushes only when analytics consent is granted.
+  window.dprPushEvent = function (event) {
+    if (window.__dprConsent && window.__dprConsent.analytics === true) {
+      window.dataLayer.push(event);
+    }
+  };
+
+  // Auto-track clicks on contact-affordance links. Delegated listener so it
+  // captures every link on the page including those added later (defensive).
+  document.addEventListener('click', function (e) {
+    const link = e.target.closest && e.target.closest('a');
+    if (!link) return;
+    const href = link.getAttribute('href') || '';
+    if (/^https?:\/\/wa\.me\//i.test(href) || /whatsapp\.com/i.test(href)) {
+      window.dprPushEvent({
+        event: 'whatsapp_click',
+        link_source: link.getAttribute('data-track-source') || 'unspecified',
+      });
+    } else if (href.indexOf('tel:') === 0) {
+      window.dprPushEvent({
+        event: 'phone_click',
+        phone_number: href.slice(4),
+      });
+    } else if (href.indexOf('mailto:') === 0) {
+      window.dprPushEvent({ event: 'email_click' });
+    }
+  }, { passive: true });
+
+  function loadGTM() {
+    if (window.__dprGTMLoaded) return;
+    window.__dprGTMLoaded = true;
+    (function (w, d, s, l, i) {
+      w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+      const f = d.getElementsByTagName(s)[0];
+      const j = d.createElement(s);
+      j.async = true;
+      j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', GTM_ID);
   }
 
   function loadClarity() {
@@ -48,7 +86,7 @@ const CLARITY_ID = 'wk7rfvfh4o';
 
   function apply(consent) {
     if (consent && consent.analytics === true) {
-      loadGA4();
+      loadGTM();
       loadClarity();
     }
   }
@@ -57,8 +95,7 @@ const CLARITY_ID = 'wk7rfvfh4o';
   // is already populated synchronously by the time we read it here.
   apply(window.__dprConsent);
 
-  // Pick up consent changes within the same session (e.g. user clicks Accept
-  // after first declining, via the footer Cookie preferences link).
+  // Honour consent changes during the session.
   window.addEventListener('dpr:consent-change', function (event) {
     apply(event.detail);
   });

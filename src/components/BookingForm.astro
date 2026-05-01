@@ -177,6 +177,12 @@ const times = ['Morning (AM)', 'Afternoon (PM)', 'Evening'];
         if (!res.ok) throw new Error('request failed');
         form.hidden = true;
         success.hidden = false;
+        // Track conversion (consent-gated via Analytics.astro helper).
+        (window as any).dprPushEvent?.({
+          event: 'contact_form_submit',
+          form_reason: String(data.get('reason') || 'unspecified'),
+          form_id: form.id || 'booking',
+        });
       } catch (err) {
         if (errorEl) {
           errorEl.textContent = 'Something went wrong. Please try WhatsApp.';
