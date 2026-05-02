@@ -578,7 +578,7 @@ export function webPageNode(opts: {
   } = opts;
   // Use MedicalWebPage subtype on YMYL medical pages — Google reads this as a YMYL hint.
   const type =
-    pageType === 'service' || pageType === 'condition'
+    pageType === 'service' || pageType === 'condition' || pageType === 'category'
       ? 'MedicalWebPage'
       : 'WebPage';
   return {
@@ -653,6 +653,7 @@ export type PageType =
   | 'home'
   | 'doctor'
   | 'service'
+  | 'category'
   | 'condition'
   | 'location'
   | 'faq'
@@ -857,8 +858,11 @@ export function buildPageGraph(input: PageGraphInput) {
     };
   }
 
-  // YMYL pages (procedures, conditions) carry a medical reviewer + last review date.
-  const isYmyl = input.pageType === 'service' || input.pageType === 'condition';
+  // YMYL pages (procedures, categories, conditions) carry a medical reviewer + last review date.
+  const isYmyl =
+    input.pageType === 'service' ||
+    input.pageType === 'category' ||
+    input.pageType === 'condition';
 
   nodes.push(
     webPageNode({
