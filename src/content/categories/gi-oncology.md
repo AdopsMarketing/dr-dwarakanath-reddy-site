@@ -1,8 +1,8 @@
 ---
-title: "GI Oncology in Nellore"
+title: "Gastrointestinal (GI) Oncology in Nellore"
 h1Secondary: "Cancer surgery for the entire GI tract · Apollo Nellore"
-h1: "GI Oncology in Nellore"
-h1Html: "GI oncology, <em>curative</em> intent"
+h1: "Gastrointestinal (GI) Oncology in Nellore"
+h1Html: "Gastrointestinal oncology, <em>curative</em> intent"
 slug: "gi-oncology"
 shortDescription: "Surgical treatment of GI cancers (stomach, colon, rectum, esophagus, liver, pancreas) by Dr. Dwarakanath Reddy at Apollo Nellore."
 heroIntro: "GI cancers are among the most common cancers in India. Surgery, often combined with chemotherapy and radiation, offers the best chance of long term survival when caught at a treatable stage. Dr. Reddy performs cancer surgery for the entire GI tract at Apollo Nellore."

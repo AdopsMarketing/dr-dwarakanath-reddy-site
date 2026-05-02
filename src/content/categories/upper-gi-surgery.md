@@ -1,8 +1,8 @@
 ---
-title: "Upper GI Surgery in Nellore"
+title: "Upper Gastrointestinal (Upper GI) Surgery in Nellore"
 h1Secondary: "Esophagus and stomach procedures · Apollo Nellore"
-h1: "Upper GI Surgery in Nellore"
-h1Html: "Upper GI surgery, <em>focused</em> expertise"
+h1: "Upper Gastrointestinal (Upper GI) Surgery in Nellore"
+h1Html: "Upper Gastrointestinal surgery, <em>focused</em> expertise"
 slug: "upper-gi-surgery"
 shortDescription: "Specialised surgery for esophagus and stomach conditions by Dr. Dwarakanath Reddy at Apollo Nellore. Anti-reflux, hiatus hernia, stomach cancer."
 heroIntro: "Upper GI Surgery focuses on the esophagus, stomach, and first part of the small intestine. Procedures range from anti-reflux surgery and hiatus hernia repair to complex resections for cancer. Dr. Reddy offers comprehensive Upper GI surgical care at Apollo Nellore."
