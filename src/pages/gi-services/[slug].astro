@@ -57,6 +57,7 @@ const toAbs = (p: string) => new URL(p, site).toString();
 {props.kind === 'category' && (
   <BaseLayout
     pageType="category"
+    category={props.entry}
     title={props.entry.data.seo?.title ?? `${props.entry.data.h1 ?? props.entry.data.title}, Dr. Dwarakanath Reddy`}
     description={props.entry.data.seo?.description ?? props.entry.data.shortDescription}
     breadcrumbs={[

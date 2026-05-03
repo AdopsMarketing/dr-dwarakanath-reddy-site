@@ -15,6 +15,7 @@ type Organization = CollectionEntry<'organization'>;
 type Doctor = CollectionEntry<'doctors'>;
 type Location = CollectionEntry<'locations'>;
 type Service = CollectionEntry<'services'>;
+type Category = CollectionEntry<'categories'>;
 type Condition = CollectionEntry<'conditions'>;
 type Blog = CollectionEntry<'blogs'>;
 type Case = CollectionEntry<'cases'>;
@@ -35,6 +36,7 @@ export const ids = {
   physician: (origin: string, slug: string) => `${origin}/#physician-${slug}`,
   clinic: (origin: string, slug: string) => `${origin}/#clinic-${slug}`,
   procedure: (origin: string, slug: string) => `${origin}/#procedure-${slug}`,
+  category: (origin: string, slug: string) => `${origin}/#category-${slug}`,
   condition: (origin: string, slug: string) => `${origin}/#condition-${slug}`,
   webPage: (pageUrl: string) => `${pageUrl}#webpage`,
   breadcrumb: (pageUrl: string) => `${pageUrl}#breadcrumb`,
@@ -394,6 +396,44 @@ export function medicalProcedureNode(opts: {
   };
 }
 
+// Category pages (Surgical Gastroenterology, HPB Surgery, GI Oncology, etc.)
+// describe a class of related surgical procedures. Emit them as a parent
+// MedicalProcedure entity with hasPart links to the individual sub-procedures.
+// This gives each topical hub page a real entity Google can resolve, instead
+// of leaving the page as a bare WebPage with no subject anchor.
+export function categoryNode(opts: {
+  origin: string;
+  category: Category;
+  physicianId: string;
+  orgId: string;
+  childProcedureIds: string[];
+}) {
+  const { origin, category, physicianId, orgId, childProcedureIds } = opts;
+  const d = category.data;
+
+  return {
+    '@type': 'MedicalProcedure',
+    '@id': ids.category(origin, d.slug),
+    name: d.h1 ?? d.title,
+    description: d.shortDescription,
+    procedureType: 'https://schema.org/SurgicalProcedure',
+    relevantSpecialty: 'Surgical Gastroenterology',
+    performer: ref(physicianId),
+    availableService: ref(orgId),
+    hasPart: childProcedureIds.length > 0 ? childProcedureIds.map(ref) : undefined,
+    medicineSystem: 'https://schema.org/WesternConventional',
+    recognizingAuthority: {
+      '@type': 'MedicalOrganization',
+      name: 'National Medical Commission, India',
+      sameAs: [
+        'https://www.nmc.org.in/',
+        'https://en.wikipedia.org/wiki/National_Medical_Commission',
+        'https://www.wikidata.org/wiki/Q19938908',
+      ],
+    },
+  };
+}
+
 export function articleNode(opts: {
   origin: string;
   pageUrl: string;
@@ -675,6 +715,7 @@ export interface PageGraphInput {
   allServices: Service[];
   allConditions?: Condition[];
   service?: Service;
+  category?: Category;
   condition?: Condition;
   location?: Location;
   doctor?: Doctor;
@@ -782,6 +823,29 @@ export function buildPageGraph(input: PageGraphInput) {
     });
     if (faqNode) nodes.push(faqNode);
     primaryEntityId = ids.procedure(origin, input.service.data.slug);
+  } else if (input.pageType === 'category' && input.category) {
+    const physicianId = ids.physician(origin, input.primaryDoctor.data.entityKey);
+    // Resolve "whatWeCover" hrefs to MedicalProcedure @ids for hasPart linking.
+    // hrefs look like /gi-services/{category-slug}/{procedure-slug} — we want the leaf slug.
+    const childProcedureIds = (input.category.data.whatWeCover?.items ?? [])
+      .map((item) => item.href)
+      .filter((href): href is string => typeof href === 'string')
+      .map((href) => href.split('/').filter(Boolean).pop())
+      .filter((slug): slug is string => Boolean(slug))
+      .map((slug) => input.allServices.find((s) => s.data.slug === slug))
+      .filter((s): s is Service => Boolean(s))
+      .map((s) => ids.procedure(origin, s.data.slug));
+
+    nodes.push(
+      categoryNode({
+        origin,
+        category: input.category,
+        physicianId,
+        orgId,
+        childProcedureIds,
+      })
+    );
+    primaryEntityId = ids.category(origin, input.category.data.slug);
   } else if (input.pageType === 'condition' && input.condition) {
     const treatmentIds = input.condition.data.possibleTreatment.map((t) =>
       ids.procedure(origin, typeof t === 'string' ? t : t.id)
