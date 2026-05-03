@@ -1,5 +1,5 @@
 ---
-import type { CollectionEntry } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import { Icon } from 'astro-icon/components';
 import Eyebrow from '@/components/Eyebrow.astro';
 import ExploreLink from '@/components/ExploreLink.astro';
@@ -47,6 +47,15 @@ const toc = d.sections.map((s, i) => ({
   num: String(i + 1).padStart(2, '0'),
   title: s.title,
 }));
+
+// Resolve relatedConditions references to condition entries for the cross-link block.
+const allConditions = await getCollection('conditions');
+const relatedConditions = (d.relatedConditions ?? [])
+  .map((ref) => {
+    const slug = typeof ref === 'string' ? ref : ref.id;
+    return allConditions.find((c) => c.data.slug === slug);
+  })
+  .filter((c): c is NonNullable<typeof c> => !!c);
 ---
 
 <section class="relative bg-paper-1">
@@ -232,6 +241,33 @@ const toc = d.sections.map((s, i) => ({
     </div>
   </div>
 </section>
+
+{relatedConditions.length > 0 && (
+  <section class="bg-paper-2 border-y border-paper-3">
+    <div class="site-container py-16 lg:py-20">
+      <Eyebrow>Related conditions</Eyebrow>
+      <h2 class="mt-5 font-display text-[28px] lg:text-[40px] text-ink max-w-[26ch]">
+        Conditions this procedure <em>treats</em>.
+      </h2>
+      <div class="mt-6 w-10 h-px bg-accent"></div>
+      <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {relatedConditions.map((c) => (
+          <a href={`/conditions/${c.data.slug}`} class="card card-hover group block h-full flex flex-col">
+            {c.data.icd10Code && (
+              <p class="mono-caps text-ink-muted tabular-nums">ICD-10 · {c.data.icd10Code}</p>
+            )}
+            <h3 class="mt-3 font-display text-[20px] text-ink leading-tight">{c.data.title}</h3>
+            <p class="mt-3 text-[15px] text-ink-soft leading-relaxed flex-1">{c.data.shortDescription}</p>
+            <div class="mt-6 pt-4 border-t border-paper-3 flex items-center justify-between mono-caps text-ink-muted">
+              <span>About this condition</span>
+              <span class="text-ink group-hover:translate-x-1 transition-transform">→</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
 
 {d.closingCta && (
   <WhatsAppContextCTA

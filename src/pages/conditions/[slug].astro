@@ -27,6 +27,17 @@ const treatments = d.possibleTreatment
   })
   .filter((s): s is NonNullable<typeof s> => !!s);
 
+// Cross-link to up to 3 other conditions in the same surgical specialty.
+const allConditions = await getCollection('conditions');
+const relatedConditions = allConditions
+  .filter((c) =>
+    c.data.slug !== d.slug &&
+    c.data.relevantSpecialty &&
+    c.data.relevantSpecialty === d.relevantSpecialty
+  )
+  .sort((a, b) => a.data.title.localeCompare(b.data.title))
+  .slice(0, 3);
+
 // Build category-aware procedure URLs (matches the /gi-services/[category]/[slug] pattern)
 const categorySegment: Record<string, string> = {
   laparoscopic: 'laparoscopic-surgery',
@@ -140,6 +151,33 @@ const procedureUrl = (s: typeof allServices[number]) => {
                 <a href={procedureUrl(s)} class="text-sm text-accent hover:underline">Read more →</a>
               </div>
             </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {relatedConditions.length > 0 && (
+    <section class="bg-paper-1">
+      <div class="site-container py-16 lg:py-20">
+        <Eyebrow>Related conditions</Eyebrow>
+        <h2 class="mt-5 font-display text-[28px] lg:text-[40px] text-ink max-w-[26ch]">
+          Others in the same area of <em>practice</em>.
+        </h2>
+        <div class="mt-6 w-10 h-px bg-accent"></div>
+        <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {relatedConditions.map((c) => (
+            <a href={`/conditions/${c.data.slug}`} class="card card-hover group block h-full flex flex-col">
+              {c.data.icd10Code && (
+                <p class="mono-caps text-ink-muted tabular-nums">ICD-10 · {c.data.icd10Code}</p>
+              )}
+              <h3 class="mt-3 font-display text-[20px] text-ink leading-tight">{c.data.title}</h3>
+              <p class="mt-3 text-[15px] text-ink-soft leading-relaxed flex-1">{c.data.shortDescription}</p>
+              <div class="mt-6 pt-4 border-t border-paper-3 flex items-center justify-between mono-caps text-ink-muted">
+                <span>About this condition</span>
+                <span class="text-ink group-hover:translate-x-1 transition-transform">→</span>
+              </div>
+            </a>
           ))}
         </div>
       </div>
