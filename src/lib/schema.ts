@@ -59,12 +59,11 @@ export function organizationNode(opts: {
   origin: string;
   org: Organization;
   founderId: string;
-  employeeIds: string[];
   clinicIds: string[];
   offerIds: Array<{ id: string; name: string; description: string }>;
   primaryCityName: string;
 }) {
-  const { origin, org, founderId, employeeIds, clinicIds, offerIds, primaryCityName } = opts;
+  const { origin, org, founderId, clinicIds, offerIds, primaryCityName } = opts;
   const d = org.data;
 
   const makesOffer = offerIds.map((o) => ({
@@ -135,7 +134,7 @@ export function organizationNode(opts: {
     knowsLanguage: d.knowsLanguage,
     email: d.email,
     telephone: d.telephone ?? d.contactPoint?.phone,
-    medicalSpecialty: ['Surgical Gastroenterology'],
+    medicalSpecialty: ['https://schema.org/Gastroenterologic'],
     areaServed: d.areaServed.map((place) => ({
       '@type': place.type,
       name: place.name,
@@ -149,14 +148,18 @@ export function organizationNode(opts: {
       addressCountry: 'IN',
     },
     founder: ref(founderId),
-    employee: employeeIds.map(ref),
+    // `employee` removed: schema.org defines its target type as Person, but
+    // schema.org/Physician is a subtype of MedicalOrganization (not Person), so
+    // strict validators reject Physician @id refs in employee. The bidirectional
+    // link is still encoded via Org.founder + Physician.worksFor.
     location: clinicIds.map(ref),
     sameAs: [...d.sameAs, d.knowledgeGraphId].filter(Boolean),
     makesOffer,
     contactPoint,
     potentialAction,
-    paymentAccepted: d.paymentAccepted.length > 0 ? d.paymentAccepted : undefined,
-    currenciesAccepted: d.currenciesAccepted,
+    // `paymentAccepted` and `currenciesAccepted` are LocalBusiness/Service
+    // properties, not Organization properties. They live on MedicalClinic
+    // (which extends LocalBusiness) instead — see medicalClinicNode below.
   };
 }
 
@@ -183,7 +186,8 @@ export function organizationStubNode(origin: string, org: Organization) {
 export function physicianStubNode(origin: string, doctor: Doctor) {
   const d = doctor.data;
   return {
-    '@type': 'Physician',
+    // Dual-type — see comment on physicianNode for why both types are needed.
+    '@type': ['Physician', 'Person'],
     '@id': ids.physician(origin, d.entityKey),
     name: d.name,
     honorificPrefix: d.honorificPrefix,
@@ -282,13 +286,13 @@ export function physicianNode(opts: {
   const d = doctor.data;
 
   // Build identifier list from registrations (preferred) or legacy registrationNumber.
+  // schema.org/PropertyValue does not define validFrom/validUntil — drop them.
+  // The validity dates remain visible in HTML on /about-doctor.
   const registrationIdentifiers = (d.registrations ?? []).map((r) => ({
     '@type': 'PropertyValue',
     name: `${r.council} Registration`,
     propertyID: r.councilSameAs[0] ?? `medical-council-${slugify(r.council)}`,
     value: r.number,
-    validFrom: r.validFrom,
-    validUntil: r.validUntil,
   }));
   const legacyIdentifier = d.registrationNumber && registrationIdentifiers.length === 0
     ? [{
@@ -323,7 +327,12 @@ export function physicianNode(opts: {
   });
 
   return {
-    '@type': 'Physician',
+    // Dual-type: schema.org/Physician is a subtype of MedicalOrganization (NOT
+    // Person). Properties like honorificPrefix, jobTitle, alumniOf, worksFor,
+    // affiliation, nationality, award are defined on Person and not inherited
+    // by Physician. Declaring both types makes the Person properties valid in
+    // strict validators while preserving the medical-org semantics.
+    '@type': ['Physician', 'Person'],
     '@id': ids.physician(origin, d.entityKey),
     name: d.name,
     honorificPrefix: d.honorificPrefix,
@@ -336,7 +345,7 @@ export function physicianNode(opts: {
           caption: `${d.honorificPrefix} ${d.name}, ${d.title ?? ''}`.trim(),
         }
       : undefined,
-    medicalSpecialty: d.medicalSpecialty,
+    medicalSpecialty: specialtyEnumArray(d.medicalSpecialty),
     knowsLanguage: d.languages,
     alumniOf: d.alumniOf.map((a) => ({
       '@type': 'EducationalOrganization',
@@ -362,19 +371,12 @@ export function physicianNode(opts: {
       name: m.name,
       sameAs: m.sameAs,
     })),
-    award: d.award.map((a) => ({
-      '@type': 'Award',
-      name: a.name,
-      dateAwarded: a.date,
-      url: a.url,
-      ...(a.recognizedBy && {
-        awarder: {
-          '@type': 'Organization',
-          name: a.recognizedBy.name,
-          sameAs: a.recognizedBy.sameAs,
-        },
-      }),
-    })),
+    // schema.org/award accepts Text only; structured Award objects are invalid.
+    // Award details (date, awarder) remain visible in HTML on /about-doctor.
+    award: d.award.map((a) => a.recognizedBy?.name
+      ? `${a.name} (${a.recognizedBy.name}, ${a.date})`
+      : `${a.name} (${a.date})`
+    ),
     identifier: identifier.length > 0 ? identifier : undefined,
     nationality: d.nationality
       ? {
@@ -432,7 +434,7 @@ export function medicalClinicNode(opts: {
             closes: h.closes,
           }))
         : undefined,
-    medicalSpecialty: d.medicalSpecialty,
+    medicalSpecialty: specialtyEnumArray(d.medicalSpecialty),
     // Apollo Speciality Hospitals Nellore is owned and operated by Apollo Hospitals
     // Enterprise Limited; Dr. Reddy is a consultant at this facility, not its parent.
     parentOrganization: ref(ids.apolloHospitals(origin)),
@@ -647,20 +649,37 @@ export function faqPageFromService(opts: { pageUrl: string; service: Service }) 
   });
 }
 
-// Map free-form specialty strings (used in condition frontmatter for human readability)
+// Map free-form specialty strings (used in frontmatter for human readability)
 // to schema.org's MedicalSpecialty enum URLs. The enum is constrained — free-form
-// strings are silently rejected by validators. There's no Bariatric or HPB enum
-// member, so those collapse to Gastroenterologic; cancer conditions get both
+// strings are rejected by validators. There's no Bariatric or HPB enum member,
+// so those collapse to Gastroenterologic; oncology procedures get both
 // Gastroenterologic and Oncologic.
 const SPECIALTY_TO_ENUM: Record<string, string | string[]> = {
   'Surgical Gastroenterology': 'https://schema.org/Gastroenterologic',
+  'Gastroenterology': 'https://schema.org/Gastroenterologic',
   'Hepato-Pancreatico-Biliary Surgery': 'https://schema.org/Gastroenterologic',
   'Surgical Oncology (GI)': ['https://schema.org/Gastroenterologic', 'https://schema.org/Oncologic'],
+  'Surgical Oncology': ['https://schema.org/Surgical', 'https://schema.org/Oncologic'],
   'Bariatric Surgery': 'https://schema.org/Gastroenterologic',
+  'Advanced Laparoscopic Surgery': 'https://schema.org/Surgical',
+  'Laparoscopic Surgery': 'https://schema.org/Surgical',
 };
 
 function specialtyEnum(freeForm: string | undefined): string | string[] {
   return SPECIALTY_TO_ENUM[freeForm ?? ''] ?? 'https://schema.org/Gastroenterologic';
+}
+
+// Map an array of free-form specialty strings to a deduped array of enum URLs.
+// Use for entities that carry multiple specialties (Physician, MedicalClinic).
+function specialtyEnumArray(freeForms: string[] | undefined): string[] {
+  if (!freeForms || freeForms.length === 0) return ['https://schema.org/Gastroenterologic'];
+  const out = new Set<string>();
+  for (const s of freeForms) {
+    const mapped = specialtyEnum(s);
+    if (Array.isArray(mapped)) mapped.forEach((u) => out.add(u));
+    else out.add(mapped);
+  }
+  return Array.from(out);
 }
 
 export function medicalConditionNode(opts: {
@@ -903,7 +922,6 @@ export function buildPageGraph(input: PageGraphInput) {
 
   if (isOrgHome) {
     const clinicIds = input.allLocations.map((l) => ids.clinic(origin, l.data.entityKey));
-    const employeeIds = input.allDoctors.map((d) => ids.physician(origin, d.data.entityKey));
     const offerIds = (input.org.data.offers ?? []).flatMap((ref) => {
       const service = input.allServices.find((s) => s.id === ref.id || s.data.slug === ref.id);
       if (!service) return [];
@@ -920,7 +938,6 @@ export function buildPageGraph(input: PageGraphInput) {
         origin,
         org: input.org,
         founderId: primaryPhysicianId,
-        employeeIds,
         clinicIds,
         offerIds,
         primaryCityName: input.org.data.areaServed[0]?.name ?? '',
