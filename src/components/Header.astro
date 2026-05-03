@@ -26,7 +26,7 @@ const isGIServices = (label: string) => label === 'GI Services';
 
     <!-- Desktop nav -->
     <nav class="hidden lg:flex items-center gap-5 flex-1 justify-center" aria-label="Primary">
-      {primaryNav.slice(0, 7).map((item) => {
+      {primaryNav.slice(0, 8).map((item) => {
         const giTrigger = isGIServices(item.label);
         return (
           <div class="relative group">
