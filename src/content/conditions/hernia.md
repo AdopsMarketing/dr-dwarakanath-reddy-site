@@ -11,6 +11,7 @@ sameAs:
   - "https://en.wikipedia.org/wiki/Ventral_hernia"
   - "https://www.wikidata.org/wiki/Q177304"
   - "https://www.wikidata.org/wiki/Q1353995"
+  - "https://meshb.nlm.nih.gov/record/ui?ui=D006547"
 icd10Code: "K40-K46"
 signOrSymptom:
   - "Visible bulge in the groin, umbilicus, or abdominal wall"

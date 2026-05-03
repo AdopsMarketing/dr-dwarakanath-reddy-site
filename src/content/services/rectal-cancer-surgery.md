@@ -24,6 +24,7 @@ sameAs:
   - "https://en.wikipedia.org/wiki/Total_mesorectal_excision"
   - "https://en.wikipedia.org/wiki/Colorectal_cancer"
   - "https://www.wikidata.org/wiki/Q188874"
+  - "https://meshb.nlm.nih.gov/record/ui?ui=D000078542"
 heroIntro: "Rectal cancer surgery has been transformed by total mesorectal excision (TME), neoadjuvant chemoradiotherapy, and minimally invasive approaches. The priority is curative oncological resection with the lowest possible chance of local recurrence — and, where the tumour permits, preservation of the anal sphincter to avoid a permanent stoma. Dr. Dwarakanath Reddy performs rectal cancer surgery at Apollo Speciality Hospitals, Nellore, with full multidisciplinary backing."
 heroCta:
   label: "Send your scans on WhatsApp"

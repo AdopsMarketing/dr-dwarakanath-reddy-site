@@ -23,6 +23,7 @@ relatedConditions:
 sameAs:
   - "https://en.wikipedia.org/wiki/Hepatectomy"
   - "https://www.wikidata.org/wiki/Q14883891"
+  - "https://meshb.nlm.nih.gov/record/ui?ui=D006498"
 heroIntro: "Liver tumor surgery is among the most demanding procedures in GI surgery. It requires specialised training in HPB (hepato-pancreatico-biliary) surgery and a hospital with full critical care backup. Dr. Reddy performs liver resections at Apollo Speciality Hospitals, Nellore."
 heroCta:
   label: "Send your scans on WhatsApp"

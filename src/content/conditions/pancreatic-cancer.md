@@ -8,6 +8,7 @@ alternateName:
 sameAs:
   - "https://en.wikipedia.org/wiki/Pancreatic_cancer"
   - "https://www.wikidata.org/wiki/Q212961"
+  - "https://meshb.nlm.nih.gov/record/ui?ui=D010190"
 icd10Code: "C25"
 signOrSymptom:
   - "Painless jaundice (yellow eyes/skin)"

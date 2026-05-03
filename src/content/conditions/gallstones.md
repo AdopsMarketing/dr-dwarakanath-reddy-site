@@ -8,6 +8,7 @@ alternateName:
 sameAs:
   - "https://en.wikipedia.org/wiki/Gallstone"
   - "https://www.wikidata.org/wiki/Q215262"
+  - "https://meshb.nlm.nih.gov/record/ui?ui=D042882"
 icd10Code: "K80"
 signOrSymptom:
   - "Right upper abdominal pain after meals (biliary colic)"

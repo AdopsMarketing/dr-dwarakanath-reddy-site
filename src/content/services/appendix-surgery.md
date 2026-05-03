@@ -23,6 +23,7 @@ relatedConditions:
 sameAs:
   - "https://en.wikipedia.org/wiki/Appendectomy"
   - "https://www.wikidata.org/wiki/Q636693"
+  - "https://meshb.nlm.nih.gov/record/ui?ui=D001062"
 heroIntro: "Appendicitis is one of the most common surgical emergencies. Laparoscopic appendicectomy is the standard of care — three small cuts, faster recovery, and lower wound infection rates than open surgery. Dr. Dwarakanath Reddy performs both elective and emergency laparoscopic appendix surgery at Apollo Speciality Hospitals, Nellore."
 heroCta:
   label: "Send your scan on WhatsApp"

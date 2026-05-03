@@ -24,6 +24,7 @@ relatedConditions:
 sameAs:
   - "https://en.wikipedia.org/wiki/Nissen_fundoplication"
   - "https://www.wikidata.org/wiki/Q3344091"
+  - "https://meshb.nlm.nih.gov/record/ui?ui=D018662"
 heroIntro: "Severe gastro-oesophageal reflux disease (GERD) and large hiatus hernias that do not respond to medication can be definitively treated with laparoscopic anti-reflux surgery. Dr. Dwarakanath Reddy performs Nissen fundoplication and crural repair at Apollo Speciality Hospitals, Nellore, for patients who need a long-term solution beyond daily PPIs."
 heroCta:
   label: "Send your reports on WhatsApp"

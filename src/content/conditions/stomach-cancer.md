@@ -8,6 +8,7 @@ alternateName:
 sameAs:
   - "https://en.wikipedia.org/wiki/Stomach_cancer"
   - "https://www.wikidata.org/wiki/Q187871"
+  - "https://meshb.nlm.nih.gov/record/ui?ui=D013274"
 icd10Code: "C16"
 signOrSymptom:
   - "Persistent indigestion or heartburn unresponsive to treatment"

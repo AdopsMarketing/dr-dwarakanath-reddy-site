@@ -8,6 +8,7 @@ alternateName:
 sameAs:
   - "https://en.wikipedia.org/wiki/Obesity"
   - "https://www.wikidata.org/wiki/Q12174"
+  - "https://meshb.nlm.nih.gov/record/ui?ui=D009765"
 icd10Code: "E66"
 signOrSymptom:
   - "Body Mass Index ≥ 30"

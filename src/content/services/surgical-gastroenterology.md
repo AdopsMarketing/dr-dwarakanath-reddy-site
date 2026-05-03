@@ -20,6 +20,7 @@ order: 10
 sameAs:
   - "https://en.wikipedia.org/wiki/Hepato-Pancreato-Biliary_surgery"
   - "https://en.wikipedia.org/wiki/General_surgery"
+  - "https://meshb.nlm.nih.gov/record/ui?ui=D013505"
 seo:
   title: "Surgical Gastroenterology in Nellore · Dr. Dwarakanath Reddy"
   description: "DNB-qualified surgical gastroenterologist with 9+ years of focused GI surgery experience. Apollo Speciality Hospitals, Nellore."

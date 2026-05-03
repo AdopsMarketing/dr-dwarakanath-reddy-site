@@ -9,6 +9,7 @@ alternateName:
 sameAs:
   - "https://en.wikipedia.org/wiki/Colorectal_cancer"
   - "https://www.wikidata.org/wiki/Q188874"
+  - "https://meshb.nlm.nih.gov/record/ui?ui=D015179"
 icd10Code: "C18-C20"
 signOrSymptom:
   - "Change in bowel habit (diarrhoea, constipation, narrow stools)"

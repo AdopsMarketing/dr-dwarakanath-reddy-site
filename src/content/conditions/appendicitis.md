@@ -7,6 +7,7 @@ alternateName:
 sameAs:
   - "https://en.wikipedia.org/wiki/Appendicitis"
   - "https://www.wikidata.org/wiki/Q121041"
+  - "https://meshb.nlm.nih.gov/record/ui?ui=D001064"
 icd10Code: "K35"
 signOrSymptom:
   - "Pain starting near the umbilicus, migrating to the right lower abdomen"

@@ -25,6 +25,7 @@ sameAs:
   - "https://en.wikipedia.org/wiki/Endoscopy"
   - "https://en.wikipedia.org/wiki/Esophagogastroduodenoscopy"
   - "https://www.wikidata.org/wiki/Q188709"
+  - "https://meshb.nlm.nih.gov/record/ui?ui=D016145"
 heroIntro: "Endoscopy is a quick day care procedure that lets your doctor see inside your upper GI tract directly. It is the gold standard for diagnosing acid reflux, ulcers, polyps, gastritis, and early stomach cancer. Dr. Reddy performs both diagnostic and therapeutic endoscopy at Apollo Nellore."
 heroCta:
   label: "Book an endoscopy on WhatsApp"

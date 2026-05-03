@@ -23,6 +23,7 @@ relatedConditions:
 sameAs:
   - "https://en.wikipedia.org/wiki/Cholecystectomy"
   - "https://www.wikidata.org/wiki/Q577415"
+  - "https://meshb.nlm.nih.gov/record/ui?ui=D017081"
 heroIntro: "Most patients with gallbladder stones can have them removed in a 30 to 45 minute laparoscopic procedure and go home the same day. Dr. Dwarakanath Reddy performs hundreds of laparoscopic cholecystectomies each year at Apollo Speciality Hospitals, Nellore."
 heroCta:
   label: "Send your scan on WhatsApp"

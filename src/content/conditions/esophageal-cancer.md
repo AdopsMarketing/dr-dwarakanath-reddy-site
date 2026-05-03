@@ -8,6 +8,7 @@ alternateName:
 sameAs:
   - "https://en.wikipedia.org/wiki/Esophageal_cancer"
   - "https://www.wikidata.org/wiki/Q620081"
+  - "https://meshb.nlm.nih.gov/record/ui?ui=D004938"
 icd10Code: "C15"
 signOrSymptom:
   - "Progressive difficulty swallowing (dysphagia)"

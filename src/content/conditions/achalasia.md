@@ -8,6 +8,7 @@ alternateName:
 sameAs:
   - "https://en.wikipedia.org/wiki/Esophageal_achalasia"
   - "https://www.wikidata.org/wiki/Q1142755"
+  - "https://meshb.nlm.nih.gov/record/ui?ui=D004931"
 icd10Code: "K22.0"
 signOrSymptom:
   - "Difficulty swallowing both solids and liquids"

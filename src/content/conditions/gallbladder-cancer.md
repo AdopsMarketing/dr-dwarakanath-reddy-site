@@ -7,6 +7,7 @@ alternateName:
 sameAs:
   - "https://en.wikipedia.org/wiki/Gallbladder_cancer"
   - "https://www.wikidata.org/wiki/Q1027108"
+  - "https://meshb.nlm.nih.gov/record/ui?ui=D005706"
 icd10Code: "C23"
 signOrSymptom:
   - "Right upper abdominal pain (often persistent)"

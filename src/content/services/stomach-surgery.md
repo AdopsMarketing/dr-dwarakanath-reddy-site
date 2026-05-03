@@ -24,6 +24,7 @@ relatedConditions:
 sameAs:
   - "https://en.wikipedia.org/wiki/Gastrectomy"
   - "https://www.wikidata.org/wiki/Q1494687"
+  - "https://meshb.nlm.nih.gov/record/ui?ui=D005743"
 heroIntro: "Surgery on the stomach covers a wide range — from cancer resection (gastrectomy) to GIST tumour removal, complicated ulcer disease, and revisions of previous gastric procedures. Dr. Dwarakanath Reddy performs both open and laparoscopic gastric surgery at Apollo Speciality Hospitals, Nellore, with multidisciplinary support for cancer cases."
 heroCta:
   label: "Send your scans on WhatsApp"

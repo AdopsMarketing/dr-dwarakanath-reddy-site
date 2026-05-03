@@ -24,6 +24,7 @@ sameAs:
   - "https://en.wikipedia.org/wiki/Sleeve_gastrectomy"
   - "https://en.wikipedia.org/wiki/Bariatric_surgery"
   - "https://www.wikidata.org/wiki/Q3955395"
+  - "https://meshb.nlm.nih.gov/record/ui?ui=D050110"
 heroIntro: "Sleeve Gastrectomy is the most commonly performed bariatric procedure worldwide. It is technically simpler than Gastric Bypass, has fewer long term nutritional concerns, and produces strong weight loss in most patients."
 heroCta:
   label: "Check your eligibility on WhatsApp"

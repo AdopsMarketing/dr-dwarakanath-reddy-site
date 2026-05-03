@@ -24,6 +24,7 @@ relatedConditions:
 sameAs:
   - "https://en.wikipedia.org/wiki/Bariatric_surgery"
   - "https://www.wikidata.org/wiki/Q1051672"
+  - "https://meshb.nlm.nih.gov/record/ui?ui=D050110"
 heroIntro: "Some patients who had bariatric surgery years ago face new challenges — weight regain, intolerable reflux after sleeve gastrectomy, slipped or eroded gastric band, or complications from the original procedure. Revision surgery is technically more demanding than the first operation but, in the right hands, can restore weight loss and quality of life. Dr. Dwarakanath Reddy performs revision bariatric procedures at Apollo Speciality Hospitals, Nellore."
 heroCta:
   label: "Send your previous reports on WhatsApp"

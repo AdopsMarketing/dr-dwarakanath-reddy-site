@@ -25,6 +25,7 @@ sameAs:
   - "https://en.wikipedia.org/wiki/Gallbladder_cancer"
   - "https://en.wikipedia.org/wiki/Cholecystectomy"
   - "https://www.wikidata.org/wiki/Q1027108"
+  - "https://meshb.nlm.nih.gov/record/ui?ui=D002763"
 heroIntro: "Gallbladder cancer is uncommon but aggressive when found. Outcomes depend heavily on stage at diagnosis and whether complete (R0) surgical resection is achievable. Dr. Dwarakanath Reddy performs radical cholecystectomy with regional lymphadenectomy and, where indicated, extended liver resection at Apollo Speciality Hospitals, Nellore — with multidisciplinary tumour-board input on every case."
 heroCta:
   label: "Send your scans on WhatsApp"

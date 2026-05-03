@@ -23,6 +23,7 @@ relatedConditions:
 sameAs:
   - "https://en.wikipedia.org/wiki/Colonoscopy"
   - "https://www.wikidata.org/wiki/Q495168"
+  - "https://meshb.nlm.nih.gov/record/ui?ui=D003113"
 heroIntro: "Colonoscopy is the single best test to detect early colon cancer and remove pre cancerous polyps. It is also the most accurate way to diagnose conditions like ulcerative colitis, Crohn's disease, and chronic diarrhea. Dr. Reddy performs colonoscopy at Apollo Nellore as a day care procedure under sedation."
 heroCta:
   label: "Book a colonoscopy on WhatsApp"

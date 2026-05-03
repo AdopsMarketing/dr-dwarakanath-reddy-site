@@ -26,6 +26,7 @@ sameAs:
   - "https://en.wikipedia.org/wiki/Esophagectomy"
   - "https://en.wikipedia.org/wiki/Heller_myotomy"
   - "https://www.wikidata.org/wiki/Q1361226"
+  - "https://meshb.nlm.nih.gov/record/ui?ui=D016629"
 heroIntro: "The esophagus is a complex part of the digestive tract spanning the chest and upper abdomen. Surgery here demands focused expertise, careful patient selection, and the multidisciplinary support of a tertiary hospital. Dr. Dwarakanath Reddy performs both cancer resection (esophagectomy) and benign oesophageal procedures at Apollo Speciality Hospitals, Nellore."
 heroCta:
   label: "Send your scans on WhatsApp"

@@ -9,6 +9,7 @@ alternateName:
 sameAs:
   - "https://en.wikipedia.org/wiki/Gastroesophageal_reflux_disease"
   - "https://www.wikidata.org/wiki/Q321257"
+  - "https://meshb.nlm.nih.gov/record/ui?ui=D005764"
 icd10Code: "K21"
 signOrSymptom:
   - "Heartburn (burning chest pain after meals)"

@@ -24,6 +24,7 @@ sameAs:
   - "https://en.wikipedia.org/wiki/Gastric_bypass_surgery"
   - "https://en.wikipedia.org/wiki/Bariatric_surgery"
   - "https://www.wikidata.org/wiki/Q734611"
+  - "https://meshb.nlm.nih.gov/record/ui?ui=D015390"
 heroIntro: "Gastric Bypass is one of the most effective long term treatments for severe obesity and Type 2 diabetes. Dr. Reddy performs Roux-en-Y Gastric Bypass laparoscopically at Apollo Speciality Hospitals, Nellore, with a structured pre and post operative care programme."
 heroCta:
   label: "Discuss your eligibility on WhatsApp"

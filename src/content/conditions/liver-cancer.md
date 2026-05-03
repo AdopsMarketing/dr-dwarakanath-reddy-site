@@ -9,6 +9,7 @@ alternateName:
 sameAs:
   - "https://en.wikipedia.org/wiki/Hepatocellular_carcinoma"
   - "https://www.wikidata.org/wiki/Q467303"
+  - "https://meshb.nlm.nih.gov/record/ui?ui=D008113"
 icd10Code: "C22"
 signOrSymptom:
   - "Right upper abdominal pain"
