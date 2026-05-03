@@ -372,13 +372,12 @@ export function medicalProcedureNode(opts: {
     name: d.h1 ?? d.title,
     alternateName: d.procedureType,
     description: d.shortDescription,
-    procedureType: d.procedureType,
     bodyLocation: d.bodyLocation,
     howPerformed: d.approach,
     followup: d.recoveryTime,
-    performer: ref(physicianId),
-    availableService: ref(orgId),
-    relevantSpecialty: d.medicalSpecialty[0] ?? 'Surgical Gastroenterology',
+    // schema.org constrains relevantSpecialty to its MedicalSpecialty enumeration;
+    // free-form strings (e.g., "Surgical Gastroenterology") are rejected by validators.
+    relevantSpecialty: 'https://schema.org/Gastroenterologic',
     indication,
     // Disambiguates from Ayurvedic / Homeopathic / other systems (relevant in Indian context).
     medicineSystem: 'https://schema.org/WesternConventional',
@@ -392,23 +391,28 @@ export function medicalProcedureNode(opts: {
         'https://www.wikidata.org/wiki/Q19938908',
       ],
     },
+    // Physician → procedure relationship is encoded on the Physician side
+    // (knowsAbout / medicalSpecialty); schema.org does not put `performer` on
+    // MedicalProcedure. Same with `availableService` (that lives on Place).
     sameAs: d.sameAs,
   };
 }
 
 // Category pages (Surgical Gastroenterology, HPB Surgery, GI Oncology, etc.)
 // describe a class of related surgical procedures. Emit them as a parent
-// MedicalProcedure entity with hasPart links to the individual sub-procedures.
-// This gives each topical hub page a real entity Google can resolve, instead
-// of leaving the page as a bare WebPage with no subject anchor.
+// MedicalProcedure entity so each topical hub page has a real entity Google
+// can resolve, instead of being a bare WebPage with no subject anchor.
+//
+// Note: schema.org has no clean parent→child link between MedicalProcedures.
+// The category→sub-procedure relationship is encoded via internal HTML links
+// (Reasonable Surfer signal) and breadcrumb hierarchy, not via `hasPart` —
+// which is a CreativeWork property and triggers validator warnings on
+// MedicalProcedure.
 export function categoryNode(opts: {
   origin: string;
   category: Category;
-  physicianId: string;
-  orgId: string;
-  childProcedureIds: string[];
 }) {
-  const { origin, category, physicianId, orgId, childProcedureIds } = opts;
+  const { origin, category } = opts;
   const d = category.data;
 
   return {
@@ -416,11 +420,7 @@ export function categoryNode(opts: {
     '@id': ids.category(origin, d.slug),
     name: d.h1 ?? d.title,
     description: d.shortDescription,
-    procedureType: 'https://schema.org/SurgicalProcedure',
-    relevantSpecialty: 'Surgical Gastroenterology',
-    performer: ref(physicianId),
-    availableService: ref(orgId),
-    hasPart: childProcedureIds.length > 0 ? childProcedureIds.map(ref) : undefined,
+    relevantSpecialty: 'https://schema.org/Gastroenterologic',
     medicineSystem: 'https://schema.org/WesternConventional',
     recognizingAuthority: {
       '@type': 'MedicalOrganization',
@@ -824,25 +824,10 @@ export function buildPageGraph(input: PageGraphInput) {
     if (faqNode) nodes.push(faqNode);
     primaryEntityId = ids.procedure(origin, input.service.data.slug);
   } else if (input.pageType === 'category' && input.category) {
-    const physicianId = ids.physician(origin, input.primaryDoctor.data.entityKey);
-    // Resolve "whatWeCover" hrefs to MedicalProcedure @ids for hasPart linking.
-    // hrefs look like /gi-services/{category-slug}/{procedure-slug} — we want the leaf slug.
-    const childProcedureIds = (input.category.data.whatWeCover?.items ?? [])
-      .map((item) => item.href)
-      .filter((href): href is string => typeof href === 'string')
-      .map((href) => href.split('/').filter(Boolean).pop())
-      .filter((slug): slug is string => Boolean(slug))
-      .map((slug) => input.allServices.find((s) => s.data.slug === slug))
-      .filter((s): s is Service => Boolean(s))
-      .map((s) => ids.procedure(origin, s.data.slug));
-
     nodes.push(
       categoryNode({
         origin,
         category: input.category,
-        physicianId,
-        orgId,
-        childProcedureIds,
       })
     );
     primaryEntityId = ids.category(origin, input.category.data.slug);
