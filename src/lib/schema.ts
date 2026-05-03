@@ -32,6 +32,7 @@ export type ArticleInput =
 
 export const ids = {
   organization: (origin: string) => `${origin}/#organization`,
+  apolloHospitals: (origin: string) => `${origin}/#apollo-hospitals`,
   website: (origin: string) => `${origin}/#website`,
   physician: (origin: string, slug: string) => `${origin}/#physician-${slug}`,
   clinic: (origin: string, slug: string) => `${origin}/#clinic-${slug}`,
@@ -158,6 +159,76 @@ export function organizationNode(opts: {
   };
 }
 
+// -----------------------------------------------------------------------------
+// Stub builders — minimal typed nodes for entities declared in full elsewhere.
+// Emitted on every page so each page's @graph resolves standalone (LLMs and
+// non-Google crawlers don't reliably follow cross-document @id references).
+// -----------------------------------------------------------------------------
+
+export function organizationStubNode(origin: string, org: Organization) {
+  const d = org.data;
+  return {
+    '@type': 'MedicalOrganization',
+    '@id': ids.organization(origin),
+    name: d.name,
+    url: origin,
+    logo: d.logo
+      ? { '@type': 'ImageObject', url: absolute(origin, d.logo) }
+      : undefined,
+    sameAs: d.sameAs,
+  };
+}
+
+export function physicianStubNode(origin: string, doctor: Doctor) {
+  const d = doctor.data;
+  return {
+    '@type': 'Physician',
+    '@id': ids.physician(origin, d.entityKey),
+    name: d.name,
+    honorificPrefix: d.honorificPrefix,
+    jobTitle: d.title,
+    image: d.image
+      ? { '@type': 'ImageObject', url: absolute(origin, d.image) }
+      : undefined,
+    url: `${origin}/about-doctor/`,
+    sameAs: d.sameAs,
+  };
+}
+
+export function medicalClinicStubNode(origin: string, location: Location) {
+  const d = location.data;
+  return {
+    '@type': 'MedicalClinic',
+    '@id': ids.clinic(origin, d.entityKey),
+    name: d.name,
+    url: `${origin}/contact/`,
+    image: d.image ? { '@type': 'ImageObject', url: absolute(origin, d.image) } : undefined,
+    sameAs: d.sameAs,
+    parentOrganization: ref(ids.apolloHospitals(origin)),
+  };
+}
+
+// Apollo Hospitals — the corporate parent of Apollo Speciality Hospitals Nellore.
+// Dr. Reddy is a consultant at the Nellore facility; consultations route to Apollo.
+// Declared as a stub on every page so the clinic's parentOrganization and the
+// physician's affiliation resolve in-graph instead of dangling as bare @id refs.
+export function apolloHospitalsNode(origin: string) {
+  return {
+    '@type': 'MedicalOrganization',
+    '@id': ids.apolloHospitals(origin),
+    name: 'Apollo Hospitals',
+    legalName: 'Apollo Hospitals Enterprise Limited',
+    alternateName: ['AHEL', 'Apollo Hospitals Group'],
+    url: 'https://www.apollohospitals.com/',
+    foundingDate: '1983',
+    sameAs: [
+      'https://en.wikipedia.org/wiki/Apollo_Hospitals',
+      'https://www.wikidata.org/wiki/Q4780321',
+      'https://www.linkedin.com/company/apollo-hospitals/',
+    ],
+  };
+}
+
 export function physicianNode(opts: {
   origin: string;
   doctor: Doctor;
@@ -274,6 +345,9 @@ export function physicianNode(opts: {
       : undefined,
     url: profileUrl,
     worksFor: ref(orgId),
+    // Apollo is the host hospital for Dr. Reddy's consultations; the practice
+    // entity (#organization) is his professional brand. Both are real affiliations.
+    affiliation: [ref(orgId), ref(ids.apolloHospitals(origin))],
     workLocation: clinicIds.map(ref),
     // Bidirectional Physician → Procedure link (procedures already link back via `performer`).
     availableService: procedureIds.length > 0 ? procedureIds.map(ref) : undefined,
@@ -287,7 +361,7 @@ export function medicalClinicNode(opts: {
   location: Location;
   orgId: string;
 }) {
-  const { origin, location, orgId } = opts;
+  const { origin, location } = opts;
   const d = location.data;
 
   return {
@@ -317,7 +391,10 @@ export function medicalClinicNode(opts: {
           }))
         : undefined,
     medicalSpecialty: d.medicalSpecialty,
-    parentOrganization: ref(orgId),
+    // Apollo Speciality Hospitals Nellore is owned and operated by Apollo Hospitals
+    // Enterprise Limited; Dr. Reddy is a consultant at this facility, not its parent.
+    parentOrganization: ref(ids.apolloHospitals(origin)),
+    memberOf: ref(ids.apolloHospitals(origin)),
     sameAs: d.sameAs,
     isAcceptingNewPatients: d.isAcceptingNewPatients,
     paymentAccepted: d.paymentAccepted.length > 0 ? d.paymentAccepted : undefined,
@@ -527,13 +604,29 @@ export function faqPageFromService(opts: { pageUrl: string; service: Service }) 
   });
 }
 
+// Map free-form specialty strings (used in condition frontmatter for human readability)
+// to schema.org's MedicalSpecialty enum URLs. The enum is constrained — free-form
+// strings are silently rejected by validators. There's no Bariatric or HPB enum
+// member, so those collapse to Gastroenterologic; cancer conditions get both
+// Gastroenterologic and Oncologic.
+const SPECIALTY_TO_ENUM: Record<string, string | string[]> = {
+  'Surgical Gastroenterology': 'https://schema.org/Gastroenterologic',
+  'Hepato-Pancreatico-Biliary Surgery': 'https://schema.org/Gastroenterologic',
+  'Surgical Oncology (GI)': ['https://schema.org/Gastroenterologic', 'https://schema.org/Oncologic'],
+  'Bariatric Surgery': 'https://schema.org/Gastroenterologic',
+};
+
+function specialtyEnum(freeForm: string | undefined): string | string[] {
+  return SPECIALTY_TO_ENUM[freeForm ?? ''] ?? 'https://schema.org/Gastroenterologic';
+}
+
 export function medicalConditionNode(opts: {
   origin: string;
   condition: Condition;
   orgId: string;
   treatmentIds: string[];
 }) {
-  const { origin, condition, orgId, treatmentIds } = opts;
+  const { origin, condition, treatmentIds } = opts;
   const d = condition.data;
 
   return {
@@ -565,9 +658,8 @@ export function medicalConditionNode(opts: {
           sameAs: d.associatedAnatomy.sameAs,
         }
       : undefined,
-    relevantSpecialty: d.relevantSpecialty,
+    relevantSpecialty: specialtyEnum(d.relevantSpecialty),
     possibleTreatment: treatmentIds.map(ref),
-    availableService: ref(orgId),
   };
 }
 
@@ -754,15 +846,21 @@ export function buildPageGraph(input: PageGraphInput) {
   );
   nodes.push(breadcrumbListNode({ pageUrl: input.pageUrl, items: input.breadcrumbs }));
 
-  // Entity that is the "primary topic" of this page
-  let primaryEntityId: string | undefined;
+  // Anchor entities — always present so each page's @graph resolves standalone.
+  // Each is emitted as a FULL node on its home page, otherwise as a typed stub
+  // (anchor identity + sameAs only). LLMs and non-Google crawlers don't reliably
+  // follow cross-document @id references, so the stubs make the graph self-contained.
+  const primaryClinicId = ids.clinic(origin, input.primaryLocation.data.entityKey);
+  const isOrgHome = input.pageType === 'home';
+  const isDoctorHome = input.pageType === 'doctor';
+  const isClinicHome = input.pageType === 'location';
 
-  if (input.pageType === 'home') {
-    // Full org; Physician + Clinic appear only as refs
+  // Apollo is external — always a stub, never fully owned by a page on this site.
+  nodes.push(apolloHospitalsNode(origin));
+
+  if (isOrgHome) {
     const clinicIds = input.allLocations.map((l) => ids.clinic(origin, l.data.entityKey));
     const employeeIds = input.allDoctors.map((d) => ids.physician(origin, d.data.entityKey));
-    const founderId = primaryPhysicianId;
-
     const offerIds = (input.org.data.offers ?? []).flatMap((ref) => {
       const service = input.allServices.find((s) => s.id === ref.id || s.data.slug === ref.id);
       if (!service) return [];
@@ -774,27 +872,30 @@ export function buildPageGraph(input: PageGraphInput) {
         },
       ];
     });
-
     nodes.push(
       organizationNode({
         origin,
         org: input.org,
-        founderId,
+        founderId: primaryPhysicianId,
         employeeIds,
         clinicIds,
         offerIds,
         primaryCityName: input.org.data.areaServed[0]?.name ?? '',
       })
     );
-    primaryEntityId = orgId;
-  } else if (input.pageType === 'doctor' && input.doctor) {
+  } else {
+    nodes.push(organizationStubNode(origin, input.org));
+  }
+
+  if (isDoctorHome) {
+    const doctor = input.doctor ?? input.primaryDoctor;
     const clinicIds = input.allLocations.map((l) => ids.clinic(origin, l.data.entityKey));
     // Bidirectional Physician → Procedure: list every shipped service procedure.
     const procedureIds = input.allServices.map((s) => ids.procedure(origin, s.data.slug));
     nodes.push(
       physicianNode({
         origin,
-        doctor: input.doctor,
+        doctor,
         orgId,
         clinicIds,
         procedureIds,
@@ -802,7 +903,32 @@ export function buildPageGraph(input: PageGraphInput) {
         profileUrl: input.pageUrl,
       })
     );
-    primaryEntityId = ids.physician(origin, input.doctor.data.entityKey);
+  } else {
+    nodes.push(physicianStubNode(origin, input.primaryDoctor));
+  }
+
+  if (isClinicHome) {
+    const location = input.location ?? input.primaryLocation;
+    nodes.push(
+      medicalClinicNode({
+        origin,
+        location,
+        orgId,
+      })
+    );
+  } else {
+    nodes.push(medicalClinicStubNode(origin, input.primaryLocation));
+  }
+
+  // Entity that is the "primary topic" of this page
+  let primaryEntityId: string | undefined;
+
+  if (isOrgHome) {
+    primaryEntityId = orgId;
+  } else if (isDoctorHome) {
+    primaryEntityId = primaryPhysicianId;
+  } else if (isClinicHome) {
+    primaryEntityId = primaryClinicId;
   } else if (input.pageType === 'service' && input.service) {
     const physicianId = ids.physician(origin, input.primaryDoctor.data.entityKey);
     const treatsConditionIds = input.service.data.relatedConditions.map((c) =>
@@ -844,15 +970,6 @@ export function buildPageGraph(input: PageGraphInput) {
       })
     );
     primaryEntityId = ids.condition(origin, input.condition.data.slug);
-  } else if (input.pageType === 'location' && input.location) {
-    nodes.push(
-      medicalClinicNode({
-        origin,
-        location: input.location,
-        orgId,
-      })
-    );
-    primaryEntityId = ids.clinic(origin, input.location.data.entityKey);
   } else if (input.pageType === 'article' && input.article) {
     // Resolve relatedService → MedicalProcedure @id (and infer condition refs from
     // that procedure's `relatedConditions`, if any).
