@@ -59,8 +59,7 @@ const waHref = whatsappUrl("Hi Dr. Reddy, I'd like to book a consultation.");
       </div>
 
       <!-- Quick contact -->
-      <aside class="lg:col-span-4" itemscope itemtype="https://schema.org/MedicalClinic">
-        <meta itemprop="name" content={location.data.name} />
+      <aside class="lg:col-span-4">
         <Eyebrow>Direct contact</Eyebrow>
         <h2 class="mt-5 font-display text-[24px] text-ink">Talk to Dr. Reddy now</h2>
         <div class="mt-6 w-10 h-px bg-accent"></div>
@@ -79,7 +78,7 @@ const waHref = whatsappUrl("Hi Dr. Reddy, I'd like to book a consultation.");
             <ul class="mt-1 space-y-1">
               {hospitalPhones.map((num) => (
                 <li>
-                  <a href={`tel:${num.replace(/\s/g, '')}`} class="text-ink hover:text-accent" itemprop="telephone">{num}</a>
+                  <a href={`tel:${num.replace(/\s/g, '')}`} class="text-ink hover:text-accent">{num}</a>
                 </li>
               ))}
             </ul>
@@ -88,17 +87,17 @@ const waHref = whatsappUrl("Hi Dr. Reddy, I'd like to book a consultation.");
           {location.data.email && (
             <div>
               <p class="mono-caps text-ink-muted">Email</p>
-              <a href={`mailto:${location.data.email}`} class="mt-1 inline-block text-ink hover:text-accent break-all" itemprop="email">{location.data.email}</a>
+              <a href={`mailto:${location.data.email}`} class="mt-1 inline-block text-ink hover:text-accent break-all">{location.data.email}</a>
             </div>
           )}
 
-          <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+          <div>
             <p class="mono-caps text-ink-muted">Address</p>
             <p class="mt-1 text-ink leading-relaxed">
-              <span itemprop="streetAddress">{location.data.address.streetAddress}</span><br />
-              <span itemprop="addressLocality">{location.data.address.addressLocality}</span>,
-              <span itemprop="addressRegion"> {location.data.address.addressRegion}</span>
-              <span itemprop="postalCode"> {location.data.address.postalCode}</span>
+              <span>{location.data.address.streetAddress}</span><br />
+              <span>{location.data.address.addressLocality}</span>,
+              <span> {location.data.address.addressRegion}</span>
+              <span> {location.data.address.postalCode}</span>
             </p>
           </div>
 

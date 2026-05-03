@@ -104,10 +104,7 @@ const whyChoose = [
   faq={commonQuestions}
 >
   <!-- HERO -->
-  <section class="relative bg-paper-1" itemscope itemtype="https://schema.org/Physician">
-    <meta itemprop="name" content={`${doctor?.data.honorificPrefix ?? ''} ${doctor?.data.name ?? ''}`.trim()} />
-    <meta itemprop="jobTitle" content={doctor?.data.title} />
-
+  <section class="relative bg-paper-1">
     <div class="site-container grid lg:grid-cols-5 gap-12 lg:gap-16 items-center py-14 lg:py-24">
       <!-- LEFT 60% -->
       <div class="lg:col-span-3">
