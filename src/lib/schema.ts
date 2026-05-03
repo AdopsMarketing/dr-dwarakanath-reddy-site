@@ -466,26 +466,14 @@ export function medicalProcedureNode(opts: {
   service: Service;
   physicianId: string;
   orgId: string;
-  treatsConditionIds: string[];
 }) {
-  const { origin, service, physicianId, orgId, treatsConditionIds } = opts;
+  const { origin, service, physicianId, orgId } = opts;
   const d = service.data;
 
-  // Indication = the conditions that warrant this procedure.
-  // Prefer @id refs to MedicalCondition pages where they exist; fall back to inline
-  // MedicalIndication entities for the indication strings in frontmatter sections
-  // (e.g., "Symptomatic gallstones", "Acute cholecystitis").
-  const sectionIndications = d.sections
-    .filter((s): s is Extract<typeof s, { type: 'list' }> => s.type === 'list' && /who needs|who qualifies|indication/i.test(s.title))
-    .flatMap((s) => s.items);
-  const inlineIndications = [...d.indications, ...sectionIndications].map((text) => ({
-    '@type': 'MedicalIndication',
-    name: text,
-  }));
-
-  const indication = treatsConditionIds.length > 0
-    ? treatsConditionIds.map((cid) => ref(cid))
-    : (inlineIndications.length > 0 ? inlineIndications : undefined);
+  // The procedure→condition link is encoded via internal HTML links and the
+  // conditions graph, not via `indication`: schema.org's official validator
+  // rejects `indication` on MedicalProcedure (INVALID_PREDICATE), even though
+  // it is documented at the MedicalEntity level.
 
   return {
     '@type': 'MedicalProcedure',
@@ -499,7 +487,6 @@ export function medicalProcedureNode(opts: {
     // schema.org constrains relevantSpecialty to its MedicalSpecialty enumeration;
     // free-form strings (e.g., "Surgical Gastroenterology") are rejected by validators.
     relevantSpecialty: 'https://schema.org/Gastroenterologic',
-    indication,
     // Disambiguates from Ayurvedic / Homeopathic / other systems (relevant in Indian context).
     medicineSystem: 'https://schema.org/WesternConventional',
     // The body that recognises this procedure as evidence-based medical practice.
@@ -1006,16 +993,12 @@ export function buildPageGraph(input: PageGraphInput) {
     primaryEntityId = primaryClinicId;
   } else if (input.pageType === 'service' && input.service) {
     const physicianId = ids.physician(origin, input.primaryDoctor.data.entityKey);
-    const treatsConditionIds = input.service.data.relatedConditions.map((c) =>
-      ids.condition(origin, typeof c === 'string' ? c : c.id)
-    );
     nodes.push(
       medicalProcedureNode({
         origin,
         service: input.service,
         physicianId,
         orgId,
-        treatsConditionIds,
       })
     );
     const faqNode = faqPageFromService({
