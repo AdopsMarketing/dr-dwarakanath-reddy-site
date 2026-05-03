@@ -39,6 +39,7 @@ export const ids = {
   procedure: (origin: string, slug: string) => `${origin}/#procedure-${slug}`,
   category: (origin: string, slug: string) => `${origin}/#category-${slug}`,
   condition: (origin: string, slug: string) => `${origin}/#condition-${slug}`,
+  publication: (origin: string, slug: string) => `${origin}/#publication-${slug}`,
   webPage: (pageUrl: string) => `${pageUrl}#webpage`,
   breadcrumb: (pageUrl: string) => `${pageUrl}#breadcrumb`,
   article: (pageUrl: string) => `${pageUrl}#article`,
@@ -208,6 +209,44 @@ export function medicalClinicStubNode(origin: string, location: Location) {
   };
 }
 
+// Doctor publications → ScholarlyArticle nodes. Strongest E-E-A-T signal a
+// physician has — connects the doctor to the academic record. Each publication
+// gets its own @id (slugified from the title) so the Physician can reference it
+// via `subjectOf`. Emitted on the doctor's home page only.
+//
+// schema.org/ScholarlyArticle is the right type for peer-reviewed work; for
+// case reports and presentations we still use ScholarlyArticle (the type
+// accepts both).
+function publicationSlug(title: string): string {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
+    .slice(0, 60);
+}
+
+export function publicationNode(opts: {
+  origin: string;
+  publication: { title: string; journal?: string; year?: number; role?: string; url?: string };
+  authorId: string;
+}) {
+  const { origin, publication: p, authorId } = opts;
+  const slug = publicationSlug(p.title);
+  return {
+    '@type': 'ScholarlyArticle',
+    '@id': ids.publication(origin, slug),
+    headline: p.title,
+    name: p.title,
+    author: ref(authorId),
+    creator: ref(authorId),
+    isPartOf: p.journal
+      ? { '@type': 'Periodical', name: p.journal }
+      : undefined,
+    datePublished: p.year ? String(p.year) : undefined,
+    url: p.url,
+  };
+}
+
 // Apollo Hospitals — the corporate parent of Apollo Speciality Hospitals Nellore.
 // Dr. Reddy is a consultant at the Nellore facility; consultations route to Apollo.
 // Declared as a stub on every page so the clinic's parentOrganization and the
@@ -235,10 +274,11 @@ export function physicianNode(opts: {
   orgId: string;
   clinicIds: string[];
   procedureIds?: string[];
+  publicationIds?: string[];
   conditionIdMap?: Record<string, string>; // wikipedia URL → condition @id
   profileUrl?: string;                     // canonical /about-doctor URL
 }) {
-  const { origin, doctor, orgId, clinicIds, procedureIds = [], conditionIdMap = {}, profileUrl } = opts;
+  const { origin, doctor, orgId, clinicIds, procedureIds = [], publicationIds = [], conditionIdMap = {}, profileUrl } = opts;
   const d = doctor.data;
 
   // Build identifier list from registrations (preferred) or legacy registrationNumber.
@@ -351,6 +391,8 @@ export function physicianNode(opts: {
     workLocation: clinicIds.map(ref),
     // Bidirectional Physician → Procedure link (procedures already link back via `performer`).
     availableService: procedureIds.length > 0 ? procedureIds.map(ref) : undefined,
+    // Physician → ScholarlyArticle: peer-reviewed work the doctor authored (E-E-A-T signal).
+    subjectOf: publicationIds.length > 0 ? publicationIds.map(ref) : undefined,
     aggregateRating,
     sameAs: d.sameAs,
   };
@@ -893,6 +935,20 @@ export function buildPageGraph(input: PageGraphInput) {
     const clinicIds = input.allLocations.map((l) => ids.clinic(origin, l.data.entityKey));
     // Bidirectional Physician → Procedure: list every shipped service procedure.
     const procedureIds = input.allServices.map((s) => ids.procedure(origin, s.data.slug));
+    // Emit each peer-reviewed publication as its own ScholarlyArticle node and
+    // collect their @ids so the Physician node can reference them via subjectOf.
+    const publicationIds: string[] = [];
+    for (const p of doctor.data.publications ?? []) {
+      const slug = publicationSlug(p.title);
+      publicationIds.push(ids.publication(origin, slug));
+      nodes.push(
+        publicationNode({
+          origin,
+          publication: p,
+          authorId: primaryPhysicianId,
+        })
+      );
+    }
     nodes.push(
       physicianNode({
         origin,
@@ -900,6 +956,7 @@ export function buildPageGraph(input: PageGraphInput) {
         orgId,
         clinicIds,
         procedureIds,
+        publicationIds,
         conditionIdMap,
         profileUrl: input.pageUrl,
       })
