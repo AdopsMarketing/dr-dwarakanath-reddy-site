@@ -508,6 +508,7 @@ export function categoryNode(opts: {
         'https://www.wikidata.org/wiki/Q19938908',
       ],
     },
+    sameAs: d.sameAs,
   };
 }
 

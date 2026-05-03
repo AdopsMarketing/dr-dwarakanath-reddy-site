@@ -4,6 +4,13 @@ h1Secondary: "Liver, pancreas and bile duct · Apollo Nellore"
 h1: "Hepato-Pancreatico-Biliary (HPB) Surgery in Nellore"
 h1Html: "HPB surgery, <em>complex</em> by training"
 slug: "hpb-surgery"
+# No standalone Wikipedia article for "HPB surgery." Anchored to the parent
+# medical specialty (Hepatology) and the anatomical region (Biliary tract).
+sameAs:
+  - "https://en.wikipedia.org/wiki/Hepatology"
+  - "https://www.wikidata.org/wiki/Q668064"
+  - "https://en.wikipedia.org/wiki/Biliary_tract"
+  - "https://www.wikidata.org/wiki/Q3562150"
 shortDescription: "Specialised liver, pancreas, and bile duct surgery by Dr. Dwarakanath Reddy at Apollo Nellore. Whipple, liver resection, complex biliary reconstruction."
 heroIntro: "HPB surgery is one of the most demanding sub-specialties in GI surgery. It deals with the liver, pancreas, and biliary tree, organs that demand precise technique and the right hospital infrastructure. Dr. Reddy performs HPB surgery at Apollo Speciality Hospitals, Nellore, with full ICU and multidisciplinary support."
 whatWeCover:

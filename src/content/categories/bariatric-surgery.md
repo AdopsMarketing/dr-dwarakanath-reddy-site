@@ -4,6 +4,9 @@ h1Secondary: "Gastric bypass and sleeve gastrectomy · Apollo Nellore"
 h1: "Bariatric (Weight Loss) Surgery in Nellore"
 h1Html: "Bariatric surgery, <em>metabolic</em> first"
 slug: "bariatric-surgery"
+sameAs:
+  - "https://en.wikipedia.org/wiki/Bariatric_surgery"
+  - "https://www.wikidata.org/wiki/Q357503"
 shortDescription: "Laparoscopic Gastric Bypass and Sleeve Gastrectomy by Dr. Dwarakanath Reddy at Apollo Nellore. Long term weight loss and metabolic recovery."
 heroIntro: "Bariatric surgery is the most effective long term treatment for severe obesity and obesity related diseases like Type 2 diabetes. Dr. Reddy offers Gastric Bypass and Sleeve Gastrectomy at Apollo Nellore, supported by a full multidisciplinary bariatric care programme."
 whatWeCover:

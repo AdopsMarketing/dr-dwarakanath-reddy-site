@@ -272,6 +272,7 @@ const categories = defineCollection({
     h1Secondary: z.string().optional(),
     slug: z.string(),
     shortDescription: z.string(),
+    sameAs: sameAsArray,
     heroIntro: z.string(),
     whatWeCover: z
       .object({

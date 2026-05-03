@@ -4,6 +4,10 @@ h1Secondary: "The full spectrum of GI surgery · Apollo Nellore"
 h1: "Surgical Gastroenterology in Nellore"
 h1Html: "Surgical Gastroenterology, <em>super-specialty</em>"
 slug: "surgical-gastroenterology"
+# No standalone Wikipedia article; anchored to the parent specialty.
+sameAs:
+  - "https://en.wikipedia.org/wiki/Gastroenterology"
+  - "https://www.wikidata.org/wiki/Q120569"
 shortDescription: "Specialised surgical care for the entire GI tract by Dr. Dwarakanath Reddy at Apollo Nellore. From hernias and gallbladder to liver, pancreas, and GI cancer surgery."
 heroIntro: "Surgical Gastroenterology is a super-specialisation focused on surgery of the digestive system. It covers everything from common procedures like gallbladder and hernia surgery to complex operations on the liver, pancreas, and esophagus. Dr. Reddy holds a DNB in Surgical Gastroenterology, India's highest qualification in this field."
 whatWeCover:
