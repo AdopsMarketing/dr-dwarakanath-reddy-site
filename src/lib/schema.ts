@@ -656,6 +656,87 @@ function specialtyEnum(freeForm: string | undefined): string | string[] {
   return SPECIALTY_TO_ENUM[freeForm ?? ''] ?? 'https://schema.org/Gastroenterologic';
 }
 
+// Entity-form MedicalSpecialty for richer KG anchoring on MedicalCondition pages.
+// Each entity carries the schema.org enum URL as @id (so validators recognise the
+// enum membership) PLUS Wikipedia/Wikidata sameAs for entity disambiguation.
+type SpecialtyEntity = {
+  '@type': 'MedicalSpecialty';
+  '@id': string;
+  name: string;
+  sameAs?: string[];
+};
+
+const SPECIALTY_TO_ENTITY: Record<string, SpecialtyEntity[]> = {
+  'Surgical Gastroenterology': [
+    {
+      '@type': 'MedicalSpecialty',
+      '@id': 'https://schema.org/Gastroenterologic',
+      name: 'Surgical Gastroenterology',
+      sameAs: [
+        'https://en.wikipedia.org/wiki/Digestive_system_surgery',
+        'https://www.wikidata.org/wiki/Q5275614',
+      ],
+    },
+  ],
+  'Hepato-Pancreatico-Biliary Surgery': [
+    {
+      '@type': 'MedicalSpecialty',
+      '@id': 'https://schema.org/Gastroenterologic',
+      name: 'Hepato-Pancreatico-Biliary Surgery',
+      sameAs: [
+        'https://en.wikipedia.org/wiki/Digestive_system_surgery',
+        'https://www.wikidata.org/wiki/Q5275614',
+      ],
+    },
+  ],
+  'Surgical Oncology (GI)': [
+    {
+      '@type': 'MedicalSpecialty',
+      '@id': 'https://schema.org/Oncologic',
+      name: 'Surgical Oncology',
+      sameAs: [
+        'https://en.wikipedia.org/wiki/Surgical_oncology',
+        'https://www.wikidata.org/wiki/Q3545481',
+      ],
+    },
+    {
+      '@type': 'MedicalSpecialty',
+      '@id': 'https://schema.org/Gastroenterologic',
+      name: 'Surgical Gastroenterology',
+      sameAs: [
+        'https://en.wikipedia.org/wiki/Digestive_system_surgery',
+        'https://www.wikidata.org/wiki/Q5275614',
+      ],
+    },
+  ],
+  'Bariatric Surgery': [
+    {
+      '@type': 'MedicalSpecialty',
+      '@id': 'https://schema.org/Gastroenterologic',
+      name: 'Bariatric Surgery',
+      sameAs: [
+        'https://en.wikipedia.org/wiki/Bariatric_surgery',
+        'https://www.wikidata.org/wiki/Q357503',
+      ],
+    },
+  ],
+};
+
+// Returns one entity, an array of entities, or undefined.
+// Fallback (unmapped specialty) emits a minimal entity wrapping the default enum.
+function specialtyEntity(freeForm: string | undefined): SpecialtyEntity | SpecialtyEntity[] | undefined {
+  if (!freeForm) return undefined;
+  const entities = SPECIALTY_TO_ENTITY[freeForm];
+  if (!entities) {
+    return {
+      '@type': 'MedicalSpecialty',
+      '@id': 'https://schema.org/Gastroenterologic',
+      name: freeForm,
+    };
+  }
+  return entities.length === 1 ? entities[0] : entities;
+}
+
 // Map an array of free-form specialty strings to a deduped array of enum URLs.
 // Use for entities that carry multiple specialties (Physician, MedicalClinic).
 function specialtyEnumArray(freeForms: string[] | undefined): string[] {
@@ -707,7 +788,7 @@ export function medicalConditionNode(opts: {
           sameAs: d.associatedAnatomy.sameAs,
         }
       : undefined,
-    relevantSpecialty: specialtyEnum(d.relevantSpecialty),
+    relevantSpecialty: specialtyEntity(d.relevantSpecialty),
     possibleTreatment: treatmentIds.map(ref),
   };
 }
@@ -1016,9 +1097,39 @@ export function buildPageGraph(input: PageGraphInput) {
     );
     primaryEntityId = ids.category(origin, input.category.data.slug);
   } else if (input.pageType === 'condition' && input.condition) {
-    const treatmentIds = input.condition.data.possibleTreatment.map((t) =>
-      ids.procedure(origin, typeof t === 'string' ? t : t.id)
-    );
+    // Resolve possibleTreatment refs to service entries. Inline a minimal
+    // MedicalProcedure stub for each so the @id reference in MedicalCondition
+    // resolves within the same @graph (Google does not reliably stitch
+    // dangling @id refs across pages). Full procedure entity remains defined
+    // on its own /gi-services/.../<slug>/ page.
+    const segMap: Record<string, string> = {
+      laparoscopic: 'laparoscopic-surgery',
+      hpb: 'hpb-surgery',
+      oncology: 'gi-oncology',
+      bariatric: 'bariatric-surgery',
+      'upper-gi': 'upper-gi-surgery',
+    };
+    const treatmentIds: string[] = [];
+    const treatmentStubs: Array<Record<string, unknown>> = [];
+    for (const t of input.condition.data.possibleTreatment) {
+      const slug = typeof t === 'string' ? t : t.id;
+      const service = input.allServices.find((s) => s.data.slug === slug);
+      if (!service) continue;
+      const procId = ids.procedure(origin, slug);
+      treatmentIds.push(procId);
+      const seg = segMap[service.data.category];
+      const procUrl = seg
+        ? `${origin}/gi-services/${seg}/${slug}/`
+        : `${origin}/gi-services/${slug}/`;
+      treatmentStubs.push({
+        '@type': 'MedicalProcedure',
+        '@id': procId,
+        name: service.data.h1 ?? service.data.title,
+        description: service.data.shortDescription,
+        url: procUrl,
+        sameAs: service.data.sameAs,
+      });
+    }
     nodes.push(
       medicalConditionNode({
         origin,
@@ -1027,6 +1138,7 @@ export function buildPageGraph(input: PageGraphInput) {
         treatmentIds,
       })
     );
+    nodes.push(...treatmentStubs);
     primaryEntityId = ids.condition(origin, input.condition.data.slug);
   } else if (input.pageType === 'article' && input.article) {
     // Resolve relatedService → MedicalProcedure @id (and infer condition refs from
