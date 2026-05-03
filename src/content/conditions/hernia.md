@@ -36,7 +36,7 @@ relevantSpecialty: "Surgical Gastroenterology"
 possibleTreatment:
   - "hernia-surgery"
 seo:
-  title: "Hernia, Symptoms, Causes, and Surgical Treatment"
+  title: "Hernia · Surgical treatment"
   description: "Types of hernia, symptoms, risk factors, and surgical treatment options including laparoscopic mesh repair."
 ---
 

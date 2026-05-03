@@ -38,7 +38,7 @@ possibleTreatment:
   - "colon-cancer-surgery"
   - "rectal-cancer-surgery"
 seo:
-  title: "Colorectal Cancer · Symptoms and surgical treatment"
+  title: "Colorectal cancer surgery"
   description: "Colorectal cancer symptoms, risk factors, and surgical treatment (colectomy, low anterior resection, TME). Apollo Speciality Hospitals, Nellore."
 ---
 

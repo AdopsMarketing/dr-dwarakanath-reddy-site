@@ -33,7 +33,7 @@ relevantSpecialty: "Surgical Gastroenterology"
 possibleTreatment:
   - "gallbladder-surgery"
 seo:
-  title: "Gallstones · Symptoms and surgical treatment"
+  title: "Gallstones · Surgery and treatment"
   description: "Gallstones (cholelithiasis): symptoms, when surgery is indicated, and what laparoscopic gallbladder removal involves. Apollo Speciality Hospitals, Nellore."
 ---
 

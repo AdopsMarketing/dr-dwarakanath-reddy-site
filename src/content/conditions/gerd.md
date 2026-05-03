@@ -36,7 +36,7 @@ relevantSpecialty: "Surgical Gastroenterology"
 possibleTreatment:
   - "anti-reflux-surgery"
 seo:
-  title: "GERD (Acid Reflux) · Symptoms and surgical treatment"
+  title: "GERD (Acid Reflux) surgery"
   description: "Chronic GERD and hiatus hernia: when surgery is indicated, what laparoscopic Nissen fundoplication involves. Apollo Speciality Hospitals, Nellore."
 ---
 

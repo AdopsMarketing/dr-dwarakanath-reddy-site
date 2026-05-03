@@ -37,7 +37,7 @@ relevantSpecialty: "Surgical Oncology (GI)"
 possibleTreatment:
   - "stomach-cancer-surgery"
 seo:
-  title: "Stomach Cancer · Symptoms and surgical treatment"
+  title: "Stomach cancer surgery"
   description: "Gastric cancer symptoms, risk factors, and surgical treatment (subtotal/total gastrectomy with D2 lymphadenectomy). Apollo Speciality Hospitals, Nellore."
 ---
 

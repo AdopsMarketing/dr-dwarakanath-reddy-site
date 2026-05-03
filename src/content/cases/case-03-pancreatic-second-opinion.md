@@ -11,7 +11,7 @@ anonymized: true
 relatedService: "/gi-services/hpb-surgery/pancreatic-surgery"
 relatedServiceLabel: "Pancreatic Surgery"
 seo:
-  title: "Case 03: Pancreatic head tumour, resected after neoadjuvant chemotherapy"
+  title: "Pancreatic tumour · second opinion"
   description: "A second-opinion case at Apollo Nellore. Borderline-resectable pancreatic head adenocarcinoma converted to resectable after neoadjuvant chemotherapy, Whipple procedure by Dr. Dwarakanath Reddy."
 ---
 

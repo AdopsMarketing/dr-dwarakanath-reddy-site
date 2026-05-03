@@ -32,7 +32,7 @@ relevantSpecialty: "Surgical Gastroenterology"
 possibleTreatment:
   - "esophagus-surgery"
 seo:
-  title: "Achalasia · Symptoms and surgical treatment"
+  title: "Achalasia · Surgical treatment"
   description: "Achalasia cardia: difficulty swallowing, diagnosis with manometry, and surgical treatment by Heller's myotomy or POEM. Apollo Speciality Hospitals, Nellore."
 ---
 

@@ -38,7 +38,7 @@ possibleTreatment:
   - "esophageal-cancer-surgery"
   - "esophagus-surgery"
 seo:
-  title: "Esophageal Cancer · Symptoms and surgical treatment"
+  title: "Esophageal cancer surgery"
   description: "Oesophageal cancer symptoms, risk factors, and surgical treatment (esophagectomy with two-field lymphadenectomy). Apollo Speciality Hospitals, Nellore."
 ---
 

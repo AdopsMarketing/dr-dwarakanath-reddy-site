@@ -39,7 +39,7 @@ relevantSpecialty: "Hepato-Pancreatico-Biliary Surgery"
 possibleTreatment:
   - "liver-tumor-surgery"
 seo:
-  title: "Liver Cancer (HCC) · Symptoms and surgical treatment"
+  title: "Liver cancer (HCC) surgery"
   description: "Hepatocellular carcinoma and liver metastases: symptoms, risk factors, and surgical treatment options. Apollo Speciality Hospitals, Nellore."
 ---
 

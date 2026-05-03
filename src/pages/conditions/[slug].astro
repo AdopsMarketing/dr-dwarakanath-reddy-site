@@ -44,7 +44,7 @@ const procedureUrl = (s: typeof allServices[number]) => {
 <BaseLayout
   pageType="condition"
   condition={entry}
-  title={`${d.title} · Apollo Nellore`}
+  title={`${d.seo?.title ?? d.title} · Dr. Dwarakanath Reddy, Apollo Nellore`}
   description={d.seo?.description ?? d.shortDescription}
   breadcrumbs={[
     { name: 'Home', url: new URL('/', Astro.site!).toString() },

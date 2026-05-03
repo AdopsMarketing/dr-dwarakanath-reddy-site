@@ -10,7 +10,7 @@ anonymized: true
 relatedService: "/gi-services/bariatric-surgery/gastric-bypass"
 relatedServiceLabel: "Gastric Bypass Surgery"
 seo:
-  title: "35 kg weight loss and diabetes remission after Gastric Bypass, Apollo Nellore"
+  title: "Bariatric surgery · diabetes remission"
   description: "A patient story on bariatric surgery, Gastric Bypass for severe obesity and Type 2 diabetes, by Dr. Dwarakanath Reddy at Apollo Nellore."
 ---
 

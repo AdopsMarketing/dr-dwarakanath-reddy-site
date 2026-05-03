@@ -32,7 +32,7 @@ possibleTreatment:
   - "sleeve-gastrectomy"
   - "revision-bariatric-surgery"
 seo:
-  title: "Obesity (BMI ≥ 30) · Bariatric surgery options"
+  title: "Obesity · Bariatric surgery"
   description: "Class II and III obesity, comorbidities, eligibility for bariatric surgery (Gastric Bypass and Sleeve Gastrectomy). Apollo Speciality Hospitals, Nellore."
 ---
 

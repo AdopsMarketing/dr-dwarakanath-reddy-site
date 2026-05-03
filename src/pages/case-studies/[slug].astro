@@ -26,7 +26,7 @@ const nextCase = all[(idx + 1) % all.length];
 
 <ArticleLayout
   eyebrow={`Case ${entry.data.caseNumber}${entry.data.conditionName ? ' · ' + entry.data.conditionName : ''}`}
-  title={entry.data.title}
+  title={`${entry.data.seo?.title ?? entry.data.title} · Dr. Dwarakanath Reddy, Nellore`}
   excerpt={entry.data.excerpt}
   publishedAt={entry.data.publishedAt}
   article={{ kind: 'case', entry }}

@@ -11,7 +11,7 @@ anonymized: true
 relatedService: "/gi-services/laparoscopic-surgery/etep-hernia"
 relatedServiceLabel: "eTEP Hernia Repair"
 seo:
-  title: "Case 01: Recurrent ventral hernia, eTEP retro-muscular mesh repair"
+  title: "Recurrent ventral hernia · eTEP repair"
   description: "A clinical case on advanced eTEP hernia repair for a twice-recurrent midline ventral hernia by Dr. Dwarakanath Reddy at Apollo Nellore."
 ---
 

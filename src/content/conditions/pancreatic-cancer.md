@@ -37,7 +37,7 @@ relevantSpecialty: "Hepato-Pancreatico-Biliary Surgery"
 possibleTreatment:
   - "pancreatic-surgery"
 seo:
-  title: "Pancreatic Cancer · Symptoms and surgical treatment"
+  title: "Pancreatic cancer surgery"
   description: "Pancreatic cancer symptoms, risk factors, and Whipple procedure / distal pancreatectomy. Apollo Speciality Hospitals, Nellore."
 ---
 

@@ -46,7 +46,7 @@ const expertise = [
   pageType="doctor"
   doctor={doctor}
   title="About Dr. Dwarakanath Reddy · GI Surgeon, Apollo Nellore"
-  description={doctor.data.seo?.description ?? `Learn about ${doctor.data.honorificPrefix} ${doctor.data.name}, ${doctor.data.title}.`}
+  description="The training, practice, and philosophy of Dr. Dwarakanath Reddy V — Senior Consultant GI Surgeon at Apollo Speciality Hospitals, Nellore. DNB Surgical Gastroenterology, 3,000+ surgeries."
   breadcrumbs={[
     { name: 'Home', url: new URL('/', Astro.site!).toString() },
     { name: 'About the Doctor', url: new URL('/about-doctor', Astro.site!).toString() },
@@ -65,6 +65,9 @@ const expertise = [
         <h1 class="mt-6 font-display text-[48px] md:text-[68px] lg:text-[84px] leading-[0.98] tracking-tight text-ink">
           A clinician, <em>first</em>.
         </h1>
+        <p class="mt-6 text-base lg:text-lg text-ink-soft max-w-[44ch] leading-relaxed">
+          Dr. Dwarakanath Reddy V · Senior Consultant Gastrointestinal Surgeon, Apollo Speciality Hospitals, Nellore.
+        </p>
 
         <div class="mt-10">
           <p class="mono-caps text-ink-muted">Name</p>

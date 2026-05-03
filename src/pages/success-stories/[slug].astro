@@ -27,7 +27,7 @@ const nextStory = all[(idx + 1) % all.length];
 
 <ArticleLayout
   eyebrow={entry.data.condition ? `Patient Story · ${entry.data.condition}` : 'Patient Story'}
-  title={entry.data.title}
+  title={`${entry.data.seo?.title ?? entry.data.title} · Dr. Dwarakanath Reddy, Nellore`}
   excerpt={entry.data.excerpt}
   publishedAt={entry.data.publishedAt}
   article={{ kind: 'story', entry }}

@@ -31,7 +31,7 @@ relevantSpecialty: "Surgical Gastroenterology"
 possibleTreatment:
   - "appendix-surgery"
 seo:
-  title: "Acute Appendicitis · Symptoms and surgical treatment"
+  title: "Acute appendicitis surgery"
   description: "Acute appendicitis symptoms, when to seek emergency care, and laparoscopic appendicectomy. 24/7 emergency cover at Apollo Nellore."
 ---
 

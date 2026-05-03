@@ -36,7 +36,7 @@ relevantSpecialty: "Hepato-Pancreatico-Biliary Surgery"
 possibleTreatment:
   - "gallbladder-cancer-surgery"
 seo:
-  title: "Gallbladder Cancer · Symptoms and surgical treatment"
+  title: "Gallbladder cancer surgery"
   description: "Gallbladder cancer symptoms, incidental detection, and radical cholecystectomy. Apollo Speciality Hospitals, Nellore."
 ---
 

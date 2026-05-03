@@ -10,7 +10,7 @@ anonymized: true
 relatedService: "/gi-services/laparoscopic-surgery/etep-hernia"
 relatedServiceLabel: "eTEP Hernia Repair"
 seo:
-  title: "eTEP hernia repair after two recurrences, patient story from Apollo Nellore"
+  title: "Twice-recurrent hernia · recovery"
   description: "A patient story on advanced eTEP hernia repair for a recurrent midline hernia by Dr. Dwarakanath Reddy."
 ---
 

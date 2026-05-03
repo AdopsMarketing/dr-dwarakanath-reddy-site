@@ -11,7 +11,7 @@ anonymized: true
 relatedService: "/gi-services/gi-oncology/colon-cancer-surgery"
 relatedServiceLabel: "Colon Cancer Surgery"
 seo:
-  title: "Case 02: Colon cancer in a 34-year-old, laparoscopic right hemicolectomy"
+  title: "Locally advanced colon cancer · age 34"
   description: "A clinical case from Dr. Dwarakanath Reddy's practice at Apollo Nellore. A young adult presenting with atypical bowel symptoms, diagnostic workup, surgical approach, and 18-month outcome."
 ---
 
