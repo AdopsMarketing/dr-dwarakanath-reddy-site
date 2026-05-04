@@ -152,7 +152,12 @@ export function organizationNode(opts: {
     // schema.org/Physician is a subtype of MedicalOrganization (not Person), so
     // strict validators reject Physician @id refs in employee. The bidirectional
     // link is still encoded via Org.founder + Physician.worksFor.
-    location: clinicIds.map(ref),
+    //
+    // `location` removed: Apollo Speciality Hospitals Nellore is owned and
+    // operated by Apollo Hospitals Enterprise — it is NOT a location of
+    // Dr. Reddy's personal practice. Dr. Reddy works there as a consultant.
+    // The doctor→clinic relationship lives on Physician.workLocation;
+    // the clinic→parent-org relationship lives on MedicalClinic.parentOrganization.
     sameAs: [...d.sameAs, d.knowledgeGraphId].filter(Boolean),
     makesOffer,
     contactPoint,
@@ -386,10 +391,15 @@ export function physicianNode(opts: {
         }
       : undefined,
     url: profileUrl,
-    worksFor: ref(orgId),
-    // Apollo is the host hospital for Dr. Reddy's consultations; the practice
-    // entity (#organization) is his professional brand. Both are real affiliations.
-    affiliation: [ref(orgId), ref(ids.apolloHospitals(origin))],
+    // Dr. Reddy works AT Apollo Speciality Hospitals Nellore (his employer
+    // facility), not at his own personal brand. The website's #organization
+    // entity is his professional brand/practice — he founded it (Org.founder),
+    // but he is employed by Apollo, not by himself.
+    worksFor: clinicIds.length > 0 ? ref(clinicIds[0]) : undefined,
+    // Affiliation with the Apollo Hospitals chain (parent organisation of his
+    // workplace). Self-affiliation to #organization removed — that was a
+    // tautological loopback to his own brand entity.
+    affiliation: ref(ids.apolloHospitals(origin)),
     workLocation: clinicIds.map(ref),
     // Bidirectional Physician → Procedure link (procedures already link back via `performer`).
     availableService: procedureIds.length > 0 ? procedureIds.map(ref) : undefined,
