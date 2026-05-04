@@ -866,6 +866,15 @@ export function webPageNode(opts: {
   };
 }
 
+// Normalise breadcrumb item URLs to end with a trailing slash so they match
+// the canonical URLs Astro emits for static pages. Without this, the JSON-LD
+// `item` URL (e.g. `/conditions`) doesn't match the canonical (`/conditions/`),
+// and Google treats them as separate URLs — weakening the breadcrumb signal.
+const ensureTrailingSlash = (url: string): string => {
+  if (url.includes('?') || url.includes('#')) return url; // don't touch URLs with query/fragment
+  return url.endsWith('/') ? url : `${url}/`;
+};
+
 export function breadcrumbListNode(opts: {
   pageUrl: string;
   items: Array<{ name: string; url: string }>;
@@ -878,7 +887,7 @@ export function breadcrumbListNode(opts: {
       '@type': 'ListItem',
       position: i + 1,
       name: item.name,
-      item: item.url,
+      item: ensureTrailingSlash(item.url),
     })),
   };
 }
