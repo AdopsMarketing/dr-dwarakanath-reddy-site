@@ -6,7 +6,7 @@ order: 10
 intro: "How to reach Dr. Reddy's practice, expected wait times, and where consultations happen."
 items:
   - question: "Do I need a referral from a general physician?"
-    answer: "No. You can book a direct consultation with Dr. Reddy without a referral. If you have existing reports, scans, or a referral letter, carry them or send them on WhatsApp before your visit so the consultation can begin from where things stand, not from scratch."
+    answer: "No. You can book a direct consultation with Dr. Reddy without a referral. If you have existing reports, scans, or a referral letter, carry them or send them on WhatsApp before your visit so the consultation can begin from where things stand, not start over."
     featured: true
   - question: "How quickly can I see Dr. Reddy?"
     answer: "For non-urgent consultations, appointments at Apollo Speciality Hospitals Nellore are usually available within 2 to 5 working days. For emergencies or cases needing urgent review, WhatsApp is the fastest way to reach the practice. Suspected acute appendicitis, intestinal obstruction, or significant GI bleeding should go directly to Apollo Nellore Emergency."
