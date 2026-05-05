@@ -1065,6 +1065,30 @@ export function buildPageGraph(input: PageGraphInput) {
         profileUrl: input.pageUrl,
       })
     );
+    // Inline minimal MedicalCondition stubs for each knowsAbout entry that maps
+    // to a real condition page. Without the local stub, the @id reference in
+    // Physician.knowsAbout dangles and validators fall back to @type: Thing.
+    // Full condition entity remains canonical on /conditions/<slug>/.
+    const seenCondIds = new Set<string>();
+    for (const k of doctor.data.knowsAbout ?? []) {
+      const wikipediaUrl = k.sameAs.find((u) => /wikipedia\.org/.test(u));
+      if (!wikipediaUrl) continue;
+      const condId = conditionIdMap[wikipediaUrl];
+      if (!condId || seenCondIds.has(condId)) continue;
+      const cond = input.allConditions.find(
+        (c) => ids.condition(origin, c.data.slug) === condId
+      );
+      if (!cond) continue;
+      seenCondIds.add(condId);
+      nodes.push({
+        '@type': 'MedicalCondition',
+        '@id': condId,
+        name: cond.data.title,
+        description: cond.data.shortDescription,
+        url: `${origin}/conditions/${cond.data.slug}/`,
+        sameAs: cond.data.sameAs,
+      });
+    }
   } else {
     nodes.push(physicianStubNode(origin, input.primaryDoctor));
   }

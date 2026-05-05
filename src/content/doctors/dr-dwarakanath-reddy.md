@@ -125,6 +125,34 @@ knowsAbout:
     sameAs:
       - "https://en.wikipedia.org/wiki/Obesity"
       - "https://www.wikidata.org/wiki/Q12174"
+  - name: "Esophageal achalasia"
+    sameAs:
+      - "https://en.wikipedia.org/wiki/Esophageal_achalasia"
+      - "https://www.wikidata.org/wiki/Q1142755"
+  - name: "Acute appendicitis"
+    sameAs:
+      - "https://en.wikipedia.org/wiki/Appendicitis"
+      - "https://www.wikidata.org/wiki/Q121041"
+  - name: "Esophageal cancer"
+    sameAs:
+      - "https://en.wikipedia.org/wiki/Esophageal_cancer"
+      - "https://www.wikidata.org/wiki/Q620081"
+  - name: "Gallbladder cancer"
+    sameAs:
+      - "https://en.wikipedia.org/wiki/Gallbladder_cancer"
+      - "https://www.wikidata.org/wiki/Q1027108"
+  - name: "Hepatocellular carcinoma"
+    sameAs:
+      - "https://en.wikipedia.org/wiki/Hepatocellular_carcinoma"
+      - "https://www.wikidata.org/wiki/Q467303"
+  - name: "Pancreatic cancer"
+    sameAs:
+      - "https://en.wikipedia.org/wiki/Pancreatic_cancer"
+      - "https://www.wikidata.org/wiki/Q212961"
+  - name: "Stomach cancer"
+    sameAs:
+      - "https://en.wikipedia.org/wiki/Stomach_cancer"
+      - "https://www.wikidata.org/wiki/Q187871"
 memberOf: []
 award:
   - name: "Second Best Paper Award"
