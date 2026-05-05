@@ -47,7 +47,7 @@ closingCta:
 order: 40
 seo:
   title: "HPB Surgery in Nellore · Dr. Dwarakanath Reddy"
-  description: "Hepato-Pancreatico-Biliary surgery — Whipple, liver resection, biliary reconstruction. Full ICU backup. Apollo Speciality Hospitals, Nellore."
+  description: "Hepato-Pancreatico-Biliary surgery, Whipple, liver resection, biliary reconstruction. Full ICU backup. Apollo Speciality Hospitals, Nellore."
   keywords:
     - "HPB surgery Nellore"
     - "hepatobiliary surgery Apollo Nellore"

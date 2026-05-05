@@ -8,4 +8,4 @@ status: "in-production"
 order: 60
 ---
 
-Practice introduction video — credentials, approach, and the patient experience.
+Practice introduction video, credentials, approach, and the patient experience.

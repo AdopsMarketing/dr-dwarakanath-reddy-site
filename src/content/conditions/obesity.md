@@ -36,4 +36,4 @@ seo:
   description: "Class II and III obesity, comorbidities, eligibility for bariatric surgery (Gastric Bypass and Sleeve Gastrectomy). Apollo Speciality Hospitals, Nellore."
 ---
 
-Bariatric surgery is indicated for adults with BMI ≥ 37.5, or BMI ≥ 32.5 with associated comorbidities (Type 2 diabetes, hypertension, sleep apnoea, severe reflux, debilitating joint disease). The choice between Sleeve Gastrectomy and Roux-en-Y Gastric Bypass depends on the patient's specific profile — diabetes burden, reflux severity, eating patterns, and comorbid conditions. Patient selection is the single most important factor in long-term outcomes.
+Bariatric surgery is indicated for adults with BMI ≥ 37.5, or BMI ≥ 32.5 with associated comorbidities (Type 2 diabetes, hypertension, sleep apnoea, severe reflux, debilitating joint disease). The choice between Sleeve Gastrectomy and Roux-en-Y Gastric Bypass depends on the patient's specific profile, diabetes burden, reflux severity, eating patterns, and comorbid conditions. Patient selection is the single most important factor in long-term outcomes.

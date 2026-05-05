@@ -86,7 +86,7 @@ After bariatric surgery, you will need:
 
 - **Lifelong vitamin and mineral supplementation**, typically B12, iron, calcium, vitamin D
 - **Follow-up visits** at 1, 3, 6, and 12 months, then annually for life
-- **Dietary adaptation** — smaller portions, more protein, fewer sugary drinks
+- **Dietary adaptation**, smaller portions, more protein, fewer sugary drinks
 - **Regular exercise**, initially walking, then structured training
 
 Patients who respect these follow-ups tend to maintain excellent results for decades. Patients who drop out of follow-up tend to regain weight and miss early warnings of nutritional deficiencies. The structured follow-up programme is part of what you are agreeing to when you choose surgery.

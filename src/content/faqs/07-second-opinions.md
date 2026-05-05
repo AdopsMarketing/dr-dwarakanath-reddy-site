@@ -15,7 +15,7 @@ items:
   - question: "Can I take Dr. Reddy's recommendation back to my local doctor?"
     answer: "Yes. Many patients consult Dr. Reddy for a clear second opinion and then proceed with treatment closer to home, especially for non-surgical conditions or when continuing care under an existing oncologist or gastroenterologist. The aim of the consultation is the right plan for you, not necessarily surgery at Apollo Nellore."
   - question: "Is there a fee for a remote opinion on WhatsApp?"
-    answer: "A brief preliminary review on WhatsApp — to assess whether your case needs urgent attention, what investigations might help, and whether a video or in-person consultation is warranted — is offered without a separate fee. A formal video consultation or in-person consultation is billed at the standard hospital rate."
+    answer: "A brief preliminary review on WhatsApp, to assess whether your case needs urgent attention, what investigations might help, and whether a video or in-person consultation is warranted, is offered without a separate fee. A formal video consultation or in-person consultation is billed at the standard hospital rate."
 ---
 
 Second-opinion FAQs.

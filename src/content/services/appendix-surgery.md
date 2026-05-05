@@ -24,28 +24,28 @@ sameAs:
   - "https://en.wikipedia.org/wiki/Appendectomy"
   - "https://www.wikidata.org/wiki/Q636693"
   - "https://meshb.nlm.nih.gov/record/ui?ui=D001062"
-heroIntro: "Appendicitis is one of the most common surgical emergencies. Laparoscopic appendicectomy is the standard of care — three small cuts, faster recovery, and lower wound infection rates than open surgery. Dr. Dwarakanath Reddy performs both elective and emergency laparoscopic appendix surgery at Apollo Speciality Hospitals, Nellore."
+heroIntro: "Appendicitis is one of the most common surgical emergencies. Laparoscopic appendicectomy is the standard of care, three small cuts, faster recovery, and lower wound infection rates than open surgery. Dr. Dwarakanath Reddy performs both elective and emergency laparoscopic appendix surgery at Apollo Speciality Hospitals, Nellore."
 heroCta:
   label: "Send your scan on WhatsApp"
   message: "Hi Dr. Reddy, I have abdominal pain and may have appendicitis. I'd like a quick review."
 sections:
   - type: prose
     title: "What is laparoscopic appendicectomy?"
-    body: "Laparoscopic appendicectomy is the surgical removal of the appendix — a small finger-shaped pouch attached to the large intestine. It is the definitive treatment for appendicitis (inflammation of the appendix). Three small incisions, each 5 to 10 mm, allow the appendix to be removed safely under camera guidance, with no need for the larger open incision used in traditional surgery."
+    body: "Laparoscopic appendicectomy is the surgical removal of the appendix, a small finger-shaped pouch attached to the large intestine. It is the definitive treatment for appendicitis (inflammation of the appendix). Three small incisions, each 5 to 10 mm, allow the appendix to be removed safely under camera guidance, with no need for the larger open incision used in traditional surgery."
   - type: list
     title: "Who needs this procedure?"
     intro: "Surgery is recommended for:"
     items:
-      - "Acute appendicitis — sudden right lower abdominal pain, often with fever, nausea, or loss of appetite"
+      - "Acute appendicitis, sudden right lower abdominal pain, often with fever, nausea, or loss of appetite"
       - "Recurrent or chronic appendicitis with imaging-confirmed thickening"
       - "Appendicular abscess (after initial drainage and a cooling-off period)"
       - "Appendiceal mass or suspected appendiceal tumour"
       - "Mucocele of the appendix"
-    outro: "If you have sudden severe right-sided abdominal pain, do not wait — proceed directly to Apollo Nellore Emergency. Untreated appendicitis can perforate within 24 to 48 hours."
+    outro: "If you have sudden severe right-sided abdominal pain, do not wait, proceed directly to Apollo Nellore Emergency. Untreated appendicitis can perforate within 24 to 48 hours."
   - type: steps
     title: "How Dr. Reddy performs it"
     steps:
-      - "Three small incisions (5 to 10 mm) are made — one near the navel and two in the lower abdomen"
+      - "Three small incisions (5 to 10 mm) are made, one near the navel and two in the lower abdomen"
       - "The abdomen is gently inflated with CO2 gas to create a working space"
       - "The appendix is identified, separated from surrounding tissue, and its blood supply is sealed"
       - "The base of the appendix is divided with absorbable ties or staples"
@@ -75,7 +75,7 @@ sections:
     items:
       - "DNB qualified surgical gastroenterologist with high-volume laparoscopic experience"
       - "Apollo Nellore Emergency runs 24/7 with on-call surgical cover"
-      - "Laparoscopic approach for nearly all cases — including perforated appendicitis where appropriate"
+      - "Laparoscopic approach for nearly all cases, including perforated appendicitis where appropriate"
       - "Direct WhatsApp line for scan review before reaching the hospital"
       - "Empanelment with all major insurers for cashless treatment"
   - type: faqs

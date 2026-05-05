@@ -25,26 +25,26 @@ sameAs:
   - "https://en.wikipedia.org/wiki/Gastrectomy"
   - "https://www.wikidata.org/wiki/Q1494687"
   - "https://meshb.nlm.nih.gov/record/ui?ui=D005743"
-heroIntro: "Surgery on the stomach covers a wide range — from cancer resection (gastrectomy) to GIST tumour removal, complicated ulcer disease, and revisions of previous gastric procedures. Dr. Dwarakanath Reddy performs both open and laparoscopic gastric surgery at Apollo Speciality Hospitals, Nellore, with multidisciplinary support for cancer cases."
+heroIntro: "Surgery on the stomach covers a wide range, from cancer resection (gastrectomy) to GIST tumour removal, complicated ulcer disease, and revisions of previous gastric procedures. Dr. Dwarakanath Reddy performs both open and laparoscopic gastric surgery at Apollo Speciality Hospitals, Nellore, with multidisciplinary support for cancer cases."
 heroCta:
   label: "Send your scans on WhatsApp"
   message: "Hi Dr. Reddy, I have a gastric scan or biopsy report I'd like reviewed."
 sections:
   - type: prose
     title: "What does stomach surgery cover?"
-    body: "Stomach surgery includes partial removal (subtotal gastrectomy), complete removal (total gastrectomy), wedge resection for GIST tumours, suture-and-drainage procedures for perforated ulcer, and pyloric procedures for outlet obstruction. The right operation depends on the diagnosis, location of the lesion, the patient's overall fitness, and — for cancer — the stage and biology of the tumour. Coverage of stomach cancer specifically is on the GI Oncology stomach cancer page."
+    body: "Stomach surgery includes partial removal (subtotal gastrectomy), complete removal (total gastrectomy), wedge resection for GIST tumours, suture-and-drainage procedures for perforated ulcer, and pyloric procedures for outlet obstruction. The right operation depends on the diagnosis, location of the lesion, the patient's overall fitness, and, for cancer, the stage and biology of the tumour. Coverage of stomach cancer specifically is on the GI Oncology stomach cancer page."
   - type: list
     title: "Conditions treated"
     intro: "Surgery may be needed for:"
     items:
-      - "Gastric cancer (adenocarcinoma) — see also the GI Oncology stomach cancer page"
+      - "Gastric cancer (adenocarcinoma), see also the GI Oncology stomach cancer page"
       - "Gastrointestinal stromal tumours (GIST) of the stomach"
-      - "Complicated peptic ulcer disease — perforation, bleeding, gastric outlet obstruction"
+      - "Complicated peptic ulcer disease, perforation, bleeding, gastric outlet obstruction"
       - "Gastric polyps with malignant potential or where endoscopic removal is not possible"
       - "Pyloric stenosis from chronic ulcer scarring"
       - "Refractory bleeding from a gastric source"
       - "Selected benign tumours of the stomach not amenable to endoscopic removal"
-    outro: "Workup typically includes upper GI endoscopy with biopsy, contrast CT (CECT) abdomen, and — for cancer — staging laparoscopy and PET-CT in selected cases."
+    outro: "Workup typically includes upper GI endoscopy with biopsy, contrast CT (CECT) abdomen, and, for cancer, staging laparoscopy and PET-CT in selected cases."
   - type: steps
     title: "How a laparoscopic distal gastrectomy is performed"
     steps:
@@ -69,7 +69,7 @@ sections:
         detail: "Soft diet, small frequent meals. Office work in 4 weeks for non-physical roles."
       - period: "Month 3"
         detail: "Most dietary tolerance restored. Weight starts to stabilise. Surveillance schedule begins for cancer cases."
-    note: "After gastrectomy, dietary discipline matters. Small frequent meals (six per day), avoiding sugary drinks, and chewing thoroughly all help prevent dumping syndrome. Vitamin B12, iron, and calcium supplementation may be needed long-term — dietitian-led follow-up is part of the care plan."
+    note: "After gastrectomy, dietary discipline matters. Small frequent meals (six per day), avoiding sugary drinks, and chewing thoroughly all help prevent dumping syndrome. Vitamin B12, iron, and calcium supplementation may be needed long-term, dietitian-led follow-up is part of the care plan."
   - type: prose
     title: "Risks and complications"
     body: "Gastrectomy is a major operation. Risks include bleeding, anastomotic leak (the most serious early complication), wound infection, pulmonary complications, dumping syndrome, B12 and iron deficiency long-term, and weight loss. For cancer surgery, oncologic completeness (clear margins and adequate lymph node yield) is the priority. Dr. Reddy discusses procedure-specific risk based on staging and patient fitness."
@@ -80,16 +80,16 @@ sections:
       - "D2 lymph-node dissection performed routinely for gastric cancer"
       - "Laparoscopic approach offered where oncologically and technically appropriate"
       - "Cancer cases discussed in multidisciplinary tumour board format"
-      - "Apollo Speciality Hospitals — full ICU, blood bank, dietitian, and palliative-care backup"
+      - "Apollo Speciality Hospitals, full ICU, blood bank, dietitian, and palliative-care backup"
   - type: faqs
     title: "Frequently asked questions"
     items:
       - question: "Will I be able to eat normally after gastrectomy?"
         answer: "Yes, but the pattern changes. After distal gastrectomy, most patients eat small frequent meals (6 per day) rather than three large ones. After total gastrectomy, the meals are smaller still. Most patients adapt well within 6 to 12 months and return to a near-normal diet."
       - question: "How much weight will I lose?"
-        answer: "Typically 5 to 15 kg in the first three months after gastrectomy. Weight usually stabilises at 6 to 12 months. Significant weight loss is monitored carefully — supplements and dietitian input help prevent malnutrition."
+        answer: "Typically 5 to 15 kg in the first three months after gastrectomy. Weight usually stabilises at 6 to 12 months. Significant weight loss is monitored carefully, supplements and dietitian input help prevent malnutrition."
       - question: "Is laparoscopic gastrectomy as effective as open surgery for cancer?"
-        answer: "For early gastric cancer, yes — multiple trials show equivalent oncological outcomes with faster recovery. For advanced cancer requiring extensive lymphadenectomy, the choice is individualised. Dr. Reddy will discuss the right approach for your specific stage and anatomy."
+        answer: "For early gastric cancer, yes, multiple trials show equivalent oncological outcomes with faster recovery. For advanced cancer requiring extensive lymphadenectomy, the choice is individualised. Dr. Reddy will discuss the right approach for your specific stage and anatomy."
       - question: "Will my insurance cover this surgery?"
         answer: "Cancer surgery is covered by all major insurers (cashless and reimbursement). Benign gastric surgery is also covered when medically indicated. Send your reports on WhatsApp for a pre-authorisation estimate."
 closingCta:

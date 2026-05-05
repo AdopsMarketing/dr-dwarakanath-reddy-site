@@ -48,7 +48,7 @@ closingCta:
 order: 30
 seo:
   title: "Upper GI Surgery in Nellore · Dr. Dwarakanath Reddy"
-  description: "Esophagus and stomach surgery — anti-reflux, hiatus hernia, achalasia, gastrectomy. Apollo Speciality Hospitals, Nellore."
+  description: "Esophagus and stomach surgery, anti-reflux, hiatus hernia, achalasia, gastrectomy. Apollo Speciality Hospitals, Nellore."
   keywords:
     - "upper GI surgery Nellore"
     - "anti-reflux surgery Apollo Nellore"

@@ -14,7 +14,7 @@ items:
   - question: "When are stitches removed?"
     answer: "Most laparoscopic procedures use absorbable sutures inside and surgical glue or skin sutures outside. Surgical glue peels off naturally over two to three weeks. External skin sutures are typically removed at the first follow-up visit, around 7 to 10 days after surgery."
   - question: "When is the first follow-up visit?"
-    answer: "The first post-operative review is usually scheduled 7 to 10 days after discharge, to check the wound, remove any external sutures, review the histopathology report (if applicable), and discuss next steps. For oncology cases, a structured follow-up schedule with imaging is set out in advance — typically every three months for the first two years."
+    answer: "The first post-operative review is usually scheduled 7 to 10 days after discharge, to check the wound, remove any external sutures, review the histopathology report (if applicable), and discuss next steps. For oncology cases, a structured follow-up schedule with imaging is set out in advance, typically every three months for the first two years."
   - question: "Will I have a scar?"
     answer: "Laparoscopic surgery leaves three to four small incisions, each usually under 1 cm. With proper wound care these heal to thin, faint marks within three to six months. Open surgery leaves a longer single incision; the scar's eventual appearance depends on incision site, your skin type, and post-operative care. Dr. Reddy will show you the expected scar pattern before surgery so there are no surprises."
 ---

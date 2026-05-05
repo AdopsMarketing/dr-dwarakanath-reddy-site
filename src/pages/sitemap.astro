@@ -12,7 +12,7 @@ const stories = (await getCollection('stories')).sort((a, b) => new Date(b.data.
 const videos = (await getCollection('videos')).sort((a, b) => a.data.order - b.data.order);
 const faqs = (await getCollection('faqs')).sort((a, b) => a.data.order - b.data.order);
 
-// Procedure URL helper — mirrors the routing pattern in /gi-services/[category]/[slug].astro
+// Procedure URL helper, mirrors the routing pattern in /gi-services/[category]/[slug].astro
 const categorySegment: Record<string, string> = {
   laparoscopic: 'laparoscopic-surgery',
   hpb: 'hpb-surgery',
@@ -50,7 +50,7 @@ const totalPages =
 <BaseLayout
   pageType="generic"
   title="Sitemap · Dr. Dwarakanath Reddy"
-  description="Index of every page on gastrosurgeonnellore.com — practice info, GI procedures, conditions, patient resources, FAQs, videos, blogs, cases, and stories."
+  description="Index of every page on gastrosurgeonnellore.com, practice info, GI procedures, conditions, patient resources, FAQs, videos, blogs, cases, and stories."
   breadcrumbs={[
     { name: 'Home', url: new URL('/', Astro.site!).toString() },
     { name: 'Sitemap', url: new URL('/sitemap', Astro.site!).toString() },
@@ -165,11 +165,11 @@ const totalPages =
         <div class="mt-6 w-10 h-px bg-accent"></div>
         <ul class="mt-8 space-y-2 text-ink">
           <li><a href="/patient-resources" class="hover:text-accent">Patient resources (all)</a></li>
-          <li><a href="/patient-resources#before-consultation" class="hover:text-accent">— Before your consultation</a></li>
-          <li><a href="/patient-resources#before-surgery" class="hover:text-accent">— Pre-operative preparation</a></li>
-          <li><a href="/patient-resources#after-surgery" class="hover:text-accent">— Recovery and discharge</a></li>
-          <li><a href="/patient-resources#insurance" class="hover:text-accent">— Insurance and billing</a></li>
-          <li><a href="/patient-resources#apollo-nellore" class="hover:text-accent">— Apollo Nellore practical info</a></li>
+          <li><a href="/patient-resources#before-consultation" class="hover:text-accent">Before your consultation</a></li>
+          <li><a href="/patient-resources#before-surgery" class="hover:text-accent">Pre-operative preparation</a></li>
+          <li><a href="/patient-resources#after-surgery" class="hover:text-accent">Recovery and discharge</a></li>
+          <li><a href="/patient-resources#insurance" class="hover:text-accent">Insurance and billing</a></li>
+          <li><a href="/patient-resources#apollo-nellore" class="hover:text-accent">Apollo Nellore practical info</a></li>
         </ul>
       </div>
 
@@ -180,7 +180,7 @@ const totalPages =
         <ul class="mt-8 space-y-2 text-ink">
           <li><a href="/faqs" class="hover:text-accent">All FAQs</a></li>
           {faqs.map((f) => (
-            <li><a href={`/faqs#${f.data.slug}`} class="hover:text-accent">— {f.data.title}</a></li>
+            <li><a href={`/faqs#${f.data.slug}`} class="hover:text-accent">{f.data.title}</a></li>
           ))}
         </ul>
       </div>
@@ -198,7 +198,7 @@ const totalPages =
           <li><a href="/videos" class="hover:text-accent">All videos</a></li>
           {videos.map((v) => (
             <li class="text-sm">
-              <a href={`/videos#${v.data.slug}`} class="hover:text-accent">— {v.data.title}</a>
+              <a href={`/videos#${v.data.slug}`} class="hover:text-accent">{v.data.title}</a>
               <span class="mono-caps text-ink-muted ml-2">· {v.data.status}</span>
             </li>
           ))}
@@ -217,7 +217,7 @@ const totalPages =
         <ul class="mt-8 space-y-2 text-ink">
           <li><a href="/blogs" class="hover:text-accent font-display">All posts</a></li>
           {blogs.map((b) => (
-            <li class="text-sm"><a href={`/blogs/${b.data.slug}`} class="hover:text-accent">— {b.data.title}</a></li>
+            <li class="text-sm"><a href={`/blogs/${b.data.slug}`} class="hover:text-accent">{b.data.title}</a></li>
           ))}
         </ul>
       </div>
@@ -229,7 +229,7 @@ const totalPages =
         <ul class="mt-8 space-y-2 text-ink">
           <li><a href="/case-studies" class="hover:text-accent font-display">All cases</a></li>
           {cases.map((c) => (
-            <li class="text-sm"><a href={`/case-studies/${c.data.slug}`} class="hover:text-accent">— {c.data.title}</a></li>
+            <li class="text-sm"><a href={`/case-studies/${c.data.slug}`} class="hover:text-accent">{c.data.title}</a></li>
           ))}
         </ul>
       </div>
@@ -241,7 +241,7 @@ const totalPages =
         <ul class="mt-8 space-y-2 text-ink">
           <li><a href="/success-stories" class="hover:text-accent font-display">All stories</a></li>
           {stories.map((s) => (
-            <li class="text-sm"><a href={`/success-stories/${s.data.slug}`} class="hover:text-accent">— {s.data.title}</a></li>
+            <li class="text-sm"><a href={`/success-stories/${s.data.slug}`} class="hover:text-accent">{s.data.title}</a></li>
           ))}
         </ul>
       </div>

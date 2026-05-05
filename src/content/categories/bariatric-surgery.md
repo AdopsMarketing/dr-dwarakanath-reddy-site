@@ -20,7 +20,7 @@ whatWeCover:
       description: "Restriction plus bypass. Strong diabetes remission outcomes."
     - title: "Revision Bariatric Surgery"
       href: "/gi-services/bariatric-surgery/revision"
-      description: "Conversion or revision of a previous bariatric procedure — sleeve-to-bypass, band removal, complication repair."
+      description: "Conversion or revision of a previous bariatric procedure, sleeve-to-bypass, band removal, complication repair."
 sections:
   - type: list
     title: "Who qualifies?"

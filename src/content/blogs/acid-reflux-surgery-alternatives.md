@@ -53,7 +53,7 @@ Anti-reflux surgery is not a first-line treatment. It is considered when:
 - A large or symptomatic **hiatus hernia** is present
 - The patient wants to come off long-term medication for lifestyle or medical reasons
 - Significant reflux damage is seen on endoscopy (erosive oesophagitis, Barrett's oesophagus in select cases)
-- Regurgitation and aspiration are a major part of the problem — surgery addresses these better than any drug
+- Regurgitation and aspiration are a major part of the problem, surgery addresses these better than any drug
 
 Before surgery, proper testing is essential. At minimum, most patients need an **upper GI endoscopy**, and often a **24-hour pH study** and an **oesophageal manometry** to confirm that symptoms are genuinely due to reflux and to plan the correct operation.
 

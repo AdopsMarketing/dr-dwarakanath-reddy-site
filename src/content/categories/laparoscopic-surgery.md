@@ -50,7 +50,7 @@ closingCta:
 order: 20
 seo:
   title: "Laparoscopic Surgery in Nellore · Dr. Dwarakanath Reddy"
-  description: "Advanced minimally invasive surgery — laparoscopic gallbladder, hernia, eTEP, anti-reflux, and bariatric procedures. Apollo Speciality Hospitals, Nellore."
+  description: "Advanced minimally invasive surgery, laparoscopic gallbladder, hernia, eTEP, anti-reflux, and bariatric procedures. Apollo Speciality Hospitals, Nellore."
   keywords:
     - "laparoscopic surgery Nellore"
     - "keyhole surgery Apollo Nellore"

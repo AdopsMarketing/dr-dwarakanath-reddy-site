@@ -39,9 +39,9 @@ paymentAccepted:
   - "Insurance (cashless and reimbursement)"
 currenciesAccepted: "INR"
 # TODO (verify with Apollo / Rakesh):
-#   1. NABH accreditation — Apollo Hospitals chain holds NABH; need facility-specific
+#   1. NABH accreditation, Apollo Hospitals chain holds NABH; need facility-specific
 #      certificate number for the Nellore branch before adding it under hasCertification.
-#   2. JCI accreditation — same for the Nellore branch (some Apollo facilities are JCI-
+#   2. JCI accreditation, same for the Nellore branch (some Apollo facilities are JCI-
 #      accredited; Nellore branch status unconfirmed).
 #   3. Apollo's own canonical page for the Nellore branch (apollohospitals.com URL) to
 #      add to sameAs once located.

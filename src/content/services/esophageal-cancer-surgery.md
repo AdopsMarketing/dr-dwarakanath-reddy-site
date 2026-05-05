@@ -33,13 +33,13 @@ heroCta:
 sections:
   - type: prose
     title: "What is esophageal cancer surgery?"
-    body: "Esophagectomy is the removal of all or part of the esophagus along with surrounding lymph nodes, and reconstruction of the digestive tract — usually using the stomach, occasionally with colon or jejunum. The operation has three main approaches: Ivor Lewis (right thoracotomy plus laparotomy), McKeown (three-field — abdomen, chest, and neck), and transhiatal (abdomen and neck only). Each has specific indications based on tumour location, stage, and patient anatomy. Most cases are now performed using minimally invasive (thoracoscopic plus laparoscopic) or hybrid approaches."
+    body: "Esophagectomy is the removal of all or part of the esophagus along with surrounding lymph nodes, and reconstruction of the digestive tract, usually using the stomach, occasionally with colon or jejunum. The operation has three main approaches: Ivor Lewis (right thoracotomy plus laparotomy), McKeown (three-field, abdomen, chest, and neck), and transhiatal (abdomen and neck only). Each has specific indications based on tumour location, stage, and patient anatomy. Most cases are now performed using minimally invasive (thoracoscopic plus laparoscopic) or hybrid approaches."
   - type: list
     title: "Conditions treated"
     intro: "Surgery is offered for:"
     items:
-      - "Esophageal squamous cell carcinoma — the most common type in India"
-      - "Esophageal adenocarcinoma — typically lower esophagus, often arising from Barrett's"
+      - "Esophageal squamous cell carcinoma, the most common type in India"
+      - "Esophageal adenocarcinoma, typically lower esophagus, often arising from Barrett's"
       - "Gastro-esophageal junction (GEJ) cancers (Siewert classification)"
       - "Esophageal high-grade dysplasia not amenable to endoscopic management"
       - "Selected esophageal GIST tumours"
@@ -68,23 +68,23 @@ sections:
         detail: "Soft diet at home, small frequent meals. Office work usually deferred for 6 to 8 weeks."
       - period: "Month 3 onward"
         detail: "Adjuvant therapy considered based on histopathology. Surveillance imaging every 3 months for the first 2 years."
-    note: "Eating after esophagectomy requires adjustment — small, frequent meals, slow chewing, sitting up for 30 to 45 minutes after each meal to prevent reflux. Most patients lose 5 to 10 kg in the first 3 months and stabilise at 6 to 12 months. A nutritionist's input is part of the recovery plan."
+    note: "Eating after esophagectomy requires adjustment, small, frequent meals, slow chewing, sitting up for 30 to 45 minutes after each meal to prevent reflux. Most patients lose 5 to 10 kg in the first 3 months and stabilise at 6 to 12 months. A nutritionist's input is part of the recovery plan."
   - type: prose
     title: "Risks and complications"
-    body: "Esophagectomy is one of the highest-risk GI cancer operations. Specific risks include anastomotic leak (5 to 15 percent — varies by approach and technique), pulmonary complications (pneumonia, ARDS), recurrent laryngeal nerve injury (causing voice change), chyle leak, and longer-term issues with reflux and dietary tolerance. Operative mortality at high-volume centres is 2 to 5 percent. Dr. Reddy discusses individual risk and expected outcomes openly during pre-operative counselling."
+    body: "Esophagectomy is one of the highest-risk GI cancer operations. Specific risks include anastomotic leak (5 to 15 percent, varies by approach and technique), pulmonary complications (pneumonia, ARDS), recurrent laryngeal nerve injury (causing voice change), chyle leak, and longer-term issues with reflux and dietary tolerance. Operative mortality at high-volume centres is 2 to 5 percent. Dr. Reddy discusses individual risk and expected outcomes openly during pre-operative counselling."
   - type: list
     title: "Why Dr. Reddy for esophageal cancer surgery"
     items:
       - "DNB qualified surgical gastroenterologist with focused upper GI oncology training"
       - "Two-field lymphadenectomy as standard for thoracic esophageal cancers"
       - "Minimally invasive or hybrid approach where oncologically appropriate"
-      - "Apollo Speciality Hospitals — high-end ICU with thoracic anaesthesia, blood bank, ventilatory and dialysis backup"
+      - "Apollo Speciality Hospitals, high-end ICU with thoracic anaesthesia, blood bank, ventilatory and dialysis backup"
       - "Tumour-board format discussion on every case with medical and radiation oncology"
   - type: faqs
     title: "Frequently asked questions"
     items:
       - question: "Will I need chemotherapy or radiation before surgery?"
-        answer: "Most locally advanced thoracic esophageal cancers benefit from neoadjuvant chemoradiotherapy (the CROSS regimen — 5 weeks of treatment) before surgery. Some adenocarcinomas of the lower esophagus and junction are treated with perioperative chemotherapy (FLOT regimen) instead. The decision is made in tumour board after staging is complete."
+        answer: "Most locally advanced thoracic esophageal cancers benefit from neoadjuvant chemoradiotherapy (the CROSS regimen, 5 weeks of treatment) before surgery. Some adenocarcinomas of the lower esophagus and junction are treated with perioperative chemotherapy (FLOT regimen) instead. The decision is made in tumour board after staging is complete."
       - question: "How long after radiation can surgery happen?"
         answer: "Surgery is typically scheduled 6 to 10 weeks after the end of neoadjuvant chemoradiotherapy. This window allows treatment-related inflammation to settle and assessment of response to be completed."
       - question: "Will I be able to eat normally after esophagectomy?"

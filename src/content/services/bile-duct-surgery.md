@@ -36,12 +36,12 @@ sections:
     title: "Conditions treated"
     intro: "Surgery is offered for:"
     items:
-      - "Choledochal cyst — congenital dilatation of the bile duct, found in children and adults"
-      - "Cholangiocarcinoma — bile duct cancer (intrahepatic, hilar/Klatskin, or distal)"
-      - "Benign biliary stricture — from chronic pancreatitis, primary sclerosing cholangitis, or post-surgical scarring"
-      - "Bile duct injury after gallbladder surgery elsewhere — often complex revision cases"
-      - "Mirizzi syndrome — gallstone causing extrinsic compression of the bile duct"
-      - "Hepatolithiasis — stones within the intrahepatic bile ducts"
+      - "Choledochal cyst, congenital dilatation of the bile duct, found in children and adults"
+      - "Cholangiocarcinoma, bile duct cancer (intrahepatic, hilar/Klatskin, or distal)"
+      - "Benign biliary stricture, from chronic pancreatitis, primary sclerosing cholangitis, or post-surgical scarring"
+      - "Bile duct injury after gallbladder surgery elsewhere, often complex revision cases"
+      - "Mirizzi syndrome, gallstone causing extrinsic compression of the bile duct"
+      - "Hepatolithiasis, stones within the intrahepatic bile ducts"
       - "Selected biliary fistula and post-cholecystectomy syndrome cases"
     outro: "Workup typically includes MRCP, contrast-enhanced CT, tumour markers (CA 19-9 and CEA where relevant), and sometimes ERCP with brushings or biopsy. PET-CT is added for selected cancer cases."
   - type: steps
@@ -49,7 +49,7 @@ sections:
     steps:
       - "Open or laparoscopic upper midline approach under general anaesthesia"
       - "The bile duct cyst is dissected free from the portal vein and hepatic artery"
-      - "The entire cyst (extrahepatic biliary tree) is excised — partial excision is not accepted because of the malignant potential"
+      - "The entire cyst (extrahepatic biliary tree) is excised, partial excision is not accepted because of the malignant potential"
       - "The gallbladder is removed at the same time"
       - "A loop of small intestine (Roux-en-Y limb) is brought up and connected to the healthy bile duct above the cyst"
       - "A second anastomosis joins the two segments of intestine downstream"
@@ -78,7 +78,7 @@ sections:
       - "DNB qualified surgical gastroenterologist with HPB-focused training at Manipal Hospitals Bengaluru"
       - "Experience with both primary biliary surgery and complex revision cases"
       - "MRCP-based pre-operative planning for every case"
-      - "Apollo Nellore — 24/7 ICU, blood bank, interventional radiology, and on-site oncology"
+      - "Apollo Nellore, 24/7 ICU, blood bank, interventional radiology, and on-site oncology"
       - "Pre-operative tumour board for cancer cases"
   - type: faqs
     title: "Frequently asked questions"

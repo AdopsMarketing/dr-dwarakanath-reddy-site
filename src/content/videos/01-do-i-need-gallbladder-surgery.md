@@ -10,4 +10,4 @@ relatedServiceLabel: "Laparoscopic Gallbladder Surgery"
 order: 10
 ---
 
-Patient education video on gallstone disease — when surgery is needed, when it isn't, and how decisions are made.
+Patient education video on gallstone disease, when surgery is needed, when it isn't, and how decisions are made.

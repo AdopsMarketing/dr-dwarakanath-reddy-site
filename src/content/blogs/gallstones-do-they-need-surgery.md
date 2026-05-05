@@ -38,9 +38,9 @@ The hallmark of symptomatic gallstones is a specific type of pain, called **bili
 If you have had even two or three episodes of this pattern, assume symptomatic stones until proven otherwise.
 
 Other presentations include:
-- **Acute cholecystitis** — an infected, inflamed gallbladder, with constant pain, fever, and tenderness
-- **Jaundice** — yellow eyes, dark urine, pale stools, if a stone has moved into the bile duct
-- **Pancreatitis** — severe central abdominal pain that radiates to the back, if a stone has blocked the pancreatic duct
+- **Acute cholecystitis**, an infected, inflamed gallbladder, with constant pain, fever, and tenderness
+- **Jaundice**, yellow eyes, dark urine, pale stools, if a stone has moved into the bile duct
+- **Pancreatitis**, severe central abdominal pain that radiates to the back, if a stone has blocked the pancreatic duct
 
 ## Risks of ignoring symptoms
 

@@ -18,7 +18,7 @@ items:
   - question: "Is video or tele-consultation available?"
     answer: "Yes, video consultations can be arranged for second opinions and out-of-station patients. Initial surgical decisions almost always benefit from an in-person clinical examination, so most pre-operative reviews are scheduled at Apollo Nellore. For follow-up after surgery, video review and WhatsApp updates are often enough."
   - question: "Can I just walk in without an appointment?"
-    answer: "Walk-ins are accepted on consulting days, but the wait can be long. Booking ahead — by phone, WhatsApp, or the contact form — gives you a confirmed time slot and lets the team have your previous reports ready when you arrive."
+    answer: "Walk-ins are accepted on consulting days, but the wait can be long. Booking ahead, by phone, WhatsApp, or the contact form, gives you a confirmed time slot and lets the team have your previous reports ready when you arrive."
 ---
 
 Booking and appointments FAQs.

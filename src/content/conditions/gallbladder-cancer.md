@@ -16,7 +16,7 @@ signOrSymptom:
   - "Jaundice (yellow eyes/skin)"
   - "Palpable mass in the right upper abdomen"
   - "Persistent nausea"
-  - "Most early gallbladder cancers are asymptomatic — found on routine cholecystectomy histopathology"
+  - "Most early gallbladder cancers are asymptomatic, found on routine cholecystectomy histopathology"
 riskFactor:
   - "Female sex"
   - "Age over 65"
@@ -40,4 +40,4 @@ seo:
   description: "Gallbladder cancer symptoms, incidental detection, and radical cholecystectomy. Apollo Speciality Hospitals, Nellore."
 ---
 
-Gallbladder cancer in India has a notable geographic distribution, with higher incidence in northern states. Many cases are found incidentally — the histopathology after a routine laparoscopic cholecystectomy reveals invasive cancer. Stage is the dominant prognostic factor: early (T1a) disease is often cured by simple cholecystectomy alone, while T2 and beyond require radical re-resection (gallbladder bed, regional lymph nodes, sometimes bile duct or extended liver resection).
+Gallbladder cancer in India has a notable geographic distribution, with higher incidence in northern states. Many cases are found incidentally, the histopathology after a routine laparoscopic cholecystectomy reveals invasive cancer. Stage is the dominant prognostic factor: early (T1a) disease is often cured by simple cholecystectomy alone, while T2 and beyond require radical re-resection (gallbladder bed, regional lymph nodes, sometimes bile duct or extended liver resection).

@@ -12,11 +12,11 @@
  *  - A "Cookie preferences" link in the footer re-opens the banner so
  *    users can change their mind.
  *
- * No framework — vanilla JS, ~80 lines, ~3KB gzipped.
+ * No framework, vanilla JS, ~80 lines, ~3KB gzipped.
  *
  * Consent helper API exposed on window:
  *   window.__dprConsent = { essential: true, analytics: bool, marketing: bool }
- *   window.__dprConsentReopen() — opens the banner again
+ *   window.__dprConsentReopen(), opens the banner again
  *
  * To re-prompt globally (e.g. after policy update), bump the storage key.
  */

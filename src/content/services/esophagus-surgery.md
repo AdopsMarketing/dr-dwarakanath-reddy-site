@@ -34,19 +34,19 @@ heroCta:
 sections:
   - type: prose
     title: "What does esophagus surgery cover?"
-    body: "Esophagus surgery is a broad area covering both cancer resection and benign disease. The most common operations are esophagectomy (removal of the cancerous oesophagus with reconstruction), Heller's myotomy (for achalasia), Zenker's diverticulectomy, and large hiatus hernia or paraesophageal hernia repair. The choice of approach — open, thoracoscopic, laparoscopic, or hybrid (Ivor Lewis, McKeown, transhiatal) — depends on tumour location, stage, and patient anatomy."
+    body: "Esophagus surgery is a broad area covering both cancer resection and benign disease. The most common operations are esophagectomy (removal of the cancerous oesophagus with reconstruction), Heller's myotomy (for achalasia), Zenker's diverticulectomy, and large hiatus hernia or paraesophageal hernia repair. The choice of approach, open, thoracoscopic, laparoscopic, or hybrid (Ivor Lewis, McKeown, transhiatal), depends on tumour location, stage, and patient anatomy."
   - type: list
     title: "Conditions treated"
     intro: "Surgery is offered for:"
     items:
-      - "Esophageal cancer — squamous cell carcinoma and adenocarcinoma (see also the GI Oncology esophageal cancer page)"
-      - "Achalasia — failure of the lower oesophageal sphincter to relax, causing food retention"
-      - "Zenker's diverticulum — pouch in the upper oesophagus, causing regurgitation and aspiration"
-      - "Epiphrenic diverticulum — pouch in the lower oesophagus, often with motility disorder"
+      - "Esophageal cancer, squamous cell carcinoma and adenocarcinoma (see also the GI Oncology esophageal cancer page)"
+      - "Achalasia, failure of the lower oesophageal sphincter to relax, causing food retention"
+      - "Zenker's diverticulum, pouch in the upper oesophagus, causing regurgitation and aspiration"
+      - "Epiphrenic diverticulum, pouch in the lower oesophagus, often with motility disorder"
       - "Large paraesophageal or hiatus hernia"
       - "Severe oesophageal stricture not amenable to endoscopic dilatation"
       - "End-stage achalasia with sigmoid oesophagus needing oesophagectomy"
-    outro: "Each condition requires a different surgical strategy. Comprehensive workup — endoscopy, manometry, contrast study, and CT or PET-CT for cancer — is essential before deciding."
+    outro: "Each condition requires a different surgical strategy. Comprehensive workup, endoscopy, manometry, contrast study, and CT or PET-CT for cancer, is essential before deciding."
   - type: steps
     title: "How a Heller's myotomy is performed (most common benign procedure)"
     steps:
@@ -70,7 +70,7 @@ sections:
         detail: "Gradual return to soft solids and then normal food."
       - period: "Month 3"
         detail: "Complete recovery. Annual follow-up to monitor for recurrence."
-    note: "Esophagectomy recovery is much longer — 6 to 10 weeks before a full return to normal life, with a structured oncological follow-up schedule. See the GI Oncology esophageal cancer page for details."
+    note: "Esophagectomy recovery is much longer, 6 to 10 weeks before a full return to normal life, with a structured oncological follow-up schedule. See the GI Oncology esophageal cancer page for details."
   - type: prose
     title: "Risks and complications"
     body: "Risks vary widely between procedures. Heller's myotomy and small diverticulectomy are very safe with low complication rates. Esophagectomy is one of the most complex GI cancer operations, with significant risks including anastomotic leak, pulmonary complications, and longer recovery. Dr. Reddy discusses procedure-specific risks individually, with full transparency on volume and outcomes data."
@@ -78,7 +78,7 @@ sections:
     title: "Why Dr. Reddy for esophagus surgery"
     items:
       - "DNB qualified surgical gastroenterologist with upper GI focus"
-      - "Multidisciplinary team backing for cancer cases — oncology, radiology, anaesthesia, ICU"
+      - "Multidisciplinary team backing for cancer cases, oncology, radiology, anaesthesia, ICU"
       - "Minimally invasive approach where the disease and anatomy permit"
       - "Apollo Speciality Hospitals provides high-end ICU, blood bank, and ventilatory support"
       - "Cancer cases discussed in tumour-board format before treatment is finalised"

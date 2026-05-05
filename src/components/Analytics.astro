@@ -1,6 +1,6 @@
 ---
 /**
- * Analytics — Google Tag Manager + Microsoft Clarity, gated on cookie consent.
+ * Analytics, Google Tag Manager + Microsoft Clarity, gated on cookie consent.
  *
  *  GTM (GTM-PNN6MZ5P) is the single source of truth for Google-side tags.
  *  GA4 (G-PLTQWN5SGW) is configured INSIDE GTM as a "GA4 Configuration" tag, not
@@ -15,8 +15,8 @@
  *  preferences link are honoured immediately within the same page session.
  *
  *  Exposes globally:
- *    window.dataLayer       — always initialized so pages can queue events
- *    window.dprPushEvent()  — consent-respecting helper; use this from any
+ *    window.dataLayer      , always initialized so pages can queue events
+ *    window.dprPushEvent() , consent-respecting helper; use this from any
  *                             custom client-side code to fire GA4 events
  *                             (e.g. window.dprPushEvent({ event: 'whatsapp_click' }))
  *
@@ -30,7 +30,7 @@ const CLARITY_ID = 'wk7rfvfh4o';
 
 <script is:inline define:vars={{ GTM_ID, CLARITY_ID }}>
 (function () {
-  // dataLayer initialized always (in-memory only — no transmission until GTM loads).
+  // dataLayer initialized always (in-memory only, no transmission until GTM loads).
   window.dataLayer = window.dataLayer || [];
 
   // Public helper. Pushes only when analytics consent is granted.
