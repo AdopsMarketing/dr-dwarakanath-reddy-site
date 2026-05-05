@@ -11,7 +11,7 @@ googleRating:
   value: 5.0
   reviewCount: 428
 education:
-  - degree: "DNB, Surgical Gastroenterology"
+  - degree: "DrNB, Surgical Gastroenterology"
     college: "Manipal Hospitals, Bengaluru"
     years: "2017–2020"
   - degree: "MS, General Surgery"
@@ -64,7 +64,7 @@ medicalSpecialty:
 credentials:
   - "MBBS"
   - "MS (General Surgery)"
-  - "DNB (Surgical Gastroenterology)"
+  - "DrNB (Surgical Gastroenterology)"
 hasCredential:
   - name: "MBBS"
     description: "Bachelor of Medicine, Bachelor of Surgery"
@@ -82,8 +82,8 @@ hasCredential:
       sameAs:
         - "https://drntruhs.edu.in/"
         - "https://en.wikipedia.org/wiki/Dr._NTR_University_of_Health_Sciences"
-  - name: "DNB (Surgical Gastroenterology)"
-    description: "Diplomate of National Board, Surgical Gastroenterology"
+  - name: "DrNB (Surgical Gastroenterology)"
+    description: "Doctorate of National Board, Surgical Gastroenterology"
     credentialCategory: "super-specialty degree"
     recognizedBy:
       name: "National Board of Examinations in Medical Sciences"
@@ -190,7 +190,7 @@ nationality:
 worksAt: "main-clinic"
 seo:
   title: "Dr. Dwarakanath Reddy · Senior GI Surgeon, Apollo Nellore"
-  description: "DNB Surgical Gastroenterology. 9+ years and 3,000+ surgeries in laparoscopic, HPB, oncology, and bariatric surgery. Apollo Speciality Hospitals, Nellore."
+  description: "DrNB Surgical Gastroenterology. 9+ years and 3,000+ surgeries in laparoscopic, HPB, oncology, and bariatric surgery. Apollo Speciality Hospitals, Nellore."
 ---
 
 Dr. Dwarakanath Reddy Vembuluru is a Senior Consultant in Gastrointestinal Surgery and GI Oncosurgery at Apollo Speciality Hospitals, Nellore. He trained at Manipal Hospitals Bengaluru, one of India's leading GI surgery programmes, and brings nine years of focused experience in advanced laparoscopic, hepato-pancreatico-biliary, and bariatric procedures. His practice is rated 5.0 on Google from 428 verified reviews.

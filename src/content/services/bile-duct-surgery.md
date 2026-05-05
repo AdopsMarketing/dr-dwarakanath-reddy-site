@@ -75,7 +75,7 @@ sections:
   - type: list
     title: "Why Dr. Reddy for bile duct surgery"
     items:
-      - "DNB qualified surgical gastroenterologist with HPB-focused training at Manipal Hospitals Bengaluru"
+      - "DrNB qualified surgical gastroenterologist with HPB-focused training at Manipal Hospitals Bengaluru"
       - "Experience with both primary biliary surgery and complex revision cases"
       - "MRCP-based pre-operative planning for every case"
       - "Apollo Nellore, 24/7 ICU, blood bank, interventional radiology, and on-site oncology"

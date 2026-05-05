@@ -23,7 +23,7 @@ sameAs:
   - "https://meshb.nlm.nih.gov/record/ui?ui=D013505"
 seo:
   title: "Surgical Gastroenterology in Nellore · Dr. Dwarakanath Reddy"
-  description: "DNB-qualified surgical gastroenterologist with 9+ years of focused GI surgery experience. Apollo Speciality Hospitals, Nellore."
+  description: "DrNB-qualified surgical gastroenterologist with 9+ years of focused GI surgery experience. Apollo Speciality Hospitals, Nellore."
   keywords: ["surgical gastroenterologist", "GI surgeon", "digestive surgery"]
 ---
 

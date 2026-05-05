@@ -77,7 +77,7 @@ sections:
   - type: list
     title: "Why Dr. Reddy for revision bariatric surgery"
     items:
-      - "DNB qualified surgical gastroenterologist with bariatric and reoperative experience"
+      - "DrNB qualified surgical gastroenterologist with bariatric and reoperative experience"
       - "Pre-operative endoscopy and contrast study on every case"
       - "Original operative notes always reviewed before planning"
       - "Multidisciplinary input, dietitian, endocrinology, psychology, for complex cases"

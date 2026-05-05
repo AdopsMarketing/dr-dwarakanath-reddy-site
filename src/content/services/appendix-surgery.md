@@ -73,7 +73,7 @@ sections:
   - type: list
     title: "Why Dr. Reddy for appendix surgery"
     items:
-      - "DNB qualified surgical gastroenterologist with high-volume laparoscopic experience"
+      - "DrNB qualified surgical gastroenterologist with high-volume laparoscopic experience"
       - "Apollo Nellore Emergency runs 24/7 with on-call surgical cover"
       - "Laparoscopic approach for nearly all cases, including perforated appendicitis where appropriate"
       - "Direct WhatsApp line for scan review before reaching the hospital"

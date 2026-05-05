@@ -68,7 +68,7 @@ sections:
   - type: list
     title: "Why Dr. Reddy for liver tumor surgery"
     items:
-      - "DNB Surgical Gastroenterology with HPB focus"
+      - "DrNB Surgical Gastroenterology with HPB focus"
       - "Apollo Nellore has full ICU, blood bank, and interventional radiology backup"
       - "Multidisciplinary tumor board for every cancer case"
       - "Honest pre operative assessment (liver surgery is not for every tumor)"

@@ -76,7 +76,7 @@ sections:
   - type: list
     title: "Why Dr. Reddy for stomach surgery"
     items:
-      - "DNB qualified surgical gastroenterologist with focused upper GI training"
+      - "DrNB qualified surgical gastroenterologist with focused upper GI training"
       - "D2 lymph-node dissection performed routinely for gastric cancer"
       - "Laparoscopic approach offered where oncologically and technically appropriate"
       - "Cancer cases discussed in multidisciplinary tumour board format"

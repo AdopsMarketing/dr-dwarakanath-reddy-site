@@ -73,7 +73,7 @@ sections:
   - type: list
     title: "Why Dr. Reddy for gallbladder surgery"
     items:
-      - "DNB qualified surgical gastroenterologist, not a general surgeon"
+      - "DrNB qualified surgical gastroenterologist, not a general surgeon"
       - "Trained in advanced laparoscopic techniques at Manipal Hospitals Bengaluru"
       - "Performs the critical view of safety on every case (gold standard for avoiding bile duct injury)"
       - "Apollo Nellore infrastructure for any rare complication"

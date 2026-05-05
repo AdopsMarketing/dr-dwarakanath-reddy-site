@@ -75,7 +75,7 @@ sections:
   - type: list
     title: "Why Dr. Reddy for anti-reflux surgery"
     items:
-      - "DNB qualified surgical gastroenterologist with focused upper GI training"
+      - "DrNB qualified surgical gastroenterologist with focused upper GI training"
       - "Decision based on full work-up: endoscopy, manometry, and 24-hour pH study"
       - "Tailored choice between Nissen and Toupet based on motility findings"
       - "Cruroplasty with mesh reinforcement when indicated for large hernias"

@@ -75,7 +75,7 @@ sections:
   - type: list
     title: "Why Dr. Reddy for esophageal cancer surgery"
     items:
-      - "DNB qualified surgical gastroenterologist with focused upper GI oncology training"
+      - "DrNB qualified surgical gastroenterologist with focused upper GI oncology training"
       - "Two-field lymphadenectomy as standard for thoracic esophageal cancers"
       - "Minimally invasive or hybrid approach where oncologically appropriate"
       - "Apollo Speciality Hospitals, high-end ICU with thoracic anaesthesia, blood bank, ventilatory and dialysis backup"

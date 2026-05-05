@@ -77,7 +77,7 @@ sections:
   - type: list
     title: "Why Dr. Reddy for esophagus surgery"
     items:
-      - "DNB qualified surgical gastroenterologist with upper GI focus"
+      - "DrNB qualified surgical gastroenterologist with upper GI focus"
       - "Multidisciplinary team backing for cancer cases, oncology, radiology, anaesthesia, ICU"
       - "Minimally invasive approach where the disease and anatomy permit"
       - "Apollo Speciality Hospitals provides high-end ICU, blood bank, and ventilatory support"

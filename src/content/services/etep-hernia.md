@@ -72,7 +72,7 @@ closingCta:
   message: "Hi Dr. Reddy, I have a recurrent or complex hernia. Here are my scans and details."
 seo:
   title: "eTEP Hernia Surgery in Nellore · Dr. Dwarakanath Reddy"
-  description: "Extended totally extra-peritoneal repair for complex and recurrent ventral hernias. DNB Surgical Gastroenterology. Apollo Speciality Hospitals, Nellore."
+  description: "Extended totally extra-peritoneal repair for complex and recurrent ventral hernias. DrNB Surgical Gastroenterology. Apollo Speciality Hospitals, Nellore."
   keywords:
     - "eTEP hernia Nellore"
     - "recurrent hernia surgery"

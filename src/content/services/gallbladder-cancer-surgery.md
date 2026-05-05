@@ -75,7 +75,7 @@ sections:
   - type: list
     title: "Why Dr. Reddy for gallbladder cancer surgery"
     items:
-      - "DNB qualified surgical gastroenterologist with HPB and oncology focus"
+      - "DrNB qualified surgical gastroenterologist with HPB and oncology focus"
       - "Tumour-board format discussion on every cancer case before treatment is finalised"
       - "Standardised lymph node dissection, adequate yield is a known prognostic factor"
       - "Apollo Speciality Hospitals, full ICU, blood bank, interventional radiology backup"

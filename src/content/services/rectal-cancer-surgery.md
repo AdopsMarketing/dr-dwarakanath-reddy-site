@@ -76,7 +76,7 @@ sections:
   - type: list
     title: "Why Dr. Reddy for rectal cancer surgery"
     items:
-      - "DNB qualified surgical gastroenterologist with GI oncology focus"
+      - "DrNB qualified surgical gastroenterologist with GI oncology focus"
       - "TME with sharp dissection along the holy plane, gold standard for local recurrence prevention"
       - "Pre-operative MRI-based planning for every case"
       - "Sphincter-saving approach where the tumour position permits"
