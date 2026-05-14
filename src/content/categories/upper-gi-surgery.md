@@ -34,13 +34,33 @@ whatWeCover:
       href: "/gi-services/gi-oncology/esophageal-cancer-surgery"
       description: "Esophagectomy with two-field lymphadenectomy."
 sections:
+  - type: prose
+    title: "What upper GI surgery covers"
+    body: "The upper gastrointestinal tract includes the esophagus, stomach, and the first part of the small intestine (duodenum). Conditions in this region range from benign functional problems — chronic acid reflux, achalasia, hiatus hernia — to complex cancers requiring major resection. Upper GI surgery therefore spans a wide spectrum: from a laparoscopic Nissen fundoplication done as a day procedure to a total gastrectomy or Ivor Lewis esophagectomy performed under full critical care cover. Dr. Reddy trained specifically in upper GI and HPB surgery as part of his super-specialisation, and performs the full range of these procedures at Apollo Speciality Hospitals, Nellore."
+
   - type: list
     title: "Who should see Dr. Reddy?"
+    intro: "A surgical opinion is worth seeking early — in many upper GI conditions, earlier intervention leads to simpler surgery and better outcomes."
     items:
-      - "Patients with severe acid reflux not controlled by medication"
-      - "Diagnosed with stomach or esophagus cancer"
-      - "Persistent vomiting or difficulty swallowing"
-      - "Family history of stomach cancer needing surveillance"
+      - "Patients with severe or long-standing acid reflux not controlled by medication"
+      - "Anyone diagnosed with stomach, esophageal, or duodenal cancer"
+      - "Difficulty swallowing (dysphagia) that persists or is getting worse"
+      - "Persistent vomiting, early satiety, or unexplained weight loss"
+      - "Achalasia or other motility disorders of the esophagus"
+      - "Family history of gastric cancer requiring surveillance or risk-reduction discussion"
+    outro: "If you have already seen a gastroenterologist and been told surgery may be needed, a direct surgical consultation will clarify the options, timing, and what the procedure involves."
+
+  - type: faqs
+    title: "Common questions about Upper GI Surgery"
+    items:
+      - question: "Is upper GI surgery always done as open surgery?"
+        answer: "No. The majority of upper GI procedures Dr. Reddy performs — including anti-reflux surgery, fundoplication, and selected gastric resections — are done laparoscopically through small keyhole incisions. Major resections such as esophagectomy or total gastrectomy for cancer require a larger approach, but even these are increasingly done with minimally invasive techniques where the clinical situation allows."
+      - question: "How long is recovery after stomach or esophagus surgery?"
+        answer: "Recovery varies considerably by procedure. A laparoscopic anti-reflux operation typically involves one night in hospital and a return to normal activity within two weeks. A major resection such as gastrectomy for cancer involves five to seven days in hospital and four to six weeks before returning to routine daily tasks. Dr. Reddy will give you a specific timeline at your consultation based on the planned procedure."
+      - question: "What is the difference between a gastroenterologist and an upper GI surgeon?"
+        answer: "A gastroenterologist is a physician who diagnoses and manages GI conditions medically and performs diagnostic endoscopy. An upper GI surgeon is a specialist who operates on the esophagus, stomach, and related structures. The two roles are complementary — a gastroenterologist often makes the initial diagnosis and refers for a surgical opinion when intervention is needed."
+      - question: "I have been advised to have an esophagectomy. Is it safe to have this done in Nellore?"
+        answer: "Esophagectomy is one of the more demanding GI operations and outcomes are best at centres with dedicated surgical and critical care expertise. Apollo Speciality Hospitals, Nellore, offers full ICU support, interventional radiology, and a multidisciplinary oncology team, which are the key prerequisites. Dr. Reddy discusses the institutional setup frankly at consultation so patients can make an informed decision about where they wish to be treated."
 closingCta:
   prompt: "Have an endoscopy report or persistent upper GI symptoms? Send them on WhatsApp."
   label: "Send your reports on WhatsApp"
