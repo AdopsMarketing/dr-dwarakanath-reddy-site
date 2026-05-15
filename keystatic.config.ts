@@ -180,7 +180,7 @@ export default config({
       format: { contentField: 'content' },
       schema: {
         title: fields.text({ label: 'Title' }),
-        slug: fields.slug({ name: { label: 'URL slug' } }),
+        slug: fields.text({ label: 'URL slug', description: 'Lowercase, hyphens only — e.g. understanding-gallstones', validation: { isRequired: true } }),
         excerpt: fields.text({ label: 'Excerpt', multiline: true }),
         publishedAt: fields.text({ label: 'Published (YYYY-MM-DD)' }),
         updatedAt: fields.text({ label: 'Updated (YYYY-MM-DD)' }),
@@ -202,7 +202,7 @@ export default config({
       format: { contentField: 'content' },
       schema: {
         title: fields.text({ label: 'Title' }),
-        slug: fields.slug({ name: { label: 'URL slug' } }),
+        slug: fields.text({ label: 'URL slug', description: 'Lowercase, hyphens only — e.g. my-post-title', validation: { isRequired: true } }),
         caseNumber: fields.text({ label: 'Case number' }),
         excerpt: fields.text({ label: 'Excerpt', multiline: true }),
         publishedAt: fields.text({ label: 'Published (YYYY-MM-DD)' }),
@@ -224,7 +224,7 @@ export default config({
       format: { contentField: 'content' },
       schema: {
         title: fields.text({ label: 'Title' }),
-        slug: fields.slug({ name: { label: 'URL slug' } }),
+        slug: fields.text({ label: 'URL slug', description: 'Lowercase, hyphens only — e.g. my-post-title', validation: { isRequired: true } }),
         excerpt: fields.text({ label: 'Excerpt', multiline: true }),
         publishedAt: fields.text({ label: 'Published (YYYY-MM-DD)' }),
         condition: fields.text({ label: 'Condition' }),
@@ -245,7 +245,7 @@ export default config({
       format: { contentField: 'content' },
       schema: {
         title: fields.text({ label: 'Title' }),
-        slug: fields.slug({ name: { label: 'URL slug' } }),
+        slug: fields.text({ label: 'URL slug', description: 'Lowercase, hyphens only — e.g. my-post-title', validation: { isRequired: true } }),
         description: fields.text({ label: 'Description', multiline: true }),
         category: fields.select({
           label: 'Category',
@@ -287,7 +287,7 @@ export default config({
       schema: {
         title: fields.text({ label: 'Category title' }),
         eyebrow: fields.text({ label: 'Eyebrow text' }),
-        slug: fields.slug({ name: { label: 'URL slug' } }),
+        slug: fields.text({ label: 'URL slug', description: 'Lowercase, hyphens only — e.g. my-post-title', validation: { isRequired: true } }),
         intro: fields.text({ label: 'Intro paragraph', multiline: true }),
         order: fields.number({ label: 'Display order', defaultValue: 100 }),
         items: fields.array(
@@ -313,7 +313,7 @@ export default config({
       path: 'src/content/doctors/*',
       format: { contentField: 'content' },
       schema: {
-        entityKey: fields.slug({ name: { label: 'Entity key' } }),
+        entityKey: fields.text({ label: 'Entity key', description: 'Lowercase, hyphens only', validation: { isRequired: true } }),
         isPrimary: fields.checkbox({ label: 'Primary doctor', defaultValue: false }),
         name: fields.text({ label: 'Full name (no title)' }),
         title: fields.text({ label: 'Position / title' }),
@@ -387,7 +387,7 @@ export default config({
       format: { contentField: 'content' },
       schema: {
         name: fields.text({ label: 'Name' }),
-        entityKey: fields.slug({ name: { label: 'Entity key' } }),
+        entityKey: fields.text({ label: 'Entity key', description: 'Lowercase, hyphens only', validation: { isRequired: true } }),
         isPrimary: fields.checkbox({ label: 'Primary location', defaultValue: false }),
         address: fields.object({
           streetAddress: fields.text({ label: 'Street address' }),
@@ -417,7 +417,7 @@ export default config({
       format: { contentField: 'content' },
       schema: {
         title: fields.text({ label: 'Title' }),
-        slug: fields.slug({ name: { label: 'URL slug' } }),
+        slug: fields.text({ label: 'URL slug', description: 'Lowercase, hyphens only — e.g. my-post-title', validation: { isRequired: true } }),
         h1: fields.text({ label: 'H1 heading' }),
         h1Secondary: fields.text({ label: 'H1 secondary line' }),
         category: fields.select({
@@ -481,7 +481,7 @@ export default config({
       format: { contentField: 'content' },
       schema: {
         title: fields.text({ label: 'Title' }),
-        slug: fields.slug({ name: { label: 'URL slug' } }),
+        slug: fields.text({ label: 'URL slug', description: 'Lowercase, hyphens only — e.g. my-post-title', validation: { isRequired: true } }),
         h1: fields.text({ label: 'H1' }),
         h1Secondary: fields.text({ label: 'H1 secondary line' }),
         shortDescription: fields.text({ label: 'Short description', multiline: true }),
@@ -511,7 +511,7 @@ export default config({
       format: { contentField: 'content' },
       schema: {
         title: fields.text({ label: 'Title' }),
-        slug: fields.slug({ name: { label: 'URL slug' } }),
+        slug: fields.text({ label: 'URL slug', description: 'Lowercase, hyphens only — e.g. my-post-title', validation: { isRequired: true } }),
         shortDescription: fields.text({ label: 'Short description', multiline: true }),
         alternateName: fields.array(fields.text({ label: 'Alternate name' }), {
           label: 'Alternate names',
