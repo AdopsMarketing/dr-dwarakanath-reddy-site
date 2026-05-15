@@ -477,6 +477,11 @@ export default config({
           itemLabel: (p) => p.value,
         }),
         sections: serviceSections,
+        closingCta: fields.object({
+          prompt: fields.text({ label: 'Closing prompt text', multiline: true }),
+          label: fields.text({ label: 'Button label' }),
+          message: fields.text({ label: 'WhatsApp pre-fill message', multiline: true }),
+        }),
         phase: fields.select({
           label: 'Phase',
           options: [
