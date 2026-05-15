@@ -38,7 +38,7 @@ const awardSchema = z.object({
 });
 
 const organization = defineCollection({
-  loader: glob({ pattern: '**/*.{md,json}', base: './src/content/organization' }),
+  loader: glob({ pattern: '**/*.{md,mdoc,json}', base: './src/content/organization' }),
   schema: z.object({
     name: z.string(),
     legalName: z.string(),
@@ -70,7 +70,7 @@ const organization = defineCollection({
 });
 
 const doctors = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/doctors' }),
+  loader: glob({ pattern: '**/*.{md,mdoc}', base: './src/content/doctors' }),
   schema: ({ image }) =>
     z.object({
       entityKey: z.string(),
@@ -203,7 +203,7 @@ const serviceSection = z.discriminatedUnion('type', [
 ]);
 
 const services = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/services' }),
+  loader: glob({ pattern: '**/*.{md,mdoc}', base: './src/content/services' }),
   schema: z.object({
     title: z.string(),
     h1: z.string().optional(),
@@ -264,7 +264,7 @@ const services = defineCollection({
 });
 
 const categories = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/categories' }),
+  loader: glob({ pattern: '**/*.{md,mdoc}', base: './src/content/categories' }),
   schema: z.object({
     title: z.string(),
     h1: z.string().optional(),
@@ -306,7 +306,7 @@ const categories = defineCollection({
 });
 
 const conditions = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/conditions' }),
+  loader: glob({ pattern: '**/*.{md,mdoc}', base: './src/content/conditions' }),
   schema: z.object({
     title: z.string(),
     slug: z.string(),
@@ -329,7 +329,7 @@ const conditions = defineCollection({
 });
 
 const locations = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/locations' }),
+  loader: glob({ pattern: '**/*.{md,mdoc}', base: './src/content/locations' }),
   schema: z.object({
     name: z.string(),
     entityKey: z.string(),
@@ -407,7 +407,7 @@ const blogs = defineCollection({
 });
 
 const cases = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/cases' }),
+  loader: glob({ pattern: '**/*.{md,mdoc}', base: './src/content/cases' }),
   schema: z.object({
     title: z.string(),
     slug: z.string(),
@@ -430,7 +430,7 @@ const cases = defineCollection({
 });
 
 const stories = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/stories' }),
+  loader: glob({ pattern: '**/*.{md,mdoc}', base: './src/content/stories' }),
   schema: z.object({
     title: z.string(),
     slug: z.string(),
@@ -452,7 +452,7 @@ const stories = defineCollection({
 });
 
 const videos = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/videos' }),
+  loader: glob({ pattern: '**/*.{md,mdoc}', base: './src/content/videos' }),
   schema: z.object({
     title: z.string(),
     slug: z.string(),
@@ -482,7 +482,7 @@ const videos = defineCollection({
 });
 
 const faqs = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/faqs' }),
+  loader: glob({ pattern: '**/*.{md,mdoc}', base: './src/content/faqs' }),
   schema: z.object({
     title: z.string(),
     eyebrow: z.string().optional(),
