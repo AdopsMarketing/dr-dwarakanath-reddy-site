@@ -457,7 +457,20 @@ export default config({
           label: 'Indications',
           itemLabel: (p) => p.value,
         }),
+        h1Html: fields.text({ label: 'H1 HTML (optional, supports <em>)', multiline: false }),
         heroIntro: fields.text({ label: 'Hero intro', multiline: true }),
+        heroCta: fields.object({
+          label: fields.text({ label: 'CTA label' }),
+          message: fields.text({ label: 'WhatsApp pre-fill message', multiline: true }),
+        }),
+        medicalSpecialty: fields.array(fields.text({ label: 'Specialty' }), {
+          label: 'Medical specialties',
+          itemLabel: (p) => p.value,
+        }),
+        relatedConditions: fields.array(fields.text({ label: 'Condition slug' }), {
+          label: 'Related conditions (slugs)',
+          itemLabel: (p) => p.value,
+        }),
         sections: serviceSections,
         phase: fields.select({
           label: 'Phase',
@@ -483,9 +496,16 @@ export default config({
         title: fields.text({ label: 'Title' }),
         slug: fields.text({ label: 'URL slug', description: 'Lowercase, hyphens only — e.g. my-post-title', validation: { isRequired: true } }),
         h1: fields.text({ label: 'H1' }),
+        h1Html: fields.text({ label: 'H1 HTML (optional, supports <em>)' }),
         h1Secondary: fields.text({ label: 'H1 secondary line' }),
         shortDescription: fields.text({ label: 'Short description', multiline: true }),
         heroIntro: fields.text({ label: 'Hero intro', multiline: true }),
+        sameAs: sameAsField,
+        closingCta: fields.object({
+          prompt: fields.text({ label: 'Prompt text', multiline: true }),
+          label: fields.text({ label: 'Button label' }),
+          message: fields.text({ label: 'WhatsApp pre-fill message', multiline: true }),
+        }),
         whatWeCover: fields.object({
           title: fields.text({ label: 'Section title', defaultValue: 'What we offer' }),
           items: fields.array(
@@ -527,6 +547,11 @@ export default config({
           itemLabel: (p) => p.value,
         }),
         relevantSpecialty: fields.text({ label: 'Relevant specialty' }),
+        associatedAnatomy: entityWithSameAs,
+        possibleTreatment: fields.array(fields.text({ label: 'Service slug' }), {
+          label: 'Possible treatments (service slugs)',
+          itemLabel: (p) => p.value,
+        }),
         sameAs: sameAsField,
         seo: seoFields,
         content: fields.markdoc({ label: 'Long-form content' }),
