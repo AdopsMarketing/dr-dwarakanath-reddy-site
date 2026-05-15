@@ -5,6 +5,7 @@ import vercel from '@astrojs/vercel';
 import react from '@astrojs/react';
 import keystatic from '@keystatic/astro';
 import sitemap from '@astrojs/sitemap';
+import markdoc from '@astrojs/markdoc';
 
 export default defineConfig({
   site: 'https://gastrosurgeonnellore.com',
@@ -23,6 +24,7 @@ export default defineConfig({
   // React is required by Keystatic; scoped to /keystatic via include.
   integrations: [
     icon(),
+    markdoc(),
     react({ include: ['**/keystatic/**'] }),
     keystatic(),
     sitemap({
