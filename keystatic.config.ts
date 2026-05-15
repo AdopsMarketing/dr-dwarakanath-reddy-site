@@ -3,17 +3,18 @@ import { config, fields, collection, singleton } from '@keystatic/core';
 /**
  * Keystatic admin config.
  *
- * - Default storage is 'local' so `astro dev` works without GitHub setup.
- * - In production set the env vars below to switch to GitHub mode (commits flow through GitHub OAuth).
- *   See HANDOVER.md → "Keystatic in production" for the GitHub App setup steps.
+ * - Local dev (`astro dev`): local storage — edits write directly to markdown files.
+ * - Production (Vercel): GitHub storage — edits commit via GitHub OAuth.
+ *
+ * Uses import.meta.env.PROD (Astro/Vite built-in) instead of process.env so the
+ * value is correctly inlined at build time in the client-side React admin bundle.
  *
  * The schemas below mirror src/content.config.ts so the Astro build stays the
  * source of truth — Keystatic just provides a friendlier editing UI on top.
  * If you change a Zod schema there, mirror the change here.
  */
 
-const useGitHubStorage =
-  !!process.env.KEYSTATIC_GITHUB_REPO_OWNER && !!process.env.KEYSTATIC_GITHUB_REPO_NAME;
+const useGitHubStorage = import.meta.env.PROD;
 
 // ---------------------------------------------------------------------------
 // Reusable field fragments
