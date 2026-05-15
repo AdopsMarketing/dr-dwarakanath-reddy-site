@@ -252,6 +252,7 @@ const services = defineCollection({
     relatedConditions: z.array(reference('conditions')).default([]),
     sameAs: sameAsArray,
     phase: z.enum(['1', '2']).default('1'),
+    navEyebrow: z.string().optional(),
     order: z.number().int().default(100),
     seo: z
       .object({
@@ -294,6 +295,7 @@ const categories = defineCollection({
         message: z.string(),
       })
       .optional(),
+    navEyebrow: z.string().optional(),
     order: z.number().int().default(100),
     seo: z
       .object({
@@ -471,6 +473,7 @@ const videos = defineCollection({
     relatedService: z.string().optional(),
     relatedServiceLabel: z.string().optional(),
     thumbnail: z.string().optional(),
+    navEyebrow: z.string().optional(),
     order: z.number().int().default(100),
     seo: z
       .object({
@@ -488,6 +491,7 @@ const faqs = defineCollection({
     eyebrow: z.string().optional(),
     slug: z.string(),
     intro: z.string().optional(),
+    navEyebrow: z.string().optional(),
     order: z.number().int().default(100),
     items: z
       .array(

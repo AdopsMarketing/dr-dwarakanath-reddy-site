@@ -1,9 +1,18 @@
 ---
 import { Icon } from 'astro-icon/components';
 import { primaryNav } from '@/data/navigation';
-import { giServicesMenu } from '@/data/megaMenu';
+import { getCollection } from 'astro:content';
 import { siteConfig, whatsappUrl } from '@/config/site';
 import GIServicesDropdown from '@/components/GIServicesDropdown.astro';
+
+const giServicesMenu = (await getCollection('categories'))
+  .sort((a, b) => (a.data.order ?? 100) - (b.data.order ?? 100))
+  .map((c) => ({
+    eyebrow: c.data.navEyebrow ?? '',
+    title: c.data.title,
+    subline: (c.data.h1Secondary ?? '').split(' · ')[0],
+    href: `/gi-services/${c.data.slug}`,
+  }));
 
 const waHref = whatsappUrl("Hi Dr. Reddy, I'd like to book an appointment.");
 const telHref = `tel:${siteConfig.doctor.phone.replace(/\s/g, '')}`;

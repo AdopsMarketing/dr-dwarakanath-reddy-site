@@ -500,6 +500,7 @@ export default config({
         h1Secondary: fields.text({ label: 'H1 secondary line' }),
         shortDescription: fields.text({ label: 'Short description', multiline: true }),
         heroIntro: fields.text({ label: 'Hero intro', multiline: true }),
+        navEyebrow: fields.text({ label: 'Nav eyebrow label', description: 'Short label shown above the title in the nav dropdown, e.g. "Minimally invasive"' }),
         sameAs: sameAsField,
         closingCta: fields.object({
           prompt: fields.text({ label: 'Prompt text', multiline: true }),
