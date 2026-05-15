@@ -23,6 +23,10 @@ const useGitHubStorage = import.meta.env.PROD;
 const seoFields = fields.object({
   title: fields.text({ label: 'SEO title', description: 'Used as <title> and og:title. ~60 chars.' }),
   description: fields.text({ label: 'SEO description', multiline: true, description: '~150-160 chars.' }),
+  keywords: fields.array(fields.text({ label: 'Keyword' }), {
+    label: 'Keywords',
+    itemLabel: (p) => p.value,
+  }),
 });
 
 const sameAsField = fields.array(fields.url({ label: 'URL' }), {
@@ -37,65 +41,66 @@ const entityWithSameAs = fields.object({
 });
 
 // ---------------------------------------------------------------------------
-// Service section discriminated union (prose | list | steps | timeline | faqs)
+// Service sections — flat object array matching the on-disk YAML structure.
+// Files store sections as { type, title, body?, intro?, items?, steps?,
+// entries?, outro?, note?, faqItems? } — all at the same level.
+// fields.conditional was removed because it serialises as {discriminant, value}
+// which doesn't match the existing flat format.
 // ---------------------------------------------------------------------------
 
 const serviceSections = fields.array(
-  fields.conditional(
-    fields.select({
+  fields.object({
+    type: fields.select({
       label: 'Section type',
       options: [
         { label: 'Prose (heading + paragraph)', value: 'prose' },
         { label: 'List (bullet points)', value: 'list' },
         { label: 'Steps (ordered)', value: 'steps' },
         { label: 'Timeline (period + detail)', value: 'timeline' },
-        { label: 'FAQs (Q&A list)', value: 'faqs' },
+        { label: 'FAQs (Q&A)', value: 'faqs' },
       ],
       defaultValue: 'prose',
     }),
-    {
-      prose: fields.object({
-        title: fields.text({ label: 'Title' }),
-        body: fields.text({ label: 'Body', multiline: true }),
+    title: fields.text({ label: 'Title' }),
+    // prose
+    body: fields.text({ label: 'Body (prose)', multiline: true }),
+    // list / steps shared
+    intro: fields.text({ label: 'Intro paragraph', multiline: true }),
+    outro: fields.text({ label: 'Outro paragraph', multiline: true }),
+    // list items (strings)
+    items: fields.array(fields.text({ label: 'Item' }), {
+      label: 'List items',
+      itemLabel: (p) => p.value,
+    }),
+    // steps items (strings)
+    steps: fields.array(fields.text({ label: 'Step', multiline: true }), {
+      label: 'Steps',
+      itemLabel: (p) => p.value,
+    }),
+    // timeline entries
+    entries: fields.array(
+      fields.object({
+        period: fields.text({ label: 'Period' }),
+        detail: fields.text({ label: 'Detail', multiline: true }),
       }),
-      list: fields.object({
-        title: fields.text({ label: 'Title' }),
-        intro: fields.text({ label: 'Intro', multiline: true }),
-        items: fields.array(fields.text({ label: 'Item' }), { itemLabel: (p) => p.value }),
-        outro: fields.text({ label: 'Outro', multiline: true }),
+      { label: 'Timeline entries', itemLabel: (p) => p.fields.period.value }
+    ),
+    note: fields.text({ label: 'Timeline note', multiline: true }),
+    // faqItems — FAQ sections use objects {question, answer} while list sections
+    // use plain strings. Two separate fields avoids a type conflict on "items".
+    // All FAQ sections in content files use the key "faqItems" (migrated from "items").
+    faqItems: fields.array(
+      fields.object({
+        question: fields.text({ label: 'Question' }),
+        answer: fields.text({ label: 'Answer', multiline: true }),
+        featured: fields.checkbox({ label: 'Featured on homepage', defaultValue: false }),
       }),
-      steps: fields.object({
-        title: fields.text({ label: 'Title' }),
-        intro: fields.text({ label: 'Intro', multiline: true }),
-        steps: fields.array(fields.text({ label: 'Step', multiline: true }), { itemLabel: (p) => p.value }),
-        outro: fields.text({ label: 'Outro', multiline: true }),
-      }),
-      timeline: fields.object({
-        title: fields.text({ label: 'Title' }),
-        entries: fields.array(
-          fields.object({
-            period: fields.text({ label: 'Period' }),
-            detail: fields.text({ label: 'Detail', multiline: true }),
-          }),
-          { itemLabel: (p) => p.fields.period.value }
-        ),
-        note: fields.text({ label: 'Note', multiline: true }),
-      }),
-      faqs: fields.object({
-        title: fields.text({ label: 'Section title', defaultValue: 'Frequently asked questions' }),
-        items: fields.array(
-          fields.object({
-            question: fields.text({ label: 'Question' }),
-            answer: fields.text({ label: 'Answer', multiline: true }),
-          }),
-          { itemLabel: (p) => p.fields.question.value }
-        ),
-      }),
-    }
-  ),
+      { label: 'FAQ items', itemLabel: (p) => p.fields.question.value }
+    ),
+  }),
   {
     label: 'Page sections',
-    itemLabel: (p) => `${p.discriminant.toUpperCase()} · ${p.value.fields.title?.value ?? ''}`,
+    itemLabel: (p) => `${p.fields.type.value.toUpperCase()} · ${p.fields.title.value ?? ''}`,
   }
 );
 

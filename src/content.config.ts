@@ -191,7 +191,9 @@ const timelineSection = z.object({
 const faqsSection = z.object({
   type: z.literal('faqs'),
   title: z.string().default('Frequently asked questions'),
-  items: z.array(z.object({ question: z.string(), answer: z.string() })),
+  // faqItems is the new canonical key (migrated from items); items kept for backwards compat
+  faqItems: z.array(z.object({ question: z.string(), answer: z.string(), featured: z.boolean().optional() })).optional(),
+  items: z.array(z.object({ question: z.string(), answer: z.string() })).optional(),
 });
 
 const serviceSection = z.discriminatedUnion('type', [

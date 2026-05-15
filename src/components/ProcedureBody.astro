@@ -198,7 +198,7 @@ const relatedConditions = (d.relatedConditions ?? [])
 
           {section.type === 'faqs' && (
             <div class="mt-6 max-w-[62ch]">
-              {section.items.map((faq) => (
+              {(section.faqItems ?? section.items ?? []).map((faq: any) => (
                 <details class="faq">
                   <summary>{faq.question}</summary>
                   <div class="faq-body">{faq.answer}</div>
