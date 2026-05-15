@@ -8,6 +8,12 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://gastrosurgeonnellore.com',
+  // Trust the x-forwarded-host / x-forwarded-proto headers Vercel sends so that
+  // SSR API routes (Keystatic OAuth, contact form) see the correct origin instead
+  // of falling back to "localhost" when constructing absolute URLs.
+  security: {
+    allowedDomains: [{ hostname: 'gastrosurgeonnellore.com', protocol: 'https' }],
+  },
   // Static by default. Keystatic admin and the contact API opt into SSR via `prerender = false`.
   output: 'static',
   adapter: vercel({
