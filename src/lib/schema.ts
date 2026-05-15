@@ -642,7 +642,7 @@ export function faqPageFromService(opts: { pageUrl: string; service: Service }) 
   if (!faqSection) return undefined;
   return faqPageNode({
     pageUrl: opts.pageUrl,
-    questions: faqSection.items,
+    questions: faqSection.faqItems ?? faqSection.items ?? [],
   });
 }
 
