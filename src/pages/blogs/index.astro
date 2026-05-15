@@ -3,9 +3,11 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Eyebrow from '@/components/Eyebrow.astro';
 import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('blogs')).sort(
-  (a, b) => new Date(b.data.publishedAt).valueOf() - new Date(a.data.publishedAt).valueOf()
-);
+const allPosts = await getCollection('blogs');
+// Derive slug from frontmatter if present, otherwise from the file id (e.g. "my-post.mdoc" → "my-post").
+const posts = allPosts
+  .map((post) => ({ ...post, _slug: post.data.slug ?? post.id.replace(/\.(md|mdoc)$/, '') }))
+  .sort((a, b) => new Date(b.data.publishedAt).valueOf() - new Date(a.data.publishedAt).valueOf());
 
 const fmt = (iso: string) =>
   new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -43,7 +45,7 @@ const fmt = (iso: string) =>
       <ol class="space-y-0 divide-y divide-[color:var(--hairline)]">
         {posts.map((post) => (
           <li>
-            <a href={`/blogs/${post.data.slug}`} class="group grid md:grid-cols-[1fr_auto] gap-4 md:gap-10 items-baseline py-8">
+            <a href={`/blogs/${post._slug}`} class="group grid md:grid-cols-[1fr_auto] gap-4 md:gap-10 items-baseline py-8">
               <div>
                 {post.data.category && (
                   <p class="mono-caps text-ink-muted">{post.data.category}</p>

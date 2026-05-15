@@ -6,7 +6,7 @@ import type { GetStaticPaths } from 'astro';
 export const getStaticPaths = (async () => {
   const posts = await getCollection('blogs');
   return posts.map((post) => ({
-    params: { slug: post.data.slug },
+    params: { slug: post.data.slug ?? post.id.replace(/\.(md|mdoc)$/, '') },
     props: { post },
   }));
 }) satisfies GetStaticPaths;
@@ -17,8 +17,10 @@ const { Content } = await render(post);
 const site = Astro.site!;
 const toAbs = (p: string) => new URL(p, site).toString();
 
+const postSlug = post.data.slug ?? post.id.replace(/\.(md|mdoc)$/, '');
+
 const related = (await getCollection('blogs'))
-  .filter((p) => p.data.slug !== post.data.slug)
+  .filter((p) => (p.data.slug ?? p.id.replace(/\.(md|mdoc)$/, '')) !== postSlug)
   .sort((a, b) => new Date(b.data.publishedAt).valueOf() - new Date(a.data.publishedAt).valueOf())
   .slice(0, 3);
 ---
@@ -35,7 +37,7 @@ const related = (await getCollection('blogs'))
   breadcrumbs={[
     { name: 'Home', url: toAbs('/') },
     { name: 'Blog', url: toAbs('/blogs') },
-    { name: post.data.title, url: toAbs(`/blogs/${post.data.slug}`) },
+    { name: post.data.title, url: toAbs(`/blogs/${postSlug}`) },
   ]}
   serviceLink={post.data.relatedService && post.data.relatedServiceLabel
     ? { href: post.data.relatedService, label: post.data.relatedServiceLabel }
@@ -45,7 +47,7 @@ const related = (await getCollection('blogs'))
 
   <Fragment slot="related">
     {related.map((r) => (
-      <a href={`/blogs/${r.data.slug}`} class="card card-hover group block h-full flex flex-col">
+      <a href={`/blogs/${r.data.slug ?? r.id.replace(/\.(md|mdoc)$/, '')}`} class="card card-hover group block h-full flex flex-col">
         {r.data.category && <p class="mono-caps text-ink-muted">{r.data.category}</p>}
         <h3 class="mt-3 font-display text-[20px] text-ink leading-tight">{r.data.title}</h3>
         <p class="mt-3 text-[15px] text-ink-soft leading-relaxed flex-1">{r.data.excerpt}</p>

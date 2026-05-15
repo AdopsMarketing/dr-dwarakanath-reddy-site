@@ -384,11 +384,11 @@ const locations = defineCollection({
 });
 
 const blogs = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/blogs' }),
+  loader: glob({ pattern: '**/*.{md,mdoc}', base: './src/content/blogs' }),
   schema: z.object({
     title: z.string(),
-    slug: z.string(),
-    excerpt: z.string(),
+    slug: z.string().optional(),
+    excerpt: z.string().optional(),
     publishedAt: z.string(),
     updatedAt: z.string().optional(),
     author: z.string().default('Dr. Dwarakanath Reddy V'),
