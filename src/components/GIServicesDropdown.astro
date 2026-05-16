@@ -35,15 +35,28 @@ const allCategories = [...(featured ? [featured] : []), ...categories];
       })}
     </div>
 
-    <div class="mt-10 pt-4 border-t border-[color:var(--hairline)] flex flex-wrap items-center gap-x-8 gap-y-3">
-      <p class="mono-caps text-ink-muted shrink-0">Diagnostic procedures</p>
-      <a href="/gi-services/endoscopy" class="mono-caps text-ink-soft hover:text-accent">Endoscopy</a>
-      <a href="/gi-services/colonoscopy" class="mono-caps text-ink-soft hover:text-accent">Colonoscopy</a>
-      <a href="/gi-services/ercp" class="mono-caps text-ink-soft hover:text-accent">ERCP</a>
-      <a href="/gi-services" class="group inline-flex items-center gap-1.5 mono-caps text-accent hover:text-accent-soft ml-auto">
-        View all procedures
-        <span class="inline-block transition-transform group-hover:translate-x-1">→</span>
+    <div class="mt-10 pt-6 border-t border-[color:var(--hairline)] grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-4 items-end">
+      <a href="/gi-services/endoscopy" class="group block">
+        <p class="eyebrow">Diagnostic</p>
+        <span class="block mt-2 font-display text-[19px] text-ink leading-tight decoration-accent underline-offset-[6px] group-hover:underline group-hover:text-accent">Endoscopy</span>
+        <p class="mt-1.5 text-sm text-ink-muted leading-snug">Upper GI camera examination</p>
       </a>
+      <a href="/gi-services/colonoscopy" class="group block">
+        <p class="eyebrow">Diagnostic</p>
+        <span class="block mt-2 font-display text-[19px] text-ink leading-tight decoration-accent underline-offset-[6px] group-hover:underline group-hover:text-accent">Colonoscopy</span>
+        <p class="mt-1.5 text-sm text-ink-muted leading-snug">Screening and therapeutic</p>
+      </a>
+      <a href="/gi-services/ercp" class="group block">
+        <p class="eyebrow">Diagnostic</p>
+        <span class="block mt-2 font-display text-[19px] text-ink leading-tight decoration-accent underline-offset-[6px] group-hover:underline group-hover:text-accent">ERCP</span>
+        <p class="mt-1.5 text-sm text-ink-muted leading-snug">Bile duct stones and stents</p>
+      </a>
+      <div class="flex justify-end items-end">
+        <a href="/gi-services" class="group inline-flex items-center gap-1.5 mono-caps text-accent hover:text-accent-soft">
+          View all procedures
+          <span class="inline-block transition-transform group-hover:translate-x-1">→</span>
+        </a>
+      </div>
     </div>
   </div>
 </div>
