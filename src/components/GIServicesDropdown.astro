@@ -35,9 +35,12 @@ const allCategories = [...(featured ? [featured] : []), ...categories];
       })}
     </div>
 
-    <div class="mt-10 pt-4 border-t border-[color:var(--hairline)] flex items-center justify-between gap-4">
-      <p class="mono-caps text-ink-muted">Seeing all procedures</p>
-      <a href="/gi-services" class="group inline-flex items-center gap-1.5 mono-caps text-accent hover:text-accent-soft">
+    <div class="mt-10 pt-4 border-t border-[color:var(--hairline)] flex flex-wrap items-center gap-x-8 gap-y-3">
+      <p class="mono-caps text-ink-muted shrink-0">Diagnostic procedures</p>
+      <a href="/gi-services/endoscopy" class="mono-caps text-ink-soft hover:text-accent">Endoscopy</a>
+      <a href="/gi-services/colonoscopy" class="mono-caps text-ink-soft hover:text-accent">Colonoscopy</a>
+      <a href="/gi-services/ercp" class="mono-caps text-ink-soft hover:text-accent">ERCP</a>
+      <a href="/gi-services" class="group inline-flex items-center gap-1.5 mono-caps text-accent hover:text-accent-soft ml-auto">
         View all procedures
         <span class="inline-block transition-transform group-hover:translate-x-1">→</span>
       </a>
