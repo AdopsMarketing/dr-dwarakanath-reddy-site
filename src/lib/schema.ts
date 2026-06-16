@@ -99,8 +99,8 @@ export function organizationNode(opts: {
           '@type': 'EntryPoint',
           urlTemplate: d.bookingUrl,
           actionPlatform: [
-            'http://schema.org/DesktopWebPlatform',
-            'http://schema.org/MobileWebPlatform',
+            'https://schema.org/DesktopWebPlatform',
+            'https://schema.org/MobileWebPlatform',
           ],
         },
         result: {
@@ -342,6 +342,7 @@ export function physicianNode(opts: {
     name: d.name,
     honorificPrefix: d.honorificPrefix,
     jobTitle: d.title,
+    birthDate: d.birthDate,
     description: d.seo?.description,
     image: d.image
       ? {
