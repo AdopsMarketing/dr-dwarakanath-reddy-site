@@ -354,6 +354,9 @@ const locations = defineCollection({
       })
       .optional(),
     telephone: z.union([z.string(), z.array(z.string())]),
+    // Primary number patients should call to reach the doctor directly.
+    // Takes precedence over `telephone` (hospital reception) on the clinic node.
+    bookingPhone: z.string().optional(),
     whatsapp: z.string().optional(),
     email: z.string().email().optional(),
     openingHours: z.string().optional(),

@@ -432,7 +432,9 @@ export function medicalClinicNode(opts: {
           longitude: d.geo.longitude,
         }
       : undefined,
-    telephone: d.telephone,
+    // Prefer the doctor's direct booking line so patients reach Dr. Reddy
+    // directly; fall back to the hospital reception number(s) if unset.
+    telephone: d.bookingPhone ?? d.telephone,
     email: d.email,
     hasMap: d.hasMap,
     openingHours: d.openingHours,

@@ -73,6 +73,16 @@ const waHref = whatsappUrl("Hi Dr. Reddy, I'd like to book a consultation.");
             </a>
           </div>
 
+          {location.data.bookingPhone && (
+            <div>
+              <p class="mono-caps text-ink-muted">Call Dr. Reddy directly</p>
+              <a href={`tel:${location.data.bookingPhone.replace(/\s/g, '')}`} class="mt-1 inline-flex items-center gap-2 font-display text-xl text-ink hover:text-accent">
+                <Icon name="lucide:phone" class="w-5 h-5 text-accent" />
+                {location.data.bookingPhone}
+              </a>
+            </div>
+          )}
+
           <div>
             <p class="mono-caps text-ink-muted">Apollo reception</p>
             <ul class="mt-1 space-y-1">
@@ -112,4 +122,25 @@ const waHref = whatsappUrl("Hi Dr. Reddy, I'd like to book a consultation.");
       </aside>
     </div>
   </section>
+
+  {location.data.mapEmbedUrl && (
+    <section class="bg-paper-1 border-t border-paper-3">
+      <div class="site-container py-14 lg:py-20">
+        <Eyebrow>Find the hospital</Eyebrow>
+        <h2 class="mt-5 font-display text-[24px] lg:text-[32px] text-ink">{location.data.name}</h2>
+        <div class="mt-6 w-10 h-px bg-accent"></div>
+        <div class="mt-8 overflow-hidden rounded-lg border border-paper-3 aspect-[16/9]">
+          <iframe
+            src={location.data.mapEmbedUrl}
+            title={`Map to ${location.data.name}`}
+            class="w-full h-full"
+            style="border:0;"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </section>
+  )}
 </BaseLayout>
