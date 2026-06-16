@@ -83,6 +83,7 @@ const doctors = defineCollection({
       credentials: z.array(z.string()).default([]),
       hasCredential: z.array(credentialSchema).default([]),
       yearsExperience: z.number().int().nonnegative().optional(),
+      birthDate: z.string().optional(), // ISO date (schema.org/Person.birthDate)
       surgeriesPerformed: z.number().int().nonnegative().optional(),
       education: z
         .array(
